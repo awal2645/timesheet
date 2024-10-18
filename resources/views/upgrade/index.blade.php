@@ -14,7 +14,7 @@
         <div class="bg-teal-500 text-white p-6 mt-4 rounded-md">
             <ul class="list-disc ml-4">
                 <li>Application current version <strong>{{ config('app.version') }}</strong>
-                    <a href="https://zenxservices.com/knowledge-base/upgrade-guide/" class="underline text-white">Check here How to Update Your Application</a>
+                    <a href="https://engagingdot.com/knowledge-base/upgrade-guide/" class="underline text-white">Check here How to Update Your Application</a>
                 </li>
                 <li>Extract downloaded zip file and find <strong>app.zip</strong> file.</li>
                 <li>Put that <strong>app.zip</strong> file in the server's application root directory.</li>

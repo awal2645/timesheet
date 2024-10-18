@@ -111,7 +111,7 @@
                         <table cellpadding="0" cellspacing="0" border="0" width="100%">
                     <tr lass="logo-wrap">
                         <td>
-                        <img src="https://timesheet.zenxservices.com/images/logo.png" alt="Zenxserv Technologies" style="max-width: 200px;">
+                        <img src="https://timesheet.engagingdot.com/images/logo.png" alt="Zenxserv Technologies" style="max-width: 200px;">
 
                         </td>
                         <td align="right">
