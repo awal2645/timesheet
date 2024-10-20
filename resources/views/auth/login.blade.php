@@ -31,16 +31,16 @@
     </form>
     <div class="mt-6 grid grid-cols-2 gap-4">
         <button
-            class="w-full border border-teal-900 text-white font-bold py-2 px-4 rounded bg-teal-800 hover:bg-teal-900">Super
+            class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">Super
             Admin Login</button>
         <button
-            class="w-full border border-teal-900 text-white font-bold py-2 px-4 rounded bg-teal-800 hover:bg-teal-900">Company
+            class="w-full full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">Company
             Login</button>
         <button
-            class="w-full border border-teal-900 text-white font-bold py-2 px-4 rounded bg-teal-800 hover:bg-teal-900">User
+            class="w-full text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-600 dark:focus:ring-purple-800">User
             Login</button>
         <button
-            class="w-full border border-teal-900 text-white font-bold py-2 px-4 rounded bg-teal-800 hover:bg-teal-900">Client
+            class="w-full text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-500 dark:hover:bg-amber-600 dark:focus:ring-amber-800">Client
             Login</button>
     </div>
     <x-validation-errors class="mt-4" />
