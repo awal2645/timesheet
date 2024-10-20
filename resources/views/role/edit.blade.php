@@ -5,11 +5,11 @@
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
         <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">Edit Role</h2>
-        
+
         <form method="POST" action="{{ route('role.update', $role->id) }}" class="max-w-lg mx-auto space-y-6">
             @csrf
             @method('PUT')
-            
+
             <!-- Role Name -->
             <div class="relative z-0 w-full">
                 <input type="text" name="role_name" id="role_name"
@@ -23,23 +23,23 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-            
+
             <!-- Permissions -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 @foreach ($permissions as $permission)
                     @if (auth()->user()->role != 'superadmin' &&
-                        in_array($permission->name, [
-                            'Employer view',
-                            'Employer create',
-                            'Role view',
-                            'Role create',
-                            'Role edit',
-                            'Role update',
-                            'Role destroy',
-                            'Invite employer',
-                            'Employer update',
-                            'Employer destroy',
-                        ]))
+                            in_array($permission->name, [
+                                'Employer view',
+                                'Employer create',
+                                'Role view',
+                                'Role create',
+                                'Role edit',
+                                'Role update',
+                                'Role destroy',
+                                'Invite employer',
+                                'Employer update',
+                                'Employer destroy',
+                            ]))
                         @continue
                     @endif
                     <div class="flex items-center space-x-3">
@@ -47,16 +47,19 @@
                             <input type="checkbox" name="permissions[]" id="permission_{{ $permission->id }}"
                                 value="{{ $permission->id }}" class="sr-only peer"
                                 {{ in_array($permission->id, old('permissions', $role->permissions->pluck('id')->toArray())) ? 'checked' : '' }}>
-                            <div class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600"></div>
+                            <div
+                                class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:bg-teal-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600">
+                            </div>
                         </label>
-                        <span class="text-md font-medium text-gray-900 dark:text-gray-300">{{ $permission->name }}</span>
+                        <span
+                            class="text-md font-medium text-gray-900 dark:text-gray-300">{{ $permission->name }}</span>
                     </div>
                 @endforeach
             </div>
 
             <!-- Submit Button -->
             <button type="submit"
-                class="block w-full text-lg font-semibold text-white bg-blue-600 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 py-3 rounded-lg shadow-md transition-colors duration-300">
+                class="block w-full text-lg font-semibold text-white bg-teal-500 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 py-3 rounded-lg shadow-md transition-colors duration-300">
                 Submit
             </button>
         </form>

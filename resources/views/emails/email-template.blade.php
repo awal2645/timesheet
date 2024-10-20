@@ -11,7 +11,7 @@
             </h1>
         </div>
     </header>
-    
+
 
     <div x-data="{
         activeTab: '{{ $email_templates->first()->type ?? 'new' }}',
@@ -24,10 +24,7 @@
                 }
             });
         }
-    }"
-    x-init="initEditor()"
-    @click="initEditor()"
-    class="">
+    }" x-init="initEditor()" @click="initEditor()" class="">
 
         <div class="flex flex-col md:flex-row bg-white dark:bg-gray-800">
             <!-- Sidebar with Tab Links -->
@@ -38,8 +35,8 @@
                         <a href="#"
                             class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-blue-700 hover:text-white dark:hover:bg-blue-700"
                             :class="{
-                               'bg-blue-500 text-white': activeTab === '{{ $type }}',
-                               'text-gray-700 dark:text-gray-300': activeTab !== '{{ $type }}'
+                                'bg-teal-500 text-white': activeTab === '{{ $type }}',
+                                'text-gray-700 dark:text-gray-300': activeTab !== '{{ $type }}'
                             }"
                             @click.prevent="activeTab = '{{ $type }}'; initEditor();">
                             {{ $email_template->name }}
@@ -63,7 +60,8 @@
                                 <div class="grid grid-cols-1 gap-6">
                                     <!-- Name Input -->
                                     <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
+                                        <label
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
                                         <input readonly type="text" name="name" id="name"
                                             class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                             value="{{ $email_template->name ?? '' }}">
@@ -72,7 +70,8 @@
 
                                     <!-- Subject Input -->
                                     <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Subject') }}</label>
+                                        <label
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Subject') }}</label>
                                         <input type="text" name="subject" id="subject"
                                             class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                             value="{{ $email_template->subject ?? '' }}">
@@ -81,7 +80,8 @@
 
                                     <!-- Message Textarea -->
                                     <div class="mb-4">
-                                        <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Message') }}</label>
+                                        <label
+                                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Message') }}</label>
                                         <textarea name="message" id="message_{{ $email_template->id }}"
                                             class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
                                             cols="30" rows="10">{{ $email_template->message ?? '' }}</textarea>
@@ -91,7 +91,8 @@
 
                                 <div class="mb-4">
                                     <label class="block text-sm font-medium text-red-700 dark:text-red-300">
-                                        <i class="fa-solid fa-circle-info"></i> {{ __('Note') }}: Do not modify the text within {brackets}.
+                                        <i class="fa-solid fa-circle-info"></i> {{ __('Note') }}: Do not modify the
+                                        text within {brackets}.
                                     </label>
                                 </div>
 

@@ -1,11 +1,10 @@
 @section('title')
-{{ 'General Setting' }}
+    {{ 'General Setting' }}
 @endsection
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">Application Settings</h2>
-        <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data"
-            class="max-w-md mx-auto">
+        <form method="POST" action="{{ route('settings.update') }}" enctype="multipart/form-data" class="max-w-md mx-auto">
             @csrf
             @method('PUT')
 
@@ -19,7 +18,7 @@
                     Application Name
                 </label>
                 @error('app_name')
-                <span class="text-red-500">{{ $message }}</span>
+                    <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -40,7 +39,7 @@
                     Upload Logo (PNG format)
                 </label>
                 @error('logo')
-                <span class="text-red-500">{{ $message }}</span>
+                    <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -62,12 +61,12 @@
                     Upload Favicon
                 </label>
                 @error('favicon')
-                <span class="text-red-500">{{ $message }}</span>
+                    <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Save Settings
             </button>
         </form>
@@ -83,7 +82,7 @@
         const file = input.files[0];
         if (file) {
             const reader = new FileReader();
-            reader.onload = function (e) {
+            reader.onload = function(e) {
                 preview.src = e.target.result;
             }
             reader.readAsDataURL(file);

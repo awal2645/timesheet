@@ -61,7 +61,7 @@
                         class="text-[100px] tracking-wider text-teal-800 font-bold italic font-montserrat text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
                         Task & Time Tracking Tools</h2>
                     <div
-                        class=" relative z-50 w-full bg-white/10 border border-white/40 backdrop-blur rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                        class=" relative z-50 w-full bg-white/10 border border-white/40 backdrop-blur rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800/10 dark:border-gray-900/10">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                             {{ $slot }}
                         </div>

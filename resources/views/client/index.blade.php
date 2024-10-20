@@ -3,8 +3,8 @@
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+        <div class="container mx-8">
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('client.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">Search</label>
@@ -12,11 +12,11 @@
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search" />
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
+                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('client.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('client.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> Create Client</a>
             </div>
             <!-- Start heading  here -->
@@ -27,11 +27,11 @@
                             <h2 class="text-xl font-semibold mb-4">{{ __('Client List') }}</h2>
                             <div class="overflow-x-auto">
                                 <div
-                                    class="rounded-lg border border-slate-100 dark:bordar-slate-700 shadow-lg bg-white dark:bg-gray-700 px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                    class="rounded-lg border border-slate-100 dark:border-slate-500 shadow-lg bg-white dark:bg-gray-700 px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
                                     <div class="max-w-full overflow-x-auto">
                                         <table class="w-full table-auto">
-                                            <thead class="bg-gray-100 dark:bg-gray-900 rounded-xl text-left dark:bg-gray-700">
-                                                <tr>
+                                            <thead>
+                                                <tr class="bg-gray-100 dark:bg-gray-800 rounded-2xl text-left dark:bg-gray-700">
                                                     <th
                                                         class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
                                                         Client Name

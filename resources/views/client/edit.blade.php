@@ -25,7 +25,7 @@
                     Employer Name</label>
             </div>
             @if (auth('web')->user()->role == 'employer')
-                <input type="hidden" name="employer_id" value="{{auth('web')->user()->employer->id}}">
+                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
             <!-- Client Name -->
             <div class="relative z-0 w-full mb-5 group">
@@ -35,7 +35,7 @@
                 <label for="client_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Client
                     Name</label>
-                    @error('client_name')
+                @error('client_name')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
@@ -48,7 +48,7 @@
                 <label for="client_email"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Client
                     Email</label>
-                    @error('client_email')
+                @error('client_email')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
@@ -61,7 +61,7 @@
                 <label for="client_phone"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Client
                     Number</label>
-                    @error('client_phone')
+                @error('client_phone')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
@@ -74,12 +74,12 @@
                 <label for="contact_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Contact
                     Name</label>
-                    @error('contact_name')
+                @error('contact_name')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
         </form>
     </div>

@@ -20,7 +20,8 @@
         </div>
         <div class="flex flex-col gap-3 mt-6">
             @if (Route::has('password.request'))
-                <a class="text-base font-medium text-white/90 hover:text-white no-underline hover:underline" href="{{ route('password.request') }}">
+                <a class="text-base font-medium text-white/90 hover:text-white no-underline hover:underline"
+                    href="{{ route('password.request') }}">
                     {{ __('Forgot Password?') }}
                 </a>
             @endif
@@ -31,7 +32,7 @@
     </form>
     <div class="mt-6 grid grid-cols-2 gap-4">
         <button
-            class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">Super
+            class="w-full text-white bg-teal-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-teal-500 dark:focus:ring-blue-800">Super
             Admin Login</button>
         <button
             class="w-full full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">Company

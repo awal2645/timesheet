@@ -1,4 +1,6 @@
-@section('title') {{'Create Project'}} @endsection
+@section('title')
+    {{ 'Create Project' }}
+@endsection
 
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
@@ -27,12 +29,12 @@
                         Employer</label>
 
                     @error('employer_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
-                @enderror
+                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
                 </div>
             @endif
             @if (auth('web')->user()->role == 'employer')
-                <input type="hidden" name="employer_id" value="{{auth('web')->user()->employer->id}}">
+                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
             <!--  Select Client -->
             <div class="relative z-0 w-full mb-5 group">
@@ -74,8 +76,8 @@
                     Employee</label>
 
                 @error('employee_id')
-                <p class="text-red-500 text-xs">{{ $message }}</p>
-            @enderror
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
             <!-- Project Name -->
             <div class="relative z-0 w-full mb-5 group">
@@ -87,28 +89,28 @@
                     Project Name</label>
 
                 @error('project_name')
-                <p class="text-red-500 text-xs">{{ $message }}</p>
-            @enderror
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
 
             <!-- Employee Share -->
             <div class="relative z-0 w-full mb-5 group">
                 <input type="number" name="employee_share" id="employee_share"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder="" required oninput="validateEmployeeShare(this)"value="{{ old('email') }}"  />
+                    placeholder="" required oninput="validateEmployeeShare(this)"value="{{ old('email') }}" />
                 <label for="employee_share"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Employee Share (%)
                 </label>
                 @error('employee_share')
-                <p class="text-red-500 text-xs">{{ $message }}</p>
-            @enderror
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                @enderror
             </div>
             <!-- Biling Rate -->
             <div class="relative z-0 w-full mb-5 group">
                 <input type="number" name="billing_rate" id="billing_rate"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" " required value="{{ old('email') }}"/>
+                    placeholder=" " required value="{{ old('email') }}" />
                 <label for="billing_rate"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     Billing Rate Per-hr ($)
@@ -118,7 +120,7 @@
                 @enderror
             </div>
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 
         </form>
     </div>
