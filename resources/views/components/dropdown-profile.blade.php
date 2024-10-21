@@ -7,10 +7,10 @@
         :aria-expanded="open">
 
         @if (auth('web')->user()->role == 'employer' || auth('web')->user()->role == 'employee' )
-        <img class="w-12 h-12 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/default-user.png') }}"
+        <img class="w-8 h-8 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/default-user.png') }}"
             width="32" height="32" alt="{{ auth('web')->user()->username }}" />
         @else
-        <img class="w-12 h-12 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/logo_symbol.png') }}"
+        <img class="w-8 h-8 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/logo_symbol.png') }}"
             width="32" height="32" alt="{{ auth('web')->user()->username }}" />
 
         @endif
