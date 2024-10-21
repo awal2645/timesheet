@@ -4,7 +4,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="container mx-8">
-            <div class="mt-8 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('client.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">Search</label>
@@ -27,11 +27,11 @@
                             <h2 class="text-xl font-semibold mb-4">{{ __('Client List') }}</h2>
                             <div class="overflow-x-auto">
                                 <div
-                                    class="rounded-lg border border-slate-100 dark:border-slate-500 shadow-lg bg-white dark:bg-gray-700 px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10  px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
                                     <div class="max-w-full overflow-x-auto">
                                         <table class="w-full table-auto">
                                             <thead>
-                                                <tr class="bg-gray-100 dark:bg-gray-800 rounded-2xl text-left dark:bg-gray-700">
+                                                <tr class="bg-gray-200 dark:bg-gray-800 rounded-2xl text-left dark:bg-gray-700">
                                                     <th
                                                         class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
                                                         Client Name
@@ -52,7 +52,7 @@
                                             <tbody>
                                                 @if ($clients->count() > 0)
                                                     @foreach ($clients as $key => $client)
-                                                        <tr class="hover:bg-gray-50 hover:dark:bg-gray-800">
+                                                        <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
                                                             <td
                                                                 class="border-b border-[#eee] dark:border-slate-700 dark:border-slate-700 px-4 py-2.5 pl-9 dark:border-strokedark xl:pl-11">
                                                                 <div class="text-sm font-semibold">

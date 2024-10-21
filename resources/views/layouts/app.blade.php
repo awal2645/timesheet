@@ -22,7 +22,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script> --}}
     <!-- Scripts -->
-       @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
     <!-- Styles -->
@@ -40,9 +40,7 @@
 </head>
 
 <body class="font-inter antialiased bg-slate-100 dark:bg-slate-900 text-slate-600 dark:text-slate-400"
-    :class="{ 'sidebar-expanded': sidebarExpanded }"
-    x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
-    x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
+    :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))">
 
     <script>
         if (localStorage.getItem('sidebar-expanded') == 'true') {
@@ -63,7 +61,7 @@
 
             <x-app.header />
 
-            <main class="grow">
+            <main class="grow dark:bg-dark-gradient bg-light-gradient">
                 {{ $slot }}
             </main>
 
@@ -89,7 +87,7 @@
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
-                "positionClass" : "toast-top-center"
+                "positionClass": "toast-top-center"
             }
             toastr.success("{{ session('success') }}");
         @endif
@@ -98,7 +96,7 @@
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
-                "positionClass" : "toast-top-center"
+                "positionClass": "toast-top-center"
             }
             toastr.error("{{ session('error') }}");
         @endif
@@ -107,7 +105,7 @@
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
-                "positionClass" : "toast-top-center"
+                "positionClass": "toast-top-center"
             }
             toastr.info("{{ session('info') }}");
         @endif
@@ -116,30 +114,30 @@
             toastr.options = {
                 "closeButton": true,
                 "progressBar": true,
-                "positionClass" : "toast-top-center"
+                "positionClass": "toast-top-center"
             }
             toastr.warning("{{ session('warning') }}");
         @endif
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-        var searchInput = document.getElementById("searchInput");
-        var dropdownItems = document.querySelectorAll("ul.dropdown-menu li");
+            var searchInput = document.getElementById("searchInput");
+            var dropdownItems = document.querySelectorAll("ul.dropdown-menu li");
 
-        // Check if searchInput exists
-        if (searchInput) {
-            searchInput.addEventListener("keyup", function() {
-                var value = this.value.toLowerCase();
-                dropdownItems.forEach(function(item) {
-                    if (item.textContent.toLowerCase().indexOf(value) > -1) {
-                        item.style.display = "";
-                    } else {
-                        item.style.display = "none";
-                    }
+            // Check if searchInput exists
+            if (searchInput) {
+                searchInput.addEventListener("keyup", function() {
+                    var value = this.value.toLowerCase();
+                    dropdownItems.forEach(function(item) {
+                        if (item.textContent.toLowerCase().indexOf(value) > -1) {
+                            item.style.display = "";
+                        } else {
+                            item.style.display = "none";
+                        }
+                    });
                 });
-            });
-        }
-    });
+            }
+        });
     </script>
 
     <style>

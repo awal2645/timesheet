@@ -60,6 +60,10 @@ export default {
             zIndex: {
                 60: '60',
             },
+            backgroundImage: {
+                'light-gradient': 'linear-gradient(315deg, rgba(174,238,214,0.1) 5%, rgba(246,112,178,0.1) 100%)',
+                'dark-gradient': 'linear-gradient(315deg, rgba(4,47,66,0.2) 25%, rgba(4,47,66,1) 100%)',
+            },
         },
     },
 
