@@ -62,11 +62,11 @@
         function showConfirmation(id) {
             Swal.fire({
                 title: 'Want to delete this Plan!',
-                text: 'This action cannot be undone.',
+                text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.getElementById('delete-form-' + id).submit();

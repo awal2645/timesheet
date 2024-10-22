@@ -6,12 +6,12 @@
             <img src="{{ asset('images/icon-02.svg') }}" width="32" height="32" alt="Icon 02" />
         </header>
         @if (auth('web')->user()->role == 'employee')
-            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Pending Report(s)</h2>
+            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">{{ __('Pending') }} Report(s)</h2>
             <div class="flex items-start">
                 <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ reportCount('pending') }}</div>
             </div>
         @else
-            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Employee(s)</h2>
+            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">{{ __('Employee(s)') }}</h2>
             <div class="flex items-start">
                 <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ employeeCount() }}</div>
             </div>

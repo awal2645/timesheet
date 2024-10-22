@@ -8,7 +8,7 @@
                 <form action="{{ route('reports.index') }}" method="GET" class="mb-6">
                     <div class="mb-5">
                         <label for="search"
-                            class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Search</label>
+                            class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Search')}}</label>
                         <div class="flex flex-col md:flex-row items-center gap-4">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -16,18 +16,18 @@
 
                             <select name="status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white pr-8">
-                                <option value="">Select Status</option>
-                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending
+                                <option value="">{{ __('Select Status') }}</option>
+                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>{{ __('Pending') }}
                                 </option>
-                                <option value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>Approved
+                                <option value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>{{ __('Approved') }}
                                 </option>
-                                <option value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>Declined
+                                <option value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>{{ __('Approved') }}
                                 </option>
                                 <!-- Add more status options as needed -->
                             </select>
 
                             <button type="submit"
-                                class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out">Search</button>
+                                class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out">{{ __('Search')}}</button>
                         </div>
                     </div>
                 </form>
@@ -48,19 +48,19 @@
 
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Name
+                                                {{ __('Name') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Date
+                                                {{ __('Date') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Status
+                                                 {{ __('Status') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Action
+                                                {{ __('Action') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -97,13 +97,13 @@
                                                                 @csrf
                                                                 <div
                                                                     {{ $timeReport->status === 'approve' ? '' : 'hidden' }}>
-                                                                    Approved</div>
+                                                                    {{ __('Approved') }}</div>
                                                                 <div
                                                                     {{ $timeReport->status === 'decline' ? '' : 'hidden' }}>
-                                                                    Declined</div>
+                                                                    {{ __('Approved') }}</div>
                                                                 <div
                                                                     {{ $timeReport->status === 'pending' ? '' : 'hidden' }}>
-                                                                    Pending</div>
+                                                                    {{ __('Pending') }}</div>
                                                             </form>
                                                         </div>
                                                     </td>
@@ -272,7 +272,7 @@
                                                                                         class="bg-gray-500 text-white px-6 py-2
                                                                         rounded-md shadow hover:bg-gray-600
                                                                         focus:outline-none transition duration-150">
-                                                                                        Approved
+                                                                                        {{ __('Approved') }}
                                                                                     </button>
                                                                                 @else
                                                                                     <button type="submit"
@@ -291,7 +291,7 @@
                                                                                         class="bg-gray-500 text-white px-6 py-2
                                                                     rounded-md shadow hover:bg-gray-600
                                                                     focus:outline-none transition duration-150">
-                                                                                        Declined
+                                                                                        {{ __('Approved') }}
                                                                                     </button>
                                                                                 @else
                                                                                     <button type="submit"
@@ -368,11 +368,11 @@
         function showConfirmation() {
             Swal.fire({
                 title: 'Want to delete this Report!',
-                text: 'If you are ready?',
+                text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
                     console.log(result.isConfirmed);

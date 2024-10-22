@@ -40,12 +40,13 @@
                             href="{{ route('dashboard') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 dark:text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 dark:text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-gauge text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{
-                                        __('Dashboard') }}</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Dashboard') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -57,12 +58,13 @@
                             href="{{ route('order.index') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-money-bill-wave text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">{{
-                                        __('Order') }}</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{__('Order') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -76,11 +78,13 @@
                             href="#0">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-building text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Employer</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Employer') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -88,16 +92,18 @@
                     @endcanany
                     <!-- employee -->
                     @canany('Client view')
-                    <li >
+                    <li>
                         <a href="{{ route('employee.index') }}"
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('employee.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-user-tie text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Employee</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Employee') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -105,16 +111,18 @@
                     @endcanany
                     <!-- client -->
                     @canany('Client view')
-                    <li >
+                    <li>
                         <a href="{{ route('client.index') }}"
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('client.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-user-secret text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Client</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Client') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -127,11 +135,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('project.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-list-check text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Project</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Project') }}</span>
                                 </div>
                             </div>
                         </a>
@@ -144,12 +154,15 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('plans.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-money-check-dollar text-base"></i>
                                     </span>
                                     <span
                                         class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        Price Plan</span>
+                                      
+                                        {{ __('Price Plan') }}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -162,11 +175,14 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('timesheet.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500  truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-hourglass text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Timesheet</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Timesheet') }}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -179,12 +195,14 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('reports.index') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-chart-line text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Timesheet
-                                        Report</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Timesheet Report') }}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -197,12 +215,14 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('invite.send.employer.page') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-regular fa-paper-plane text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Send
-                                        Invite</span>
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Send Invite') }}
+                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -215,12 +235,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('role.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-user-lock text-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Role
-                                        Management
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Role Management') }}
                                     </span>
                                 </div>
                             </div>
@@ -234,12 +255,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('smtp') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-brands fa-mailchimp tetx-base"></i>
                                     </span>
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">SMTP
-                                        Config
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('SMTP Config') }}
                                     </span>
                                 </div>
                             </div>
@@ -253,12 +275,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('email_templates') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-regular fa-envelope text-base"></i> 
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                        <i class="fa-regular fa-envelope text-base"></i>
                                     </span>
                                     <span
                                         class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        Email Templates
+                                        {{ __('Email Templates') }}
                                     </span>
                                 </div>
                             </div>
@@ -272,12 +295,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('payment') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-file-invoice-dollar text-base"></i> 
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-file-invoice-dollar text-base"></i>
                                     </span>
                                     <span
                                         class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        Payment Gateway
+                                        {{ __('Payment Gateway') }}
                                     </span>
                                 </div>
                             </div>
@@ -291,12 +315,14 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('setting') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-gears text-base"></i>
                                     </span>
                                     <span
                                         class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        General Setting
+                                        {{ __('General Setting') }}
+
                                     </span>
                                 </div>
                             </div>
@@ -310,11 +336,13 @@
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('upgrade') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-upload text-base"></i>                                    
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-upload text-base"></i>
                                     </span>
-                                    <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        Upgrade Application
+                                    <span
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Upgrade Application') }}
                                     </span>
                                 </div>
                             </div>
@@ -328,12 +356,14 @@
                             href="#0">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-cart-shopping w-8"></i> 
-                                    </span>                                    
                                     <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Biling
-                                        & Plan</span>
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-cart-shopping w-8"></i>
+                                    </span>
+                                    <span
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Biling & Plan') }}
+                                    </span>
                                 </div>
                             </div>
                         </a>

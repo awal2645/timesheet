@@ -1,5 +1,5 @@
 @section('title')
-    {{ 'Edit Project' }}
+{{ 'Edit Project' }}
 @endsection
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
@@ -7,51 +7,50 @@
         <form method="POST" action="{{ route('project.update', $project->id) }}" class="max-w-md mx-auto">
             @csrf
             @method('PUT')
-            <!-- Select Employer  -->
+            <!-- {{__('Select Employer')}}</button>  -->
             @if (auth('web')->user()->role != 'employer')
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="employer_id" id="employer_id"
-                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                        <option class="dark:bg-slate-800" value="" selected>
-                            Select Employer
-                        </option>
-                        @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800" value="{{ $employer->id }}"
-                                {{ $project->employer_id == $employer->id ? 'selected' : '' }}>
-                                {{ $employer->employer_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <label for="employer_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select
-                        Employer</label>
-                    @error('employer_id')
-                        <p class="text-red-500 text-xs">{{ $message }}</p>
-                    @enderror
-                </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <select name="employer_id" id="employer_id"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                    <option class="dark:bg-slate-800" value="" selected>
+                        {{__('Select Employer')}}</button>
+                    </option>
+                    @foreach ($employers as $employer)
+                    <option class="dark:bg-slate-800" value="{{ $employer->id }}" {{ $project->employer_id ==
+                        $employer->id ? 'selected' : '' }}>
+                        {{ $employer->employer_name }}
+                    </option>
+                    @endforeach
+                </select>
+                <label for="employer_id"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select
+                    Employer</label>
+                @error('employer_id')
+                <p class="text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
             @endif
             @if (auth('web')->user()->role == 'employer')
-                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
+            <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
             <!--  Select Client -->
             <div class="relative z-0 w-full mb-5 group">
                 <select name="client_id" id="client_id"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                     <option class="dark:bg-slate-800" value="" selected>
-                        Select Client
-                    </option>
+                        {{__('Select Client')}} </option>
                     @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800" value="{{ $client->id }}"
-                            {{ $project->client_id == $client->id ? 'selected' : '' }}>
-                            {{ $client->client_name }}
-                        </option>
+                    <option class="dark:bg-slate-800" value="{{ $client->id }}" {{ $project->client_id == $client->id ?
+                        'selected' : '' }}>
+                        {{ $client->client_name }}
+                    </option>
                     @endforeach
                 </select>
                 <label for="client_id"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select
-                    Client</label>
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                    {{__('Select Client')}}</label>
                 @error('client_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <!--  Select Employee -->
@@ -59,23 +58,24 @@
                 <select name="employee_id" id="employee_id"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                     <option class="dark:bg-slate-800" value="" selected>
-                        Select Client
+                        {{__('Select Client')}}
                     </option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800" value="{{ $employee->id }}"
-                            {{ $project->employee_id == $employee->id ? 'selected' : '' }}>
-                            {{ $employee->employee_name }}
-                        </option>
+                    <option class="dark:bg-slate-800" value="{{ $employee->id }}" {{ $project->employee_id ==
+                        $employee->id ? 'selected' : '' }}>
+                        {{ $employee->employee_name }}
+                    </option>
                     @endforeach
                 </select>
                 <label for="employee_id"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Select
-                    Employee</label>
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                     {{ __('Select Employee') }}
+                    </label>
                 @error('employee_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-            <!-- Project Name -->
+            <!-- {{ __('Project Name') }} -->
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" name="project_name" id="project_name"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -83,9 +83,9 @@
 
                 <label for="project_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Project Name</label>
+                    {{ __('Project Name') }}</label>
                 @error('project_name')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <!-- Employee Share -->
@@ -96,11 +96,11 @@
                     oninput="validateEmployeeShare(this)" />
                 <label for="employee_share"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Employee Share (%)
+                     {{ __('Employee Share (%)') }}
                 </label>
 
                 @error('employee_share')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <!-- Biling Rate -->
@@ -111,10 +111,10 @@
 
                 <label for="billing_rate"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Billing Rate Per-hr ($)
+                    {{ __('Billing Rate Per-hr ($)') }}
                 </label>
                 @error('billing_rate')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
             <button type="submit"

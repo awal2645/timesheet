@@ -6,7 +6,8 @@
             <img src="{{ asset('images/icon-01.svg') }}" width="32" height="32" alt="Icon 01" />
         </header>
         @if (auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'employee' )
-            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Employer(s)</h2>
+
+            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2"> {{ __('Employer(s)') }}</h2>
             <div class="flex items-start">
                 <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ employerCount() }}</div>
             </div>
