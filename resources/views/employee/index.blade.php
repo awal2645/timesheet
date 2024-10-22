@@ -7,12 +7,12 @@
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('employee.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">Search</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
+                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
                         </div>
                     </div>
                 </form>
@@ -33,19 +33,19 @@
                                         <tr>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Employee Name
+                                                 {{ __('Employee Name') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Employer Name
+                                                 {{ __('Employer Name ') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Status
+                                                {{ __('Status') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Action
+                                                {{ __('Action') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -95,10 +95,10 @@
                                                                     <!-- Replace data-project-id with the actual project ID -->
                                                                     <option class="dark:bg-slate-800" value="1"
                                                                         {{ $employee->status === 1 ? 'selected' : '' }}>
-                                                                        Active</option>
+                                                                        {{__('Active')}}
                                                                     <option class="dark:bg-slate-800" value="0"
                                                                         {{ $employee->status === 0 ? 'selected' : '' }}>
-                                                                        Inactive</option>
+                                                                        {{__('Inactive')}}
                                                                 </select>
                                                             </form>
                                                         </div>
@@ -155,11 +155,11 @@
         function showConfirmation(id) {
             Swal.fire({
                 title: 'Want to delete this Employee!',
-                text: 'If you are ready?',
+                text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
                     console.log(result.isConfirmed);

@@ -49,7 +49,7 @@
             <!-- Search form -->
             <form class="border-b border-slate-200 dark:border-slate-700">
                 <div class="relative">
-                    <label for="modal-search" class="sr-only">Search</label>
+                    <label for="modal-search" class="sr-only">{{ __('Search')}}</label>
                     <input id="modal-search" class="w-full dark:text-slate-300 bg-white dark:bg-slate-800 border-0 focus:ring-transparent placeholder-slate-400 dark:placeholder-slate-500 appearance-none py-3 pl-10 pr-4" type="search" placeholder="Search…" x-ref="searchInput" />
                     <button class="absolute inset-0 right-auto group" type="submit" aria-label="Search">
                         <svg class="w-4 h-4 shrink-0 fill-current text-slate-400 dark:text-slate-500 group-hover:text-slate-500 dark:group-hover:text-slate-400 ml-4 mr-2" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
