@@ -10,7 +10,7 @@
               Invoice date
             </th>
             <th class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-              Status
+              {{ __('Status') }}
             </th>
             <th class="px-4 py-4 font-medium text-black dark:text-white">
               Actions
@@ -148,7 +148,7 @@
             </td>
             <td class="px-4 py-5">
               <p class="inline-flex rounded-full bg-warning bg-opacity-10 px-3 py-1 text-sm font-medium text-warning">
-                Pending
+                {{ __('Pending') }}
               </p>
             </td>
             <td class="px-4 py-5">

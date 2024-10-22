@@ -8,17 +8,17 @@
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('employer.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">Search</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
+                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
                         </div>
                     </div>
                 </form>
                 <a href="{{ route('employer.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> Create Employer</a>
+                    class="fa-solid fa-plus"></i> {{ __('Create Employer') }}</a>
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
@@ -31,25 +31,20 @@
                                     <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Employer Name
+                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Employer Name') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Employee Name
+                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Employee') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Website
+                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Website') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Status
+                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Status') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Action
+                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Action') }}
                                             </th>
                                         </tr>
                                     </thead>
@@ -106,10 +101,10 @@
                                                                     <!-- Replace data-project-id with the actual project ID -->
                                                                     <option class="dark:bg-slate-800" value="1"
                                                                         {{ $employer->status === 1 ? 'selected' : '' }}>
-                                                                        Active</option>
+                                                                        {{__('Active')}}
                                                                     <option class="dark:bg-slate-800" value="0"
                                                                         {{ $employer->status === 0 ? 'selected' : '' }}>
-                                                                        Inactive</option>
+                                                                        {{__('Inactive')}}
                                                                 </select>
                                                             </form>
 
@@ -167,11 +162,11 @@
         function showConfirmation(id) {
             Swal.fire({
                 title: 'Want to delete this Employer!',
-                text: 'If you are ready?',
+                text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
                     console.log(result.isConfirmed);

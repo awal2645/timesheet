@@ -38,13 +38,13 @@
             <li>
                 <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
                     href="{{ route('my.account') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false"> Account Settings</a>
+                    @focusout="open = false">{{ __('Account Settings') }}</a>
             </li>
             @endif
             <li>
                 <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
                     href="{{ route('profile.show') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false"> User Settings</a>
+                    @focusout="open = false">{{ __('User Settings') }}</a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>

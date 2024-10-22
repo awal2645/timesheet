@@ -1,10 +1,10 @@
 @section('title')
-    {{ 'Edit Role' }}
+    {{ __('Edit Role') }}
 @endsection
 
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-        <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">Edit Role</h2>
+        <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">{{ __('Edit Role') }}</h2>
 
         <form method="POST" action="{{ route('role.update', $role->id) }}" class="max-w-lg mx-auto space-y-6">
             @csrf
@@ -17,7 +17,7 @@
                     placeholder=" " required value="{{ old('role_name') ?? $role->name }}" />
                 <label for="role_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    Role Name
+                    {{ __('Role Name') }}
                 </label>
                 @error('role_name')
                     <span class="text-red-500">{{ $message }}</span>
@@ -60,7 +60,7 @@
             <!-- Submit Button -->
             <button type="submit"
                 class="block w-full text-lg font-semibold text-white bg-teal-500 hover:bg-teal-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 py-3 rounded-lg shadow-md transition-colors duration-300">
-                Submit
+                {{ __('Submit') }}
             </button>
         </form>
     </div>

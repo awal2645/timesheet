@@ -7,17 +7,17 @@
             <div class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('client.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">Search</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Search" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
+                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
                         </div>
                     </div>
                 </form>
                 <a href="{{ route('client.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> Create Client</a>
+                        class="fa-solid fa-plus"></i>  {{ __('Create Client') }}</a>
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
@@ -31,21 +31,21 @@
                                     <div class="max-w-full overflow-x-auto">
                                         <table class="w-full table-auto">
                                             <thead>
-                                                <tr class="bg-gray-200 dark:bg-gray-800 rounded-2xl text-left dark:bg-gray-700">
+                                                <tr class="bg-gray-200  rounded-2xl text-left dark:bg-gray-700">
                                                     <th
                                                         class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
-                                                        Client Name
+                                                        {{ __('Client Name') }}
                                                     </th>
                                                     <th
                                                         class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-                                                        Contact Person Name
+                                                         {{ __('Contact Person Name') }}
                                                     </th>
                                                     <th
                                                         class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
-                                                        Status
+                                                        {{ __('Date') }}
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black dark:text-white">
-                                                        Actions
+                                                         {{ __('Action') }}
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -54,7 +54,7 @@
                                                     @foreach ($clients as $key => $client)
                                                         <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
                                                             <td
-                                                                class="border-b border-[#eee] dark:border-slate-700 dark:border-slate-700 px-4 py-2.5 pl-9 dark:border-strokedark xl:pl-11">
+                                                                class="border-b border-[#eee] dark:border-slate-700  px-4 py-2.5 pl-9 dark:border-strokedark xl:pl-11">
                                                                 <div class="text-sm font-semibold">
                                                                     {{ $client->client_name }}
                                                                 </div>
@@ -84,11 +84,11 @@
                                                                             <option class="dark:bg-slate-800"
                                                                                 value="1"
                                                                                 {{ $client->status === 1 ? 'selected' : '' }}>
-                                                                                Active</option>
+                                                                                {{__('Active')}}
                                                                             <option class="dark:bg-slate-800"
                                                                                 value="0"
                                                                                 {{ $client->status === 0 ? 'selected' : '' }}>
-                                                                                Inactive</option>
+                                                                                {{__('Inactive')}}
                                                                         </select>
                                                                     </form>
 
@@ -177,11 +177,11 @@
         function showConfirmation(id) {
             Swal.fire({
                 title: 'Want to delete this Client!',
-                text: 'If you are ready?',
+                text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
                     window.location.href = "/client/destroy/" + id;
