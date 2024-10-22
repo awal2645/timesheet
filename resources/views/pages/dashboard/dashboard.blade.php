@@ -5,7 +5,7 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
         <!-- Welcome banner -->
-        <div class="relative bg-teal-500 dark:bg-indigo-500 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
+        <div class="relative bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4 sm:p-6 overflow-hidden mb-8">
 
             <!-- Background illustration -->
             <div class="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
@@ -52,7 +52,7 @@
             <!-- Content -->
             <div class="relative">
                 <h1 id="greeting"
-                    class="text-2xl md:text-3xl text-white dark:text-slate-100 font-bold mb-1 capitalize">
+                    class="text-2xl md:text-3xl text-slate-900 dark:text-slate-300 font-bold mb-1 capitalize">
                     Good , <span id="usernamePlaceholder"></span> </h1>
                 @if (auth('web')->user()->role == 'employee')
                     <p class="dark:text-indigo-200">Here is what's happening with your projects today</p>
@@ -132,7 +132,7 @@
 
                                     <table class="min-w-full table-auto text-sm">
                                         <thead
-                                            class="bg-white shadow-lg rounded-sm border border-slate-200 dark:border-gray-800 dark:text-gray-100 dark:bg-gray-800">
+                                            class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
                                             <tr class="text-center">
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">Invoice
                                                     Number</th>
