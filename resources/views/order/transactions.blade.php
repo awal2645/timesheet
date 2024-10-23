@@ -30,7 +30,8 @@
                                     <thead
                                         class="bg-white shadow-lg rounded-sm border border-slate-200 dark:border-gray-800 dark:text-gray-100 dark:bg-gray-800">
                                         <tr class="text-center">
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700"> {{ __('Invoice Number')}}
+                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                 {{ __('Invoice Number')}}
                                             </th>
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Date') }}</th>

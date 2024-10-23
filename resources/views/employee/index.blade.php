@@ -1,5 +1,5 @@
 @section('title')
-    {{ 'List Employee' }}
+    {{ __('List Employee') }}
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
@@ -17,7 +17,7 @@
                     </div>
                 </form>
                 <a href="{{ route('employee.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> Create Employee</a>
+                        class="fa-solid fa-plus"></i>  {{ __('Create Employee') }}</a>
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
@@ -37,7 +37,7 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                 {{ __('Employer Name ') }}
+                                                 {{ __('Employer Name') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">

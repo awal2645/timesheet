@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\App;
 
 class AuthController extends Controller
 {
@@ -98,6 +99,26 @@ class AuthController extends Controller
                 ->back()
                 ->withInput($request->all())
                 ->with(['error' => 'An error occurred while updating user information. Please try again later.']);
+        }
+    }
+
+    public function changeLanguage(Request $request)
+    {
+
+        try {
+            session()->put('current_lang', $request->language);
+            app()->setLocale($request->language);
+            App::setLocale($request->language);
+            $locale = App::currentLocale();
+
+            // dd($locale);
+
+            return back()->with('success', 'language updated successfully! ');
+        } catch (\Exception $e) {
+            // Log the exception for debugging purposes
+            Log::error('Error changing language: ' . $e->getMessage());
+
+            return back()->with('error', 'Unable to change the language.');
         }
     }
 }

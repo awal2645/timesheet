@@ -63,11 +63,32 @@
                     Conditions</a>
                 <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Privacy
                     Policy</a>
-                <select class="text-sm text-gray-600 border-gray-300 rounded-md">
+                {{-- <select class="text-sm text-gray-600 border-gray-300 rounded-md">
                     <option>English</option>
                     <option>Español</option>
                     <option>Français</option>
+                </select> --}}
+                @php
+                $languages = loadLanguage();
+                $hasMultipleLanguages = count($languages) > 1;
+                $current_language = currentLanguage() ?: loadDefaultLanguage();
+                // dd($current_language);
+            @endphp
+            
+            @if ($hasMultipleLanguages)
+            <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                <select name="language" id="language-switcher" class="form-select text-white bg-transparent border-white/60"
+                    onchange="document.getElementById('language-switcher-form').submit()">
+                    @foreach ($languages as $lang)
+                        <option value="{{ $lang->code }}" {{ $lang->code === $current_language ? 'selected' : '' }}>
+                            {{ $lang->name }}
+                        </option>
+                    @endforeach
                 </select>
+            </form>
+            
+            
+            @endif
             </nav>
         </header>
         <section

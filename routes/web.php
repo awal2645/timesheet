@@ -38,6 +38,7 @@ Route::redirect('/', 'login');
 
 // Email verification routes
 Route::get('verify/{token}', [AuthController::class, 'verify'])->name('email.verify');
+Route::get('change-language', [AuthController::class, 'changeLanguage'])->name('changeLanguage');
 Route::get('user/info/{token}', [AuthController::class, 'usernamePassword'])->name('username.password');
 Route::put('update/info', [AuthController::class, 'updateUserInfo'])->name('update.info');
 
@@ -147,6 +148,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('payment/gateway', 'paymentGateway')->name('payment');
             Route::put('payment/update', 'paymentupdate')->name('payment.update');
             Route::get('upgrade', 'upgrade')->name('upgrade');
+            // Route::get('change-language/{lang}', 'changeLanguage')->name('changeLanguage');
             Route::post('upgrade/apply', 'upgradeApply')->name('upgrade.apply');
         });
 
