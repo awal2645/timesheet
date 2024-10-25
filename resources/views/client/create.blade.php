@@ -88,8 +88,8 @@
                 @enderror
             </div>
             <!-- Contact Image -->
-            <div class="relative z-0 w-full mb-5 min-h-[300px]">
-                <input type="file" name="contact_name" class="filepond min-h-full" required
+            <div class="relative z-0 w-full mb-5">
+                <input type="file" name="contact_name" class="filepond" required
                     value="{{ old('contact_name') }}" />
             </div>
             <button type="submit"

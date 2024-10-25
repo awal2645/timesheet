@@ -32,9 +32,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// landing page
+
+Route::view('/', 'welcome');
 
 // Redirect the root URL to the login page
-Route::redirect('/', 'login');
+// Route::redirect('/', 'login');
 
 // Email verification routes
 Route::get('verify/{token}', [AuthController::class, 'verify'])->name('email.verify');
