@@ -50,8 +50,9 @@
     "Employee Delete Successfully": "Employee Delete Successfully",
 
     "Project": "Project",
-    "Project Create": "Project Create",
-    "Project Edit": "Project Edit",
+    "Create Project": "Create Project",
+    "Edit Project": "Edit Project ",
+    "Latest Project": "Latest Project ",
     "Project Delete": "Project Delete",
     "Select Employee": "Select Employee",
     "Project Name": "Project Name",
@@ -201,7 +202,6 @@
     "Recommended": "Recommended",
     "Frontend Show": "Frontend Show",
 
-    "Create Project": "Create Project",
     "Create New Project": "Create New Project",
 
     "Go to Client List": "Go to Client List",
@@ -255,6 +255,8 @@
     "Employer(s)": "Employer(s)",
     "Employee(s)": "Employee(s)",
     "Report(s)": "Report(s)",
+    "Earnig(s)": "Earnig(s)",
+    "Client(s)": "Client(s)",
     "Pending Report(s)": "Pending Report(s)",
     "Report Decline(s)": "Report Decline(s)",
     "Upload Client/Vendor Approved Timesheet": "Upload Client/Vendor Approved Timesheet",
@@ -278,7 +280,7 @@
     "Website": "Website",
     "User Settings": "User Settings",
 
-    "Create Employee" :"Create Employee",
+    "Create Employee": "Create Employee",
 
     "Email": "Email",
     "Phone": "Phone",
@@ -290,18 +292,23 @@
     "Address 1": "Address 1",
     "Address 2": "Address 2",
 
-    "Gender": "लिंग",
-    "Male": "पुरुष",
-    "Female": "महिला",
-    "Other": "अन्य",
-    "Monthly Salary": "मासिक वेतन",
-    "Project Based": "प्रोजेक्ट आधारित",
-    "Employee share share (%)": "कर्मचारी शेयर (%)",
-    "Billing rate Per-hr ($)": "बिलिंग दर प्रति घंटा ($)",
-    "Payment Type": "भुगतान प्रकार",
-    "Monthly Salary Per-month ($)": "मासिक वेतन प्रति माह ($)",
+    "Gender": "Gender",
+    "Male": "Male",
+    "Female": "Female",
+    "Other": "Other",
+    "Monthly Salary": "Monthly Salary",
+    "Project Based": "Project Based",
+    "Employee share share (%)": "Employee share (%)",
+    "Billing rate Per-hr ($)": "Billing rate per hour ($)",
+    "Payment Type": "Payment type",
+    "Monthly Salary Per-month ($)": "Monthly Salary per month ($)",
 
-    "Edit Employee":"Edit Employee",
-    "Blilling rate Per-hr ($)":"Blilling rate Per-hr ($)"
-
+    "Edit Employee": "Edit Employee",
+    "Blilling rate Per-hr ($)": "Blilling rate Per-hr ($)",
+    "Billing Type":"Billing Type",
+    "Hourly Based":"Hourly Based",
+    "Fixed Price":"Fixed Price",
+    "Non Billable":"Non Billable",
+    "Total Cost": "Total Cost"
+    
 }

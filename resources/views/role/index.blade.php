@@ -30,7 +30,7 @@
                                                 {{ __('Permission') }}
                                             </th>
                                             <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('{{ __('Action') }}') }}
+                                                {{ __('Action') }}
                                             </th>
                                         </tr>
                                     </thead>
