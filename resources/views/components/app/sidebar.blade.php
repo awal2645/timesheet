@@ -54,7 +54,7 @@
                     <!-- Order -->
                     @canany('Order view')
                     <li>
-                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('order.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600"
+                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('order.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600"
                             href="{{ route('order.index') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
@@ -147,6 +147,22 @@
                         </a>
                     </li>
                     @endif
+                       <!-- task -->
+                       <li>
+                           <a href="{{ route('task.index') }}"
+                               class="block px-3 py-1.5 rounded {{ request()->routeIs('task.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
+                               <div class="flex items-center justify-between">
+                                   <div class="flex items-center">
+                                       <span
+                                           class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
+                                           <i class="fa-solid fa-briefcase"></i>                                       </span>
+                                       <span
+                                           class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                           {{ __('Task') }}</span>
+                                   </div>
+                               </div>
+                           </a>
+                       </li>
                     <!-- plan -->
                     @canany('Plan view')
                     <li>

@@ -40,6 +40,8 @@
                     username = 'employer';
                 } else if (role === 'employee') {
                     username = 'employee';
+                } else if (role === 'client') {
+                    username = 'client';
                 }
 
                 // Set the form values
@@ -73,22 +75,23 @@
                 $hasMultipleLanguages = count($languages) > 1;
                 $current_language = currentLanguage() ?: loadDefaultLanguage();
                 // dd($current_language);
-            @endphp
-            
-            @if ($hasMultipleLanguages)
-            <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
-                <select name="language" id="language-switcher" class="form-select text-white bg-transparent border-white/60"
-                    onchange="document.getElementById('language-switcher-form').submit()">
-                    @foreach ($languages as $lang)
+                @endphp
+
+                @if ($hasMultipleLanguages)
+                <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                    <select name="language" id="language-switcher"
+                        class="form-select text-white bg-transparent border-white/60"
+                        onchange="document.getElementById('language-switcher-form').submit()">
+                        @foreach ($languages as $lang)
                         <option value="{{ $lang->code }}" {{ $lang->code === $current_language ? 'selected' : '' }}>
                             {{ $lang->name }}
                         </option>
-                    @endforeach
-                </select>
-            </form>
-            
-            
-            @endif
+                        @endforeach
+                    </select>
+                </form>
+
+
+                @endif
             </nav>
         </header>
         <section
@@ -262,7 +265,7 @@
                     </script>
                 </div>
                 <div class="w-1/2 relative flex items-center justify-center">
-                   
+
                     <div
                         class=" relative z-50 w-full bg-white/10 border border-white/40 backdrop-blur rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800/10 dark:border-gray-900/10">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

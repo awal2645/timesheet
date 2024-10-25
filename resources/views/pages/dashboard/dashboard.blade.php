@@ -86,18 +86,19 @@
                 // Function to update the greeting message
                 function updateGreeting() {
                     const timeOfDay = getTimeOfDay(currentHour);
+                    const username = "{{ auth('web')->user()->username }}";
                     switch (timeOfDay) {
                         case 'morning':
-                            greetingElement.innerText = `Good morning, {{ auth('web')->user()->username }}👋`;
+                            greetingElement.innerText = `{{ __('Good morning') }}, ${username} 👋`;
                             break;
                         case 'afternoon':
-                            greetingElement.innerText = `Good afternoon, {{ auth('web')->user()->username }}👋`;
+                            greetingElement.innerText = `{{ __('Good afternoon') }}, ${username} 👋`;
                             break;
                         case 'evening':
-                            greetingElement.innerText = `Good evening, {{ auth('web')->user()->username }} 👋`;
+                            greetingElement.innerText = `{{ __('Good evening') }}, ${username} 👋`;
                             break;
                         default:
-                            greetingElement.innerText = `Hello, {{ auth('web')->user()->username }}👋 `;
+                            greetingElement.innerText = `{{ __('Hello') }}, ${username} 👋`;
                     }
                 }
 
@@ -142,7 +143,7 @@
                                                 {{ __('Date') }}
                                             </th>
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Plan') }} 
+                                                {{ __('Plan') }}
                                             </th>
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Employer') }}

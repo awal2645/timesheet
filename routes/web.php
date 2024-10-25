@@ -18,6 +18,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SMTPController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\TimesheetController;
 use Illuminate\Support\Facades\Route;
@@ -189,5 +190,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('order', 'order')->name('order.index');
         Route::get('order/create', 'orderCreate')->name('order.create');
         Route::post('order/store', 'orderStore')->name('order.store');
+    });
+
+    // Task management routes
+    Route::controller(TaskController::class)->group(function () {
+        Route::get('task', 'index')->name('task.index');
+        Route::get('task/create', 'create')->name('task.create');
+        Route::post('task/store', 'store')->name('task.store');
+        Route::post('task/updateStatus', 'updateStatus')->name('task.updateStatus');
+        Route::post('task/edit', 'edit')->name('task.edit');
+        Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
+        Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
+
+
     });
 });

@@ -45,7 +45,6 @@ class ProjectController extends Controller
 
             // Return the view with the filtered projects
             return view('project.index', compact('projects'));
-
         } catch (\Exception $e) {
             // Handle the exception and redirect back with an error message
             return redirect()
@@ -78,7 +77,9 @@ class ProjectController extends Controller
             'employee_id' => 'required|exists:employees,id',
             'employee_share' => 'required|numeric',
             'project_name' => 'required|string',
-            'billing_rate' => 'required|numeric',
+            'payment_type' => 'required',
+            'fixed_budget' => 'sometimes',
+            'hr_budget' => 'sometimes',
         ]);
         try {
             Project::create($request->all());
@@ -116,9 +117,10 @@ class ProjectController extends Controller
             'client_id' => 'required|exists:clients,id',
             'employer_id' => 'required|exists:employers,id',
             'employee_id' => 'required|exists:employees,id',
-            'employee_share' => 'required|numeric',
             'project_name' => 'required|string',
-            'billing_rate' => 'required|numeric',
+            'payment_type' => 'required',
+            'fixed_budget' => 'sometimes',
+            'hr_budget' => 'sometimes',
         ]);
         try {
             $project = Project::findOrFail($id);

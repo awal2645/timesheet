@@ -11,7 +11,7 @@
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search" />
+                                placeholder="{{ __('Search')}}" />
                             <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
                         </div>
                     </div>

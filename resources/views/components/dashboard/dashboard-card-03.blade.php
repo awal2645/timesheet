@@ -5,7 +5,7 @@
             <img src="{{ asset('images/icon-03.svg') }}" width="32" height="32" alt="Icon 02" />        
         </header>
         @if (auth('web')->user()->role == 'employee')
-            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Report Decline(s)</h2>
+            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Report Decline(s)') }}</h2>
             <div class="flex items-start">
                 <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ reportCount('decline') }}</div>
             </div>
@@ -14,7 +14,7 @@
 
 
         @if (auth('web')->user()->role == 'employer')
-        <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Client(s)</h2>
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Client(s)') }}</h2>
         <div class="flex items-start">
             <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{clientCount()}}</div>
         </div>
@@ -22,7 +22,7 @@
 
         @if (auth('web')->user()->role != 'employee' &  auth('web')->user()->role != 'employer')
 
-        <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">Earnig(s)</h2>
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Earnig(s)') }}</h2>
         <div class="flex items-start">
             <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{earningCount()}}</div>
         </div>

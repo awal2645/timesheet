@@ -22,16 +22,32 @@ class ProjectSeeder extends Seeder
 
         // Check if the client, employer, and employee exist
         if ($client && $employer && $employee) {
-            // Insert a project with specific employee_id and employer_id
+            // Insert 10 sample projects
             for ($i = 1; $i <= 10; $i++) {
+                // Randomly assign a payment type
+                $paymentType = ['hourly', 'fixed', 'non'][array_rand(['hourly', 'fixed', 'non'])];
+
+                // Determine budgets based on payment type
+                $fixedBudget = null;
+                $hrBudget = null;
+
+                if ($paymentType == 'hourly') {
+                    $hrBudget = $i * 50; // Example value for hourly budget
+                } elseif ($paymentType == 'project') {
+                    $fixedBudget = $i * 1000; // Example value for fixed budget
+                }
+
+                // Insert the project into the database
                 Project::create([
                     'client_id' => $client->id,
                     'employer_id' => $employer->id,
                     'employee_id' => $employee->id,
-                    'employee_share' => 1000.0,
+                    'payment_type' => $paymentType,
+                    'fixed_budget' => $fixedBudget,
+                    'hr_budget' => $hrBudget,
+                    'total_cost' => $hrBudget + $fixedBudget,
                     'project_name' => "Sample Project $i",
-                    'billing_rate' => 50.0,
-                    'status' => true,
+                    'status' => true, // Default status
                 ]);
             }
         }
