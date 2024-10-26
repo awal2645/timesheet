@@ -231,48 +231,116 @@
 <script>
     let timers = {}; // Store intervals for each task timer
 
-    function startTimer(taskId) {
-        let timerDisplay = document.getElementById(`timer-${taskId}`);
-        let startBtn = document.getElementById(`start-btn-${taskId}`);
-        let stopBtn = document.getElementById(`stop-btn-${taskId}`);
-
-        let [hours, minutes] = timerDisplay.innerText.split(':').map(Number);
-        timers[taskId] = setInterval(() => {
-            minutes++;
-            if (minutes === 60) {
-                minutes = 0;
-                hours++;
+// Load saved timer states when the page loads
+window.addEventListener('load', () => {
+    // Get all saved timer states from localStorage
+    const savedTimers = JSON.parse(localStorage.getItem('timerStates') || '{}');
+    
+    // Restore each active timer
+    Object.keys(savedTimers).forEach(taskId => {
+        const timerState = savedTimers[taskId];
+        if (timerState.isRunning) {
+            // Calculate elapsed time since last save
+            const lastUpdate = new Date(timerState.lastUpdate);
+            const currentTime = new Date();
+            const elapsedMinutes = Math.floor((currentTime - lastUpdate) / 60000);
+            
+            // Update the display with accumulated time
+            const [hours, minutes] = timerState.time.split(':').map(Number);
+            const totalMinutes = hours * 60 + minutes + elapsedMinutes;
+            const newHours = Math.floor(totalMinutes / 60);
+            const newMinutes = totalMinutes % 60;
+            
+            // Update display
+            const timerDisplay = document.getElementById(`timer-${taskId}`);
+            if (timerDisplay) {
+                timerDisplay.innerText = `${String(newHours).padStart(2, '0')}:${String(newMinutes).padStart(2, '0')}`;
+                
+                // Restart the timer
+                startTimer(taskId, true);
+                
+                // Update button states
+                const startBtn = document.getElementById(`start-btn-${taskId}`);
+                const stopBtn = document.getElementById(`stop-btn-${taskId}`);
+                if (startBtn && stopBtn) {
+                    startBtn.classList.add('hidden');
+                    stopBtn.classList.remove('hidden');
+                }
             }
-            timerDisplay.innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        }
+    });
+});
 
-            // Update the time in the database
-            updateTimeInDatabase(taskId, `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`);
-        }, 60000); // Update every 1 minute (60,000 ms)
-
-        startBtn.classList.add('hidden');
-        stopBtn.classList.remove('hidden');
-    }
-
-    function stopTimer(taskId) {
-        let stopBtn = document.getElementById(`stop-btn-${taskId}`);
-        let startBtn = document.getElementById(`start-btn-${taskId}`);
-
-        clearInterval(timers[taskId]);
-
-        stopBtn.classList.add('hidden');
-        startBtn.classList.remove('hidden');
-    }
-
-    // Function to update time in the database via AJAX
-    function updateTimeInDatabase(taskId, time) {
-        fetch(`/tasks/${taskId}/update-time`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify({ time: time })
+function startTimer(taskId, isRestore = false) {
+    const timerDisplay = document.getElementById(`timer-${taskId}`);
+    const startBtn = document.getElementById(`start-btn-${taskId}`);
+    const stopBtn = document.getElementById(`stop-btn-${taskId}`);
+    
+    let [hours, minutes] = timerDisplay.innerText.split(':').map(Number);
+    
+    // Save initial state
+    saveTimerState(taskId, {
+        isRunning: true,
+        time: timerDisplay.innerText,
+        lastUpdate: new Date().toISOString()
+    });
+    
+    timers[taskId] = setInterval(() => {
+        minutes++;
+        if (minutes === 60) {
+            minutes = 0;
+            hours++;
+        }
+        const newTime = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        timerDisplay.innerText = newTime;
+        
+        // Save updated state
+        saveTimerState(taskId, {
+            isRunning: true,
+            time: newTime,
+            lastUpdate: new Date().toISOString()
         });
-    }
+        
+        // Update the time in the database
+        updateTimeInDatabase(taskId, newTime);
+    }, 60000); // Update every 1 minute
+    
+    startBtn.classList.add('hidden');
+    stopBtn.classList.remove('hidden');
+}
 
+function stopTimer(taskId) {
+    const stopBtn = document.getElementById(`stop-btn-${taskId}`);
+    const startBtn = document.getElementById(`start-btn-${taskId}`);
+    const timerDisplay = document.getElementById(`timer-${taskId}`);
+    
+    clearInterval(timers[taskId]);
+    
+    // Save stopped state
+    saveTimerState(taskId, {
+        isRunning: false,
+        time: timerDisplay.innerText,
+        lastUpdate: new Date().toISOString()
+    });
+    
+    stopBtn.classList.add('hidden');
+    startBtn.classList.remove('hidden');
+}
+
+function saveTimerState(taskId, state) {
+    const savedTimers = JSON.parse(localStorage.getItem('timerStates') || '{}');
+    savedTimers[taskId] = state;
+    localStorage.setItem('timerStates', JSON.stringify(savedTimers));
+}
+
+function updateTimeInDatabase(taskId, time) {
+    fetch(`/tasks/${taskId}/update-time`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({ time: time })
+    });
+}
 </script>
