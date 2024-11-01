@@ -1,27 +1,28 @@
 <?php
 
-use App\Http\Controllers\AccountController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmailTemplateController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\EmployerController;
-use App\Http\Controllers\InvitationController;
-use App\Http\Controllers\LocationController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\Payment\PayPalController;
-use App\Http\Controllers\Payment\StripeController;
-use App\Http\Controllers\PricePlanController;
-use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\TaskController;
-use App\Http\Controllers\TimeReportController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\LocationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PricePlanController;
 use App\Http\Controllers\TimesheetController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\TimeReportController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\Payment\PayPalController;
+use App\Http\Controllers\Payment\StripeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -207,4 +208,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
     });
+
+     // Meeting Routes
+     Route::resource('meeting', MeetingController::class);
 });

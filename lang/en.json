@@ -309,6 +309,9 @@
     "Hourly Based":"Hourly Based",
     "Fixed Price":"Fixed Price",
     "Non Billable":"Non Billable",
-    "Total Cost": "Total Cost"
+    "Total Cost": "Total Cost",
+
+    
+    "Mail not sent for the reason of incomplete mail configuration" : "Mail not sent for the reason of incomplete mail configuration"
     
 }
