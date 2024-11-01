@@ -7,17 +7,18 @@
             <div class=" mt-10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('order.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="{{ __('Search')}}" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
+                                placeholder="{{ __('Search') }}" />
+                            <button
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('order.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i>{{ __('Create Order')}}</a>
+                <a href="{{ route('order.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+                        class="fa-solid fa-plus"></i>{{ __('Create Order') }}</a>
             </div>
             <div class="flex flex-wrap">
                 <div class="w-full ">
@@ -31,7 +32,7 @@
                                         class="bg-white shadow-lg rounded-sm border border-slate-200 dark:border-gray-800 dark:text-gray-100 dark:bg-gray-800">
                                         <tr class="text-center">
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                 {{ __('Invoice Number')}}
+                                                {{ __('Invoice Number') }}
                                             </th>
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Date') }}</th>
@@ -61,7 +62,7 @@
                                                             class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                     @else
                                                         <span
-                                                            class="px-2 py-1 text-sm bg-teal-500 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                            class="px-2 py-1 text-sm bg-purple-500 text-white rounded">{{ $transaction->plan->label }}</span>
                                                     @endif
                                                 </td>
 
@@ -75,7 +76,7 @@
                                                         ? __('offline') .
                                                             (optional($transaction->manualPayment)->name
                                                                 ? "
-                                                                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
                                                                 : '')
                                                         : ucfirst($transaction->payment_provider) }}
                                                 </td>

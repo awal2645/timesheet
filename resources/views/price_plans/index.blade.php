@@ -24,11 +24,11 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">Update</button>
+                            <button class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">Update</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('plans.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('plans.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> Create Plan</a>
             </div>
         @endcanany

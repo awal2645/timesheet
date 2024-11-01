@@ -36,12 +36,12 @@
                 <ul class="mt-3 space-y-2">
                     <!-- Dashboard -->
                     <li>
-                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('dashboard') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 font-medium truncate transition duration-150 text-slate-900"
+                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('dashboard') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 font-medium truncate transition duration-150 text-slate-900"
                             href="{{ route('dashboard') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 dark:text-teal-500 inline-flex justify-center items-center">
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 dark:text-purple-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-gauge text-base"></i>
                                     </span>
                                     <span
@@ -53,337 +53,337 @@
                     </li>
                     <!-- Order -->
                     @canany('Order view')
-                    <li>
-                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('order.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600"
-                            href="{{ route('order.index') }}">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-money-bill-wave text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{__('Order') }}</span>
+                        <li>
+                            <a class="block px-3 py-1.5 rounded {{ request()->routeIs('order.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600"
+                                href="{{ route('order.index') }}">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-money-bill-wave text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Order') }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- employer -->
                     @canany('Employer view')
-                    <li>
-                        <a href="{{ route('employer.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600"
-                            href="#0">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-building text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Employer') }}</span>
+                        <li>
+                            <a href="{{ route('employer.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600"
+                                href="#0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-building text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Employer') }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- employee -->
                     @canany('Client view')
-                    <li>
-                        <a href="{{ route('employee.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('employee.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-user-tie text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Employee') }}</span>
+                        <li>
+                            <a href="{{ route('employee.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employee.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-user-tie text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Employee') }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- client -->
                     @canany('Client view')
-                    <li>
-                        <a href="{{ route('client.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('client.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-user-secret text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Client') }}</span>
+                        <li>
+                            <a href="{{ route('client.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('client.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-user-secret text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Client') }}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- project -->
                     @if (auth('web')->user()->role != 'employee')
+                        <li>
+                            <a href="{{ route('project.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('project.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-list-check text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Project') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endif
+                    <!-- task -->
                     <li>
-                        <a href="{{ route('project.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('project.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
+                        <a href="{{ route('task.index') }}"
+                            class="block px-3 py-1.5 rounded {{ request()->routeIs('task.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
                                     <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-list-check text-base"></i>
-                                    </span>
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-briefcase"></i> </span>
                                     <span
                                         class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Project') }}</span>
+                                        {{ __('Task') }}</span>
                                 </div>
                             </div>
                         </a>
                     </li>
-                    @endif
-                       <!-- task -->
-                       <li>
-                           <a href="{{ route('task.index') }}"
-                               class="block px-3 py-1.5 rounded {{ request()->routeIs('task.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
-                               <div class="flex items-center justify-between">
-                                   <div class="flex items-center">
-                                       <span
-                                           class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                           <i class="fa-solid fa-briefcase"></i>                                       </span>
-                                       <span
-                                           class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                           {{ __('Task') }}</span>
-                                   </div>
-                               </div>
-                           </a>
-                       </li>
                     <!-- plan -->
                     @canany('Plan view')
-                    <li>
-                        <a href="{{ route('plans.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('plans.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-money-check-dollar text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                      
-                                        {{ __('Price Plan') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('plans.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('plans.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-money-check-dollar text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+
+                                            {{ __('Price Plan') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- timesheet -->
                     @canany('Timesheet view')
-                    <li>
-                        <a href="{{ route('timesheet.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('timesheet.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500  truncate transition duration-150 text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-hourglass text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Timesheet') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('timesheet.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('timesheet.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500  truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-hourglass text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Timesheet') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- Report -->
                     @canany('Report view')
-                    <li>
-                        <a href="{{ route('reports.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('reports.index') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-chart-line text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Timesheet Report') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('reports.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('reports.index') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-chart-line text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Timesheet Report') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- invite -->
                     @canany('Invite send')
-                    <li>
-                        <a href="{{ route('invite.send.employer.page') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('invite.send.employer.page') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-regular fa-paper-plane text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Send Invite') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('invite.send.employer.page') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('invite.send.employer.page') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-regular fa-paper-plane text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Send Invite') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- role -->
                     @canany('Role view')
-                    <li>
-                        <a href="{{ route('role.page') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('role.*') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-user-lock text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Role Management') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('role.page') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('role.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-user-lock text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Role Management') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- Smtp -->
                     @canany('SMTP Config')
-                    <li>
-                        <a href="{{ route('smtp') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('smtp') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-brands fa-mailchimp tetx-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('SMTP Config') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('smtp') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('smtp') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-brands fa-mailchimp tetx-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('SMTP Config') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- email -->
                     @canany('Email Templates')
-                    <li>
-                        <a href="{{ route('email_templates') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('email_templates') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-regular fa-envelope text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Email Templates') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('email_templates') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('email_templates') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-regular fa-envelope text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Email Templates') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- General -->
                     @canany('General Settings')
-                    <li>
-                        <a href="{{ route('payment') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('payment') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-file-invoice-dollar text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Payment Gateway') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('payment') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('payment') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-file-invoice-dollar text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Payment Gateway') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- General -->
                     @canany('General Settings')
-                    <li>
-                        <a href="{{ route('setting') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('setting') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-gears text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('General Setting') }}
+                        <li>
+                            <a href="{{ route('setting') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('setting') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-gears text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('General Setting') }}
 
-                                    </span>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- upgrade -->
                     @canany('General Settings')
-                    <li>
-                        <a href="{{ route('upgrade') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('upgrade') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150 text-gray-600 ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-upload text-base"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Upgrade Application') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('upgrade') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('upgrade') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-upload text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Upgrade Application') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
-                    @if(auth()->user()->role === 'employer')
-                    <li>
-                        <a href="{{ route('employer.plan') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.plan') ? 'text-white bg-teal-500 dark:bg-teal-900 hover:text-teal-900 dark:hover:text-teal-500' : 'dark:text-slate-200' }} hover:text-teal-500 truncate transition duration-150"
-                            href="#0">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-teal-500 inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-cart-shopping w-8"></i>
-                                    </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                        {{ __('Biling & Plan') }}
-                                    </span>
+                    @if (auth()->user()->role === 'employer')
+                        <li>
+                            <a href="{{ route('employer.plan') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.plan') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150"
+                                href="#0">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-cart-shopping w-8"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Biling & Plan') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endif
                 </ul>
             </div>

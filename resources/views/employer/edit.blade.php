@@ -1,13 +1,13 @@
 @section('title')
-{{ 'Edit Employer' }}
+    {{ 'Edit Employer' }}
 @endsection
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">
             @if (Request::path() == 'my/account')
-             {{ __('Update Account info') }}
+                {{ __('Update Account info') }}
             @else
-             {{ __('Edit Employer') }}
+                {{ __('Edit Employer') }}
             @endif
         </h2>
 
@@ -22,10 +22,10 @@
                     placeholder=" " required value="{{ old('employer_name') ?? $employee->employer_name }}" />
                 <label for="employer_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                     {{ __('Employer Name') }}
-                    </label>
+                    {{ __('Employer Name') }}
+                </label>
                 @error('employer_name')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Employer Email -->
@@ -35,9 +35,9 @@
                     placeholder=" " required value="{{ old('email') ?? $employee->user->email }}" />
                 <label for="email"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Employer
-                     {{ __('Email') }}</label>
+                    {{ __('Email') }}</label>
                 @error('email')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -50,7 +50,7 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __(' FEIN/Registration Number') }}</label>
                 @error('fein_number')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -61,9 +61,9 @@
                     placeholder=" " value="{{ old('phone') ?? $employee->phone }}" />
                 <label for="phone"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                     {{ __('Phone') }}</label>
+                    {{ __('Phone') }}</label>
                 @error('phone')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Contact Person Name -->
@@ -75,15 +75,15 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('Contact Person Name') }}</label>
                 @error('contact_person_name')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- profile  pic -->
             @if (auth('web')->user()->role == 'employer')
-            <div class="relative z-0 w-full mb-5 group">
-                <label for="file" class="block text-gray-600 font-medium"> {{ __('Choose a file:') }}</label>
-                <input type="file" id="file" name="image" class="mt-1 p-2 border rounded-md w-full">
-            </div>
+                <div class="relative z-0 w-full mb-5 group">
+                    <label for="file" class="block text-gray-600 font-medium"> {{ __('Choose a file:') }}</label>
+                    <input type="file" id="file" name="image" class="mt-1 p-2 border rounded-md w-full">
+                </div>
             @endif
             <!-- Website -->
             <div class="relative z-0 w-full mb-5 group">
@@ -94,33 +94,33 @@
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('Website') }}</label>
                 @error('website')
-                <span class=" text-red-500">{{ $message }}</span>
+                    <span class=" text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             @if (auth('web')->user()->role == 'superadmin')
-            <!-- User Role -->
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="role_name" id="role_name"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900  bg-transparent 	 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:bg-color-gray-600 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                    <option value="" class="dark:bg-slate-800">
-                        {{ __('Select Role') }}
-                    </option>
-                    @foreach ($roles as $role)
-                    <option {{ $modelHasRoles[0]==$role->id ? 'selected' : ' ' }}
-                        class="dark:bg-slate-800 capitalize" value="{{ $role->name }}">
-                        {{ ucfirst($role->name) }}
-                    </option>
-                    @endforeach
-                </select>
-                <label for="client_id"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    {{ __('Role Name') }}</label>
-                @error('role_name')
-                <span class=" text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
+                <!-- User Role -->
+                <div class="relative z-0 w-full mb-5 group">
+                    <select name="role_name" id="role_name"
+                        class="block py-2.5 px-0 w-full text-sm text-gray-900  bg-transparent 	 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:bg-color-gray-600 dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+                        <option value="" class="dark:bg-slate-800">
+                            {{ __('Select Role') }}
+                        </option>
+                        @foreach ($roles as $role)
+                            <option {{ $modelHasRoles[0] == $role->id ? 'selected' : ' ' }}
+                                class="dark:bg-slate-800 capitalize" value="{{ $role->name }}">
+                                {{ ucfirst($role->name) }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <label for="client_id"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                        {{ __('Role Name') }}</label>
+                    @error('role_name')
+                        <span class=" text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
             @else
-            <input type="hidden" name="role_name" value="{{ $role_name->name }}">
+                <input type="hidden" name="role_name" value="{{ $role_name->name }}">
             @endif
             <!-- Address -->
             <div class="grid md:grid-cols-2 md:gap-6">
@@ -130,9 +130,9 @@
                         placeholder=" " value="{{ old('address') ?? $employee->address }}" />
                     <label for="address"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                         {{ __('Address 1') }}</label>
+                        {{ __('Address 1') }}</label>
                     @error('address')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                 <div class="relative z-0 w-full mb-5 group">
@@ -143,7 +143,7 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         {{ __('Address 2') }}</label>
                     @error('address1')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -159,7 +159,7 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         {{ __('City') }}</label>
                     @error('city')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -172,7 +172,7 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         {{ __('State') }}</label>
                     @error('state')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
@@ -186,7 +186,7 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3  origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         {{ __('Country') }}</label>
                     @error('country')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -199,13 +199,12 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                         {{ __('Zip') }}</label>
                     @error('zip')
-                    <span class=" text-red-500">{{ $message }}</span>
+                        <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{
-                __('Submit') }}</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('Submit') }}</button>
 
 
         </form>

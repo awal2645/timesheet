@@ -12,10 +12,10 @@
                 <div class="mb-4 flex justify-between">
 
                     <button id="previousWeek"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Previous
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Previous
                         Week</button>
                     <button id="nextWeek"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Next
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-900">Next
                         Week</button>
                 </div>
             </div>
@@ -54,61 +54,67 @@
                 @error('start_day')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
-            
+
                 <h2 class="text-xl font-semibold mb-4">{{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
-            
-                <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800" role="alert">
-                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+
+                <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
+                    role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>
                     <span class="sr-only">{{ __('Info') }}</span>
                     <div>
-                        <span class="font-medium">{{ __('Warning alert!') }}</span> {{ __('Attach a file and include a message only when submitting the timesheet. Otherwise, do not attach a file or include a message.') }}
+                        <span class="font-medium">{{ __('Warning alert!') }}</span>
+                        {{ __('Attach a file and include a message only when submitting the timesheet. Otherwise, do not attach a file or include a message.') }}
                     </div>
                 </div>
-            
+
                 <!-- File Upload Input -->
                 <div class="mb-4">
                     <label for="file" class="block text-gray-400 font-medium">{{ __('Choose a file:') }}</label>
-                    <input @if ($timeReport) disabled @endif type="file" id="file" name="image" class="mt-1 p-2 border rounded-md w-full">
+                    <input @if ($timeReport) disabled @endif type="file" id="file"
+                        name="image" class="mt-1 p-2 border rounded-md w-full">
                     @error('image')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
-            
+
                 <!-- Textarea -->
                 <div class="mb-4">
                     <label for="message" class="block text-gray-400 font-medium">{{ __('Your Message:') }}</label>
-                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4" class="mt-1 p-2 border rounded-md dark:text-white w-full dark:bg-gray-800">{{ $timeReport->comment ?? '' }}</textarea>
+                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4"
+                        class="mt-1 p-2 border rounded-md dark:text-white w-full dark:bg-gray-800">{{ $timeReport->comment ?? '' }}</textarea>
                 </div>
-            
+
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">
                 <input type="hidden" name="end_day" value="{{ $dates['Saturday'] }}">
-            
+
                 <!-- Submit Button -->
                 <button @if ($timeReport) disabled @endif type="button" id="saveButton"
-                    class="bg-teal-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring focus:border-blue-300">
+                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
                     {{ __('Save') }}
                 </button>
-            
+
                 @if ($timeReport)
                     <button disabled type="button" id="submitButton"
-                        class="bg-teal-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring focus:border-blue-300">
+                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
                         {{ __('Submitted') }}
                     </button>
                 @else
                     <button type="button" id="submitButton"
-                        class="bg-teal-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring focus:border-blue-300">
+                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
                         {{ __('Submit') }}
                     </button>
                 @endif
-            
+
                 <button @if ($timeReport) disabled @endif type="button" id="resetButton"
-                    class="bg-teal-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-teal-600 focus:outline-none focus:ring focus:border-blue-300">
+                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
                     {{ __('Reset') }}
                 </button>
             </div>
-            
+
 
         </div>
     </div>
