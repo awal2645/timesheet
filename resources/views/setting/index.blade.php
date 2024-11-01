@@ -47,8 +47,8 @@
             <div class="mb-6 text-center">
                 <label for="current_favicon"
                     class="block text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">{{ __('Current Favicon') }}</label>
-                <img id="favicon-preview" src="{{ asset('images/logo_symbol.png') }}" alt="{{ __('Current Favicon') }}"
-                    class="h-16 w-24 mx-auto">
+                <img id="favicon-preview" src="{{ asset('images/logo_symbol.png') }}"
+                    alt="{{ __('Current Favicon') }}" class="h-16 w-24 mx-auto">
             </div>
 
             <!-- Favicon Upload -->
@@ -65,7 +65,7 @@
             </div>
 
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {{ __('Save Settings') }}
             </button>
         </form>

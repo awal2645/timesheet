@@ -29,27 +29,27 @@
             document.querySelector('html').style.colorScheme = 'dark';
         }
 
-             // Function to handle login form submission
-             function submitLoginForm(role) {
-                let username = '';
+        // Function to handle login form submission
+        function submitLoginForm(role) {
+            let username = '';
 
-                // Set username based on the role
-                if (role === 'superadmin') {
-                    username = 'timesheet';
-                } else if (role === 'employer') {
-                    username = 'employer';
-                } else if (role === 'employee') {
-                    username = 'employee';
-                } else if (role === 'client') {
-                    username = 'client';
-                }
-
-                // Set the form values
-                document.getElementById('username').value = username;
-
-                // Submit the form
-                document.getElementById('login-form').submit();
+            // Set username based on the role
+            if (role === 'superadmin') {
+                username = 'timesheet';
+            } else if (role === 'employer') {
+                username = 'employer';
+            } else if (role === 'employee') {
+                username = 'employee';
+            } else if (role === 'client') {
+                username = 'client';
             }
+
+            // Set the form values
+            document.getElementById('username').value = username;
+
+            // Submit the form
+            document.getElementById('login-form').submit();
+        }
     </script>
 </head>
 
@@ -60,7 +60,8 @@
             class="bg-white/10 border border-white/60 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
             <img src="{{ asset('images/logo-inv.png') }}" alt="timesheet Logo" class="h-10">
             <nav class="flex items-center gap-4">
-                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">About Us</a>
+                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">About
+                    Us</a>
                 <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Terms and
                     Conditions</a>
                 <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Privacy
@@ -71,24 +72,25 @@
                     <option>Français</option>
                 </select> --}}
                 @php
-                $languages = loadLanguage();
-                $hasMultipleLanguages = count($languages) > 1;
-                $current_language = currentLanguage() ?: loadDefaultLanguage();
-                // dd($current_language);
+                    $languages = loadLanguage();
+                    $hasMultipleLanguages = count($languages) > 1;
+                    $current_language = currentLanguage() ?: loadDefaultLanguage();
+                    // dd($current_language);
                 @endphp
 
                 @if ($hasMultipleLanguages)
-                <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
-                    <select name="language" id="language-switcher"
-                        class="form-select text-white bg-transparent border-white/60"
-                        onchange="document.getElementById('language-switcher-form').submit()">
-                        @foreach ($languages as $lang)
-                        <option value="{{ $lang->code }}" {{ $lang->code === $current_language ? 'selected' : '' }}>
-                            {{ $lang->name }}
-                        </option>
-                        @endforeach
-                    </select>
-                </form>
+                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                        <select name="language" id="language-switcher"
+                            class="form-select text-white bg-transparent border-white/60"
+                            onchange="document.getElementById('language-switcher-form').submit()">
+                            @foreach ($languages as $lang)
+                                <option value="{{ $lang->code }}"
+                                    {{ $lang->code === $current_language ? 'selected' : '' }}>
+                                    {{ $lang->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
 
 
                 @endif
@@ -275,7 +277,7 @@
                 </div>
             </div>
         </section>
-        <div class="fixed top-0 end-0 w-1/2 bg-teal-500 h-screen -z-10"></div>
+        <div class="fixed top-0 end-0 w-1/2 bg-purple-500 h-screen -z-10"></div>
     </main>
 
     @livewireScripts

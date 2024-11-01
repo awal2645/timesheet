@@ -5,7 +5,7 @@
     <div
         class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-black/10 dark:border-white/10 dark:bg-black/10 backdrop-blur">
         <h2 class="text-xl font-medium">{{ __('Create Client') }}</h2>
-        <a href="" class="btn bg-teal-500 dark:bg-teal-900 text-white">{{ __('Go to Client List') }}</a>
+        <a href="" class="btn bg-purple-500 dark:bg-purple-900 text-white">{{ __('Go to Client List') }}</a>
     </div>
     <div
         class="m-8 p-6 bg-white/10 backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 rounded-lg shadow-md">
@@ -93,7 +93,7 @@
                     value="{{ old('contact_name') }}" />
             </div>
             <button type="submit"
-                class="text-white bg-teal-500 dark:bg-teal-900 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+                class="text-white bg-purple-500 dark:bg-purple-900 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
         </form>
     </div>
 </x-app-layout>
@@ -102,6 +102,7 @@
         background-color: transparent;
         border: 1px solid rgb(209, 213, 219, 1);
     }
+
     .dark .filepond--panel-root {
         border: 1px solid rgba(75, 85, 99, 1)
     }

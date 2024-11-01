@@ -4,20 +4,22 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="container mx-8">
-            <div class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div
+                class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('client.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="{{ __('Search')}}" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
+                                placeholder="{{ __('Search') }}" />
+                            <button
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('client.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i>  {{ __('Create Client') }}</a>
+                <a href="{{ route('client.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+                        class="fa-solid fa-plus"></i> {{ __('Create Client') }}</a>
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
@@ -38,14 +40,14 @@
                                                     </th>
                                                     <th
                                                         class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
-                                                         {{ __('Contact Person Name') }}
+                                                        {{ __('Contact Person Name') }}
                                                     </th>
                                                     <th
                                                         class="min-w-[120px] px-4 py-4 font-medium text-black dark:text-white">
                                                         {{ __('Date') }}
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black dark:text-white">
-                                                         {{ __('Action') }}
+                                                        {{ __('Action') }}
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -84,11 +86,11 @@
                                                                             <option class="dark:bg-slate-800"
                                                                                 value="1"
                                                                                 {{ $client->status === 1 ? 'selected' : '' }}>
-                                                                                {{__('Active')}}
+                                                                                {{ __('Active') }}
                                                                             <option class="dark:bg-slate-800"
                                                                                 value="0"
                                                                                 {{ $client->status === 0 ? 'selected' : '' }}>
-                                                                                {{__('Inactive')}}
+                                                                                {{ __('Inactive') }}
                                                                         </select>
                                                                     </form>
 
