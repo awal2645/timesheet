@@ -50,7 +50,6 @@
 
                                                     </th>
                                                     <th class="px-4 py-4 font-medium text-black dark:text-white">
-
                                                     </th>
                                                 </tr>
                                             </thead>

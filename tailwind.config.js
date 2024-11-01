@@ -8,14 +8,19 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.js',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
     ],
     darkMode: 'class',
     theme: {
         extend: {
-            color: {
-                primary: 'red'
+            colors: {
+                primary: '#673de6',
+                'primary-dark': '#5025d1',
+                'primary-light': '#ebe4ff',
+                'primary-lightest': '#673de614',
+                'primary-base-selected': '#F3EFFD',
+                'primary-charts': '#b39ef3',
             },
             boxShadow: {
                 DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',

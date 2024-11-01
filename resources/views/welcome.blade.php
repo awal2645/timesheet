@@ -57,7 +57,7 @@
 <body class="bg-neutral-900">
     <!-- ========== HEADER ========== -->
     <header class="sticky top-4 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
-        <nav class="relative container mx-auto w-full bg-white/10 backdrop-blur rounded-lg py-4 px-6 md:flex md:items-center md:justify-between"
+        <nav class="relative container mx-auto w-full bg-white/10 border border-white/30 backdrop-blur rounded-lg py-4 px-6 md:flex md:items-center md:justify-between"
             aria-label="Global">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
@@ -359,7 +359,7 @@
                         {{ __('Features') }}</h4>
                     <h2 class="mt-8 text-2xl md:text-4xl text-gray-100">{{ __('ClockGo SaaS - Time Tracking Tool') }}
                     </h2>
-                    <p class="mt-4 text-base md:text-xl text-gray-400">
+                    <p class="mt-4 text-base md:text-xl text-white/90">
                         {{ __('Use these awesome forms to login or create new account in your project for free.') }}
                     </p>
                 </div>
@@ -644,7 +644,7 @@
         <!-- End Approach -->
 
         <!-- Contact -->
-        <div class="bg-neutral-900">
+        <section>
             <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
                 <!-- Title -->
                 <div class="max-w-3xl mb-10 lg:mb-14">
@@ -655,7 +655,7 @@
 
                 <!-- Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16">
-                    <div class="md:order-2 border-b border-neutral-800 pb-10 mb-10 md:border-b-0 md:pb-0 md:mb-0">
+                    <div class="md:order-2 bg-white/10 p-8 rounded-lg border border-white/30 mb-10">
                         <form>
                             <div class="space-y-4">
                                 <!-- Input -->
@@ -870,7 +870,7 @@
                 </div>
                 <!-- End Grid -->
             </div>
-        </div>
+        </section>
         <!-- End Contact -->
         <section>
             <div class="container mx-auto py-24">
@@ -895,8 +895,12 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
+<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+=======
+                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+>>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>
@@ -925,8 +929,12 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
+<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+=======
+                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+>>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>
@@ -955,8 +963,12 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
+<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+=======
+                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+>>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>

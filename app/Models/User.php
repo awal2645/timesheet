@@ -46,4 +46,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Employee::class);
     }
+
+    // Scope |  user filter as active
+    public function scopeActive($query)
+    {
+        return $query
+            ->whereHas('employer', function ($q) {
+                $q->where('status', true);
+            })
+            ->whereHas('employee', function ($q) {
+                $q->where('status', true);
+            });
+    }
 }

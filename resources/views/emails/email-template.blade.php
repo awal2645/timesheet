@@ -59,7 +59,11 @@
                                     <div class="mb-4">
                                         <label
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
+<<<<<<< HEAD
                                         <input readonly type="text" id="name"
+=======
+                                        <input readonly type="text" id="name" name="name"
+>>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                             class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                             value="{{ __($email_template->name) ?? '' }}">
                                         <x-forms.error name="name" />
