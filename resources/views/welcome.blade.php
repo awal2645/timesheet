@@ -895,12 +895,8 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
-<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-=======
-                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
->>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>
@@ -929,12 +925,8 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
-<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-=======
-                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
->>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>
@@ -963,12 +955,8 @@
                             <div class="relative inline-block">
                                 <div class="text-white/90 line-through text-sm">$9.99</div>
                                 <div class="absolute start-full -top-2 rotate-60">
-<<<<<<< HEAD
                                     <span
                                         class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-=======
-                                    <span class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
->>>>>>> 767f2c576160b3248c1c146e226fb748260b435b
                                         80% OFF
                                     </span>
                                 </div>
