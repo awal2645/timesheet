@@ -95,7 +95,7 @@
                                                         ? __('offline') .
                                                             (optional($transaction->manualPayment)->name
                                                                 ? "
-                                                                                                    (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
                                                                 : '')
                                                         : ucfirst($transaction->payment_provider) }}
                                                 </td>

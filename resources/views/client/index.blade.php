@@ -106,7 +106,8 @@
                                                             </td>
                                                             <td
                                                                 class="text-sm border-b border-[#eee] dark:border-slate-700 px-4 py-2.5 dark:border-strokedark">
-                                                                <div class="flex items-center space-x-2 {{$client->status ? 'text-green-500': 'text-rose-500'}}">
+                                                                <div
+                                                                    class="flex items-center space-x-2 {{ $client->status ? 'text-green-500' : 'text-rose-500' }}">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         width="16" height="16"
                                                                         fill="currentColor" class="bi bi-check2-circle"
@@ -154,7 +155,7 @@
                                                                             <div class="flex flex-col items-start">
                                                                                 <!-- Eye Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-primary w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-eye size-4"
@@ -168,7 +169,7 @@
                                                                                 </button>
                                                                                 <!-- Edit Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-primary w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-pencil-square size-4"
@@ -182,7 +183,7 @@
                                                                                 </button>
                                                                                 <!-- Delete Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-primary w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-trash size-4"
