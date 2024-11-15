@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +11,7 @@
             margin: 20px;
             padding: 0;
         }
-        
+
         :root {
             --primary-color: #6b21a8;
             --secondary-color: #7c3aed;
@@ -40,7 +41,7 @@
                 background: white;
                 padding: 10px;
                 border-radius: 8px;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             }
 
             .btn {
@@ -59,7 +60,7 @@
 
             .invoice-page {
                 margin: 0 auto;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
         }
 
@@ -67,6 +68,7 @@
         .invoice-page {
             background: white;
             width: 210mm;
+            height: 297mm;
             position: relative;
             margin: 20px auto;
             padding: 36px 32px;
@@ -195,9 +197,12 @@
 
         .footer {
             position: absolute;
-            bottom: 20mm;
-            left: 20mm;
-            right: 20mm;
+            bottom: 36px;
+            left: 32px;
+            right: 32px;
+        }
+
+        .footer .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -238,19 +243,20 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Preview only buttons -->
-    @if(!Request::is('invoice/download/*'))
-    <div class="preview-only">
-        <button onclick="window.print()" class="btn btn-print">
-            <i class="fas fa-print"></i>
-            Print
-        </button>
-        <a href="{{ route('invoice.download', $invoice->id) }}" class="btn btn-download">
-            <i class="fas fa-download"></i>
-            Download
-        </a>
-    </div>
+    @if (!Request::is('invoice/download/*'))
+        <div class="preview-only">
+            <button onclick="window.print()" class="btn btn-print">
+                <i class="fas fa-print"></i>
+                Print
+            </button>
+            <a href="{{ route('invoice.download', $invoice->id) }}" class="btn btn-download">
+                <i class="fas fa-download"></i>
+                Download
+            </a>
+        </div>
     @endif
 
     <div class="invoice-page">
@@ -291,7 +297,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($invoice->items as $index => $item)
+                @foreach ($invoice->items as $index => $item)
                     <tr>
                         <td>{{ $index + 1 }}</td>
                         <td>
@@ -334,27 +340,31 @@
             </p>
         </div>
 
-        <!-- Terms and Footer -->
-        <div class="terms-section">
-            <h3>TERMS & CONDITIONS:</h3>
-            <ol style="padding-left: 20px; color: #666;">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-            </ol>
-        </div>
 
         <div class="footer">
-            <div style="display: flex; gap: 30px;">
-                <div>📞 +00 123-456-789</div>
-                <div>📍 123, Your address here</div>
-                <div>🌐 www.example.com</div>
+            <!-- Terms and Footer -->
+
+            <div class="terms-section">
+                <h3>TERMS & CONDITIONS:</h3>
+                <ol style="padding-left: 20px; color: #666;">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                </ol>
             </div>
-            <div>
-                <strong>Thank you for your business</strong>
+            <div class="footer-bottom">
+                <div>
+                    <div style="margin-bottom: 6px;"><i class="fas fa-phone"></i> +00 123-456-789</div>
+                    <div style="margin-bottom: 6px;"><i class="fas fa-map-marker-alt"></i> 123, Your address here</div>
+                    <div style="margin-bottom: 0px;"><i class="fas fa-globe"></i> www.example.com</div>
+                </div>
+                <div>
+                    <strong>Thank you for your business</strong>
+                </div>
             </div>
         </div>
     </div>
 </body>
-</html> 
+
+</html>
