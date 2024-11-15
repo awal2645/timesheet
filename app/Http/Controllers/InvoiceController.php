@@ -17,30 +17,37 @@ class InvoiceController extends Controller
     {
         $invoice = $this->getDummyData($id);
         
-        $pdf = PDF::loadView('invoice', [
-            'invoice' => $invoice,
-            'isPdf' => true
-        ]);
-
-        $pdf->setPaper('a4', 'portrait');
-        $pdf->setOptions([
-            'isHtml5ParserEnabled' => true,
+        // Set PDF options before loading view
+        $options = [
+            'defaultFont' => 'DejaVu Sans',
             'isRemoteEnabled' => true,
-            'defaultFont' => 'sans-serif',
-            'debugKeepTemp' => true,
-            'chroot' => public_path(),
-            'debugCss' => true,
-            'dpi' => 96,
+            'isHtml5ParserEnabled' => true,
+            'isPhpEnabled' => true,
+            'defaultMediaType' => 'screen',
+            'isFontSubsettingEnabled' => true,
+            'dpi' => 150,
             'defaultPaperSize' => 'a4',
-            'margin_left' => 0,
-            'margin_right' => 0,
-            'margin_top' => 0,
-            'margin_bottom' => 0,
+            'orientation' => 'portrait',
             'enable_css_float' => true,
-            'enable_html5_parser' => true
-        ]);
+            'enable_remote' => true,
+        ];
+        
+        // Create PDF instance with options
+        $pdf = PDF::setOptions($options)
+            ->loadView('invoice', [
+                'invoice' => $invoice,
+                'isPdf' => true
+            ]);
 
-        return $pdf->download('invoice-'.$invoice->number.'.pdf');
+        // Set paper size
+        $pdf->setPaper('a4', 'portrait');
+
+        // Force binary content type
+        return response($pdf->output(), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'attachment; filename="invoice-'.$invoice->number.'.pdf"',
+            'Cache-Control' => 'private, no-transform, no-store, must-revalidate'
+        ]);
     }
 
     private function getDummyData($id)

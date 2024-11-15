@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #{{ $invoice->number }}</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    @if (!$isPdf)
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    @endif
     <style>
         @page {
             margin: 0;
@@ -30,7 +32,7 @@
         @media screen {
             body {
                 background: #f0f0f0;
-                padding: 20px;
+                padding: 0;
             }
 
             .preview-only {
@@ -62,7 +64,7 @@
 
             .invoice-page {
                 margin: 20px auto;
-                box-shadow: 0 0 10px rgba(0,0,0,0.1);
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             }
         }
 
@@ -71,7 +73,7 @@
             background: white;
             position: relative;
             box-sizing: border-box;
-            padding: 30px;
+            padding: 0;
             width: 100%;
             max-width: 210mm;
             min-height: 297mm;
@@ -80,17 +82,13 @@
 
         /* Header styles */
         .header-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 30px;
             width: 100%;
+            margin-bottom: 30px;
         }
 
         .company-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            float: left;
+            width: 50%;
         }
 
         .company-logo span {
@@ -99,25 +97,11 @@
         }
 
         .invoice-title {
+            float: right;
+            width: 40%;
             background-color: var(--primary-color) !important;
             color: white;
             padding: 10px 30px;
-            position: relative;
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-        }
-
-        .invoice-title::after {
-            content: '';
-            position: absolute;
-            right: -20px;
-            top: 50%;
-            transform: translateY(-50%);
-            border-style: solid;
-            border-width: 22px 0 22px 20px;
-            border-color: transparent transparent transparent var(--primary-color);
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
         }
 
         /* Table styles */
@@ -234,7 +218,7 @@
             .invoice-page {
                 width: 210mm;
                 min-height: 297mm;
-                padding: 20mm;
+                padding: 0;
                 margin: 0;
                 border: none;
                 box-shadow: none;
@@ -244,6 +228,75 @@
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
+        }
+
+        /* PDF-specific icon replacements */
+        .pdf-icon {
+            font-family: DejaVu Sans;
+            font-weight: normal;
+        }
+
+        /* Replace flex layouts with table-based layouts */
+        .header-section {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .company-logo {
+            float: left;
+            width: 50%;
+        }
+
+        .invoice-title {
+            float: right;
+            width: 40%;
+            background-color: var(--primary-color) !important;
+            color: white;
+            padding: 10px 30px;
+        }
+
+        /* Replace flex with table for invoice info */
+        .invoice-info {
+            width: 100%;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .invoice-info td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        /* Replace flex with table for footer */
+        .footer-bottom {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .footer-bottom-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .footer-bottom-table td {
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        .footer-left {
+            width: 50%;
+        }
+
+        .footer-right {
+            width: 50%;
+            text-align: right;
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
         }
     </style>
 </head>
@@ -264,110 +317,123 @@
     @endif
 
     <div class="invoice-page">
-        <!-- Header -->
-        <div class="header-section">
-            <div class="company-logo">
-                <span>BUSINESS<br>Your Slogan Here</span>
+        <div style="padding: 36px 32px;">
+            <!-- Header -->
+            <div class="header-section clearfix">
+                <div class="company-logo">
+                    <span>BUSINESS<br>Your Slogan Here</span>
+                </div>
+                <div class="invoice-title">
+                    <h1 style="margin:0">INVOICE</h1>
+                </div>
             </div>
-            <div class="invoice-title">
-                <h1 style="margin:0">INVOICE</h1>
-            </div>
-        </div>
-
-        <!-- Invoice Info -->
-        <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
-            <div>
-                <strong>INVOICE TO:</strong><br>
-                {{ $invoice->client->name }}<br>
-                {{ $invoice->client->address }}<br>
-                {{ $invoice->client->email }}
-            </div>
-            <div style="text-align: right;">
-                <strong>INVOICE NO:</strong> {{ $invoice->number }}<br>
-                <strong>DATE:</strong> {{ $invoice->date }}<br>
-                <strong>DUE DATE:</strong> {{ $invoice->due_date }}
-            </div>
-        </div>
-
-        <!-- Items Table -->
-        <table class="items-table">
-            <thead>
+            <!-- Invoice Info -->
+            <table class="invoice-info">
                 <tr>
-                    <th style="width: 5%">NO</th>
-                    <th style="width: 45%">ITEM DESCRIPTION</th>
-                    <th class="price" style="width: 15%">PRICE</th>
-                    <th class="qty" style="width: 15%">QTY</th>
-                    <th class="total" style="width: 20%">TOTAL</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($invoice->items as $index => $item)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>
-                            {{ $item->description }}<br>
-                            <small style="color: #666">Lorem ipsum dolor sit amet, consectetur</small>
-                        </td>
-                        <td>${{ number_format($item->unit_price, 2) }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>${{ number_format($item->unit_price * $item->quantity, 2) }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-        <!-- Totals -->
-        <div class="totals-section">
-            <table class="totals-table">
-                <tr class="sub-total">
-                    <td>Sub Total:</td>
-                    <td align="right">${{ number_format($invoice->subtotal, 2) }}</td>
-                </tr>
-                <tr class="tax">
-                    <td>Tax ({{ $invoice->tax_rate }}%):</td>
-                    <td align="right">${{ number_format($invoice->tax_amount, 2) }}</td>
-                </tr>
-                <tr class="grand-total">
-                    <td>GRAND TOTAL:</td>
-                    <td align="right">${{ number_format($invoice->total, 2) }}</td>
+                    <td style="width: 50%">
+                        <strong>INVOICE TO:</strong><br>
+                        {{ $invoice->client->name }}<br>
+                        {{ $invoice->client->address }}<br>
+                        {{ $invoice->client->email }}
+                    </td>
+                    <td style="width: 50%; text-align: right;">
+                        <strong>INVOICE NO:</strong> {{ $invoice->number }}<br>
+                        <strong>DATE:</strong> {{ $invoice->date }}<br>
+                        <strong>DUE DATE:</strong> {{ $invoice->due_date }}
+                    </td>
                 </tr>
             </table>
-        </div>
-
-        <!-- Payment Info -->
-        <div class="payment-info">
-            <h3>Payment Info:</h3>
-            <p>
-                <strong>Account No:</strong> 0000 000 000<br>
-                <strong>A/C Name:</strong> Example name<br>
-                <strong>Bank Details:</strong> Add your bank details
-            </p>
-        </div>
-
-
-        <div class="footer">
-            <!-- Terms and Footer -->
-
-            <div class="terms-section">
-                <h3>TERMS & CONDITIONS:</h3>
-                <ol style="padding-left: 20px; color: #666;">
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                </ol>
+            <!-- Items Table -->
+            <table class="items-table">
+                <thead>
+                    <tr>
+                        <th style="width: 5%">NO</th>
+                        <th style="width: 45%">ITEM DESCRIPTION</th>
+                        <th class="price" style="width: 15%">PRICE</th>
+                        <th class="qty" style="width: 15%">QTY</th>
+                        <th class="total" style="width: 20%">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($invoice->items as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>
+                                {{ $item->description }}<br>
+                                <small style="color: #666">Lorem ipsum dolor sit amet, consectetur</small>
+                            </td>
+                            <td>${{ number_format($item->unit_price, 2) }}</td>
+                            <td>{{ $item->quantity }}</td>
+                            <td>${{ number_format($item->unit_price * $item->quantity, 2) }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <!-- Totals -->
+            <div class="totals-section">
+                <table class="totals-table">
+                    <tr class="sub-total">
+                        <td>Sub Total:</td>
+                        <td align="right">${{ number_format($invoice->subtotal, 2) }}</td>
+                    </tr>
+                    <tr class="tax">
+                        <td>Tax ({{ $invoice->tax_rate }}%):</td>
+                        <td align="right">${{ number_format($invoice->tax_amount, 2) }}</td>
+                    </tr>
+                    <tr class="grand-total">
+                        <td>GRAND TOTAL:</td>
+                        <td align="right">${{ number_format($invoice->total, 2) }}</td>
+                    </tr>
+                </table>
             </div>
-            <div class="footer-bottom">
-                <div>
-                    <div style="margin-bottom: 6px;"><i class="fas fa-phone"></i> +00 123-456-789</div>
-                    <div style="margin-bottom: 6px;"><i class="fas fa-map-marker-alt"></i> 123, Your address here</div>
-                    <div style="margin-bottom: 0px;"><i class="fas fa-globe"></i> www.example.com</div>
+            <!-- Payment Info -->
+            <div class="payment-info">
+                <h3>Payment Info:</h3>
+                <p>
+                    <strong>Account No:</strong> 0000 000 000<br>
+                    <strong>A/C Name:</strong> Example name<br>
+                    <strong>Bank Details:</strong> Add your bank details
+                </p>
+            </div>
+            <div class="footer">
+                <!-- Terms and Footer -->
+
+                <div class="terms-section">
+                    <h3>TERMS & CONDITIONS:</h3>
+                    <ol style="padding-left: 20px; color: #666;">
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+                    </ol>
                 </div>
-                <div>
-                    <strong>Thank you for your business</strong>
-                </div>
+                <table class="footer-bottom-table">
+                    <tr>
+                        <td class="footer-left">
+                            @if ($isPdf)
+                                <div style="margin-bottom: 6px;"><span class="pdf-icon">📞</span> +00 123-456-789</div>
+                                <div style="margin-bottom: 6px;"><span class="pdf-icon">📍</span> 123, Your address here
+                                </div>
+                                <div style="margin-bottom: 0px;"><span class="pdf-icon">🌐</span> www.example.com</div>
+                            @else
+                                <div style="margin-bottom: 6px;"><i class="fas fa-phone"></i> +00 123-456-789</div>
+                                <div style="margin-bottom: 6px;"><i class="fas fa-map-marker-alt"></i> 123, Your address
+                                    here</div>
+                                <div style="margin-bottom: 0px;"><i class="fas fa-globe"></i> www.example.com</div>
+                            @endif
+                        </td>
+                        <td class="footer-right">
+                            <strong>Thank you for your business</strong>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
+
+
+
+
+
     </div>
 </body>
 
