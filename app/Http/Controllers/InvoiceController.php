@@ -20,30 +20,27 @@ class InvoiceController extends Controller
         $pdf = PDF::loadView('invoice', [
             'invoice' => $invoice,
             'isPdf' => true
-        ])
-            ->setPaper([0, 0, 595.28, 841.89], 'portrait')
-            ->setOptions([
-                'isHtml5ParserEnabled' => true,
-                'isPhpEnabled' => true,
-                'isRemoteEnabled' => true,
-                'defaultFont' => 'sans-serif',
-                'isFontSubsettingEnabled' => true,
-                'isJavascriptEnabled' => true,
-                'dpi' => 96,
-                'defaultPaperSize' => 'a4',
-                'margin_left' => 0,
-                'margin_right' => 0,
-                'margin_top' => 0,
-                'margin_bottom' => 0,
-                'enable_css_float' => true,
-                'enable_html5_parser' => true,
-                'chroot' => public_path(),
-                'debugPng' => true,
-                'debugKeepTemp' => true,
-                'debugCss' => true
-            ]);
-        
-        return $pdf->stream('invoice-'.$invoice->number.'.pdf');
+        ]);
+
+        $pdf->setPaper('a4', 'portrait');
+        $pdf->setOptions([
+            'isHtml5ParserEnabled' => true,
+            'isRemoteEnabled' => true,
+            'defaultFont' => 'sans-serif',
+            'debugKeepTemp' => true,
+            'chroot' => public_path(),
+            'debugCss' => true,
+            'dpi' => 96,
+            'defaultPaperSize' => 'a4',
+            'margin_left' => 0,
+            'margin_right' => 0,
+            'margin_top' => 0,
+            'margin_bottom' => 0,
+            'enable_css_float' => true,
+            'enable_html5_parser' => true
+        ]);
+
+        return $pdf->download('invoice-'.$invoice->number.'.pdf');
     }
 
     private function getDummyData($id)
@@ -51,11 +48,21 @@ class InvoiceController extends Controller
         return (object)[
             'id' => $id,
             'number' => 'INV-2024001',
-            'date' => now()->format('Y-m-d'),
-            'due_date' => now()->addDays(30)->format('Y-m-d'),
-            'client_name' => 'John Doe',
-            'client_address' => '123 Client Street, City',
-            'client_email' => 'john@example.com',
+            'date' => '2024-01-15',
+            'due_date' => '2024-01-30',
+            'company' => 'Your Company Name',
+            'address' => '123 Business Street',
+            'city' => 'City Name',
+            'country' => 'Country Name',
+            'phone' => '+1 234 567 890',
+            'email' => 'john@example.com',
+            'website' => 'www.example.com',
+            'client' => (object)[
+                'name' => 'John Doe',
+                'address' => '123 Client Street',
+                'city' => 'City',
+                'email' => 'john@example.com'
+            ],
             'subtotal' => 1000,
             'tax_rate' => 10,
             'tax_amount' => 100,

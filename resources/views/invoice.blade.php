@@ -258,7 +258,7 @@
             </button>
             <a href="{{ route('invoice.download', $invoice->id) }}" class="btn btn-download">
                 <i class="fas fa-download"></i>
-                Download
+                Download PDF
             </a>
         </div>
     @endif
@@ -278,9 +278,9 @@
         <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
             <div>
                 <strong>INVOICE TO:</strong><br>
-                {{ $invoice->client_name }}<br>
-                {{ $invoice->client_address }}<br>
-                {{ $invoice->client_email }}
+                {{ $invoice->client->name }}<br>
+                {{ $invoice->client->address }}<br>
+                {{ $invoice->client->email }}
             </div>
             <div style="text-align: right;">
                 <strong>INVOICE NO:</strong> {{ $invoice->number }}<br>
