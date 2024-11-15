@@ -88,7 +88,7 @@
 
         .company-logo {
             float: left;
-            width: 50%;
+            width: 60%;
         }
 
         .company-logo span {
@@ -98,10 +98,10 @@
 
         .invoice-title {
             float: right;
-            width: 40%;
+            width: 30%;
             background-color: var(--primary-color) !important;
             color: white;
-            padding: 10px 30px;
+            padding: 4px 30px;
         }
 
         /* Table styles */
@@ -184,7 +184,7 @@
 
         /* Terms and footer */
         .terms-section {
-            margin-top: 40px;
+            margin-top: 20px;
             border-top: 2px solid var(--primary-color);
             padding-top: 20px;
         }
@@ -230,11 +230,7 @@
             }
         }
 
-        /* PDF-specific icon replacements */
-        .pdf-icon {
-            font-family: DejaVu Sans;
-            font-weight: normal;
-        }
+
 
         /* Replace flex layouts with table-based layouts */
         .header-section {
@@ -244,18 +240,18 @@
 
         .company-logo {
             float: left;
-            width: 50%;
+            width: 60%;
         }
 
         .invoice-title {
             float: right;
-            width: 40%;
+            width: 30%;
             background-color: var(--primary-color) !important;
             color: white;
-            padding: 10px 30px;
+            text-align: right;
+            padding: 4px 30px;
+            position: relative;
         }
-
-        /* Replace flex with table for invoice info */
         .invoice-info {
             width: 100%;
             margin-bottom: 30px;
@@ -267,10 +263,8 @@
             vertical-align: top;
         }
 
-        /* Replace flex with table for footer */
         .footer-bottom {
             width: 100%;
-            margin-top: 20px;
         }
 
         .footer-bottom-table {
@@ -280,7 +274,7 @@
 
         .footer-bottom-table td {
             padding: 8px;
-            vertical-align: top;
+            vertical-align: bottom;
         }
 
         .footer-left {
@@ -389,44 +383,31 @@
             <!-- Payment Info -->
             <div class="payment-info">
                 <h3>Payment Info:</h3>
-                <p>
-                    <strong>Account No:</strong> 0000 000 000<br>
-                    <strong>A/C Name:</strong> Example name<br>
-                    <strong>Bank Details:</strong> Add your bank details
-                </p>
+                <div>
+                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Account No:</strong> 0000 000 000</p>
+                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>A/C Name:</strong> Example name</p>
+                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Bank Details:</strong> Add your bank details</p>
+                </div>
             </div>
             <div class="footer">
                 <!-- Terms and Footer -->
-
-                <div class="terms-section">
-                    <h3>TERMS & CONDITIONS:</h3>
-                    <ol style="padding-left: 20px; color: #666;">
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                        <li>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
-                    </ol>
-                </div>
                 <table class="footer-bottom-table">
                     <tr>
-                        <td class="footer-left">
-                            @if ($isPdf)
-                                <div style="margin-bottom: 6px;"><span class="pdf-icon">📞</span> +00 123-456-789</div>
-                                <div style="margin-bottom: 6px;"><span class="pdf-icon">📍</span> 123, Your address here
-                                </div>
-                                <div style="margin-bottom: 0px;"><span class="pdf-icon">🌐</span> www.example.com</div>
-                            @else
-                                <div style="margin-bottom: 6px;"><i class="fas fa-phone"></i> +00 123-456-789</div>
-                                <div style="margin-bottom: 6px;"><i class="fas fa-map-marker-alt"></i> 123, Your address
-                                    here</div>
-                                <div style="margin-bottom: 0px;"><i class="fas fa-globe"></i> www.example.com</div>
-                            @endif
+                        <td class="footer-left" style="padding: 0px;">
+                            <div style="margin-bottom: 6px;">+00 123-456-789</div>
+                            <div style="margin-bottom: 6px;">123, Your address here</div>
+                            <div style="margin-bottom: 0px;">www.example.com</div>
                         </td>
-                        <td class="footer-right">
+                        <td class="footer-right" style="padding: 0px;">
+                            <h2>Rakibul Islam</h2>
+                            <p>Frontend Developer</p>
                             <strong>Thank you for your business</strong>
                         </td>
                     </tr>
                 </table>
+                <div class="terms-section" style="text-align: center;">
+                    <a href="">Terms & Conditions</a>
+                </div>
             </div>
         </div>
 
