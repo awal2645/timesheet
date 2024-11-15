@@ -23,6 +23,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\InvoiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,4 +212,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
      // Meeting Routes
      Route::resource('meeting', MeetingController::class);
+
+     // Invoice Routes
+     Route::get('/invoice/preview', [InvoiceController::class, 'preview'])->name('invoice.preview');
+     Route::get('/invoice/preview-pdf', [InvoiceController::class, 'previewPdf'])->name('invoice.preview-pdf');
+     Route::get('/invoice/{id}/download', [InvoiceController::class, 'download'])->name('invoice.download');
 });
