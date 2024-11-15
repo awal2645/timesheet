@@ -115,6 +115,7 @@
         .items-table td {
             padding: 8px;
             border: 1px solid #ddd;
+            text-align: center;
         }
 
         .items-table th {
@@ -324,16 +325,16 @@
             <!-- Invoice Info -->
             <table class="invoice-info">
                 <tr>
-                    <td style="width: 50%">
-                        <strong>INVOICE TO:</strong><br>
-                        {{ $invoice->client->name }}<br>
-                        {{ $invoice->client->address }}<br>
-                        {{ $invoice->client->email }}
+                    <td style="width: 50%; padding: 0px;">
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>INVOICE TO:</strong></p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->name }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->address }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->email }}</p>
                     </td>
-                    <td style="width: 50%; text-align: right;">
-                        <strong>INVOICE NO:</strong> {{ $invoice->number }}<br>
-                        <strong>DATE:</strong> {{ $invoice->date }}<br>
-                        <strong>DUE DATE:</strong> {{ $invoice->due_date }}
+                    <td style="width: 50%; padding: 0px; text-align: right;">
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>INVOICE NO:</strong> {{ $invoice->number }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>DATE:</strong> {{ $invoice->date }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>DUE DATE:</strong> {{ $invoice->due_date }}</p>
                     </td>
                 </tr>
             </table>
@@ -352,7 +353,7 @@
                     @foreach ($invoice->items as $index => $item)
                         <tr>
                             <td>{{ $index + 1 }}</td>
-                            <td>
+                            <td style="text-align:left;">
                                 {{ $item->description }}<br>
                                 <small style="color: #666">Lorem ipsum dolor sit amet, consectetur</small>
                             </td>
