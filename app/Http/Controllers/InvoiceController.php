@@ -28,10 +28,12 @@ class InvoiceController extends Controller
                 'isJavascriptEnabled' => true,
                 'dpi' => 150,
                 'defaultPaperSize' => 'a4',
-                'margin_left' => 0,
-                'margin_right' => 0,
-                'margin_top' => 0,
-                'margin_bottom' => 0
+                'margin_left' => 15,
+                'margin_right' => 15,
+                'margin_top' => 15,
+                'margin_bottom' => 15,
+                'enable_css_float' => true,
+                'enable_html5_parser' => true,
             ]);
         
         return $pdf->download('invoice-'.$invoice->number.'.pdf');

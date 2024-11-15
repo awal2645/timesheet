@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @page {
-            margin: 0;
+            margin: 20px;
             padding: 0;
         }
         
@@ -67,9 +67,10 @@
         .invoice-page {
             background: white;
             width: 210mm;
-            min-height: 297mm;
-            padding: 20mm;
             position: relative;
+            margin: 20px auto;
+            padding: 36px 32px;
+            box-sizing: border-box;
         }
 
         /* Header styles */
@@ -94,7 +95,7 @@
         .invoice-title {
             background: var(--primary-color) !important;
             color: white;
-            padding: 10px 30px;
+            padding: 4px 30px;
             position: relative;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -104,7 +105,8 @@
             content: '';
             position: absolute;
             right: -20px;
-            top: 0;
+            top: 50%;
+            transform: translateY(-50%);
             border-style: solid;
             border-width: 22px 0 22px 20px;
             border-color: transparent transparent transparent var(--primary-color);
@@ -210,15 +212,23 @@
 
             body {
                 margin: 0;
-                padding: 0;
+                padding: 0 !important;
                 background: white;
             }
 
             .invoice-page {
+                width: 100%;
                 margin: 0;
-                padding: 20mm;
+                padding: 36px 32px;
                 box-shadow: none;
-                page-break-after: always;
+            }
+
+            .footer {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                right: auto;
+                margin-top: 40px;
             }
 
             * {
