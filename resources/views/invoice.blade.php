@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @page {
-            margin: 20px;
+            margin: 0;
             padding: 0;
         }
 
@@ -22,6 +22,8 @@
             margin: 0;
             padding: 0;
             background: white;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Web preview only styles */
@@ -59,20 +61,21 @@
             }
 
             .invoice-page {
-                margin: 0 auto;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: 20px auto;
+                box-shadow: 0 0 10px rgba(0,0,0,0.1);
             }
         }
 
         /* Common styles */
         .invoice-page {
             background: white;
-            width: 210mm;
-            height: 297mm;
             position: relative;
-            margin: 20px auto;
-            padding: 36px 32px;
             box-sizing: border-box;
+            padding: 30px;
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
         }
 
         /* Header styles */
@@ -81,6 +84,7 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 30px;
+            width: 100%;
         }
 
         .company-logo {
@@ -95,9 +99,9 @@
         }
 
         .invoice-title {
-            background: var(--primary-color) !important;
+            background-color: var(--primary-color) !important;
             color: white;
-            padding: 4px 30px;
+            padding: 10px 30px;
             position: relative;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -123,11 +127,15 @@
             margin: 20px 0;
         }
 
+        .items-table th,
+        .items-table td {
+            padding: 8px;
+            border: 1px solid #ddd;
+        }
+
         .items-table th {
-            background: var(--primary-color) !important;
+            background-color: var(--primary-color) !important;
             color: white;
-            padding: 12px;
-            text-align: left;
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
         }
@@ -143,8 +151,9 @@
         }
 
         .items-table td {
-            padding: 12px;
+            padding: 8px;
             border: 1px solid #ddd;
+            word-wrap: break-word;
         }
 
         /* Totals section */
@@ -152,6 +161,7 @@
             float: right;
             width: 300px;
             margin-top: 20px;
+            clear: both;
         }
 
         .totals-table {
@@ -197,9 +207,10 @@
 
         .footer {
             position: absolute;
-            bottom: 36px;
-            left: 32px;
-            right: 32px;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
+            width: calc(100% - 60px);
         }
 
         .footer .footer-bottom {
@@ -211,29 +222,22 @@
 
         /* Print/PDF specific styles */
         @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+            }
+
             .preview-only {
                 display: none !important;
             }
 
-            body {
-                margin: 0;
-                padding: 0 !important;
-                background: white;
-            }
-
             .invoice-page {
-                width: 100%;
+                width: 210mm;
+                min-height: 297mm;
+                padding: 20mm;
                 margin: 0;
-                padding: 36px 32px;
+                border: none;
                 box-shadow: none;
-            }
-
-            .footer {
-                position: relative;
-                bottom: auto;
-                left: auto;
-                right: auto;
-                margin-top: 40px;
             }
 
             * {
@@ -246,7 +250,7 @@
 
 <body>
     <!-- Preview only buttons -->
-    @if (!Request::is('invoice/download/*'))
+    @if (!$isPdf)
         <div class="preview-only">
             <button onclick="window.print()" class="btn btn-print">
                 <i class="fas fa-print"></i>

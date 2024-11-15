@@ -10,15 +10,18 @@ class InvoiceController extends Controller
     public function preview()
     {
         $invoice = $this->getDummyData(1);
-        return view('invoice', compact('invoice'));
+        return view('invoice', ['invoice' => $invoice, 'isPdf' => false]);
     }
 
     public function download($id)
     {
         $invoice = $this->getDummyData($id);
         
-        $pdf = PDF::loadView('invoice', compact('invoice'))
-            ->setPaper('a4')
+        $pdf = PDF::loadView('invoice', [
+            'invoice' => $invoice,
+            'isPdf' => true
+        ])
+            ->setPaper([0, 0, 595.28, 841.89], 'portrait')
             ->setOptions([
                 'isHtml5ParserEnabled' => true,
                 'isPhpEnabled' => true,
@@ -26,17 +29,21 @@ class InvoiceController extends Controller
                 'defaultFont' => 'sans-serif',
                 'isFontSubsettingEnabled' => true,
                 'isJavascriptEnabled' => true,
-                'dpi' => 150,
+                'dpi' => 96,
                 'defaultPaperSize' => 'a4',
-                'margin_left' => 15,
-                'margin_right' => 15,
-                'margin_top' => 15,
-                'margin_bottom' => 15,
+                'margin_left' => 0,
+                'margin_right' => 0,
+                'margin_top' => 0,
+                'margin_bottom' => 0,
                 'enable_css_float' => true,
                 'enable_html5_parser' => true,
+                'chroot' => public_path(),
+                'debugPng' => true,
+                'debugKeepTemp' => true,
+                'debugCss' => true
             ]);
         
-        return $pdf->download('invoice-'.$invoice->number.'.pdf');
+        return $pdf->stream('invoice-'.$invoice->number.'.pdf');
     }
 
     private function getDummyData($id)
