@@ -2,33 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Earning;
-use App\Models\TimeReport;
-use Illuminate\Support\Facades\Auth;
+use App\Repositories\Dashboard\TimeReportRepository;
+use App\Repositories\Dashboard\EarningRepository;
 
 class DashboardController extends Controller
 {
+    protected $timeReportRepo;
+    protected $earningRepo;
+
+    public function __construct(TimeReportRepository $timeReportRepo, EarningRepository $earningRepo)
+    {
+        $this->timeReportRepo = $timeReportRepo;
+        $this->earningRepo = $earningRepo;
+    }
+
     public function index()
     {
+        $user = auth('web')->user();
 
-        if (auth('web')->user()->role == 'employee') {
-            $timeReports = TimeReport::where('user_id', auth('web')->user()->id)->paginate(10);
+        if ($user->role == 'employee') {
+            $timeReports = $this->timeReportRepo->getByUserId($user->id);
 
             return view('pages/dashboard/dashboard', compact('timeReports'));
         }
 
-        // Fetch transactions with optional search functionality
-        if (auth()->user()->role === 'employer') {
-
-            $authUser = Auth::user();
-            $transactions = Earning::with('plan:id,label')->where('employer_id', $authUser->employer->id)
-                ->latest()
-                ->paginate(6);
+        // Fetch transactions based on role
+        if ($user->role === 'employer') {
+            $transactions = $this->earningRepo->getEmployerTransactions($user->employer->id);
         } else {
-
-            $transactions = Earning::with(['plan:id,label', 'employer.user'])
-                ->latest()
-                ->paginate(10);
+            $transactions = $this->earningRepo->getAllTransactions();
         }
 
         return view('pages/dashboard/dashboard', compact('transactions'));

@@ -29,25 +29,27 @@
             document.querySelector('html').style.colorScheme = 'dark';
         }
 
-             // Function to handle login form submission
-             function submitLoginForm(role) {
-                let username = '';
+        // Function to handle login form submission
+        function submitLoginForm(role) {
+            let username = '';
 
-                // Set username based on the role
-                if (role === 'superadmin') {
-                    username = 'timesheet';
-                } else if (role === 'employer') {
-                    username = 'employer';
-                } else if (role === 'employee') {
-                    username = 'employee';
-                }
-
-                // Set the form values
-                document.getElementById('username').value = username;
-
-                // Submit the form
-                document.getElementById('login-form').submit();
+            // Set username based on the role
+            if (role === 'superadmin') {
+                username = 'timesheet';
+            } else if (role === 'employer') {
+                username = 'employer';
+            } else if (role === 'employee') {
+                username = 'employee';
+            } else if (role === 'client') {
+                username = 'client';
             }
+
+            // Set the form values
+            document.getElementById('username').value = username;
+
+            // Submit the form
+            document.getElementById('login-form').submit();
+        }
     </script>
 </head>
 
@@ -55,19 +57,43 @@
 
     <main class="min-h-screen flex flex-col relative">
         <header
-            class="bg-white/10 border border-white/60 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
+            class="bg-black bg-opacity-50 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
             <img src="{{ asset('images/logo-inv.png') }}" alt="timesheet Logo" class="h-10">
             <nav class="flex items-center gap-4">
-                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">About Us</a>
+                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">About
+                    Us</a>
                 <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Terms and
                     Conditions</a>
                 <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Privacy
                     Policy</a>
-                <select class="text-sm text-gray-600 border-gray-300 rounded-md">
+                {{-- <select class="text-sm text-gray-600 border-gray-300 rounded-md">
                     <option>English</option>
                     <option>Español</option>
                     <option>Français</option>
-                </select>
+                </select> --}}
+                @php
+                    $languages = loadLanguage();
+                    $hasMultipleLanguages = count($languages) > 1;
+                    $current_language = currentLanguage() ?: loadDefaultLanguage();
+                    // dd($current_language);
+                @endphp
+
+                @if ($hasMultipleLanguages)
+                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                        <select name="language" id="language-switcher"
+                            class="form-select text-white bg-transparent border-white/60"
+                            onchange="document.getElementById('language-switcher-form').submit()">
+                            @foreach ($languages as $lang)
+                                <option value="{{ $lang->code }}"
+                                    {{ $lang->code === $current_language ? 'selected' : '' }}>
+                                    {{ $lang->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+
+
+                @endif
             </nav>
         </header>
         <section
@@ -241,9 +267,9 @@
                     </script>
                 </div>
                 <div class="w-1/2 relative flex items-center justify-center">
-                   
+
                     <div
-                        class=" relative z-50 w-full bg-white/10 border border-white/40 backdrop-blur rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800/10 dark:border-gray-900/10">
+                        class="relative z-50 w-full bg-black bg-opacity-50 backdrop-blur rounded-lg shadow md:mt-0 sm:max-w-lg xl:p-0">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                             {{ $slot }}
                         </div>
@@ -251,7 +277,7 @@
                 </div>
             </div>
         </section>
-        <div class="fixed top-0 end-0 w-1/2 bg-teal-500 h-screen -z-10"></div>
+        <div class="fixed top-0 end-0 w-1/2 bg-purple-500 h-screen -z-10"></div>
     </main>
 
     @livewireScripts

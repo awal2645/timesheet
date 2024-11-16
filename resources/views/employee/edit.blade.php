@@ -1,11 +1,11 @@
 @section('title')
-    {{ 'Edit Employee' }}
+    {{ __('Edit Employee') }}
 @endsection
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">
             @if (Request::path() == 'my/account')
-                 {{ __('Update Account info') }}
+                {{ __('Update Account info') }}
             @else
                 {{ __('Edit Employee') }}
             @endif
@@ -22,7 +22,7 @@
                     value="{{ old('employee_name') ?? $employee->employee_name }}" />
                 <label for="employee_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                     {{ __('Employee Name') }}</label>
+                    {{ __('Employee Name') }}</label>
                 @error('employee_name')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
@@ -34,8 +34,8 @@
                     placeholder="" name="email" required value="{{ old('email') ?? $employee->user->email }}" />
                 <label for="email"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                      {{ __('Employee Email') }}
-                    </label>
+                    {{ __('Employee Email') }}
+                </label>
                 @error('email')
                     <span class=" text-red-500">{{ $message }}</span>
                 @enderror
@@ -56,8 +56,8 @@
                     </select>
                     <label for="employer_id"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                          {{ __('Employee Name') }}
-                        </label>
+                        {{ __('Employee Name') }}
+                    </label>
                 </div>
             @endif
             @if (auth('web')->user()->role == 'employer')
@@ -65,7 +65,7 @@
             @endif
             <!-- Phone -->
             <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="phone" id="phone"
+                <input type="text" name="phone" id="phone"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     value="{{ $employee->phone }}" />
                 <label for="phone"
@@ -96,8 +96,8 @@
                     </select>
                     <label for="client_id"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                          {{ __('Client Name') }}
-                        </label>
+                        {{ __('Client Name') }}
+                    </label>
                 </div>
                 <!-- Gender -->
                 <div class="relative z-0 w-full mb-5 group">
@@ -105,33 +105,35 @@
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
                         <option class="dark:bg-slate-800" value="male"
                             {{ 'male' == $employee->gender ? 'selected' : '' }}>
-                              {{ __('Male') }}
+                            {{ __('Male') }}
                         </option>
                         <option class="dark:bg-slate-800" value="female"
                             {{ 'female' == $employee->gender ? 'selected' : '' }}>
-                              {{ __('Female') }}
+                            {{ __('Female') }}
                         </option>
                         <option class="dark:bg-slate-800" value="other"
                             {{ 'other' == $employee->gender ? 'selected' : '' }}>
-                              {{ __('Other') }}
+                            {{ __('Other') }}
                         </option>
                     </select>
                     <label for="project_id"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                          {{ __('Gender') }}</label>
+                        {{ __('Gender') }}</label>
                 </div>
                 <!-- Payment Type -->
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="payment_type" id="payment_type"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
-                        <option value="monthly" {{ 'monthly' == $employee->payment_type ? 'selected' : '' }}>Monthly
-                              {{ __('Salary') }}</option>
-                        <option value="project" {{ 'project' == $employee->payment_type ? 'selected' : '' }}>Project
-                              {{ __('Based') }}</option>
+                        <option class="dark:bg-slate-800" value="monthly"
+                            {{ 'monthly' == $employee->payment_type ? 'selected' : '' }}>
+                            {{ __('Monthly Salary') }}</option>
+                        <option class="dark:bg-slate-800" value="project"
+                            {{ 'project' == $employee->payment_type ? 'selected' : '' }}>
+                            {{ __('Project Based') }}</option>
                     </select>
                     <label for="payment_type"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                         {{ __('Payment Type') }}</label>
+                        {{ __('Payment Type') }}</label>
                 </div>
 
                 <!-- Monthly Salary (visible if fixed salary selected) -->
@@ -141,7 +143,7 @@
                         class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                     <label for="monthly_salary"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                         {{ __('Monthly Salary Per-month ($)') }}</label>
+                        {{ __('Monthly Salary Per-month ($)') }}</label>
                     @error('monthly_salary')
                         <span class=" text-red-500">{{ $message }}</span>
                     @enderror
@@ -157,7 +159,7 @@
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="employee_share"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                             {{ __('Employee share (%)') }}</label>
+                            {{ __('Employee Share (%)') }}</label>
                         @error('employee_share')
                             <span class=" text-red-500">{{ $message }}</span>
                         @enderror
@@ -169,7 +171,7 @@
                             class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
                         <label for="billing_rate"
                             class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                           {{ __(' Blilling rate Per-hr ($)') }} </label>
+                            {{ __('Billing rate Per-hr ($)') }} </label>
                         @error('billing_rate')
                             <span class=" text-red-500">{{ $message }}</span>
                         @enderror
@@ -177,8 +179,8 @@
                 </div>
             </div>
             <button type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                 {{ __('Submit') }}</button>
+                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                {{ __('Submit') }}</button>
         </form>
     </div>
     <script>

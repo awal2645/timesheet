@@ -18,7 +18,7 @@
                                     </p>
                                     <div class="mt-6">
                                         <a href="{{ route('plans.index') }}"
-                                            class="btn bg-teal-500 text-white py-2 px-6 rounded-full hover:bg-teal-500 dark:bg-blue-700 dark:hover:bg-blue-800 shadow-md transition">
+                                            class="btn bg-purple-500 text-white py-2 px-6 rounded-full hover:bg-purple-500 dark:bg-blue-700 dark:hover:bg-blue-800 shadow-md transition">
                                             {{ __('Upgrade plan') }}
                                         </a>
                                     </div>
@@ -56,7 +56,8 @@
                                     <thead
                                         class="bg-white shadow-lg rounded-sm border border-slate-200 dark:border-gray-800 dark:text-gray-100 dark:bg-gray-800">
                                         <tr class="text-center">
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">Invoice Number
+                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Invoice Number') }}
                                             </th>
                                             <th class="p-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Date') }}</th>
@@ -84,13 +85,19 @@
                                                             class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                     @else
                                                         <span
-                                                            class="px-2 py-1 text-sm bg-teal-500 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
+                                                            class="px-2 py-1 text-sm bg-purple-500 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="p-5 border border-gray-300 dark:border-gray-700">
                                                     ${{ $transaction->usd_amount }}</td>
                                                 <td class="p-5 border border-gray-300 dark:border-gray-700">
-                                                    {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
+                                                    {{ $transaction->payment_provider == 'offline'
+                                                        ? __('offline') .
+                                                            (optional($transaction->manualPayment)->name
+                                                                ? "
+                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
+                                                                : '')
+                                                        : ucfirst($transaction->payment_provider) }}
                                                 </td>
                                                 <td class="p-5 border border-gray-300 dark:border-gray-700">
                                                     <span

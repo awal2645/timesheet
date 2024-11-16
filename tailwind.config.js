@@ -8,12 +8,20 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        './resources/js/**/*.js',
+        './resources/**/*.blade.php',
+        './resources/**/*.js',
     ],
     darkMode: 'class',
     theme: {
         extend: {
+            colors: {
+                primary: '#673de6',
+                'primary-dark': '#5025d1',
+                'primary-light': '#ebe4ff',
+                'primary-lightest': '#673de614',
+                'primary-base-selected': '#F3EFFD',
+                'primary-charts': '#b39ef3',
+            },
             boxShadow: {
                 DEFAULT: '0 1px 3px 0 rgba(0, 0, 0, 0.08), 0 1px 2px 0 rgba(0, 0, 0, 0.02)',
                 md: '0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.02)',
@@ -61,7 +69,7 @@ export default {
                 60: '60',
             },
             backgroundImage: {
-                'light-gradient': 'linear-gradient(315deg, rgba(74,238,214,0.1) 15%, rgba(246,112,178,0.1) 100%)',
+                // 'light-gradient': 'linear-gradient(315deg, rgba(74,238,214,0.1) 15%, rgba(246,112,178,0.1) 100%)',
                 'dark-gradient': 'linear-gradient(315deg, rgba(4,47,66,0.2) 25%, rgba(4,47,66,1) 100%)',
             },
         },

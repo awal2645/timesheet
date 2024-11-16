@@ -8,26 +8,29 @@
                 <form action="{{ route('reports.index') }}" method="GET" class="mb-6">
                     <div class="mb-5">
                         <label for="search"
-                            class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Search')}}</label>
+                            class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Search') }}</label>
                         <div class="flex flex-col md:flex-row items-center gap-4">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search" />
+                                placeholder="{{ __('Search') }}" />
 
                             <select name="status"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white pr-8">
                                 <option value="">{{ __('Select Status') }}</option>
-                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>{{ __('Pending') }}
+                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
+                                    {{ __('Pending') }}
                                 </option>
-                                <option value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>{{ __('Approved') }}
+                                <option value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>
+                                    {{ __('Approved') }}
                                 </option>
-                                <option value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>{{ __('Approved') }}
+                                <option value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>
+                                    {{ __('Approved') }}
                                 </option>
                                 <!-- Add more status options as needed -->
                             </select>
 
                             <button type="submit"
-                                class="bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out">{{ __('Search')}}</button>
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -56,7 +59,7 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                 {{ __('Status') }}
+                                                {{ __('Status') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
@@ -179,7 +182,7 @@
                                                                 <!-- Submit Button -->
                                                                 <div class="text-center py-4">
                                                                     <button id="submitFeedbackButton"
-                                                                        class="bg-teal-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                                                        class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                                                                 </div>
                                                             @else
                                                                 <!-- Display Feedback for Employee -->

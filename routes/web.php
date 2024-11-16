@@ -1,26 +1,29 @@
 <?php
 
-use App\Http\Controllers\AccountController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SMTPController;
+use App\Http\Controllers\TaskController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\MeetingController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployerController;
-use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PricePlanController;
+use App\Http\Controllers\TimesheetController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\OrderController;
+use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
-use App\Http\Controllers\PricePlanController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SMTPController;
-use App\Http\Controllers\TimeReportController;
-use App\Http\Controllers\TimesheetController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LeaveApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +35,16 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// landing page
+
+Route::view('/', 'welcome');
 
 // Redirect the root URL to the login page
-Route::redirect('/', 'login');
+// Route::redirect('/', 'login');
 
 // Email verification routes
 Route::get('verify/{token}', [AuthController::class, 'verify'])->name('email.verify');
+Route::get('change-language', [AuthController::class, 'changeLanguage'])->name('changeLanguage');
 Route::get('user/info/{token}', [AuthController::class, 'usernamePassword'])->name('username.password');
 Route::put('update/info', [AuthController::class, 'updateUserInfo'])->name('update.info');
 
@@ -147,6 +154,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('payment/gateway', 'paymentGateway')->name('payment');
             Route::put('payment/update', 'paymentupdate')->name('payment.update');
             Route::get('upgrade', 'upgrade')->name('upgrade');
+            // Route::get('change-language/{lang}', 'changeLanguage')->name('changeLanguage');
             Route::post('upgrade/apply', 'upgradeApply')->name('upgrade.apply');
         });
 
@@ -188,4 +196,27 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('order/create', 'orderCreate')->name('order.create');
         Route::post('order/store', 'orderStore')->name('order.store');
     });
+
+    // Task management routes
+    Route::controller(TaskController::class)->group(function () {
+        Route::get('task', 'index')->name('task.index');
+        Route::get('task/create', 'create')->name('task.create');
+        Route::post('task/store', 'store')->name('task.store');
+        Route::post('task/updateStatus', 'updateStatus')->name('task.updateStatus');
+        Route::post('task/edit', 'edit')->name('task.edit');
+        Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
+        Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
+
+
+    });
+
+     // Meeting Routes
+     Route::resource('meeting', MeetingController::class);
+
+    // Leave application routes
+    Route::get('leave/create', [LeaveApplicationController::class, 'create'])->name('leave.create');
+    Route::post('leave/store', [LeaveApplicationController::class, 'store'])->name('leave.store');
+    Route::get('leave', [LeaveApplicationController::class, 'index'])->name('leave.index');
+    Route::post('leave/approve/{id}', [LeaveApplicationController::class, 'approve'])->name('leave.approve');
+    Route::post('leave/deny/{id}', [LeaveApplicationController::class, 'deny'])->name('leave.deny');
 });

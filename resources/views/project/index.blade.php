@@ -1,22 +1,24 @@
 @section('title')
     {{ 'List Project' }}
 @endsection
+
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="container mx-auto px-5">
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('project.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search')}}</button>
+                                placeholder="{{ __('Search') }}" />
+                            <button
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('project.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('project.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -37,6 +39,18 @@
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Client Name') }}
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Billing Type') }}
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Total Time') }}
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Total Cost') }}
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
@@ -71,6 +85,47 @@
                                                         </a>
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                        <a rel="noopener noreferrer">
+                                                            {{ $project->payment_type ?? '' }}
+                                                            @if ($project->hr_budget)
+                                                                (${{  $project->hr_budget ?? '' }})
+                                                            @endif
+                                                        </a>
+                                                    </td>
+                                                    @php
+                                                    $totalMinutes = 0;
+                                                
+                                                    // Loop through each task to sum the time in minutes
+                                                    foreach ($project->tasks as $task) {
+                                                        $timeParts = explode(':', $task->time);
+                                                        
+                                                        // Convert hours to minutes and add minutes
+                                                        $taskMinutes = ($timeParts[0] * 60) + $timeParts[1];
+                                                        $totalMinutes += $taskMinutes;
+                                                    }
+                                                
+                                                        // Convert total minutes to hours (or keep it in minutes if budget is per minute)
+                                                        $totalHours = $totalMinutes / 60;
+
+                                                        // Calculate total cost based on hours (or totalMinutes, if hr_budget is per minute)
+                                                        $totalCost = $totalHours * $project->hr_budget;
+                                                    @endphp
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                        <a rel="noopener noreferrer">
+                                                            {{ number_format($totalHours, 2) ?? '' }}
+                                                        </a>
+                                                    </td>
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                     
+                                                        <a rel="noopener noreferrer">
+                                                            @if ($project->hr_budget)
+                                                                ${{ number_format($totalCost, 2) ?? '' }}
+                                                            @else
+                                                                ${{ $project->total_cost ?? '' }}
+                                                            @endif
+                                                        </a>
+                                                    </td>
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex items-center space-x-2">
                                                             <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
                                                                 style="background-color: {{ $project->status === 1 ? 'green' : 'red' }};">
@@ -85,10 +140,10 @@
                                                                     <!-- Replace data-project-id with the actual project ID -->
                                                                     <option class="dark:bg-slate-800" value="1"
                                                                         {{ $project->status === 1 ? 'selected' : '' }}>
-                                                                        {{__('Active')}}
+                                                                        {{ __('Active') }}
                                                                     <option class="dark:bg-slate-800" value="0"
                                                                         {{ $project->status === 0 ? 'selected' : '' }}>
-                                                                        {{__('Inactive')}}
+                                                                        {{ __('Inactive') }}
                                                                 </select>
                                                             </form>
 

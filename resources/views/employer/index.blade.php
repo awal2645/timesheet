@@ -8,17 +8,18 @@
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('employer.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search" />
-                            <button class="bg-teal-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search')}}</button>
+                                placeholder="{{ __('Search') }}" />
+                            <button
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('employer.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
-                    class="fa-solid fa-plus"></i> {{ __('Create Employer') }}</a>
+                <a href="{{ route('employer.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+                        class="fa-solid fa-plus"></i> {{ __('Create Employer') }}</a>
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
@@ -31,19 +32,24 @@
                                     <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                         <tr>
-                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Employer Name') }}
                                             </th>
-                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Employee') }}
                                             </th>
-                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Website') }}
                                             </th>
-                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Status') }}
                                             </th>
-                                            <th scope="col" class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
@@ -101,10 +107,10 @@
                                                                     <!-- Replace data-project-id with the actual project ID -->
                                                                     <option class="dark:bg-slate-800" value="1"
                                                                         {{ $employer->status === 1 ? 'selected' : '' }}>
-                                                                        {{__('Active')}}
+                                                                        {{ __('Active') }}
                                                                     <option class="dark:bg-slate-800" value="0"
                                                                         {{ $employer->status === 0 ? 'selected' : '' }}>
-                                                                        {{__('Inactive')}}
+                                                                        {{ __('Inactive') }}
                                                                 </select>
                                                             </form>
 

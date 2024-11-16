@@ -43,7 +43,7 @@ class SettingController extends Controller
             $this->saveFavicon($request->file('favicon'));
         }
 
-        return redirect()->route('setting')->with('success', 'Settings updated successfully! Please log in again.');
+        return redirect()->route('dashboard')->with('success', 'Settings updated successfully! Please log in again.');
     }
 
     private function saveLogo($file)
@@ -74,11 +74,12 @@ class SettingController extends Controller
 
     public function changeLanguage($lang)
     {
+        dd($lang);
+
         try {
             session()->put('set_lang', $lang);
             app()->setLocale($lang);
-
-            return back();
+            return back()->with('success', 'language updated successfully! ');
         } catch (\Exception $e) {
             // Log the exception for debugging purposes
             Log::error('Error changing language: ' . $e->getMessage());

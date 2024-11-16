@@ -26,10 +26,12 @@ class DatabaseSeeder extends Seeder
             CreateAdminUserSeeder::class,
             CreateEmployerUserSeeder::class,
             CreateEmployeeUserSeeder::class,
+            CreateClientUserSeeder::class,
             ClientSeeder::class,
             EmailTemplateSeeder::class,
             ProjectSeeder::class,
             PlanDatabaseSeeder::class,
+            LanguageDatabaseSeeder::class
         ]);
     }
 }

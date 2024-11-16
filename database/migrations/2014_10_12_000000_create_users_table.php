@@ -21,6 +21,9 @@ return new class extends Migration
             $table->integer('num_of_logins')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('zoom_account_id')->nullable();
+            $table->string('zoom_client_id')->nullable();
+            $table->string('zoom_client_secret')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

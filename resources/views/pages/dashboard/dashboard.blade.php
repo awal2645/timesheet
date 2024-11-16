@@ -5,7 +5,8 @@
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
 
         <!-- Welcome banner -->
-        <div class="relative bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4 sm:p-6 overflow-hidden mb-8">
+        <div
+            class="relative bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4 sm:p-6 overflow-hidden mb-8">
 
             <!-- Background illustration -->
             <div class="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
@@ -85,18 +86,19 @@
                 // Function to update the greeting message
                 function updateGreeting() {
                     const timeOfDay = getTimeOfDay(currentHour);
+                    const username = "{{ auth('web')->user()->username }}";
                     switch (timeOfDay) {
                         case 'morning':
-                            greetingElement.innerText = `Good morning, {{ auth('web')->user()->username }}👋`;
+                            greetingElement.innerText = `{{ __('Good morning') }}, ${username} 👋`;
                             break;
                         case 'afternoon':
-                            greetingElement.innerText = `Good afternoon, {{ auth('web')->user()->username }}👋`;
+                            greetingElement.innerText = `{{ __('Good afternoon') }}, ${username} 👋`;
                             break;
                         case 'evening':
-                            greetingElement.innerText = `Good evening, {{ auth('web')->user()->username }} 👋`;
+                            greetingElement.innerText = `{{ __('Good evening') }}, ${username} 👋`;
                             break;
                         default:
-                            greetingElement.innerText = `Hello, {{ auth('web')->user()->username }}👋 `;
+                            greetingElement.innerText = `{{ __('Hello') }}, ${username} 👋`;
                     }
                 }
 
@@ -134,20 +136,27 @@
                                         <thead
                                             class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
                                             <tr class="text-center">
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">Invoice
-                                                    Number</th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Date') }}</th>
+                                                    {{ __('Invoice Number') }}
+                                                </th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Plan') }}</th>
+                                                    {{ __('Date') }}
+                                                </th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Employer') }}</th>
+                                                    {{ __('Plan') }}
+                                                </th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Amount') }}</th>
+                                                    {{ __('Employer') }}
+                                                </th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Payment Gateway') }}</th>
+                                                    {{ __('Amount') }}
+                                                </th>
                                                 <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                    {{ __('Payment Status') }}</th>
+                                                    {{ __('Payment Gateway') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Payment Status') }}
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -163,7 +172,7 @@
                                                                 class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                         @else
                                                             <span
-                                                                class="px-2 py-1 text-sm bg-teal-500 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                                class="px-2 py-1 text-sm bg-purple-500 text-white rounded">{{ $transaction->plan->label }}</span>
                                                         @endif
                                                     </td>
 
@@ -177,7 +186,7 @@
                                                             ? __('offline') .
                                                                 (optional($transaction->manualPayment)->name
                                                                     ? "
-                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
                                                                     : '')
                                                             : ucfirst($transaction->payment_provider) }}
                                                     </td>

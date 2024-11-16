@@ -19,10 +19,12 @@ return new class extends Migration
             $table->foreignIdFor(Client::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Employer::class)->constrained()->cascadeOnDelete();
             $table->foreignIdFor(Employee::class)->constrained()->cascadeOnDelete();
-            $table->decimal('employee_share', 10, 2);
+            $table->string('payment_type');
+            $table->string('fixed_budget')->nullable();
+            $table->string('hr_budget')->nullable();
+            $table->string('total_cost')->nullable();
             $table->boolean('status')->default(true);
             $table->string('project_name');
-            $table->decimal('billing_rate', 10, 2);
             $table->timestamps();
         });
     }

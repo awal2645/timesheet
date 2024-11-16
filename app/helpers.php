@@ -3,6 +3,7 @@
 use App\Models\Client;
 use App\Models\Employee;
 use App\Models\Employer;
+use App\Models\Language;
 use App\Models\TimeReport;
 use App\Models\Notificattion;
 use App\Models\SearchCountry;
@@ -10,6 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\EmailTemplateController;
@@ -194,7 +196,7 @@ if (! function_exists('checkMailConfig')) {
     {
         $status = config('mail.mailers.smtp.transport') && config('mail.mailers.smtp.host') && config('mail.mailers.smtp.port') && config('mail.mailers.smtp.username') && config('mail.mailers.smtp.password') && config('mail.mailers.smtp.encryption') && config('mail.from.address') && config('mail.from.name');
 
-        ! $status ? flashError(__('mail_not_sent_for_the_reason_of_incomplete_mail_configuration')) : '';
+        ! $status ? flashError(__('Mail not sent for the reason of incomplete mail configuration')) : '';
 
         return $status ? 1 : 0;
     }
@@ -232,5 +234,43 @@ if (! function_exists('setConfig')) {
         }
 
         return 'Configuration set successfully!';
+    }
+}
+
+
+if (! function_exists('currentLanguage')) {
+
+    function currentLanguage()
+    {
+        return session('current_lang');
+    }
+}
+
+if (! function_exists('loadDefaultLanguage')) {
+    function loadDefaultLanguage()
+    {
+        return Cache::remember('default_language', now()->addDays(30), function () {
+            return Language::where('code', config('zenxserv.default_language'))->first();
+        });
+    }
+}
+
+if (! function_exists('loadLanguage')) {
+    function loadLanguage()
+    {
+        return Cache::remember('languages', now()->addDays(2), function () {
+            return Language::all();
+        });
+    }
+}
+
+if (!function_exists('zMeetConfig')) {
+    function zMeetConfig()
+    {
+        $status = env('ZOOM_API_URL') && env('ZOOM_ACCOUNT_ID') && env('ZOOM_CLIENT_ID') && env('ZOOM_CLIENT_SECRET');
+
+        !$status ? session()->flash('warning', 'incomplete zoom meeting configuration') : '';
+
+        return $status ? 1 : 0;
     }
 }

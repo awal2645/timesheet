@@ -1,51 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-      *{
+        * {
             margin: 0;
             padding: 0;
         }
-        body{
+
+        body {
             font-family: 'Arial', sans-serif;
         }
-        .mail-wrap{
+
+        .mail-wrap {
             background: #f4f6ff;
             width: 100%;
         }
-        .logo-wrap{
+
+        .logo-wrap {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        h2{
+
+        h2 {
             color: #0b4dc4;
         }
-        .inner-wrap{
+
+        .inner-wrap {
             width: 680px;
             margin: 0 auto;
             padding: 20px;
             background: #fff;
 
         }
-        .inner-wrap img{
+
+        .inner-wrap img {
             width: 40%;
         }
-        h1{
+
+        h1 {
             color: #0b4dc4;
             font-size: 18px;
             margin: 20px 0;
         }
-        p{
+
+        p {
             font-size: 14px;
             color: #2c1d66;
             margin: 20px 0;
         }
-        .btn{
+
+        .btn {
             background: #1fa8f8;
-            color:#fff;
+            color: #fff;
             font-size: 12px;
             cursor: pointer;
             padding: 15px 20px;
@@ -55,21 +65,25 @@
             text-align: center;
             font-size: 14px;
         }
-        .link{
+
+        .link {
             color: #2c1d66;
 
         }
-        .inner-footer{
+
+        .inner-footer {
             width: 680px;
             margin: 0 auto;
             padding: 20px;
 
         }
-        .inner-footer p{
+
+        .inner-footer p {
             font-size: 12px;
             color: #2c1d66;
             line-height: 16px;
         }
+
         .btn {
             display: inline-block;
             padding: 10px 20px;
@@ -81,12 +95,12 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-primary {
+        .btn-purple-500 {
             background-color: #007bff;
             color: #fff;
         }
 
-        .btn-primary:hover {
+        .btn-purple-500:hover {
             background-color: #0056b3;
         }
 
@@ -98,43 +112,48 @@
         .btn-danger:hover {
             background-color: #c82333;
         }
-        td{
+
+        td {
             vertical-align: middle;
         }
+
         .status strong::first-letter {
             text-transform: uppercase;
         }
     </style>
 </head>
+
 <body>
-<table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, sans-serif;">
+    <table cellpadding="0" cellspacing="0" border="0" width="100%" style="font-family: Arial, sans-serif;">
         <tr>
             <td align="center" bgcolor="#f4f6ff">
                 <table cellpadding="0" cellspacing="0" border="0" width="680" class="inner-wrap">
                     <tr>
                         <td>
-                        <table cellpadding="0" cellspacing="0" border="0" width="100%">
-                    <tr lass="logo-wrap">
-                        <td>
-                        <img src="https://timesheet.engagingdot.com/images/logo.png" alt="Zenxserv Technologies" style="max-width: 200px;">
+                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                <tr lass="logo-wrap">
+                                    <td>
+                                        <img src="https://timesheet.engagingdot.com/images/logo.png"
+                                            alt="Zenxserv Technologies" style="max-width: 200px;">
 
-                        </td>
-                        <td align="right">
-                        <h2>Timesheet</h2>
-                        </td>
+                                    </td>
+                                    <td align="right">
+                                        <h2>Timesheet</h2>
+                                    </td>
 
-    </tr>
+                                </tr>
                     </tr>
 
                     <tr>
                         <td>
-                        <p><strong> <p>You have an update of your timesheet.</p>
-  </strong></p>
-  <p></p>
-  <p class="status">Report Status: <strong>{{$status}}d</strong></p>
+                            <p><strong>
+                                    <p>You have an update of your timesheet.</p>
+                                </strong></p>
+                            <p></p>
+                            <p class="status">Report Status: <strong>{{ $status }}d</strong></p>
 
 
-                        </div>
+                            </div>
                         </td>
                     </tr>
                 </table>
@@ -145,7 +164,7 @@
                 <table cellpadding="0" cellspacing="0" border="0" width="680" class="inner-footer">
                     <tr>
                         <td>
-                            <p>&copy; {{date('Y')}} Zenxserv Technologies Pvt LTD.</p>
+                            <p>&copy; {{ date('Y') }} Zenxserv Technologies Pvt LTD.</p>
                         </td>
                     </tr>
                 </table>
@@ -154,4 +173,5 @@
     </table>
 
 </body>
+
 </html>

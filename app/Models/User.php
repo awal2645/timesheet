@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['username', 'email', 'password', 'role'];
+    protected $fillable = ['username', 'email', 'password', 'role', 'zoom_account_id', 'zoom_client_id', 'zoom_client_secret'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -45,5 +45,17 @@ class User extends Authenticatable
     public function employee()
     {
         return $this->hasOne(Employee::class);
+    }
+
+    // Scope |  user filter as active
+    public function scopeActive($query)
+    {
+        return $query
+            ->whereHas('employer', function ($q) {
+                $q->where('status', true);
+            })
+            ->whereHas('employee', function ($q) {
+                $q->where('status', true);
+            });
     }
 }
