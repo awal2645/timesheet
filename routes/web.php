@@ -23,6 +23,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
+use App\Http\Controllers\LeaveApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -211,4 +212,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
      // Meeting Routes
      Route::resource('meeting', MeetingController::class);
+
+    // Leave application routes
+    Route::get('leave/create', [LeaveApplicationController::class, 'create'])->name('leave.create');
+    Route::post('leave/store', [LeaveApplicationController::class, 'store'])->name('leave.store');
+    Route::get('leave', [LeaveApplicationController::class, 'index'])->name('leave.index');
+    Route::post('leave/approve/{id}', [LeaveApplicationController::class, 'approve'])->name('leave.approve');
+    Route::post('leave/deny/{id}', [LeaveApplicationController::class, 'deny'])->name('leave.deny');
 });

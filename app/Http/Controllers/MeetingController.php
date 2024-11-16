@@ -57,17 +57,23 @@ class MeetingController extends Controller
     {
 
         if (zMeetConfig()) {
-            try {
-                $meeting = $this->create_zoom($request);
+            // try {
+            $user = auth()->user();
+            $user->zoom_account_id = $request->zoom_account_id;
+            $user->zoom_client_id = $request->zoom_client_id;
+            $user->zoom_client_secret = $request->zoom_client_secret;
+            $user->save();
+            
+                $meeting = $this->create_zoom($request, $user);
 
                 (new CreateMeetingService)->create($meeting, $request);
 
-                return redirect()->back()->with('success', 'Meeting Successfully Created');
+                return redirect()->route('meeting.index')->with('success', 'Meeting Successfully Created');
 
-            } catch (Exception $e) {
+            // } catch (Exception $e) {
 
-                return redirect()->back();
-            }
+            //     return redirect()->back();
+            // }
         }
 
         return back();
@@ -84,8 +90,8 @@ class MeetingController extends Controller
 
         if (zMeetConfig()) {
             try {
-                $this->update_zoom($request, $meeting->meeting_id);
-                $updated_meeting = $this->get_zoom($meeting->meeting_id);
+                $this->update_zoom($request, $meeting->meeting_id, auth()->user());
+                $updated_meeting = $this->get_zoom($meeting->meeting_id, auth()->user());
 
                 (new UpdateMeetingService)->update($updated_meeting, $meeting, $request);
 
@@ -112,7 +118,7 @@ class MeetingController extends Controller
     {
 
         try {
-            $this->delete_zoom($meeting->meeting_id);
+            $this->delete_zoom($meeting->meeting_id, auth()->user());
 
             $meeting->delete();
             return redirect()->back()->with('success', 'Meeting delete successfully.');

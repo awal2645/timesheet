@@ -224,6 +224,38 @@
                             </a>
                         </li>
                     @endcanany
+                    <!-- Add this section in the sidebar links -->
+                        <li>
+                            <a href="{{ route('leave.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('leave.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-calendar-alt text-base"></i>
+                                        </span>
+                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Leave Management') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    <!-- Zoom Meeting -->
+                    @canany('Zoom Meeting')
+                        <li>
+                            <a href="{{ route('meeting.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('meeting.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-video text-base"></i>
+                                        </span>
+                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Zoom Meeting') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endcanany
                     <!-- invite -->
                     @canany('Invite send')
                         <li>

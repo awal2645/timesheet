@@ -45,6 +45,7 @@ class PermissionTableSeeder extends Seeder
             37,
             38,
             40,
+            41,
         ];
         $permissions = [
             'Employer view',
@@ -86,6 +87,13 @@ class PermissionTableSeeder extends Seeder
             'SMTP Config',
             'Email Templates',
             'General Settings',
+            'Leave view',
+            'Leave create',
+            'Leave approve',
+            'Leave deny',
+            'Zoom Meeting',
+            'Zoom Meeting create',
+            
         ];
 
         foreach ($permissions as $permission) {

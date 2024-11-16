@@ -20,20 +20,17 @@ trait ZoomMeetingTrait
     public function __construct()
     {
         $this->client = new Client;
-        $this->token = $this->generateZoomToken();
         $this->headers = [
-            'Authorization' => 'Bearer ' . $this->token,
             'Content-Type' => 'application/json',
             'Accept' => 'application/json',
         ];
     }
 
-    public function generateZoomToken()
+    public function generateZoomToken($user)
     {
-        $account_id = env('ZOOM_ACCOUNT_ID', '');
-        $client_id = env('ZOOM_CLIENT_ID', '');
-        $client_secret = env('ZOOM_CLIENT_SECRET', '');
-
+        $account_id = $user->zoom_account_id;
+        $client_id = $user->zoom_client_id;
+        $client_secret = $user->zoom_client_secret;
         // Create a Guzzle client
         $client = new Client();
 
@@ -81,13 +78,18 @@ trait ZoomMeetingTrait
         }
     }
 
-    public function create_zoom($request)
+    public function create_zoom($request, $user)
     {
         $path = 'users/me/meetings';
         $url = $this->retrieveZoomUrl();
 
+        // Generate the token using the user
+        $this->token = $this->generateZoomToken($user);
+
         $body = [
-            'headers' => $this->headers,
+            'headers' => array_merge($this->headers, [
+                'Authorization' => 'Bearer ' . $this->token,
+            ]),
             'body' => json_encode([
                 'topic' => $request->topic,
                 'password' => Str::slug($request->password),
@@ -112,13 +114,18 @@ trait ZoomMeetingTrait
         ];
     }
 
-    public function update_zoom($request, $id)
+    public function update_zoom($request, $id, $user)
     {
         $path = 'meetings/' . $id;
         $url = $this->retrieveZoomUrl();
 
+        // Generate the token using the user
+        $this->token = $this->generateZoomToken($user);
+
         $body = [
-            'headers' => $this->headers,
+            'headers' => array_merge($this->headers, [
+                'Authorization' => 'Bearer ' . $this->token,
+            ]),
             'body' => json_encode([
                 'topic' => $request->topic,
                 'password' => Str::slug($request->password),
@@ -138,24 +145,20 @@ trait ZoomMeetingTrait
         $response = $this->client->patch($url . $path, $body);
 
         return [
-            'success' => $response->getStatusCode() === 201,
+            'success' => $response->getStatusCode() === 204,
             'data' => json_decode($response->getBody(), true),
         ];
-        // $response = $this->client->patch($url . $path, $body);
-
-        // return [
-        //     'success' => $response->getStatusCode() === 204,
-        //     'data' => json_decode($response->getBody(), true),
-        // ];
     }
 
-    public function get_zoom($id)
+    public function get_zoom($id, $user)
     {
         $path = 'meetings/' . $id;
         $url = $this->retrieveZoomUrl();
-        $this->token = $this->generateZoomToken();
+        $this->token = $this->generateZoomToken($user);
         $body = [
-            'headers' => $this->headers,
+            'headers' => array_merge($this->headers, [
+                'Authorization' => 'Bearer ' . $this->token,
+            ]),
             'body' => json_encode([]),
         ];
 
@@ -167,16 +170,15 @@ trait ZoomMeetingTrait
         ];
     }
 
-    /**
-     * @param  string  $id
-     * @return bool[]
-     */
-    public function delete_zoom($id)
+    public function delete_zoom($id, $user)
     {
         $path = 'meetings/' . $id;
         $url = $this->retrieveZoomUrl();
+        $this->token = $this->generateZoomToken($user);
         $body = [
-            'headers' => $this->headers,
+            'headers' => array_merge($this->headers, [
+                'Authorization' => 'Bearer ' . $this->token,
+            ]),
             'body' => json_encode([]),
         ];
 

@@ -18,7 +18,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['username', 'email', 'password', 'role'];
+    protected $fillable = ['username', 'email', 'password', 'role', 'zoom_account_id', 'zoom_client_id', 'zoom_client_secret'];
 
     /**
      * The attributes that should be hidden for serialization.
