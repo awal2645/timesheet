@@ -1,6 +1,7 @@
 @section('title')
     {{ 'List Project' }}
 @endsection
+
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="container mx-auto px-5">
@@ -45,6 +46,10 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Total Time') }}
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Total Cost') }}
                                             </th>
                                             <th scope="col"
@@ -82,11 +87,42 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <a rel="noopener noreferrer">
                                                             {{ $project->payment_type ?? '' }}
+                                                            @if ($project->hr_budget)
+                                                                (${{  $project->hr_budget ?? '' }})
+                                                            @endif
+                                                        </a>
+                                                    </td>
+                                                    @php
+                                                    $totalMinutes = 0;
+                                                
+                                                    // Loop through each task to sum the time in minutes
+                                                    foreach ($project->tasks as $task) {
+                                                        $timeParts = explode(':', $task->time);
+                                                        
+                                                        // Convert hours to minutes and add minutes
+                                                        $taskMinutes = ($timeParts[0] * 60) + $timeParts[1];
+                                                        $totalMinutes += $taskMinutes;
+                                                    }
+                                                
+                                                        // Convert total minutes to hours (or keep it in minutes if budget is per minute)
+                                                        $totalHours = $totalMinutes / 60;
+
+                                                        // Calculate total cost based on hours (or totalMinutes, if hr_budget is per minute)
+                                                        $totalCost = $totalHours * $project->hr_budget;
+                                                    @endphp
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                        <a rel="noopener noreferrer">
+                                                            {{ number_format($totalHours, 2) ?? '' }}
                                                         </a>
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                     
                                                         <a rel="noopener noreferrer">
-                                                            {{ $project->total_cost ?? '' }}
+                                                            @if ($project->hr_budget)
+                                                                ${{ number_format($totalCost, 2) ?? '' }}
+                                                            @else
+                                                                ${{ $project->total_cost ?? '' }}
+                                                            @endif
                                                         </a>
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">

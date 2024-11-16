@@ -2,10 +2,11 @@
 
 namespace App\Services\Meeting;
 
-use App\Models\Meeting;
-use App\Models\User;
-use App\Notifications\NewMeetingAlertNotification;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Meeting;
+use App\Mail\NewMeetingAlertMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
 
 class CreateMeetingService
@@ -37,16 +38,18 @@ class CreateMeetingService
     {
         if ($request->all_user) {
             $role = $request->selected_role;
-            $users = User::active()->where('role', $role)->get();
+            $users = User::where('role', $role)->get();
         } else {
-            $users = User::active()->whereIn('id', $request->participants)->get();
+            $users = User::whereIn('id', $request->participants)->get();
+
         }
 
         foreach ($users as $key => $user) {
+            
             $meeting->participants()->create([
                 'user_id' => $user->id,
             ]);
-            // Notification::send($user, new NewMeetingAlertNotification($user, $meeting));
+            Mail::to($user->email)->send(new NewMeetingAlertMail($user, $meeting));
         }
     }
 }

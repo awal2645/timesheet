@@ -98,6 +98,71 @@ class EmailTemplateSeeder extends Seeder
                                 <small>© ".date('Y').'{app_name}. All rights reserved.</small>
                              </div>',
             ],
+            [
+                'name' => 'Leave Application Submitted',
+                'type' => 'leave_application_submitted',
+                'subject' => 'Leave Application Submitted',
+                'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
+                    <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
+                    <h1 style='color:#0b4dc4;'>Leave Application Submitted</h1>
+                    <p>Dear <strong>{user_name}</strong>,</p>
+                    <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been submitted successfully.</p>
+                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
+                    </div>
+                    <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
+                    </div>",
+            ],
+            [
+                'name' => 'Leave Application Approved',
+                'type' => 'leave_application_approved',
+                'subject' => 'Leave Application Approved',
+                'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
+                    <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
+                    <h1 style='color:#0b4dc4;'>Leave Application Approved</h1>
+                    <p>Dear <strong>{user_name}</strong>,</p>
+                    <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been approved.</p>
+                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
+                    </div>
+                    <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
+                    </div>",
+            ],
+            [
+                'name' => 'Leave Application Denied',
+                'type' => 'leave_application_denied',
+                'subject' => 'Leave Application Denied',
+                'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
+                    <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
+                    <h1 style='color:#0b4dc4;'>Leave Application Denied</h1>
+                    <p>Dear <strong>{user_name}</strong>,</p>
+                    <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been denied.</p>
+                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
+                    </div>
+                    <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
+                    </div>",
+            ],
+            [
+                'name' => 'New Meeting Alert',
+                'type' => 'new_meeting_alert',
+                'subject' => 'New Meeting Scheduled',
+                'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
+                    <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
+                    <h1 style='color:#0b4dc4;'>New Meeting Scheduled</h1>
+                    <p>Dear <strong>{user_name}</strong>,</p>
+                    <p>You have a new meeting scheduled on <strong>{start_time}</strong>.</p>
+                    <p>Topic: <strong>{meeting_topic}</strong></p>
+                    <p>Join the meeting using the following link: <a href='{join_url}'>{join_url}</a></p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
+                    </div>
+                    <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
+                    </div>",
+            ],
         ];
 
         foreach ($email_templates as $email_template) {
