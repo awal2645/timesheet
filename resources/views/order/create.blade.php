@@ -2,9 +2,15 @@
     {{ __('Create Order') }}
 @endsection
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-black/10 dark:border-white/10 dark:bg-black/10 backdrop-blur">
+        <h2 class="text-xl font-medium">{{ __('Create Order') }}</h2>
+        <a href="{{ route('order.index') }}" class="btn bg-purple-500 dark:bg-purple-900 text-white">{{ __('Go to Order List') }}</a>
+    </div>
+    
+    <div class="m-8 p-6 bg-white/10 backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Order') }}</h2>
-        <form method="POST" action="{{ route('order.store') }}" class="max-w-md mx-auto">
+        
+        <form method="POST" action="{{ route('order.store') }}">
             @csrf
             <!-- Employer Name -->
             <div class="relative z-0 w-full mb-5 group">
@@ -87,8 +93,9 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-            <button type="submit"
-                class="text-white bg-purple-500 dark:bg-purple-900 hover:bg-[#1da8f7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+            <button type="submit" class="text-white bg-purple-500 dark:bg-purple-900 hover:bg-purple-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                {{ __('Submit') }}
+            </button>
         </form>
     </div>
 </x-app-layout>
