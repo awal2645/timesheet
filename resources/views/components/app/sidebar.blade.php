@@ -5,12 +5,12 @@
 
     <!-- Sidebar -->
     <div id="sidebar"
-        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 p-3 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 dark:bg-gray-800 bg-white  transition-all duration-200 ease-in-out"
+        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 dark:bg-gray-800 bg-white  transition-all duration-200 ease-in-out"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" @click.outside="sidebarOpen = false"
-        @keydown.escape.window="sidebarOpen = false" x-cloak="lg">
+        @keydown.escape.window="sidebarOpen = false" x-cloak="lg" class="relative">
 
         <!-- Sidebar header -->
-        <div class="flex justify-between  pr-3 sm:px-2">
+        <div class="flex justify-between px-3 py-1 sticky top-0 z-50 bg-white dark:bg-gray-800">
 
             <!-- Hamburger button -->
             <button x-show="!sidebarExpanded" class="text-slate-500 hover:text-slate-600 lg:block hidden"
@@ -30,7 +30,7 @@
         </div>
 
         <!-- Links -->
-        <div class="space-y-8">
+        <div class="space-y-8 p-3">
             <!-- Pages group -->
             <div>
                 <ul class="mt-3 space-y-2">
@@ -224,95 +224,109 @@
                             </a>
                         </li>
                     @endcanany
-                    <!-- Leave Management -->
-                    {{-- @canany('Leave Management') --}}
-                        <li>
-                            <a href="{{ route('leave.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('leave.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                            <i class="fa-solid fa-calendar-alt text-base"></i>
-                                        </span>
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                            {{ __('Leave Management') }}</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    {{-- @endcanany --}}
-                    <!-- Weekly Holidays -->
-                    {{-- @canany('Weekly Holidays') --}}
-                        <li>
-                            <a href="{{ route('weekly_holidays.index') }}"  
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('weekly_holidays.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                            <i class="fa-solid fa-calendar-alt text-base"></i>
-                                        </span>  
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                            {{ __('Weekly Holidays') }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    {{-- @endcanany --}}
-                    <!-- Holidays -->
-                    {{-- @canany('Holidays') --}}
-                        <li>
-                            <a href="{{ route('holidays.index') }}"         
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('holidays.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                            <i class="fa-solid fa-calendar-alt text-base"></i>
-                                        </span> 
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                            {{ __('Holidays') }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    {{-- @endcanany --}}
-                    <!-- Leave Types -->
-                    {{-- @canany('Leave Types') --}}
-                        <li>
-                            <a href="{{ route('leave_types.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('leave_types.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                            <i class="fa-solid fa-calendar-alt text-base"></i>
-                                        </span> 
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                            {{ __('Leave Types') }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                    {{-- @endcanany           --}}
-                      <!-- Notice -->
+
+                    <!-- Leave Management Dropdown -->
+                    <li x-data="{ open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} }">
+                        <a href="{{ route('leave.index') }}"
+                            class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                            <div>
+                                <span
+                                    class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                    <i class="fa-solid fa-cog text-base"></i>
+                                </span>
+                                <span
+                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    {{ __('Leave Management') }}
+                                </span>
+                            </div>
+                            <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer"
+                                @click.prevent="open = !open">
+                                <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-white"
+                                    :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
+                                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                </svg>
+                            </div>
+                        </a>
+                        <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-white">
+                            <ul class="pl-9 mt-1" x-show="open" x-collapse>
+                                <!-- Weekly Holidays -->
+                                <li class="mb-1 last:mb-0">
+                                    <a href="{{ route('weekly_holidays.index') }}"
+                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('weekly_holidays.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <span
+                                                    class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                </span>
+                                                <span
+                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                    {{ __('Weekly Holidays') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <!-- Holidays -->
+                                <li class="mb-1 last:mb-0">
+                                    <a href="{{ route('holidays.index') }}"
+                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('holidays.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <span
+                                                    class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                </span>
+                                                <span
+                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                    {{ __('Holidays') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <!-- Leave Types -->
+                                <li class="mb-1 last:mb-0">
+                                    <a href="{{ route('leave_types.index') }}"
+                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('leave_types.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <span
+                                                    class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                </span>
+                                                <span
+                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                    {{ __('Leave Types') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- Notice -->
                     {{-- @canany('Notice') --}}
                     <li>
                         <a href="{{ route('notices.index') }}"
                             class="block px-3 py-1.5 rounded {{ request()->routeIs('notices.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
                                         <i class="fa-solid fa-bullhorn text-base"></i>
-                                    </span> 
-                                    <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    </span>
+                                    <span
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                         {{ __('Notice') }}
                                     </span>
                                 </div>
                             </div>
                         </a>
                     </li>
-                {{-- @endcanany           --}}
+                    {{-- @endcanany           --}}
                     <!-- Zoom Meeting -->
                     @canany('Zoom Meeting')
                         <li>
@@ -320,33 +334,37 @@
                                 class="block px-3 py-1.5 rounded {{ request()->routeIs('meeting.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
                                             <i class="fa-solid fa-video text-base"></i>
                                         </span>
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                                             {{ __('Zoom Meeting') }}</span>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        @endcanany
-                      <!-- Invoice -->
-                      {{-- @canany('Invoice view') --}}
-                      <li>
-                          <a href="{{ route('invoice.index') }}"
-                              class="block px-3 py-1.5 rounded {{ request()->routeIs('invoice.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
-                              <div class="flex items-center justify-between">
-                                  <div class="flex items-center">
-                                      <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                          <i class="fa-solid fa-file-invoice text-base"></i>
-                                      </span>
-                                      <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                          {{ __('Invoice') }}</span>
-                                  </div>
-                              </div>
-                          </a>
-                      </li>
-                  {{-- @endcanany --}}
+                    @endcanany
+                    <!-- Invoice -->
+                    {{-- @canany('Invoice view') --}}
+                    <li>
+                        <a href="{{ route('invoice.index') }}"
+                            class="block px-3 py-1.5 rounded {{ request()->routeIs('invoice.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-file-invoice text-base"></i>
+                                    </span>
+                                    <span
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Invoice') }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    {{-- @endcanany --}}
                     <!-- invite -->
                     @canany('Invite send')
                         <li>
@@ -449,21 +467,23 @@
                     @endcanany
                     <!-- Language -->
                     {{-- @canany('Language') --}}
-                        <li>
-                            <a href="{{ route('languages.index') }}"    
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('languages.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center"> 
-                                        <span class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
-                                            <i class="fa-solid fa-language text-base"></i>
-                                        </span> 
-                                        <span class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                            {{ __('Language') }}
-                                        </span>
-                                    </div>
+                    <li>
+                        <a href="{{ route('languages.index') }}"
+                            class="block px-3 py-1.5 rounded {{ request()->routeIs('languages.*') ? 'text-white bg-purple-500 dark:bg-purple-900 hover:text-purple-900 dark:hover:text-purple-500' : 'dark:text-slate-200' }} hover:text-purple-500 truncate transition duration-150 text-gray-600 ">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span
+                                        class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-purple-500 inline-flex justify-center items-center">
+                                        <i class="fa-solid fa-language text-base"></i>
+                                    </span>
+                                    <span
+                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        {{ __('Language') }}
+                                    </span>
                                 </div>
-                            </a>
-                        </li>
+                            </div>
+                        </a>
+                    </li>
                     {{-- @endcanany --}}
                     <!-- General -->
                     @canany('General Settings')
@@ -526,6 +546,7 @@
                             </a>
                         </li>
                     @endif
+
                 </ul>
             </div>
         </div>
