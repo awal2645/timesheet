@@ -182,7 +182,7 @@
                                                                 <!-- Submit Button -->
                                                                 <div class="text-center py-4">
                                                                     <button id="submitFeedbackButton"
-                                                                        class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                                                                        class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Submit</button>
                                                                 </div>
                                                             @else
                                                                 <!-- Display Feedback for Employee -->

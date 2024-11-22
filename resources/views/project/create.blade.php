@@ -146,7 +146,7 @@
             </div>
 
             <button type="submit"
-                class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus:ring-blue-600 font-medium text-sm">
+                class="w-full px-4 py-2 text-white bg-purple-500 rounded-lg hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus:ring-blue-600 font-medium text-sm">
                 {{ __('Create Project') }}
             </button>
         </form>

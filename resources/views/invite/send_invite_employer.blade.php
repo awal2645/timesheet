@@ -7,7 +7,8 @@
         <div class="m-6 p-6 bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md">
             <h2 class="text-2xl font-bold mb-4">{{ __('Send Invite') }}</h2>
 
-            <form method="POST" action="{{ route('invite.send.employer') }}" class="rounded-lg p-6 bg-white/30 dark:bg-black/30 border border-black/10 dark:border-white/10">
+            <form method="POST" action="{{ route('invite.send.employer') }}"
+                class="rounded-lg p-6 bg-white/30 dark:bg-black/30 border border-black/10 dark:border-white/10">
                 @csrf
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="role_name" id="role_name"
@@ -40,7 +41,7 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('Submit') }}</button>
+                    class="text-white bg-purple-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-800">{{ __('Submit') }}</button>
             </form>
         </div>
     @else
@@ -81,7 +82,7 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="text-white bg-purple-500 dark:bg-purple-900 hover:bg-[#1da8f7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('Submit') }}</button>
+                    class="text-white bg-purple-500 dark:bg-purple-900 hover:bg-[#1da8f7] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-800">{{ __('Submit') }}</button>
             </form>
         </div>
     @endif

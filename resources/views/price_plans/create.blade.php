@@ -115,7 +115,7 @@
 
             <!-- Submit Button -->
             <button type="submit"
-                class="w-full px-4 mt-2 py-2 text-white bg-purple-500 dark:bg-purple-900 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-purple-500 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                class="w-full px-4 mt-2 py-2 text-white bg-purple-500 dark:bg-purple-900 rounded-lg hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-800">
                 {{ __('Create Plan') }}
             </button>
         </form>
