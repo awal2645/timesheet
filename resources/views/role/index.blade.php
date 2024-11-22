@@ -3,14 +3,16 @@
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
-            
+        <div
+            class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
+
             <a href="{{ route('role.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Role') }}
             </a>
         </div>
         <!-- Start heading here -->
-        <div class="m-6 flex flex-wrap p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
+        <div
+            class="m-6 flex flex-wrap p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
             <div class="w-full ">
                 <div class="dashboard-right pl-0 ">
                     <div class="invoices-table ">
@@ -59,7 +61,7 @@
                                                             class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('role.edit', $role->id) }}"
-                                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                    class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke-width="1.5" stroke="currentColor"
@@ -103,7 +105,7 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('role.edit', $role->id) }}"
-                                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">
@@ -215,7 +217,7 @@
                                                                 class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                                 <div class="flex space-x-2">
                                                                     <a href="{{ route('role.edit', $role->id) }}"
-                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                        class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
                                                                             stroke-width="1.5" stroke="currentColor"
@@ -263,7 +265,7 @@
                                                             class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('role.edit', $role->id) }}"
-                                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                    class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke-width="1.5" stroke="currentColor"

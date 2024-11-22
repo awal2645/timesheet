@@ -39,7 +39,7 @@
 
         <div class="mt-6 grid grid-cols-2 gap-4">
             <button onclick="submitLoginForm('superadmin')"
-                class="w-full text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-blue-800">
+                class="w-full text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-500 dark:focus:ring-purple-800">
                 {{ __('Super Admin Login') }}</button>
             <button onclick="submitLoginForm('employer')"
                 class="w-full full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">

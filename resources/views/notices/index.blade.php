@@ -3,13 +3,14 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class="p-6 flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
+            <div
+                class="p-6 flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
                 <form action="{{ route('notices.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
                                 class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
@@ -37,47 +38,53 @@
                                 </th>
                             </tr>
                         </thead>
-    
+
                         <tbody>
                             @if ($notices->count() > 0)
                                 @foreach ($notices as $notice)
-                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                    <tr
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                         <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                             {{ $notice->title }}
                                         </td>
                                         <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                             @php
-                                            // Split the role string into an array
-                                            $noticeRoles = explode(',', $notice->role); // Convert "3,4" into an array [3, 4]
-                                        @endphp
-                                        
-                                        @foreach ($roles as $role)
-                                            @if (in_array($role->id, $noticeRoles))
-                                                {{ ucfirst($role->name) }}
-                                            @endif
-                                        @endforeach
+                                                // Split the role string into an array
+                                                $noticeRoles = explode(',', $notice->role); // Convert "3,4" into an array [3, 4]
+                                            @endphp
+
+                                            @foreach ($roles as $role)
+                                                @if (in_array($role->id, $noticeRoles))
+                                                    {{ ucfirst($role->name) }}
+                                                @endif
+                                            @endforeach
                                         </td>
                                         <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                            <a href="{{ route('notices.edit', $notice->id) }}" class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
-                                            <form action="{{ route('notices.destroy', $notice->id) }}" method="POST" style="display:inline;">
+                                            <a href="{{ route('notices.edit', $notice->id) }}"
+                                                class="text-purple-600 hover:underline">{{ __('Edit') }}</a>
+                                            <form action="{{ route('notices.destroy', $notice->id) }}" method="POST"
+                                                style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="text-red-600 hover:underline">{{ __('Delete') }}</button>
+                                                <button type="submit"
+                                                    class="text-red-600 hover:underline">{{ __('Delete') }}</button>
                                             </form>
                                         </td>
                                     </tr>
                                 @endforeach
                             @else
                                 <tr>
-                                    <td colspan="3" class="text-center py-8 border border-gray-300 dark:border-gray-700">
-                                        <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found" class="mx-auto max-w-xs">
+                                    <td colspan="3"
+                                        class="text-center py-8 border border-gray-300 dark:border-gray-700">
+                                        <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found"
+                                            class="mx-auto max-w-xs">
                                     </td>
                                 </tr>
                             @endif
                         </tbody>
                     </table>
                 </div>
-    
+
                 @if ($notices->total() > $notices->count())
                     <div class="mt-2">
                         <div class="d-flex justify-content-center">

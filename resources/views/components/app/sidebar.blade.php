@@ -247,7 +247,7 @@
                                 </svg>
                             </div>
                         </a>
-                        <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-white">
+                        <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
                             <ul class="pl-9 mt-1" x-show="open" x-collapse>
                                 <!-- Weekly Holidays -->
                                 <li class="mb-1 last:mb-0">

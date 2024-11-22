@@ -18,7 +18,7 @@
                 <label class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="toggleZoomCredentialsCheckbox" class="sr-only peer" />
                     <div
-                        class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
+                        class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
                     </div>
                     <span
                         class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Toggle Zoom Credentials') }}</span>
@@ -88,7 +88,7 @@
             <div class="mb-5">
                 <label for="start_date"
                     class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Start
-                                                            Date') }}</label>
+                                                                                Date') }}</label>
                 <input type="datetime-local" name="start_date" id="start_date"
                     class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
                     value="{{ old('start_date') }}" required>
@@ -101,7 +101,7 @@
             <div class="mb-5">
                 <label for="password"
                     class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Meeting
-                                                            Password') }}</label>
+                                                                                Password') }}</label>
                 <input type="password" name="password" id="password"
                     class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
                     placeholder="{{ __('Enter password') }}" value="{{ old('password') }}" required>
@@ -114,13 +114,14 @@
             <div class="mb-5">
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                     {{ __('Select
-                                                            Participants Role') }} </label>
+                                                                                Participants Role') }}
+                </label>
                 <div class="flex items-center space-x-4">
                     @foreach ($roles as $role)
                         <div>
                             <input type="radio" id="role_{{ $role->id }}" name="selected_role"
                                 value="{{ $role->name }}"
-                                class="text-blue-600 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600"
+                                class="text-purple-600 focus:ring-purple-500 dark:bg-gray-700 dark:border-gray-600"
                                 {{ old('selected_role') == $role->name ? 'checked' : '' }} required>
                             <label for="role_{{ $role->id }}" class="ml-2 text-sm font-medium dark:text-gray-400">
                                 {{ $role->name }}
@@ -168,7 +169,7 @@
             <!-- Submit Button -->
             <div class="flex justify-end">
                 <button type="submit"
-                    class="bg-purple-500 text-white px-4 py-2 rounded shadow hover:bg-purple-700 dark:bg-blue-500 dark:hover:bg-purple-500">
+                    class="bg-purple-500 text-white px-4 py-2 rounded shadow hover:bg-purple-700 dark:bg-purple-500 dark:hover:bg-purple-500">
                     {{ __('Save') }}
                 </button>
             </div>

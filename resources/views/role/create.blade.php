@@ -1,5 +1,6 @@
 <x-app-layout>
-    <div class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">       
+    <div
+        class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
         <a href="{{ route('role.page') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg">
             <i class="fa-solid fa-plus"></i> {{ __('Back to Role List') }}
         </a>
@@ -13,10 +14,10 @@
             <!-- Role Name -->
             <div class="relative z-0 w-full">
                 <input type="text" name="role_name" id="role_name"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                     placeholder=" " required value="{{ old('role_name') }}" />
                 <label for="role_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Role Name') }}</label>
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Role Name') }}</label>
                 @error('role_name')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -46,7 +47,7 @@
                                 value="{{ $permission->id }}" class="sr-only peer"
                                 {{ in_array($permission->id, old('permissions', [])) ? 'checked' : '' }}>
                             <div
-                                class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:bg-purple-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600">
+                                class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 dark:bg-gray-700 peer-checked:bg-purple-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600">
                             </div>
                         </label>
                         <span
@@ -57,7 +58,7 @@
 
             <!-- Submit Button -->
             <button type="submit"
-                class="block w-full text-lg font-semibold text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 py-3 rounded-lg shadow-md transition-colors duration-300">{{ __('Submit') }}</button>
+                class="block w-full text-lg font-semibold text-white bg-purple-500 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 py-3 rounded-lg shadow-md transition-colors duration-300">{{ __('Submit') }}</button>
         </form>
     </div>
 </x-app-layout>

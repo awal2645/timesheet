@@ -1,7 +1,7 @@
 @section('title', 'Add Weekly Holiday')
 
 <x-app-layout>
-    <div class="container mx-auto px-5">
+    <div class="m-6 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
         <h2 class="text-xl font-semibold mb-4">Add Weekly Holiday</h2>
 
         <form action="{{ route('weekly_holidays.store') }}" method="POST">

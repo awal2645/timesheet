@@ -11,11 +11,11 @@
                             class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Search') }}</label>
                         <div class="flex flex-col md:flex-row items-center gap-4">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="{{ __('Search') }}" />
 
                             <select name="status"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white pr-8">
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white pr-8">
                                 <option value="">{{ __('Select Status') }}</option>
                                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
                                     {{ __('Pending') }}
@@ -30,7 +30,7 @@
                             </select>
 
                             <button type="submit"
-                                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 transition duration-150 ease-in-out">{{ __('Search') }}</button>
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 transition duration-150 ease-in-out">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -115,7 +115,7 @@
                                                             <a href="#"
                                                                 id="openTimesheetModal{{ $timeReport->id }}"
                                                                 title="Check your employee's timesheet report"
-                                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline mr-2">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">
@@ -127,7 +127,7 @@
                                                             </a>
                                                             <a href="#"
                                                                 title="Give feedback based on your employee’s timesheet report"
-                                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline"
                                                                 id="addFeedbackButton{{ $timeReport->id }}">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
@@ -138,7 +138,7 @@
                                                             </a>
                                                             @if (auth('web')->user()->role == 'employee')
                                                                 <a href="{{ route('timesheet.index', $timeReport->start_day) }}"
-                                                                    class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                    class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke-width="1.5" stroke="currentColor"
@@ -177,7 +177,7 @@
                                                             @if (auth('web')->user()->role != 'employee')
                                                                 <!-- Feedback Textarea -->
                                                                 <textarea id="feedback" name="feedback" required
-                                                                    class="w-full h-30 px-3 py-5 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">{{ $timeReport->feedback ?? '' }}</textarea>
+                                                                    class="w-full h-30 px-3 py-5 text-gray-700 border border-gray-300 rounded-md focus:outline-none focus:border-purple-500">{{ $timeReport->feedback ?? '' }}</textarea>
 
                                                                 <!-- Submit Button -->
                                                                 <div class="text-center py-4">

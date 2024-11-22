@@ -12,10 +12,10 @@
                 <div class="mb-4 flex justify-between">
 
                     <button id="previousWeek"
-                        class="text-white bg-purple-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-900">Previous
+                        class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Previous
                         Week</button>
                     <button id="nextWeek"
-                        class="text-white bg-purple-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-900">Next
+                        class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-900">Next
                         Week</button>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                             <div class="flex mt-2">
                                 <input type="number" min="1" name="hours[{{ $day }}]"
                                     value="{{ $hours[$day] }}"
-                                    class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                    class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                                     placeholder="Enter hours">
 
                             </div>
@@ -93,24 +93,24 @@
 
                 <!-- Submit Button -->
                 <button @if ($timeReport) disabled @endif type="button" id="saveButton"
-                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
+                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-purple-300">
                     {{ __('Save') }}
                 </button>
 
                 @if ($timeReport)
                     <button disabled type="button" id="submitButton"
-                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
+                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-purple-300">
                         {{ __('Submitted') }}
                     </button>
                 @else
                     <button type="button" id="submitButton"
-                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
+                        class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-purple-300">
                         {{ __('Submit') }}
                     </button>
                 @endif
 
                 <button @if ($timeReport) disabled @endif type="button" id="resetButton"
-                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-blue-300">
+                    class="bg-purple-500 ml-3 text-white px-4 py-2 rounded-md hover:bg-purple-600 focus:outline-none focus:ring focus:border-purple-300">
                     {{ __('Reset') }}
                 </button>
             </div>

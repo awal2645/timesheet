@@ -4,14 +4,15 @@
 
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class="mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+        <div class="m-6">
+            <div
+                class="flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <form action="{{ route('leave.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
                                 class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
@@ -22,7 +23,8 @@
                         class="fa-solid fa-plus"></i> {{ __('Create Leave Application') }}</a>
             </div>
             <!-- Start heading here -->
-            <div class="flex flex-wrap">
+            <div
+                class="flex flex-wrap mt-12 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
@@ -53,10 +55,10 @@
                                                 {{ __('Status') }}
                                             </th>
                                             @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Action') }}
-                                            </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Action') }}
+                                                </th>
                                             @endif
                                         </tr>
                                     </thead>
@@ -92,22 +94,30 @@
                                                         </div>
                                                     </td>
                                                     @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                        <div class="flex space-x-2">
-                                                            @if ($application->status === 'pending')
-                                                                <form action="{{ route('leave.approve', $application->id) }}" method="POST" style="display:inline;">
-                                                                    @csrf
-                                                                    <button type="submit" class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
-                                                                </form>
-                                                                <form action="{{ route('leave.deny', $application->id) }}" method="POST" style="display:inline;">
-                                                                    @csrf
-                                                                    <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
-                                                                </form>
-                                                            @else
-                                                                <span class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
-                                                            @endif
-                                                        </div>
-                                                    </td>
+                                                        <td
+                                                            class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                            <div class="flex space-x-2">
+                                                                @if ($application->status === 'pending')
+                                                                    <form
+                                                                        action="{{ route('leave.approve', $application->id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
+                                                                    </form>
+                                                                    <form
+                                                                        action="{{ route('leave.deny', $application->id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
+                                                                    </form>
+                                                                @else
+                                                                    <span
+                                                                        class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
                                                     @endif
                                                 </tr>
                                             @endforeach

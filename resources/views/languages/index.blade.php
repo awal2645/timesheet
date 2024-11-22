@@ -61,10 +61,10 @@
                                                                 class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                                 <div class="flex justify-end">
                                                                     <a href="{{ route('languages.json.edit', $language->code) }}"
-                                                                        class="text-blue-500 hover:text-blue-700">{{ __('Edit Json') }}</a>
+                                                                        class="text-purple-500 hover:text-purple-700">{{ __('Edit Json') }}</a>
 
                                                                     <a href="{{ route('languages.edit', $language->id) }}"
-                                                                        class="text-blue-500 hover:text-blue-700">{{ __('Edit') }}</a>
+                                                                        class="text-purple-500 hover:text-purple-700">{{ __('Edit') }}</a>
                                                                     <form
                                                                         action="{{ route('languages.destroy', $language->id) }}"
                                                                         method="POST"

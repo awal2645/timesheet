@@ -74,7 +74,7 @@
                                                             </div>
                                                             <div class="font-normal text-gray-500 mt-5">
                                                                 <a target="__blank"
-                                                                    class="text-white bg-purple-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-blue-900"
+                                                                    class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                                                                     href=" {{ $meeting->meeting_join_url ?? '#' }}">
                                                                     {{ __('Join Zoom') }}
                                                                 </a>
@@ -124,7 +124,7 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('project.edit', $meeting->id) }}"
-                                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">
