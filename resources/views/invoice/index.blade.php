@@ -3,8 +3,8 @@
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-8">
-            <div class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+        <div class="m-6">
+            <div class="mb-12 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('invoice.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
@@ -17,7 +17,7 @@
                 <a href="{{ route('invoice.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i class="fa-solid fa-plus"></i> {{ __('Create Invoice') }}</a>
             </div>
 
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap p-8 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
