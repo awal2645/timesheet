@@ -1,8 +1,13 @@
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+    <div class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">       
+        <a href="{{ route('role.page') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg">
+            <i class="fa-solid fa-plus"></i> {{ __('Back to Role List') }}
+        </a>
+    </div>
+    <div class="m-6 p-8 bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-lg">
         <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">{{ __('Create New Role') }}</h2>
 
-        <form method="POST" action="{{ route('role.store') }}" class="max-w-lg mx-auto space-y-6">
+        <form method="POST" action="{{ route('role.store') }}" class="space-y-6">
             @csrf
 
             <!-- Role Name -->
@@ -18,7 +23,7 @@
             </div>
 
             <!-- Permissions -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($permissions as $permission)
                     @if (auth()->user()->role != 'superadmin' &&
                             in_array($permission->name, [
