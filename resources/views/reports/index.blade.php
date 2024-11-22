@@ -3,8 +3,8 @@
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+        <div class="m-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <form action="{{ route('reports.index') }}" method="GET" class="mb-6">
                     <div class="mb-5">
                         <label for="search"
@@ -37,7 +37,7 @@
 
             </div>
             <!-- Start heading  here -->
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap mt-12 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
