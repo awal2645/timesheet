@@ -87,6 +87,9 @@
                                                         </svg>
                                                     </div>
                                                 </th>
+                                                <th class="p-4 font-medium text-black dark:text-white">
+
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
