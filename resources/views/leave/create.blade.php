@@ -8,7 +8,48 @@
 
         <form method="POST" action="{{ route('leave.store') }}" class="max-w-md mx-auto">
             @csrf
-
+            @if (Auth::user()->is_employer)
+                <div role="group" class="relative z-0 w-full mb-5 group">
+                    <select name="employee_id" id="employee_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                        @foreach ($employees as $employee)
+                            <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+            @if (auth()->user()->role != 'employer' && auth()->user()->role != 'employee')
+            <div class="relative z-0 w-full mb-5 group">
+                <select name="employer_id" id="employer_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    <option value="">Select Employer</option>
+                    @foreach ($employers as $employer)
+                        <option value="{{ $employer->id }}">{{ $employer->employer_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="relative z-0 w-full mb-5 group">
+                <select name="employee_id" id="employee_select" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    <option value="">Select Employee</option>
+                </select>
+            </div>
+        @endif
+        @if (auth()->user()->role == 'employer')
+        <div class="relative z-0 w-full mb-5 group">
+            <select name="employee_id" id="employee_select" 
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer">
+            <option class="dark:bg-slate-800" value="">Select Employee</option>
+                @foreach ($employees as $employee)
+                    <option class="dark:bg-slate-800" value="{{ $employee->id }}">{{ $employee->employee_name }}</option>
+                @endforeach
+            </select>
+        </div>
+        @endif
+            <div class="relative z-0 w-full mb-5 group">
+                <select name="leave_type_id" id="leave_type_id" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required>
+                    @foreach ($leaveTypes as $leaveType)
+                        <option value="{{ $leaveType->id }}">{{ $leaveType->type }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="relative z-0 w-full mb-5 group">
                 <input type="date" name="start_date" id="start_date"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" required />
@@ -51,4 +92,28 @@
             </button>
         </form>
     </div>
+
+    <script>
+        document.getElementById('employer_id').addEventListener('change', function() {
+            const employerId = this.value;
+            const employeeSelect = document.getElementById('employee_select');
+
+            // Clear previous options
+            employeeSelect.innerHTML = '<option value="">Select Employee</option>';
+
+            if (employerId) {
+                fetch(`/employees/${employerId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(employee => {
+                            const option = document.createElement('option');
+                            option.value = employee.id;
+                            option.textContent = employee.employee_name;
+                            employeeSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error fetching employees:', error));
+            }
+        });
+    </script>
 </x-app-layout> 

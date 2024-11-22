@@ -14,6 +14,7 @@ class CreateLeaveApplicationsTable extends Migration
         Schema::create('leave_applications', function (Blueprint $table) {
             $table->id();
             $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
+            $table->foreignId('leave_type_id')->constrained('leave_types')->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date');
             $table->text('reason');

@@ -2,36 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LeaveApplication;
+use App\Models\Employee;
+use App\Models\Employer;
+use App\Models\LeaveType;
 use Illuminate\Http\Request;
-use App\Mail\LeaveApplicationMail; // Import the Mailable class
+use App\Models\LeaveApplication;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail; // Import the Mail facade
+use App\Mail\LeaveApplicationMail; // Import the Mailable class
 
 class LeaveApplicationController extends Controller
 {
     public function create()
     {
-        return view('leave.create');
+        $leaveTypes = LeaveType::all();
+        if (Auth::user()->is_employee) {
+            return view('leave.create', compact('leaveTypes'));
+        }elseif (Auth::user()->is_employer) {
+
+            $employees = Employee::where('employer_id', Auth::user()->employer->id)->get();
+            return view('leave.create', compact('leaveTypes', 'employees'));
+        }else {
+            $employees = Employee::all();
+            $employers = Employer::all();
+            return view('leave.create', compact('leaveTypes', 'employees', 'employers'));        
+        }
+
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'leave_type_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'reason' => 'required|string|max:255',
         ]);
 
+        if (!Auth::user()->is_employee) {
+            $employeeId = $request->employee_id;
+        } else {
+            $employeeId = auth()->user()->employee->id;
+        }
         // Create the leave application
         $leaveApplication = LeaveApplication::create([
-            'employee_id' => auth()->user()->employee->id,
+            'employee_id' => $employeeId,
+            'leave_type_id' => $request->leave_type_id,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
             'reason' => $request->reason,
         ]);
 
+        $employer = Employee::find($employeeId)->employer;
         // Send email notification for leave application submission
-        Mail::to(auth()->user()->employee->employer->user->email)->send(new LeaveApplicationMail(
+        Mail::to($employer->user->email)->send(new LeaveApplicationMail(
             auth()->user(),
             $leaveApplication->start_date,
             $leaveApplication->end_date,
@@ -112,5 +136,11 @@ class LeaveApplicationController extends Controller
         $applications = $query->paginate(10);
 
         return view('leave.index', compact('applications'));
+    }
+
+    public function getEmployees($employerId)
+    {
+        $employees = Employee::where('employer_id', $employerId)->get(['id', 'employee_name']);
+        return response()->json($employees);
     }
 } 

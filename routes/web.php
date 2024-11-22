@@ -7,23 +7,28 @@ use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\HolidayController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\EmployerController;
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\PricePlanController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\WeeklyHolidayController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
-use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\LeaveApplicationController;
 
 /*
@@ -204,7 +209,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task/create', 'create')->name('task.create');
         Route::post('task/store', 'store')->name('task.store');
         Route::post('task/updateStatus', 'updateStatus')->name('task.updateStatus');
-        Route::post('task/edit', 'edit')->name('task.edit');
+        Route::get('task/edit/{id}', 'edit')->name('task.edit');
+        Route::put('task/update/{id}', 'update')->name('task.update');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
 
@@ -214,14 +220,23 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
      // Meeting Routes
      Route::resource('meeting', MeetingController::class);
 
-     // Invoice Routes
-     Route::get('/invoice/preview', [InvoiceController::class, 'preview'])->name('invoice.preview');
-     Route::get('/invoice/preview-pdf', [InvoiceController::class, 'previewPdf'])->name('invoice.preview-pdf');
-     Route::get('/invoice/{id}/download', [InvoiceController::class, 'download'])->name('invoice.download');
+    // Invoice Routes
+    Route::resource('invoice', InvoiceController::class);
+    Route::get('/invoice/preview', [InvoiceController::class, 'preview'])->name('invoice.preview');
+    Route::get('/invoice/preview-pdf', [InvoiceController::class, 'previewPdf'])->name('invoice.preview-pdf');
+    Route::get('/invoice/{id}/download', [InvoiceController::class, 'download'])->name('invoice.download');
     // Leave application routes
     Route::get('leave/create', [LeaveApplicationController::class, 'create'])->name('leave.create');
+    Route::get('/employees/{employerId}', [LeaveApplicationController::class, 'getEmployees']);
     Route::post('leave/store', [LeaveApplicationController::class, 'store'])->name('leave.store');
     Route::get('leave', [LeaveApplicationController::class, 'index'])->name('leave.index');
     Route::post('leave/approve/{id}', [LeaveApplicationController::class, 'approve'])->name('leave.approve');
     Route::post('leave/deny/{id}', [LeaveApplicationController::class, 'deny'])->name('leave.deny');
+    Route::resource('holidays', HolidayController::class);
+    Route::resource('leave_types', LeaveTypeController::class);
+    Route::resource('weekly_holidays', WeeklyHolidayController::class);
+    Route::resource('notices', NoticeController::class);
+    Route::resource('languages', LanguageController::class);
+    Route::get('languages/json/edit/{code}', [LanguageController::class, 'editJson'])->name('languages.json.edit');
+    Route::post('languages/transUpdate', [LanguageController::class, 'transUpdate'])->name('languages.transUpdate');
 });

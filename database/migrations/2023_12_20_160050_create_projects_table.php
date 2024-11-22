@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('total_cost')->nullable();
             $table->boolean('status')->default(true);
             $table->string('project_name');
+            $table->string('total_paid')->nullable();
             $table->timestamps();
         });
     }

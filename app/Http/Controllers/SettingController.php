@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
@@ -19,31 +20,59 @@ class SettingController extends Controller
 
     public function setting()
     {
-        return view('setting.index');
-    }
+        $settings = Setting::first();
+            return view('setting.index', compact('settings'));
+        }
 
     public function update(Request $request)
     {
         $request->validate([
-            'app_name' => 'required|string|max:255',
-            'logo' => 'nullable|max:1024',  // Max size of 1MB
-            'favicon' => 'nullable|max:512', // Max size of 512KB
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Max size of 2MB
+            'dark_logo' => 'nullable|image|mimes:jpeg,png,jpg|max:2048', // Max size of 2MB
+            'favicon' => 'nullable|image|mimes:jpeg,png,jpg|max:512', // Max size of 512KB
+            'copyright' => 'required|string|max:255',
+            'facebook_url' => 'nullable|url|max:255',
+            'instagram_url' => 'nullable|url|max:255',
+            'linkedin_url' => 'nullable|url|max:255',
+            'twitter_url' => 'nullable|url|max:255',
+            'youtube_url' => 'nullable|url|max:255',
         ]);
 
-        // Update .env file for the application name
-        replaceAppName('APP_NAME', $request->app_name);
-
-        // Handle logo upload, saving to /images/logo-inv.png
+        // Handle logo upload
         if ($request->hasFile('logo')) {
             $this->saveLogo($request->file('logo'));
         }
 
-        // Handle favicon upload, saving to /images/logo_symbol.png
+        // Handle dark logo upload
+        if ($request->hasFile('dark_logo')) {
+            $this->saveDarkLogo($request->file('dark_logo'));
+        }
+
+        // Handle favicon upload
         if ($request->hasFile('favicon')) {
             $this->saveFavicon($request->file('favicon'));
         }
 
-        return redirect()->route('dashboard')->with('success', 'Settings updated successfully! Please log in again.');
+        // Save new settings to the database or config
+        Setting::updateOrCreate(
+            ['id' => 1], // Assuming a single settings record
+            $request->only([
+                'email', 
+                'phone', 
+                'address', 
+                'copyright', 
+                'facebook_url', 
+                'instagram_url', 
+                'linkedin_url', 
+                'twitter_url', 
+                'youtube_url'
+            ])
+        );
+
+        return redirect()->route('setting')->with('success', 'Settings updated successfully!');
     }
 
     private function saveLogo($file)
@@ -57,6 +86,19 @@ class SettingController extends Controller
 
         // Save the new logo
         $file->move(public_path('/images'), 'logo-inv.png');
+    }
+    
+    private function saveDarkLogo($file)
+    {
+        $darkLogoPath = public_path('/images/dark_logo.png');
+
+        // Delete the old dark logo if it exists
+        if (File::exists($darkLogoPath)) {
+            File::delete($darkLogoPath);
+        }
+
+        // Save the new dark logo
+        $file->move(public_path('/images'), 'dark_logo.png');
     }
 
     private function saveFavicon($file)

@@ -171,13 +171,13 @@
                     </div>
                 </div>
             </div>
-            {{-- @if ($meeting->total() > $projects->count())
+            @if ($meetings->total() > $meetings->count())
             <div class=" mt-2">
                 <div class="d-flex justify-content-center">
-                    {{ $meeting->links() }}
+                    {{ $meetings->links() }}
                 </div>
             </div>
-            @endif --}}
+            @endif
         </div>
     </div>
     <script>

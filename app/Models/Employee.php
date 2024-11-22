@@ -37,4 +37,15 @@ class Employee extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function leave()
+    {
+        return $this->hasOne(LeaveApplication::class);
+    }
+    
+    // Add this new method to count approved leave applications
+    public function approvedLeaveCount()
+    {
+        return $this->hasMany(LeaveApplication::class)->where('status', 'approved')->count();
+    }
 }

@@ -54,6 +54,10 @@
                                             </th>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Total Paid') }}
+                                            </th>
+                                            <th scope="col"
+                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Status') }}
                                             </th>
                                             <th scope="col"
@@ -97,19 +101,29 @@
                                                 
                                                     // Loop through each task to sum the time in minutes
                                                     foreach ($project->tasks as $task) {
-                                                        $timeParts = explode(':', $task->time);
-                                                        
-                                                        // Convert hours to minutes and add minutes
-                                                        $taskMinutes = ($timeParts[0] * 60) + $timeParts[1];
-                                                        $totalMinutes += $taskMinutes;
+                                                        if (!empty($task->time) && strpos($task->time, ':') !== false) {
+                                                            $timeParts = explode(':', $task->time);
+                                                
+                                                            // Convert hours and minutes to integers for calculation
+                                                            $hours = isset($timeParts[0]) ? (int)$timeParts[0] : 0;
+                                                            $minutes = isset($timeParts[1]) ? (int)$timeParts[1] : 0;
+                                                
+                                                            // Convert hours to minutes and add minutes
+                                                            $taskMinutes = ($hours * 60) + $minutes;
+                                                            $totalMinutes += $taskMinutes;
+                                                        }
                                                     }
                                                 
-                                                        // Convert total minutes to hours (or keep it in minutes if budget is per minute)
-                                                        $totalHours = $totalMinutes / 60;
-
-                                                        // Calculate total cost based on hours (or totalMinutes, if hr_budget is per minute)
-                                                        $totalCost = $totalHours * $project->hr_budget;
-                                                    @endphp
+                                                    // Convert total minutes to hours
+                                                    $totalHours = $totalMinutes / 60;
+                                                
+                                                    // Ensure hr_budget is numeric before calculation
+                                                    $hrBudget = is_numeric($project->hr_budget) ? $project->hr_budget : 0;
+                                                
+                                                    // Calculate total cost based on hours
+                                                    $totalCost = $totalHours * $hrBudget;
+                                                @endphp
+                                                
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <a rel="noopener noreferrer">
                                                             {{ number_format($totalHours, 2) ?? '' }}
@@ -119,14 +133,19 @@
                                                      
                                                         <a rel="noopener noreferrer">
                                                             @if ($project->hr_budget)
-                                                                ${{ number_format($totalCost, 2) ?? '' }}
+                                                                ${{ ($totalCost, 2) ?? '' }}
                                                             @else
                                                                 ${{ $project->total_cost ?? '' }}
                                                             @endif
                                                         </a>
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                        <div class="flex items-center space-x-2">
+                                                        <a rel="noopener noreferrer">
+                                                            {{ $project->total_paid ?? '' }}
+                                                        </a>
+                                                    </td>
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                        <div class="flex items-centnumber_formater space-x-2">
                                                             <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
                                                                 style="background-color: {{ $project->status === 1 ? 'green' : 'red' }};">
                                                             </div>

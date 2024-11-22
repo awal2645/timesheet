@@ -41,6 +41,10 @@
                                                 {{ __('Employer Name') }}
                                             </th>
                                             <th scope="col"
+                                            class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                {{ __('Total Leave') }}
+                                            </th>
+                                            <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
                                                 {{ __('Status') }}
                                             </th>
@@ -80,6 +84,9 @@
                                                         <a href="#" rel="noopener noreferrer">
                                                             {{ $employee->employer->employer_name }}
                                                         </a>
+                                                    </td>
+                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                        {{ $employee->approvedLeaveCount() ?? 0 }}
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex items-center space-x-2">

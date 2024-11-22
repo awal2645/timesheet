@@ -94,6 +94,7 @@
                                                     @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex space-x-2">
+                                                            @if ($application->status === 'pending')
                                                                 <form action="{{ route('leave.approve', $application->id) }}" method="POST" style="display:inline;">
                                                                     @csrf
                                                                     <button type="submit" class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
@@ -102,6 +103,9 @@
                                                                     @csrf
                                                                     <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
                                                                 </form>
+                                                            @else
+                                                                <span class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
+                                                            @endif
                                                         </div>
                                                     </td>
                                                     @endif

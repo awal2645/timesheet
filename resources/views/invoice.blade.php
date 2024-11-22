@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #{{ $invoice->number }}</title>
     @if (!$isPdf)
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     @endif
     <style>
         @page {
@@ -253,6 +253,7 @@
             padding: 4px 30px;
             position: relative;
         }
+
         .invoice-info {
             width: 100%;
             margin-bottom: 30px;
@@ -299,16 +300,16 @@
 <body>
     <!-- Preview only buttons -->
     @if (!$isPdf)
-        <div class="preview-only">
-            <button onclick="window.print()" class="btn btn-print">
-                <i class="fas fa-print"></i>
-                Print
-            </button>
-            <a href="{{ route('invoice.download', $invoice->id) }}" class="btn btn-download">
-                <i class="fas fa-download"></i>
-                Download PDF
-            </a>
-        </div>
+    <div class="preview-only">
+        <button onclick="window.print()" class="btn btn-print">
+            <i class="fas fa-print"></i>
+            Print
+        </button>
+        <a href="{{ route('invoice.download', $invoice->id) }}" class="btn btn-download">
+            <i class="fas fa-download"></i>
+            Download PDF
+        </a>
+    </div>
     @endif
 
     <div class="invoice-page">
@@ -327,57 +328,106 @@
                 <tr>
                     <td style="width: 50%; padding: 0px;">
                         <p style="margin-bottom: 0px; margin-top: 6px;"><strong>INVOICE TO:</strong></p>
-                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->name }}</p>
-                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->address }}</p>
-                        <p style="margin-bottom: 0px; margin-top: 6px;">{{ $invoice->client->email }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;">Name: {{ $invoice->client->client_name }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;">Email: {{ $invoice->client->client_email }}</p>
                     </td>
                     <td style="width: 50%; padding: 0px; text-align: right;">
-                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>INVOICE NO:</strong> {{ $invoice->number }}</p>
-                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>DATE:</strong> {{ $invoice->date }}</p>
-                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>DUE DATE:</strong> {{ $invoice->due_date }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>INVOICE NO:</strong> {{
+                            $invoice->invoice_number }}</p>
+                        <p style="margin-bottom: 0px; margin-top: 6px;"><strong>DATE:</strong> {{ $invoice->invoice_date
+                            }}</p>
                     </td>
                 </tr>
             </table>
-            <!-- Items Table -->
             <table class="items-table">
                 <thead>
                     <tr>
                         <th style="width: 5%">NO</th>
-                        <th style="width: 45%">ITEM DESCRIPTION</th>
+                        <th style="width: 45%">TASK DESCRIPTION</th>
                         <th class="price" style="width: 15%">PRICE</th>
-                        <th class="qty" style="width: 15%">QTY</th>
+                        <th class="qty" style="width: 15%">HOURS</th>
                         <th class="total" style="width: 20%">TOTAL</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($invoice->items as $index => $item)
-                        <tr>
-                            <td>{{ $index + 1 }}</td>
-                            <td style="text-align:left;">
-                                {{ $item->description }}<br>
-                                <small style="color: #666">Lorem ipsum dolor sit amet, consectetur</small>
-                            </td>
-                            <td>${{ number_format($item->unit_price, 2) }}</td>
-                            <td>{{ $item->quantity }}</td>
-                            <td>${{ number_format($item->unit_price * $item->quantity, 2) }}</td>
-                        </tr>
+                    @php
+                    $totalMinutes = 0;
+
+                    // Loop through each task to sum the time in minutes
+                    foreach ($invoice->project->tasks as $task) {
+                    if (!empty($task->time) && strpos($task->time, ':') !== false) {
+                    $timeParts = explode(':', $task->time);
+
+                    // Convert hours and minutes to integers for calculation
+                    $hours = isset($timeParts[0]) ? (int)$timeParts[0] : 0;
+                    $minutes = isset($timeParts[1]) ? (int)$timeParts[1] : 0;
+
+                    // Convert hours to minutes and add minutes
+                    $taskMinutes = ($hours * 60) + $minutes;
+                    $totalMinutes += $taskMinutes;
+                    }
+                    }
+
+                    // Convert total minutes to hours
+                    $totalHours = $totalMinutes / 60;
+
+                    // Ensure hr_budget is numeric before calculation
+                    $hrBudget = is_numeric($invoice->project->hr_budget) ? $invoice->project->hr_budget : 0;
+
+                    // Calculate total cost based on hours
+                    $totalCost = $totalHours * $hrBudget;
+                    @endphp
+                    @foreach ($invoice->project->tasks as $index => $item)
+                    @if ($item->status === 'completed')
+                    <!-- Only show completed tasks -->
+                    <tr>
+                        <td>{{ $index + 1 }}</td>
+                        <td style="text-align:left;">
+                            {{ $item->task_name }}<br>
+                        </td>
+                        <td>${{ number_format($item->project->total_cost ?? 0, 2) }}</td>
+                        <td>{{ $item->time ?? 0 }}</td>
+                        @php
+                        $timeParts = explode(':', $task->time);
+
+                        // Convert hours and minutes to integers for calculation
+                        $hours = isset($timeParts[0]) ? (int)$timeParts[0] : 0;
+                        $minutes = isset($timeParts[1]) ? (int)$timeParts[1] : 0;
+
+                        // Convert hours to minutes and add minutes
+                        $taskMinutes = ($hours * 60) + $minutes;
+
+                        // Convert total minutes to hours
+                        $totalHours = $taskMinutes / 60;
+
+                        // Ensure hr_budget is numeric before calculation
+                        $hrBudget = is_numeric($invoice->project->hr_budget) ? $invoice->project->hr_budget : 0;
+
+                        // Calculate total cost based on hours
+                        $taskCost = $totalHours * $hrBudget;
+                        @endphp
+                        <td>${{ number_format($taskCost, 2) }}</td>
+                    </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
             <!-- Totals -->
             <div class="totals-section">
-                <table class="totals-table">
-                    <tr class="sub-total">
+                <table class="totals-table" >
+                    <tr class="sub-total" style="background: #6b21a8;">
                         <td>Sub Total:</td>
-                        <td align="right">${{ number_format($invoice->subtotal, 2) }}</td>
+                        <td align="right">${{ number_format($totalCost, 2) }}</td>
                     </tr>
-                    <tr class="tax">
+                    <tr class="tax" style="background: #6b21a8;">
                         <td>Tax ({{ $invoice->tax_rate }}%):</td>
-                        <td align="right">${{ number_format($invoice->tax_amount, 2) }}</td>
+                        <td align="right">${{ number_format($totalCost ) }}</td>
+                        <!-- Updated line to calculate tax correctly -->
                     </tr>
-                    <tr class="grand-total">
+                    <tr class="grand-total" style="background: #6b21a8;">
                         <td>GRAND TOTAL:</td>
-                        <td align="right">${{ number_format($invoice->total, 2) }}</td>
+                        <td align="right">${{ number_format($totalCost + $invoice->tax_amount, 2) }}</td>
+                        <!-- Ensure tax amount is added to total cost -->
                     </tr>
                 </table>
             </div>
@@ -387,21 +437,22 @@
                 <div>
                     <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Account No:</strong> 0000 000 000</p>
                     <p style="margin-top: 8px; margin-bottom: 0px;"><strong>A/C Name:</strong> Example name</p>
-                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Bank Details:</strong> Add your bank details</p>
+                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Bank Details:</strong> Add your bank details
+                    </p>
                 </div>
             </div>
+
             <div class="footer">
                 <!-- Terms and Footer -->
                 <table class="footer-bottom-table">
                     <tr>
                         <td class="footer-left" style="padding: 0px;">
-                            <div style="margin-bottom: 6px;">+00 123-456-789</div>
-                            <div style="margin-bottom: 6px;">123, Your address here</div>
-                            <div style="margin-bottom: 0px;">www.example.com</div>
+                            <div style="margin-bottom: 6px;">Phone: {{ $invoice->project->employer->phone }}</div>
+                            <div style="margin-bottom: 6px;">Address: {{ $invoice->project->employer->address }}</div>
+                            <div style="margin-bottom: 0px;">Website: {{ $invoice->project->employer->website }}</div>
                         </td>
                         <td class="footer-right" style="padding: 0px;">
-                            <h2>Rakibul Islam</h2>
-                            <p>Frontend Developer</p>
+                            <h2>{{ config('app.name') }}</h2>
                             <strong>Thank you for your business</strong>
                         </td>
                     </tr>
@@ -411,11 +462,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
-
     </div>
 </body>
 

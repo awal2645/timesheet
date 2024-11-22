@@ -58,4 +58,19 @@ class User extends Authenticatable
                 $q->where('status', true);
             });
     }
+
+    public function isAdmin()
+    {
+        return $this->role === 'superadmin';
+    }
+
+    public function isEmployee()
+    {
+        return $this->role === 'employee';
+    }
+
+    public function isEmployer()
+    {
+        return $this->role === 'employer';
+    }
 }
