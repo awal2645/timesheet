@@ -3,9 +3,9 @@
 @endsection
 
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="m-6 p-6 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">{{ __('SMTP Config') }}</h2>
-        <form method="POST" action="{{ route('email.update') }}" class="max-w-md mx-auto" autocomplete="off">
+        <form method="POST" action="{{ route('email.update') }}" class="p-8 rounded-lg bg-white/30 dark:bg-black/30 border border-black/30 dark:border-white/30" autocomplete="off">
             @method('PUT')
             @csrf
 
@@ -117,7 +117,7 @@
 
             <!-- SAVE BUTTON -->
             <button type="submit"
-                class="w-full text-white bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
+                class="w-full text-white bg-purple-500 hover:bg-purple-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
                 {{ __('Save') }}
             </button>
         </form>
