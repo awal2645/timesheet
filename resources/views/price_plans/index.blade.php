@@ -5,10 +5,10 @@
 <x-app-layout>
     <!-- index.blade.php -->
 
-    <div class="container mx-auto px-5 p-4 md:p-8">
+    <div class="container mx-auto">
         <!-- Set Recommended and Default Package -->
         @canany('Plan create')
-            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>
