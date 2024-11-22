@@ -1,22 +1,22 @@
 @section('title', 'Create Notice')
 
 <x-app-layout>
-    <div class="container mx-auto px-5">
+    <div class="m-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10 p-6">
         <h2 class="text-xl font-semibold mb-4">Create Notice</h2>
 
         <form action="{{ route('notices.store') }}" method="POST">
             @csrf
             <div class="mb-4">
                 <label for="title" class="block mb-2">Title</label>
-                <input type="text" id="title" name="title" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" required>
+                <input type="text" id="title" name="title" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg w-full p-2.5" required>
             </div>
             <div class="mb-4">
                 <label for="content" class="block mb-2">Content</label>
-                <textarea id="content" name="content" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" required></textarea>
+                <textarea id="content" name="content" class="bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg w-full p-2.5" required></textarea>
             </div>
             <div class="mb-4">
                 <label for="role" class="block mb-2">Role</label>
-                <select multiple id="role" name="role[]" class="bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5">
+                <select multiple id="role" name="role[]" class="bg-gray-50 dark:!bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg w-full p-2.5">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach

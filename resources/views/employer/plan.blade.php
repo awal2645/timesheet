@@ -11,14 +11,14 @@
                                     style="
                                     height: 190px;
                                 ">
-                                    <h2 class="text-2xl font-extrabold text-blue-600 dark:text-blue-400">
+                                    <h2 class="text-2xl font-extrabold text-purple-600 dark:text-purple-400">
                                         {{ $userplan->plan->label ?? 'N0 Have Plan' }}</h2>
                                     <p class="mt-4 text-gray-600 dark:text-gray-300 text-sm">
                                         {!! optional($userplan->plan->descriptions[0] ?? null)->description !!}
                                     </p>
                                     <div class="mt-6">
                                         <a href="{{ route('plans.index') }}"
-                                            class="btn bg-purple-500 text-white py-2 px-6 rounded-full hover:bg-purple-500 dark:bg-blue-700 dark:hover:bg-blue-800 shadow-md transition">
+                                            class="btn bg-purple-500 text-white py-2 px-6 rounded-full hover:bg-purple-500 dark:bg-purple-700 dark:hover:bg-purple-800 shadow-md transition">
                                             {{ __('Upgrade plan') }}
                                         </a>
                                     </div>
@@ -95,7 +95,7 @@
                                                         ? __('offline') .
                                                             (optional($transaction->manualPayment)->name
                                                                 ? "
-                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                                                                                                                                    (<b>{$transaction->manualPayment->name}</b>)"
                                                                 : '')
                                                         : ucfirst($transaction->payment_provider) }}
                                                 </td>

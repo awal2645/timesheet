@@ -121,6 +121,91 @@
             <!-- Line chart (Acme Professional) -->
             <x-dashboard.dashboard-card-03 />
 
+            <!-- New Chart Cards -->
+            <div class="col-span-12 xl:col-span-6">
+                <div
+                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    <h3 class="text-lg font-semibold mb-4 dark:text-white">Monthly Activities</h3>
+                    <div style="height: 300px;">
+                        <canvas id="monthlyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-12 xl:col-span-6">
+                <div
+                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    <h3 class="text-lg font-semibold mb-4 dark:text-white">Task Distribution</h3>
+                    <div style="height: 300px;">
+                        <canvas id="taskChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Notice Board -->
+            <div class="col-span-12">
+                <div
+                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    <h3 class="text-lg font-semibold mb-4 dark:text-white">Notice Board</h3>
+
+                    <!-- News Ticker/Scroller -->
+                    <div class="relative overflow-hidden group">
+                        <!-- Scrolling Content -->
+                        <div class="animate-scroll inline-flex gap-4" id="scrollContent">
+                            <div
+                                class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">Welcome to Our Platform!
+                                    </h4>
+                                    <span class="text-sm text-gray-500">2 hours ago</span>
+                                </div>
+                                <p class="mt-2 text-gray-600 dark:text-gray-300">We're excited to have you here. Get
+                                    started by exploring our features and tools.</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                        For: All Users
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">System Maintenance Notice
+                                    </h4>
+                                    <span class="text-sm text-gray-500">1 day ago</span>
+                                </div>
+                                <p class="mt-2 text-gray-600 dark:text-gray-300">Scheduled maintenance will be performed
+                                    this weekend. Service may be intermittent.</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                        For: All Users
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div
+                                class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">New Feature Release</h4>
+                                    <span class="text-sm text-gray-500">3 days ago</span>
+                                </div>
+                                <p class="mt-2 text-gray-600 dark:text-gray-300">Check out our latest features designed
+                                    to improve your workflow efficiency.</p>
+                                <div class="mt-2">
+                                    <span
+                                        class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                        For: Employees
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="mt-5 container mx-auto">
             <div class="flex flex-wrap">
@@ -186,7 +271,7 @@
                                                             ? __('offline') .
                                                                 (optional($transaction->manualPayment)->name
                                                                     ? "
-                                                                                                                                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                                                                                                (<b>{$transaction->manualPayment->name}</b>)"
                                                                     : '')
                                                             : ucfirst($transaction->payment_provider) }}
                                                     </td>
@@ -326,3 +411,132 @@
     </div>
 
 </x-app-layout>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        // Check if elements exist before initializing charts
+        const monthlyChartElement = document.getElementById('monthlyChart');
+        const taskChartElement = document.getElementById('taskChart');
+
+        if (monthlyChartElement) {
+            const monthlyCtx = monthlyChartElement.getContext('2d');
+            new Chart(monthlyCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Activities',
+                        data: [12, 19, 3, 5, 2, 3],
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1,
+                        fill: false // Add this to make line transparent
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Add this to control chart size
+                    plugins: {
+                        legend: {
+                            labels: {
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: document.documentElement.classList.contains('dark') ?
+                                    'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: document.documentElement.classList.contains('dark') ?
+                                    'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                            },
+                            ticks: {
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        if (taskChartElement) {
+            const taskCtx = taskChartElement.getContext('2d');
+            new Chart(taskCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'In Progress', 'Pending'],
+                    datasets: [{
+                        data: [12, 19, 3],
+                        backgroundColor: [
+                            'rgb(75, 192, 192)',
+                            'rgb(255, 205, 86)',
+                            'rgb(255, 99, 132)'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, // Add this to control chart size
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black',
+                                padding: 20
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-scroll {
+        animation: scroll 30s linear infinite;
+    }
+
+    .notice-scroller:hover .animate-scroll {
+        animation-play-state: paused;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollContent = document.getElementById('scrollContent');
+        const originalContent = scrollContent.innerHTML;
+
+        // Duplicate the content for seamless scrolling
+        scrollContent.innerHTML = originalContent + originalContent;
+
+        // Optional: Adjust animation duration based on content width
+        const contentWidth = scrollContent.scrollWidth;
+        scrollContent.style.animationDuration = (contentWidth / 50) + 's';
+    });
+</script>

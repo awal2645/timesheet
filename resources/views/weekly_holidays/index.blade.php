@@ -2,14 +2,14 @@
 
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class="mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+        <div class="m-6">
+            <div class="flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <form action="{{ route('holidays.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
                                 class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
@@ -20,7 +20,7 @@
                         class="fa-solid fa-plus"></i> {{ __('Add Weekly Holiday') }}</a>
             </div>
             <!-- Start heading here -->
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap mt-12 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
@@ -53,11 +53,14 @@
                                                         {{ is_array($daysOfWeek) ? implode(', ', $daysOfWeek) : $daysOfWeek }}
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                       edit
-                                                        <form action="{{ route('weekly_holidays.destroy', $holiday->id) }}" method="POST" style="display:inline;">
+                                                        edit
+                                                        <form
+                                                            action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
+                                                            method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="text-red-600 hover:underline">{{ __('Delete') }}</button>
+                                                            <button type="submit"
+                                                                class="text-red-600 hover:underline">{{ __('Delete') }}</button>
                                                         </form>
 
                                                     </td>

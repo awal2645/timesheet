@@ -3,24 +3,15 @@
 @endsection
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
-                <form action="{{ route('meeting.index') }}" method="GET">
-                    <div class="mb-5">
-                        {{-- <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search')}}</label>
-                        <div class="flex">
-                            <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="{{ __('Search')}}" />
-                            <button class="bg-purple-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search')}}</button>
-                        </div> --}}
-                    </div>
-                </form>
+        <div class="m-6">
+            <div
+                class="flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
                 <a href="{{ route('meeting.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
-            <div class="flex flex-wrap">
+            <div
+                class="flex flex-wrap mt-12 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
@@ -83,7 +74,7 @@
                                                             </div>
                                                             <div class="font-normal text-gray-500 mt-5">
                                                                 <a target="__blank"
-                                                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-900"
+                                                                    class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                                                                     href=" {{ $meeting->meeting_join_url ?? '#' }}">
                                                                     {{ __('Join Zoom') }}
                                                                 </a>
@@ -133,7 +124,7 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('project.edit', $meeting->id) }}"
-                                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">
@@ -156,7 +147,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="5"
+                                                <td colspan="6"
                                                     class="text-center py-8 border border-gray-300 dark:border-gray-700">
                                                     <img src="{{ asset('images/no-data-found.svg') }}"
                                                         alt="No data found" class="mx-auto max-w-xs">
@@ -172,11 +163,11 @@
                 </div>
             </div>
             @if ($meetings->total() > $meetings->count())
-            <div class=" mt-2">
-                <div class="d-flex justify-content-center">
-                    {{ $meetings->links() }}
+                <div class=" mt-2">
+                    <div class="d-flex justify-content-center">
+                        {{ $meetings->links() }}
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>
