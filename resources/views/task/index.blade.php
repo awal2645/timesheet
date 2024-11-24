@@ -163,7 +163,7 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex items-center space-x-2">
                                                             <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
-                                                                style="background-color: {{ $task->status === 'complete' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">
+                                                                style="background-color: {{ $task->status === 'completed' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">
                                                             </div>
                                                             <form id="statusForm{{ $task->id }}"
                                                                 action="{{ route('task.updateStatus', $task->id) }}"
@@ -179,7 +179,7 @@
                                                                         {{ $task->status === 'inprogress' ? 'selected' : '' }}>
                                                                         {{ __('In Progress') }}
                                                                     <option class="dark:bg-slate-800" value="complete"
-                                                                        {{ $task->status === 'complete' ? 'selected' : '' }}>
+                                                                        {{ $task->status === 'completed' ? 'selected' : '' }}>
                                                                         {{ __('Complete') }}
                                                                 </select>
                                                             </form>

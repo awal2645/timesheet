@@ -23,7 +23,7 @@
                 <select name="name"
                     class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
                     @foreach ($translations as $key => $country)
-                        <option {{ old('name') == $country['name'] ? 'selected' : '' }} value="{{ $country['name'] }}">
+                        <option {{ old('name') == $country['name'] ? 'selected' : '' }} value="{{ $country['code'] }}">
                             {{ $country['name'] }}
                         </option>
                     @endforeach
@@ -54,6 +54,9 @@
             <div class="mb-5">
                 <label for="icon" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                     {{ __('Select Flag Icon') }}
+                    <p class="text-xs text-red-500 dark:text-red-400">
+                        {{ __('Note: Locate the flag icon to search for the country code, e.g., US.') }}
+                    </p>
                 </label>
                 <input type="hidden" name="icon" id="icon" value="{{ old('icon') }}">
                 <div id="target" class="mb-2"></div>

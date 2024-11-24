@@ -14,7 +14,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                         required>
                         @foreach ($employees as $employee)
-                            <option value="{{ $employee->id }}">{{ $employee->user->name }}</option>
+                            <option value="{{ old('employee_id', $employee->id) }}">{{ $employee->user->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -26,7 +26,7 @@
                         required>
                         <option value="">Select Employer</option>
                         @foreach ($employers as $employer)
-                            <option value="{{ $employer->id }}">{{ $employer->employer_name }}</option>
+                            <option value="{{ old('employer_id', $employer->id) }}">{{ $employer->employer_name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -44,7 +44,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
                         <option class="dark:bg-slate-800" value="">Select Employee</option>
                         @foreach ($employees as $employee)
-                            <option class="dark:bg-slate-800" value="{{ $employee->id }}">{{ $employee->employee_name }}
+                            <option class="dark:bg-slate-800" value="{{ old('employee_id', $employee->id) }}">{{ $employee->employee_name }}
                             </option>
                         @endforeach
                     </select>
@@ -54,13 +54,14 @@
                 <select name="leave_type_id" id="leave_type_id"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                     required>
+                    <option value="">Select Leave Type</option>
                     @foreach ($leaveTypes as $leaveType)
-                        <option value="{{ $leaveType->id }}">{{ $leaveType->type }}</option>
+                        <option value="{{ old('leave_type_id', $leaveType->id) }}">{{ $leaveType->type }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="relative z-0 w-full mb-5 group">
-                <input type="date" name="start_date" id="start_date"
+                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                     required />
                 <label for="start_date"
@@ -73,7 +74,7 @@
             </div>
 
             <div class="relative z-0 w-full mb-5 group">
-                <input type="date" name="end_date" id="end_date"
+                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                     required />
                 <label for="end_date"
@@ -86,7 +87,7 @@
             </div>
 
             <div class="relative z-0 w-full mb-5 group">
-                <textarea name="reason" id="reason" rows="4"
+                <textarea name="reason" id="reason" rows="4" value="{{ old('reason') }}"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
                     required></textarea>
                 <label for="reason"

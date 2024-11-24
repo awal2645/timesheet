@@ -15,7 +15,7 @@
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" id="mail_host"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
-                    placeholder="" required name="mail_host" value="{{ env('MAIL_HOST') }}" />
+                    placeholder="" required name="mail_host" value="{{ smtp() ? smtp()->host : env('MAIL_HOST') }}" />
                 <label for="mail_host"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL HOST') }}
@@ -29,7 +29,7 @@
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" id="mail_port"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
-                    placeholder="" required name="mail_port" value="{{ env('MAIL_PORT') }}" />
+                    placeholder="" required name="mail_port" value="{{ smtp() ? smtp()->port : env('MAIL_PORT') }}" />
                 <label for="mail_port"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL PORT') }}
@@ -43,7 +43,7 @@
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" id="mail_username"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
-                    placeholder="" name="mail_username" value="{{ env('MAIL_USERNAME') }}" />
+                    placeholder="" name="mail_username" value="{{ smtp() ? smtp()->username : env('MAIL_USERNAME') }}" />
                 <label for="mail_username"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL USERNAME') }}
@@ -57,7 +57,8 @@
             <div class="relative z-0 w-full mb-5 group">
                 <input type="password" id="mail_password"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
-                    placeholder="" name="mail_password" value="{{ env('MAIL_PASSWORD') }}" autocomplete="false" />
+                    placeholder="" name="mail_password" value="{{ smtp() ? smtp()->password : env('MAIL_PASSWORD') }}"
+                    autocomplete="false" />
                 <label for="mail_password"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL PASSWORD') }}
@@ -70,16 +71,17 @@
             <!-- MAIL ENCRYPTION -->
             <div class="relative z-0 w-full mb-5 group">
                 <select name="mail_encryption" id="mail_encryption"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
-                    <option class="dark:bg-slate-800" value="tls"
-                        {{ env('MAIL_ENCRYPTION') == 'tls' ? 'selected' : '' }}>
-                        {{ __('TLS') }}
-                    </option>
-                    <option class="dark:bg-slate-800" value="ssl"
-                        {{ env('MAIL_ENCRYPTION') == 'ssl' ? 'selected' : '' }}>
-                        {{ __('SSL') }}
-                    </option>
-                </select>
+                class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
+            <option class="dark:bg-slate-800" value="tls"
+                {{ smtp() ? (smtp()->encryption == 'tls' ? 'selected' : '') : (env('MAIL_ENCRYPTION') == 'tls' ? 'selected' : '') }}>
+                {{ __('TLS') }}
+            </option>
+            <option class="dark:bg-slate-800" value="ssl"
+                {{ smtp() ? (smtp()->encryption == 'ssl' ? 'selected' : '') : (env('MAIL_ENCRYPTION') == 'ssl' ? 'selected' : '') }}>
+                {{ __('SSL') }}
+            </option>
+        </select>
+        
                 <label for="mail_encryption"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL ENCRYPTION') }}
@@ -107,7 +109,7 @@
             <div class="relative z-0 w-full mb-5 group">
                 <input type="text" id="mail_from_name"
                     class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
-                    placeholder="" required name="mail_from_name" value="{{ env('MAIL_FROM_NAME') }}" />
+                    placeholder="" required name="mail_from_name" value="{{ smtp() ? smtp()->mail_from_name : env('MAIL_FROM_NAME') }}" />
                 <label for="mail_from_name"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
                     {{ __('MAIL FROM NAME') }}
