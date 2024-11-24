@@ -64,8 +64,8 @@ class LanguageController extends Controller
         // try {
 
             $request->validate([
-                'name' => 'required|unique:languages,name',
-                'icon' => 'required|unique:languages,icon',
+                'code' => 'required|unique:languages,name',
+                'icon' => 'required',
                 'direction' => 'required',
             ], [
                 'name.required' => 'You must select a language',
@@ -74,10 +74,13 @@ class LanguageController extends Controller
             ]);
 
             // Remove 'flag-icon-' prefix
-            $countryCode = str_replace('flag-icon-', '', $request->icon);
+            $countryCode = $request->name;
+
+            $path = base_path('lang/languages.json');
+            $translations = json_decode(file_get_contents($path), true);
 
             $language = Language::create([
-                'name' => $request->name,
+                'name' => $translations[$request->name]['name'],
                 'code' => $countryCode,
                 'icon' => $request->icon,
                 'direction' => $request->direction,

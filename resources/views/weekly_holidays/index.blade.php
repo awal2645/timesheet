@@ -53,7 +53,8 @@
                                                         {{ is_array($daysOfWeek) ? implode(', ', $daysOfWeek) : $daysOfWeek }}
                                                     </td>
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                        edit
+                                                        <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
+                                                            class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
                                                         <form
                                                             action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
                                                             method="POST" style="display:inline;">

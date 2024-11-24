@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Smtp;
 use Illuminate\Http\Request;
 
 class SMTPController extends Controller
@@ -20,7 +21,7 @@ class SMTPController extends Controller
 
     public function emailUpdate(Request $request)
     {
-        try {
+        // try {
 
             $request->validate([
                 'mail_host' => 'required',
@@ -34,21 +35,35 @@ class SMTPController extends Controller
                 'email',
             ]);
 
-            envUpdate('MAIL_HOST', $request->mail_host);
-            envUpdate('MAIL_PORT', $request->mail_port);
-            envUpdate('MAIL_USERNAME', $request->mail_username);
-            envUpdate('MAIL_PASSWORD', $request->mail_password);
-            envUpdate('MAIL_ENCRYPTION', $request->mail_encryption);
-            replaceAppName('MAIL_FROM_NAME', $request->mail_from_name);
-            envUpdate('MAIL_FROM_ADDRESS', $request->mail_from_address);
+            if (auth()->user()->role != 'employer') {
+                envUpdate('MAIL_HOST', $request->mail_host);
+                envUpdate('MAIL_PORT', $request->mail_port);
+                envUpdate('MAIL_USERNAME', $request->mail_username);
+                envUpdate('MAIL_PASSWORD', $request->mail_password);
+                envUpdate('MAIL_ENCRYPTION', $request->mail_encryption);
+                replaceAppName('MAIL_FROM_NAME', $request->mail_from_name);
+                envUpdate('MAIL_FROM_ADDRESS', $request->mail_from_address);
+            }else{
+                // dd($request->all());
+                Smtp::create([
+                    'host' => $request->mail_host,
+                    'port' => $request->mail_port,
+                    'username' => $request->mail_username,
+                    'password' => $request->mail_password,
+                    'encryption' => $request->mail_encryption,
+                    'mail_from_name' => $request->mail_from_name,
+                    'mail_from_address' => $request->mail_from_address,
+                    'created_by' => auth()->user()->id,
+                ]);
+            }
 
             return back()->with('success', 'Mail configuration update successfully');
-        } catch (\Exception $e) {
-            // Handle the exception, you can log it or return an error response
-            return redirect()
-                ->back()
-                ->withInput($request->all())
-                ->with(['error' => 'Please try again later.']);
-        }
+        // } catch (\Exception $e) {
+        //     // Handle the exception, you can log it or return an error response
+        //     return redirect()
+        //         ->back()
+        //         ->withInput($request->all())
+        //         ->with(['error' => 'Please try again later.']);
+        // }
     }
 }

@@ -23,14 +23,14 @@
                 <select name="name" id="name"
                     class="select2 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
                     @foreach ($translations as $key => $country)
-                        <option {{ old('name', $language->name) == $country['name'] ? 'selected' : '' }}
-                            value="{{ $country['name'] }}">
-                            {{ $country['name'] }}
-                        </option>
+                    <option {{ old('name', $language->name) == $country['name'] ? 'selected' : '' }}
+                        value="{{ $country['code'] }}">
+                        {{ $country['name'] }}
+                    </option>
                     @endforeach
                 </select>
                 @error('name')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -47,19 +47,21 @@
                         {{ __('Right to Left') }}</option>
                 </select>
                 @error('direction')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
-
             <!-- Language Icon -->
             <div class="mb-5">
                 <label for="icon" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                     {{ __('Select Flag Icon') }}
+                    <p class="text-xs text-red-500 dark:text-red-400">
+                        {{ __('Note: Locate the flag icon to search for the country code, e.g., US.') }}
+                    </p>
                 </label>
                 <input type="hidden" name="icon" id="icon" value="{{ old('icon', $language->icon) }}">
                 <div id="target" class="mb-2"></div>
                 @error('icon')
-                    <span class="text-red-500 text-sm">{{ $message }}</span>
+                <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -99,10 +101,14 @@
             cols: 15,
             placement: 'bottom',
             search: true,
-            value: '{{ old('icon', $language->icon) }}',
+            value: '{{ old('icon', $language->icon) }}', // Set the initial value to the current icon
             selectedClass: 'btn-success'
         }).on('change', function(e) {
-            $('#icon').val(e.icon);
+            $('#icon').val(e.icon); // Update the hidden input with the selected icon
         });
+
+        // Set the initial value of the icon input using JavaScript
+        $('#icon').val('{{ old('icon', $language->icon) }}'); // Set the value of the hidden input
+        $('#target').iconpicker('setIcon', '{{ old('icon', $language->icon) }}'); // Set the icon picker to the current icon
     });
 </script>

@@ -1,6 +1,11 @@
 <?php
 
+use App\Models\Role;
+use App\Models\Smtp;
+use App\Models\Task;
 use App\Models\Client;
+use App\Models\Notice;
+use App\Models\Earning;
 use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Language;
@@ -10,6 +15,7 @@ use App\Models\SearchCountry;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
@@ -272,5 +278,43 @@ if (!function_exists('zMeetConfig')) {
         !$status ? session()->flash('warning', 'incomplete zoom meeting configuration') : '';
 
         return $status ? 1 : 0;
+    }
+}
+
+if (! function_exists('notice')) {
+    function notice()
+    {
+        return Notice::all();
+    }
+}
+
+if (! function_exists('roles')) {
+    function roles()
+    {
+        return Role::all();
+    }
+}
+
+if (! function_exists('tasks')) {
+    function tasks()
+    {
+        return Task::all();
+    }
+}
+
+if (! function_exists('earnings')) {
+    function earnings()
+    {
+        return Earning::selectRaw('MONTH(created_at) as month, COUNT(*) as count')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('count', 'month');
+    }
+}
+
+if (! function_exists('smtp')) {
+    function smtp()
+    {
+        return Smtp::where('created_by', auth()->user()->id)->first();
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\NoticeController;
@@ -208,7 +209,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task', 'index')->name('task.index');
         Route::get('task/create', 'create')->name('task.create');
         Route::post('task/store', 'store')->name('task.store');
-        Route::post('task/updateStatus', 'updateStatus')->name('task.updateStatus');
+        Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
         Route::get('task/edit/{id}', 'edit')->name('task.edit');
         Route::put('task/update/{id}', 'update')->name('task.update');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
@@ -239,4 +240,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('languages', LanguageController::class);
     Route::get('languages/json/edit/{code}', [LanguageController::class, 'editJson'])->name('languages.json.edit');
     Route::post('languages/transUpdate', [LanguageController::class, 'transUpdate'])->name('languages.transUpdate');
+
+    Route::get('/emails/send', [EmailController::class, 'showForm'])->name('emails.send.form');
+    Route::post('/emails/send', [EmailController::class, 'send'])->name('emails.send');
+    Route::get('/email/histories', [EmailController::class, 'index'])->name('emails.index');
 });
