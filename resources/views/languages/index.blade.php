@@ -10,14 +10,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('languages.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('languages.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Language') }}</a>
             </div>
             <div class="flex flex-wrap">
@@ -61,10 +61,10 @@
                                                                 class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                                 <div class="flex justify-end">
                                                                     <a href="{{ route('languages.json.edit', $language->code) }}"
-                                                                        class="text-purple-500 hover:text-purple-700">{{ __('Edit Json') }}</a>
+                                                                        class="text-primary-500 hover:text-primary-700">{{ __('Edit Json') }}</a>
 
                                                                     <a href="{{ route('languages.edit', $language->id) }}"
-                                                                        class="text-purple-500 hover:text-purple-700">{{ __('Edit') }}</a>
+                                                                        class="text-primary-500 hover:text-primary-700">{{ __('Edit') }}</a>
                                                                     <form
                                                                         action="{{ route('languages.destroy', $language->id) }}"
                                                                         method="POST"

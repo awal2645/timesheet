@@ -99,7 +99,7 @@
                         href="../../templates/agency/index.html" aria-current="page">Home</a>
 
                     <div>
-                        <a class="group inline-flex items-center gap-x-2 py-2 bg-purple-500 font-medium text-sm text-white rounded-md focus:outline-none px-5"
+                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-500 font-medium text-sm text-white rounded-md focus:outline-none px-5"
                             href="{{ route('login') }}">
                             Login
                         </a>
@@ -119,7 +119,7 @@
                 <div class="flex flex-col md:flex-row gap-8 justify-between items-center pt-24 lg:pt-32 pb-24">
                     <div class="max-w-2xl px-4 xl:px-0">
                         <h1 class="font-semibold text-white text-5xl md:text-6xl">
-                            <span class="text-purple-500">Timesheet App:</span> A Time Tracking Tool
+                            <span class="text-primary-500">Timesheet App:</span> A Time Tracking Tool
                         </h1>
                         <div class="max-w-4xl">
                             <p class="mt-5 text-neutral-400 text-lg">
@@ -294,7 +294,7 @@
                         href="#">
                         <div>
                             <span
-                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-purple-500 backdrop-blur">
+                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-primary-500 backdrop-blur">
                                 <img src="{{ asset('/images/feature.png') }}" alt="">
                             </span>
 
@@ -312,7 +312,7 @@
                         href="#">
                         <div>
                             <span
-                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-purple-500 backdrop-blur">
+                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-primary-500 backdrop-blur">
                                 <img src="{{ asset('/images/support.png') }}" alt="">
                             </span>
                             <div class="mt-5">
@@ -329,7 +329,7 @@
                         href="#">
                         <div>
                             <span
-                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-purple-500 backdrop-blur">
+                                class="inline-flex justify-center items-center p-2 rounded-full overflow-hidden bg-white/50 border border-primary-500 backdrop-blur">
                                 <img src="{{ asset('/images/integration.png') }}" alt="">
                             </span>
 
@@ -355,7 +355,7 @@
                 <!-- Title -->
                 <div class="max-w-3xl mb-10 lg:mb-14">
                     <h4
-                        class="text-white inline-flex rounded px-4 py-2 font-semibold text-xl md:text-2xl md:leading-tight backdrop-blur bg-white/10 border border-purple-500">
+                        class="text-white inline-flex rounded px-4 py-2 font-semibold text-xl md:text-2xl md:leading-tight backdrop-blur bg-white/10 border border-primary-500">
                         {{ __('Features') }}</h4>
                     <h2 class="mt-8 text-2xl md:text-4xl text-gray-100">{{ __('ClockGo SaaS - Time Tracking Tool') }}
                     </h2>
@@ -415,7 +415,7 @@
                             <!-- Stats -->
                             <div
                                 class="relative text-center first:before:hidden before:absolute before:-top-full sm:before:top-1/2 before:start-1/2 sm:before:-start-6 before:w-px before:h-20 before:bg-neutral-800 before:rotate-[60deg] sm:before:rotate-12 before:transform sm:before:-translate-y-1/2 before:-translate-x-1/2 sm:before:-translate-x-0 before:mt-3.5 sm:before:mt-0">
-                                <svg class="flex-shrink-0 size-6 sm:size-8 text-purple-500 mx-auto"
+                                <svg class="flex-shrink-0 size-6 sm:size-8 text-primary-500 mx-auto"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -457,7 +457,7 @@
                             <!-- Stats -->
                             <div
                                 class="relative text-center first:before:hidden before:absolute before:-top-full sm:before:top-1/2 before:start-1/2 sm:before:-start-6 before:w-px before:h-20 before:bg-neutral-800 before:rotate-[60deg] sm:before:rotate-12 before:transform sm:before:-translate-y-1/2 before:-translate-x-1/2 sm:before:-translate-x-0 before:mt-3.5 sm:before:mt-0">
-                                <svg class="flex-shrink-0 size-6 sm:size-8 text-purple-500 mx-auto"
+                                <svg class="flex-shrink-0 size-6 sm:size-8 text-primary-500 mx-auto"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">
@@ -508,7 +508,7 @@
                     <div>
                         <!-- Heading -->
                         <div class="mb-4">
-                            <h3 class="text-xs font-medium uppercase text-purple-500">
+                            <h3 class="text-xs font-medium uppercase text-primary-500">
                                 Steps
                             </h3>
                         </div>
@@ -521,7 +521,7 @@
                                 class="relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-4 after:w-px after:-translate-x-[0.5px] after:bg-neutral-800">
                                 <div class="relative z-10 size-8 flex justify-center items-center">
                                     <span
-                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-purple-500 font-semibold text-xs uppercase rounded-full">
+                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-primary-500 font-semibold text-xs uppercase rounded-full">
                                         1
                                     </span>
                                 </div>
@@ -547,7 +547,7 @@
                                 class="relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-4 after:w-px after:-translate-x-[0.5px] after:bg-neutral-800">
                                 <div class="relative z-10 size-8 flex justify-center items-center">
                                     <span
-                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-purple-500 font-semibold text-xs uppercase rounded-full">
+                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-primary-500 font-semibold text-xs uppercase rounded-full">
                                         2
                                     </span>
                                 </div>
@@ -574,7 +574,7 @@
                                 class="relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-4 after:w-px after:-translate-x-[0.5px] after:bg-neutral-800">
                                 <div class="relative z-10 size-8 flex justify-center items-center">
                                     <span
-                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-purple-500 font-semibold text-xs uppercase rounded-full">
+                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-primary-500 font-semibold text-xs uppercase rounded-full">
                                         3
                                     </span>
                                 </div>
@@ -600,7 +600,7 @@
                                 class="relative last:after:hidden after:absolute after:top-8 after:bottom-0 after:start-4 after:w-px after:-translate-x-[0.5px] after:bg-neutral-800">
                                 <div class="relative z-10 size-8 flex justify-center items-center">
                                     <span
-                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-purple-500 font-semibold text-xs uppercase rounded-full">
+                                        class="flex flex-shrink-0 justify-center items-center size-8 border border-neutral-800 text-primary-500 font-semibold text-xs uppercase rounded-full">
                                         4
                                     </span>
                                 </div>
@@ -619,7 +619,7 @@
                         </div>
                         <!-- End Item -->
 
-                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-purple-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                             href="#">
                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -776,7 +776,7 @@
                                 </p>
 
                                 <p class="mt-5">
-                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-purple-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                                         href="#">
                                         Submit
                                         <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5 group-hover:translate-x-0 group-focus:translate-x-0.5 group-focus:translate-x-0"
@@ -850,7 +850,7 @@
                                     our
                                     team and looking for talented individuals like you to join us.</p>
                                 <p class="mt-2">
-                                    <a class="group inline-flex items-center gap-x-2 font-medium text-sm text-purple-500 decoration-2 hover:underline focus:outline-none focus:underline"
+                                    <a class="group inline-flex items-center gap-x-2 font-medium text-sm text-primary-500 decoration-2 hover:underline focus:outline-none focus:underline"
                                         href="#">
                                         Job openings
                                         <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5 group-hover:translate-x-0 group-focus:translate-x-0.5 group-focus:translate-x-0"
@@ -878,7 +878,7 @@
                 <div class="px-8 py-6 border border-white/30 rounded-xl bg-white/10 backdrop-blur max-w-6xl mx-auto">
                     <div class="space-y-2 mb-8">
                         <h1 class="text-2xl md:text-3xl font-semibold text-white">
-                            The biggest ever <span class="text-purple-500">Black Friday</span> sale!
+                            The biggest ever <span class="text-primary-500">Black Friday</span> sale!
                         </h1>
                         <p class="text-white/90">
                             You'll love these great deals that were handpicked just for you.
@@ -912,7 +912,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-purple-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -942,7 +942,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-purple-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -972,7 +972,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-purple-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>

@@ -35,7 +35,7 @@
                     </td>
                     <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                         <div class="flex items-center space-x-3.5">
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -46,7 +46,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -63,7 +63,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -95,7 +95,7 @@
                     </td>
                     <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                         <div class="flex items-center space-x-3.5">
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -106,7 +106,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -123,7 +123,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -155,7 +155,7 @@
                     </td>
                     <td class="border-b border-[#eee] px-4 py-5 dark:border-strokedark">
                         <div class="flex items-center space-x-3.5">
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -166,7 +166,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -183,7 +183,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -215,7 +215,7 @@
                     </td>
                     <td class="px-4 py-5">
                         <div class="flex items-center space-x-3.5">
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -226,7 +226,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -243,7 +243,7 @@
                                         fill=""></path>
                                 </svg>
                             </button>
-                            <button class="hover:text-purple-500">
+                            <button class="hover:text-primary-500">
                                 <svg class="fill-current" width="18" height="18" viewBox="0 0 18 18"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path

@@ -5,14 +5,14 @@
 <x-app-layout>
     <div class="m-6 p-6 bg-white/10 border border-black/10 dark:border-white/10 dark:bg-black/10 rounded-lg shadow-md">
         <!-- Header Section -->
-        <div class="dark:bg-purple-200/10 bg-purple-900/10 p-4 rounded-md">
-            <h2 class="text-lg font-semibold text-purple-700">{{ __('Upgrade Guide') }} ({{ __('Current version') }}
+        <div class="dark:bg-primary-200/10 bg-primary-900/10 p-4 rounded-md">
+            <h2 class="text-lg font-semibold text-primary-700">{{ __('Upgrade Guide') }} ({{ __('Current version') }}
                 {{ config('app.version') }})
             </h2>
         </div>
 
         <!-- Upgrade Instructions Section -->
-        <div class="bg-purple-500/50 text-white p-6 mt-4 rounded-md">
+        <div class="bg-primary-500/50 text-white p-6 mt-4 rounded-md">
             <ul class="list-disc ml-4">
                 <li>{{ __('Application current version') }} <strong>{{ config('app.version') }}</strong>
                     <a href="https://engagingdot.com/knowledge-base/upgrade-guide/"
@@ -30,7 +30,7 @@
             <form method="POST" action="{{ route('upgrade.apply') }}" enctype="multipart/form-data">
                 @csrf
                 <button type="submit"
-                    class="w-full text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                    class="w-full text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                     {{ __('Upgrade Now') }}
                 </button>
             </form>

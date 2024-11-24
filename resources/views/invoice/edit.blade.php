@@ -6,7 +6,7 @@
         <div
             class="mb-12 px-5 py-6 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
 
-            <a href="{{ route('invoice.index') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+            <a href="{{ route('invoice.index') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
                     class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
         </div>
         <div class="p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10 shadow-md">
@@ -19,7 +19,7 @@
                 <!-- Employer Name -->
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="employer_id" id="employer_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
                         @foreach ($employers as $employer)
                             <option value="{{ $employer->id }}"
                                 {{ $invoice->employer_id == $employer->id ? 'selected' : '' }}>
@@ -33,7 +33,7 @@
                 <!-- Client Name -->
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="client_id" id="client_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}"
                                 {{ $invoice->client_id == $client->id ? 'selected' : '' }}>
@@ -47,7 +47,7 @@
                 <!-- Project Name -->
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="project_id" id="project_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer">
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}"
                                 {{ $invoice->project_id == $project->id ? 'selected' : '' }}>
@@ -62,7 +62,7 @@
                 <!-- Invoice Number -->
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="invoice_number" id="invoice_number"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         required value="{{ $invoice->invoice_number }}" />
                     <label for="invoice_number"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Number') }}</label>
@@ -71,7 +71,7 @@
                 <!-- Invoice Date -->
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="date" name="invoice_date" id="invoice_date"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         required value="{{ $invoice->invoice_date }}" />
                     <label for="invoice_date"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Date') }}</label>
@@ -80,14 +80,14 @@
                 <!-- Total Cost -->
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="total_cost" id="total_cost"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-purple-500 focus:outline-none focus:ring-0 focus:border-purple-600 peer"
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         required value="{{ $invoice->total_cost }}" />
                     <label for="total_cost"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Total Cost') }}</label>
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
+                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
             </form>
         </div>
     </div>

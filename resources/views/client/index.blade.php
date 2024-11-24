@@ -11,14 +11,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('client.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('client.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Client') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -126,7 +126,7 @@
                                                                     <input type="checkbox" value=""
                                                                         class="sr-only peer">
                                                                     <div
-                                                                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
+                                                                        class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500">
                                                                     </div>
                                                                 </label>
 
@@ -155,7 +155,7 @@
                                                                             <div class="flex flex-col items-start">
                                                                                 <!-- Eye Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-eye size-4"
@@ -169,7 +169,7 @@
                                                                                 </button>
                                                                                 <!-- Edit Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-pencil-square size-4"
@@ -183,7 +183,7 @@
                                                                                 </button>
                                                                                 <!-- Delete Icon Button -->
                                                                                 <button
-                                                                                    class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-trash size-4"

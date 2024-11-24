@@ -51,8 +51,9 @@ export default {
                 blue: "2px solid rgba(0, 112, 244, 0.5)",
             },
             fontFamily: {
-                inter: ["Inter", "sans-serif"],
-                montserrat: ["Montserrat", "sans-serif"],
+                sans: ['var(--font-family)', 'system-ui', 'sans-serif'],
+                inter: ['Inter', 'sans-serif'],
+                montserrat: ['Montserrat', 'sans-serif'],
             },
             fontSize: {
                 xs: ["0.75rem", { lineHeight: "1.5" }],

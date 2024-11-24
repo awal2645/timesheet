@@ -95,12 +95,12 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-purple-500 {
+        .btn-primary-500 {
             background-color: #007bff;
             color: #fff;
         }
 
-        .btn-purple-500:hover {
+        .btn-primary-500:hover {
             background-color: #0056b3;
         }
 

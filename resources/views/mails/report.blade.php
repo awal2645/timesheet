@@ -95,12 +95,12 @@
             transition: background-color 0.3s ease;
         }
 
-        .btn-purple-500 {
+        .btn-primary-500 {
             background-color: #007bff;
             color: #fff;
         }
 
-        .btn-purple-500:hover {
+        .btn-primary-500:hover {
             background-color: #0056b3;
         }
 
@@ -145,7 +145,7 @@
                             <p><strong>Your employee {{ $name }} has submitted the timesheet.</strong></p>
                             <p>Please review the report and take necessary actions.</p>
                             <div class="action-buttons">
-                                <button id="approveBtn" class="btn btn-purple-500">Approve</button>
+                                <button id="approveBtn" class="btn btn-primary-500">Approve</button>
                                 <button id="rejectBtn" class="btn btn-danger">Reject</button>
                             </div>
                         </td>

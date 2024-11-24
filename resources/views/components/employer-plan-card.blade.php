@@ -23,7 +23,7 @@
     <hr>
     <ul class="my-4 space-y-2 text-center">
         <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -31,7 +31,7 @@
             <span class="text-gray-800 dark:text-gray-100">Employee Limit: {{ $plan->employee_limit }}</span>
         </li>
         <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
@@ -39,7 +39,7 @@
             <span class="text-gray-800 dark:text-gray-100">Client Limit: {{ $plan->client_limit }}</span>
         </li>
         <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0z"></path>
@@ -69,12 +69,12 @@
         {{-- Paypal payment --}}
         @if (config('paypal.mode') == 'sandbox')
             @if (config('paypal.active') && config('paypal.sandbox.client_id') && config('paypal.sandbox.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-purple-500 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-primary-500 rounded-lg px-4 py-2">
                     <i class="fa-brands fa-paypal"></i> </button>
             @endif
         @else
             @if (config('paypal.active') && config('paypal.live.client_id') && config('paypal.live.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn bg-purple-500 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn bg-primary-500 rounded-lg px-4 py-2">
                     {{ __('Pay with PayPal') }}
                 </button>
             @endif

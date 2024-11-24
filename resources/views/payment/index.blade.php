@@ -14,7 +14,7 @@
             <div class="p-6 rounded-lg shadow">
                 <h3 class="text-xl font-bold mb-4">{{ __('Paypal Settings') }} <a
                         href="https://developer.paypal.com/developer/accounts/" target="_bulk"
-                        class="text-purple-500 text-sm">({{ __('Get Help') }})</a></h3>
+                        class="text-primary-500 text-sm">({{ __('Get Help') }})</a></h3>
 
                 <!-- Live Mode Toggle -->
                 <div class="mb-4">
@@ -22,7 +22,7 @@
                         <input type="checkbox" name="paypal_live_mode" class="sr-only peer"
                             {{ config('zenxserv.paypal_mode') == 'live' ? 'checked' : '' }} value="1">
                         <div
-                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
+                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500">
                         </div>
                         <span
                             class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Live Mode') }}</span>
@@ -78,7 +78,7 @@
                         <input type="checkbox" name="paypal" class="sr-only peer"
                             {{ config('zenxserv.paypal_active') ? 'checked' : '' }}>
                         <div
-                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
+                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500">
                         </div>
                         <span
                             class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Status') }}</span>
@@ -86,7 +86,7 @@
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-800">{{ __('Submit') }}</button>
+                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
             </div>
         </form>
 
@@ -98,7 +98,7 @@
             <input type="hidden" name="type" value="stripe">
             <div class="p-6 rounded-lg shadow">
                 <h3 class="text-xl font-bold mb-4">{{ __('Stripe Settings') }} <a href="https://docs.stripe.com/keys"
-                        target="_bulk" class="text-purple-500 text-sm">({{ __('Get Help') }})</a></h3>
+                        target="_bulk" class="text-primary-500 text-sm">({{ __('Get Help') }})</a></h3>
 
                 <!-- Secret Key -->
                 <div class="mb-4">
@@ -126,7 +126,7 @@
                         <input type="checkbox" name="stripe" class="sr-only peer"
                             {{ config('zenxserv.stripe_active') ? 'checked' : '' }}>
                         <div
-                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-500">
+                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500">
                         </div>
                         <span
                             class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Status') }}</span>
@@ -134,7 +134,7 @@
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-purple-500 dark:hover:bg-purple-700 dark:focus:ring-purple-800">{{ __('Submit') }}</button>
+                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
             </div>
         </form>
     </div>

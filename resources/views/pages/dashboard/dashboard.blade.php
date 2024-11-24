@@ -1,5 +1,5 @@
 @section('title')
-{{ 'Dashboard' }}
+    {{ 'Dashboard' }}
 @endsection
 <x-app-layout>
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
@@ -56,12 +56,12 @@
                     class="text-2xl md:text-3xl text-slate-900 dark:text-slate-300 font-bold mb-1 capitalize">
                     Good , <span id="usernamePlaceholder"></span> </h1>
                 @if (auth('web')->user()->role == 'employee')
-                <p class="dark:text-indigo-200">Here is what's happening with your projects today</p>
-                <p class="dark:text-indigo-200">Employer name:
-                    {{ auth('web')->user()->employee->employer->employer_name }}</p>
-                <p class="dark:text-indigo-200">Employer Email:
-                    {{ auth('web')->user()->employee->employer->user->email }}
-                </p>
+                    <p class="dark:text-indigo-200">Here is what's happening with your projects today</p>
+                    <p class="dark:text-indigo-200">Employer name:
+                        {{ auth('web')->user()->employee->employer->employer_name }}</p>
+                    <p class="dark:text-indigo-200">Employer Email:
+                        {{ auth('web')->user()->employee->employer->user->email }}
+                    </p>
                 @endif
             </div>
 
@@ -153,37 +153,38 @@
                         <!-- Scrolling Content -->
                         <div class="animate-scroll inline-flex gap-4" id="scrollContent">
                             @forelse (notice() as $notice)
-                            <div
-                                class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
-                                <div class="flex justify-between items-start">
-                                    <h4 class="font-semibold text-gray-900 dark:text-white">
-                                        {{ $notice->title }}
-                                    </h4>
-                                    <span class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans()
-                                        }}</span>
-                                </div>
-                                <p class="mt-2 text-gray-600 dark:text-gray-300">
-                                    {{ $notice->content }}
-                                </p>
-                                <div class="mt-2">
-                                    <span
-                                        class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
-                                        @php
-                                        // Split the role string into an array
-                                        $noticeRoles = explode(',', $notice->role);
-                                        @endphp
+                                <div
+                                    class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="font-semibold text-gray-900 dark:text-white">
+                                            {{ $notice->title }}
+                                        </h4>
+                                        <span
+                                            class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans() }}</span>
+                                    </div>
+                                    <p class="mt-2 text-gray-600 dark:text-gray-300">
+                                        {{ $notice->content }}
+                                    </p>
+                                    <div class="mt-2">
+                                        <span
+                                            class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                            @php
+                                                // Split the role string into an array
+                                                $noticeRoles = explode(',', $notice->role);
+                                            @endphp
 
-                                        @foreach (roles() as $role)
-                                        @if (in_array($role->id, $noticeRoles))
-                                        {{ ucfirst($role->name) }}{{ !$loop->last ? ',' : '' }}
-                                        @endif
-                                        @endforeach
+                                            @foreach (roles() as $role)
+                                                @if (in_array($role->id, $noticeRoles))
+                                                    {{ ucfirst($role->name) }}{{ !$loop->last ? ',' : '' }}
+                                                @endif
+                                            @endforeach
 
-                                    </span>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
                             @empty
-                            <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}</p>
+                                <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}
+                                </p>
                             @endforelse
                         </div>
                     </div>
@@ -199,185 +200,190 @@
                         <div class="invoices-table ">
                             <div class="overflow-x-auto pb-1">
                                 @if (auth()->user()->role != 'employee')
-                                <h2 class="text-xl font-semibold mb-4">{{ __('Recent Invoice') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4">{{ __('Recent Invoice') }}</h2>
 
-                                <table class="min-w-full table-auto text-sm">
-                                    <thead
-                                        class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
-                                        <tr class="text-center">
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Invoice Number') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Date') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Plan') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Employer') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Amount') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Payment Gateway') }}
-                                            </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
-                                                {{ __('Payment Status') }}
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($transactions as $transaction)
-                                        <tr class="text-center  mt-5 pt-5">
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                #{{ $transaction->order_id }}</td>
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                @if ($transaction->payment_type == 'per_job_based')
-                                                <span class="px-2 py-1 text-sm bg-gray-300 rounded">{{
-                                                    ucfirst(Str::replace('_', ' ', $transaction->payment_type))
-                                                    }}</span>
-                                                @else
-                                                <span class="px-2 py-1 text-sm bg-purple-500 text-white rounded">{{
-                                                    $transaction->plan->label }}</span>
-                                                @endif
-                                            </td>
+                                    <table class="min-w-full table-auto text-sm">
+                                        <thead
+                                            class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
+                                            <tr class="text-center">
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Invoice Number') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Date') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Plan') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Employer') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Amount') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Payment Gateway') }}
+                                                </th>
+                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                    {{ __('Payment Status') }}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($transactions as $transaction)
+                                                <tr class="text-center  mt-5 pt-5">
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        #{{ $transaction->order_id }}</td>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        @if ($transaction->payment_type == 'per_job_based')
+                                                            <span
+                                                                class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
+                                                        @else
+                                                            <span
+                                                                class="px-2 py-1 text-sm bg-primary-500 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                        @endif
+                                                    </td>
 
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                {{ ucfirst($transaction->employer->user->username) }}</td>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        {{ ucfirst($transaction->employer->user->username) }}</td>
 
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                ${{ $transaction->usd_amount }}</td>
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                {{ $transaction->payment_provider == 'offline'
-                                                ? __('offline') .
-                                                (optional($transaction->manualPayment)->name
-                                                ? "
-                                                (<b>{$transaction->manualPayment->name}</b>)"
-                                                : '')
-                                                : ucfirst($transaction->payment_provider) }}
-                                            </td>
-                                            <td class="py-3 border border-gray-300 dark:border-gray-700">
-                                                <span
-                                                    class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
-                                                    {{ $transaction->payment_status == 'paid' ? __('paid') :
-                                                    __('unpaid') }}
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="7"
-                                                class="text-center py-8 border border-gray-300 dark:border-gray-700 dark:text-gray-100">
-                                                <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found"
-                                                    class="mx-auto max-w-xs">
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        ${{ $transaction->usd_amount }}</td>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        {{ $transaction->payment_provider == 'offline'
+                                                            ? __('offline') .
+                                                                (optional($transaction->manualPayment)->name
+                                                                    ? "
+                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
+                                                                    : '')
+                                                            : ucfirst($transaction->payment_provider) }}
+                                                    </td>
+                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                        <span
+                                                            class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
+                                                            {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="7"
+                                                        class="text-center py-8 border border-gray-300 dark:border-gray-700 dark:text-gray-100">
+                                                        <img src="{{ asset('images/no-data-found.svg') }}"
+                                                            alt="No data found" class="mx-auto max-w-xs">
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 @endif
                                 @if (auth()->user()->role === 'employee')
-                                <h2 class="text-xl font-semibold mb-4">{{ __('Latest Report Status') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4">{{ __('Latest Report Status') }}</h2>
 
-                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                        <tr>
+                                    <table
+                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        <thead
+                                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                            <tr>
 
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Name
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Date
-                                            </th>
-                                            <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
-                                                Status
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($timeReports->count() > 0)
-                                        @foreach ($timeReports as $key => $timeReport)
-                                        <tr
-                                            class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                <th scope="col"
+                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    Name
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    Date
+                                                </th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    Status
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if ($timeReports->count() > 0)
+                                                @foreach ($timeReports as $key => $timeReport)
+                                                    <tr
+                                                        class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                            <th scope="row"
-                                                class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                                <div class="">
-                                                    <div class="text-base font-semibold">
-                                                        {{ $timeReport->user->username }}</div>
-                                                    <div class="font-normal text-gray-500">
-                                                        {{ $timeReport->user->email }}</div>
-                                                </div>
-                                            </th>
-                                            <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                <div class="">
-                                                    <div class="text-base font-semibold">
-                                                        {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
-                                                <div class="flex items-center space-x-2">
-                                                    <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
-                                                        style="background-color: {{ $timeReport->status === 'approve' ? 'green' : ($timeReport->status === 'pending' ? 'yellow' : 'red') }};">
-                                                    </div>
-                                                    <form id="statusForm{{ $timeReport->id }}"
-                                                        action="{{ route('timesheet.updateStatus', $timeReport->id) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @if (auth('web')->user()->role == 'employee')
-                                                        <div class="dark:bg-slate-800" {{ $timeReport->status ===
-                                                            'approve' ? '' : 'hidden' }}>
-                                                            Approve</div>
-                                                        <div class="dark:bg-slate-800" {{ $timeReport->status ===
-                                                            'decline' ? '' : 'hidden' }}>
-                                                            Decline</div>
-                                                        <div class="dark:bg-slate-800" {{ $timeReport->status ===
-                                                            'pending' ? '' : 'hidden' }}>
-                                                            Pending</div>
-                                                        @else
-                                                        <select name="status" id="status"
-                                                            data-project-id="{{ $timeReport->id ?? '' }}"
-                                                            class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
-                                                            onchange="document.getElementById('statusForm{{ $timeReport->id }}').submit()">
-                                                            <!-- Replace data-project-id with the actual project ID -->
-                                                            <option class="dark:bg-slate-800" value="approve" {{
-                                                                $timeReport->status === 'approve' ? 'selected' : '' }}>
-                                                                Approve
-                                                            </option>
-                                                            <option class="dark:bg-slate-800" value="decline" {{
-                                                                $timeReport->status === 'decline' ? 'selected' : '' }}>
-                                                                Decline
-                                                            </option>
-                                                            <option class="dark:bg-slate-800" value="pending" {{
-                                                                $timeReport->status === 'pending' ? 'selected' : '' }}>
-                                                                Pending
-                                                            </option>
-                                                        </select>
-                                                        @endif
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                        @else
-                                        <tr>
-                                            <td colspan="5" class="text-center py-8">
-                                                <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found"
-                                                    class="mx-auto max-w-xs">
-                                            </td>
-                                        </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
+                                                        <th scope="row"
+                                                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                            <div class="">
+                                                                <div class="text-base font-semibold">
+                                                                    {{ $timeReport->user->username }}</div>
+                                                                <div class="font-normal text-gray-500">
+                                                                    {{ $timeReport->user->email }}</div>
+                                                            </div>
+                                                        </th>
+                                                        <td
+                                                            class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                            <div class="">
+                                                                <div class="text-base font-semibold">
+                                                                    {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td
+                                                            class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                            <div class="flex items-center space-x-2">
+                                                                <div class="h-2.5 w-2.5 rounded-full"
+                                                                    id="statusIndicator"
+                                                                    style="background-color: {{ $timeReport->status === 'approve' ? 'green' : ($timeReport->status === 'pending' ? 'yellow' : 'red') }};">
+                                                                </div>
+                                                                <form id="statusForm{{ $timeReport->id }}"
+                                                                    action="{{ route('timesheet.updateStatus', $timeReport->id) }}"
+                                                                    method="post">
+                                                                    @csrf
+                                                                    @if (auth('web')->user()->role == 'employee')
+                                                                        <div class="dark:bg-slate-800"
+                                                                            {{ $timeReport->status === 'approve' ? '' : 'hidden' }}>
+                                                                            Approve</div>
+                                                                        <div class="dark:bg-slate-800"
+                                                                            {{ $timeReport->status === 'decline' ? '' : 'hidden' }}>
+                                                                            Decline</div>
+                                                                        <div class="dark:bg-slate-800"
+                                                                            {{ $timeReport->status === 'pending' ? '' : 'hidden' }}>
+                                                                            Pending</div>
+                                                                    @else
+                                                                        <select name="status" id="status"
+                                                                            data-project-id="{{ $timeReport->id ?? '' }}"
+                                                                            class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
+                                                                            onchange="document.getElementById('statusForm{{ $timeReport->id }}').submit()">
+                                                                            <!-- Replace data-project-id with the actual project ID -->
+                                                                            <option class="dark:bg-slate-800"
+                                                                                value="approve"
+                                                                                {{ $timeReport->status === 'approve' ? 'selected' : '' }}>
+                                                                                Approve
+                                                                            </option>
+                                                                            <option class="dark:bg-slate-800"
+                                                                                value="decline"
+                                                                                {{ $timeReport->status === 'decline' ? 'selected' : '' }}>
+                                                                                Decline
+                                                                            </option>
+                                                                            <option class="dark:bg-slate-800"
+                                                                                value="pending"
+                                                                                {{ $timeReport->status === 'pending' ? 'selected' : '' }}>
+                                                                                Pending
+                                                                            </option>
+                                                                        </select>
+                                                                    @endif
+                                                                </form>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+                                                <tr>
+                                                    <td colspan="5" class="text-center py-8">
+                                                        <img src="{{ asset('images/no-data-found.svg') }}"
+                                                            alt="No data found" class="mx-auto max-w-xs">
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
                                 @endif
 
                             </div>
@@ -405,7 +411,9 @@
             new Chart(monthlyCtx, {
                 type: 'line',
                 data: {
-                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct',
+                        'Nov', 'Dec'
+                    ],
                     datasets: [{
                         label: 'Earnings',
                         data: [
@@ -433,7 +441,8 @@
                     plugins: {
                         legend: {
                             labels: {
-                                color: document.documentElement.classList.contains('dark') ? 'white' : 'black'
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
                             }
                         }
                     },
@@ -441,18 +450,22 @@
                         y: {
                             beginAtZero: true,
                             grid: {
-                                color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                color: document.documentElement.classList.contains('dark') ?
+                                    'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
                             },
                             ticks: {
-                                color: document.documentElement.classList.contains('dark') ? 'white' : 'black'
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
                             }
                         },
                         x: {
                             grid: {
-                                color: document.documentElement.classList.contains('dark') ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
+                                color: document.documentElement.classList.contains('dark') ?
+                                    'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'
                             },
                             ticks: {
-                                color: document.documentElement.classList.contains('dark') ? 'white' : 'black'
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black'
                             }
                         }
                     }
@@ -486,7 +499,8 @@
                         legend: {
                             position: 'bottom',
                             labels: {
-                                color: document.documentElement.classList.contains('dark') ? 'white' : 'black',
+                                color: document.documentElement.classList.contains('dark') ? 'white' :
+                                    'black',
                                 padding: 20
                             }
                         }
@@ -500,20 +514,25 @@
 <style>
     @keyframes scroll {
         0% {
-            transform: translateX(100%); /* Start from the right */
+            transform: translateX(100%);
+            /* Start from the right */
         }
+
         100% {
-            transform: translateX(-100%); /* Move to the left */
+            transform: translateX(-100%);
+            /* Move to the left */
         }
     }
 
     .animate-scroll {
         animation: scroll 30s linear infinite;
-        white-space: nowrap; /* Prevent line breaks */
+        white-space: nowrap;
+        /* Prevent line breaks */
     }
 
     .notice-scroller:hover .animate-scroll {
-        animation-play-state: paused; /* Pause on hover */
+        animation-play-state: paused;
+        /* Pause on hover */
     }
 </style>
 

@@ -10,7 +10,7 @@
                         {{ $language->name }} - {{ __('translate_language') }}
                     </h3>
                     <a href="{{ route('languages.index') }}"
-                        class="btn bg-purple-500 text-white float-right flex items-center justify-center px-4 py-2 rounded">
+                        class="btn bg-primary-500 text-white float-right flex items-center justify-center px-4 py-2 rounded">
                         <i class="fas fa-arrow-left"></i>
                         {{ __('back') }}
                     </a>
@@ -22,13 +22,13 @@
                             <div class="w-full md:w-1/3 mb-4 md:mb-0">
                                 <label class="block text-sm font-medium text-gray-700">{{ __('search') }}</label>
                                 <input name="keyword" type="text" placeholder="{{ __('title') }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200"
+                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200"
                                     value="{{ request('keyword') }}">
                             </div>
                             <div class="w-full md:w-1/4">
                                 <label class="block">&nbsp;</label>
                                 <button type="submit"
-                                    class="mt-2 w-full bg-purple-500 text-white rounded-md px-4 py-2">
+                                    class="mt-2 w-full bg-primary-500 text-white rounded-md px-4 py-2">
                                     {{ __('search') }}
                                 </button>
                             </div>
@@ -70,7 +70,7 @@
                                                 <div class="flex items-center">
 
                                                     <input type="text"
-                                                        class="form-control w-full border-gray-300 rounded-md shadow-sm focus:border-purple-500 focus:ring focus:ring-purple-200"
+                                                        class="form-control w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200"
                                                         name="{{ $key }}" value="{{ $value }}">
 
                                                 </div>

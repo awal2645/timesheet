@@ -12,14 +12,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('employer.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg">
+                <a href="{{ route('employer.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-plus"></i> {{ __('Create Employer') }}
                 </a>
             </div>
@@ -107,7 +107,7 @@
                                                     </td>
                                                     <td class="p-4">
                                                         <a href="{{ $employer->website }}" target="_blank"
-                                                            class="hover:text-purple-500">
+                                                            class="hover:text-primary-500">
                                                             {{ $employer->website }}
                                                         </a>
                                                     </td>
@@ -150,7 +150,7 @@
                                                                     @click.away="openDropdown = false"
                                                                     class="absolute mt-2 right-0 w-32 bg-white dark:bg-black/80 py-2 rounded-md shadow-lg z-10">
                                                                     <a href="{{ route('employer.edit', $employer->id) }}"
-                                                                        class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                        class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
                                                                             stroke-width="1.5" stroke="currentColor"
@@ -163,7 +163,7 @@
                                                                     </a>
                                                                     <button
                                                                         onclick="showConfirmation({{ $employer->id }})"
-                                                                        class="hover:text-purple-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                        class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
                                                                             stroke-width="1.5" stroke="currentColor"

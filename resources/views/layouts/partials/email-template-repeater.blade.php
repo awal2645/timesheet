@@ -13,7 +13,7 @@
                         <label
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
                         <input type="text" name="name" id="name"
-                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                             value="{{ $name ?? '' }}" @if (empty($is_new)) disabled @endif>
                         <x-forms.error name="name" />
                     </div>
@@ -24,7 +24,7 @@
                             <label
                                 class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Type') }}</label>
                             <input type="text" name="type" id="type"
-                                class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                                class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                 value="{{ $type ?? '' }}">
                             <x-forms.error name="type" />
                         </div>
@@ -35,7 +35,7 @@
                         <label
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Subject') }}</label>
                         <input type="text" name="subject" id="subject"
-                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                             value="{{ $subject ?? '' }}">
                         <x-forms.error name="subject" />
                     </div>
@@ -45,7 +45,7 @@
                         <label
                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Message') }}</label>
                         <textarea name="message" id="message"
-                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
+                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
                             cols="30" rows="10">{{ $message ?? '' }}</textarea>
                         <x-forms.error name="message" />
                     </div>

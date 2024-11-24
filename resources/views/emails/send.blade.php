@@ -14,20 +14,20 @@
             @csrf
             <div class="mb-4">
                 <label for="subject" class="block text-sm font-medium">{{ __('Subject') }}</label>
-                <input type="text" name="subject" id="subject" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+                <input type="text" name="subject" id="subject"
+                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
             </div>
 
             <div class="mb-4">
                 <label for="body" class="block text-sm font-medium">{{ __('Body') }}</label>
-                <textarea name="body" 
-                          id="body"
-                          class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
-                          cols="30" rows="10"></textarea>
+                <textarea name="body" id="body"
+                    class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
+                    cols="30" rows="10"></textarea>
             </div>
 
             <div class="mb-4">
                 <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
-                <select name="role[]" id="role" class="select2 w-full" multiple="multiple" >
+                <select name="role[]" id="role" class="select2 w-full" multiple="multiple">
                     @foreach ($roles as $role)
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
                     @endforeach
@@ -43,7 +43,8 @@
                 </select>
             </div>
 
-            <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
+            <button type="submit"
+                class="bg-primary-500 text-white px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
         </form>
     </div>
 
@@ -53,12 +54,12 @@
 
     <!-- CKEditor JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.16.2/ckeditor.js"
-            integrity="sha512-bGYUkjDyyOMGm3ASzq3zRaWZ4CONNH1wAYMFch/Z0ASZrsg722SeRsX0FPPRZjTuJrqIMbB9fvY0LEMzyHeyeQ=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        integrity="sha512-bGYUkjDyyOMGm3ASzq3zRaWZ4CONNH1wAYMFch/Z0ASZrsg722SeRsX0FPPRZjTuJrqIMbB9fvY0LEMzyHeyeQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         // Initialize CKEditor for the textarea
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const editorElement = document.querySelector('.classic-editor');
             if (editorElement) {
                 CKEDITOR.replace(editorElement.id);
@@ -69,7 +70,7 @@
                 placeholder: "{{ __('Select or add emails') }}",
                 tags: true, // Enable tagging to add custom entries
                 tokenSeparators: [',', ' '], // Allow adding emails separated by commas or spaces
-                createTag: function (params) {
+                createTag: function(params) {
                     const term = params.term;
 
                     // Validate email format

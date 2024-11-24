@@ -35,8 +35,12 @@ class ThemeController extends Controller
         $primaryColor = $this->hexToRgb($theme->primary_color);
         $secondaryColor = $this->hexToRgb($theme->secondary_color);
 
-        $shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
         $css = ":root {\n";
+        
+        // Add font family variable
+        $css .= "  --font-family: \"{$theme->font_family}\";\n";
+
+        $shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
         // Generate primary shades
         foreach ($shades as $shade) {
@@ -64,6 +68,11 @@ class ThemeController extends Controller
             );
         }
 
+        $css .= "}\n\n";
+        
+        // Add global font family rule
+        $css .= "body {\n";
+        $css .= "  font-family: var(--font-family), system-ui, sans-serif;\n";
         $css .= "}\n";
 
         // Create the css directory if it doesn't exist

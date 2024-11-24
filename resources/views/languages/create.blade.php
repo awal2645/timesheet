@@ -5,7 +5,7 @@
         class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-gray-200 dark:border-gray-800 dark:bg-gray-900 shadow-md">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Create Language') }}</h2>
         <a href="{{ route('languages.index') }}"
-            class="btn bg-purple-500 dark:bg-purple-900 text-white hover:bg-purple-600 rounded-lg px-4 py-2">
+            class="btn bg-primary-500 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
             {{ __('Go to Language List') }}
         </a>
     </div>
@@ -17,11 +17,11 @@
             <!-- Language Name -->
             <div class="mb-5">
                 <label for="name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-purple-600 peer-focus:bg-purple-50 peer-focus:dark:bg-purple-300 peer-focus:rounded peer-focus:border peer-focus:border-purple-600 peer-focus:dark:text-purple-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                     {{ __('Language Name') }}
                 </label>
                 <select name="name"
-                    class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
+                    class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
                     @foreach ($translations as $key => $country)
                         <option {{ old('name') == $country['name'] ? 'selected' : '' }} value="{{ $country['code'] }}">
                             {{ $country['name'] }}
@@ -39,7 +39,7 @@
                     {{ __('Direction') }}
                 </label>
                 <select name="direction" id="direction"
-                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
+                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
                     <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>{{ __('Left to Right') }}
                     </option>
                     <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>{{ __('Right to Left') }}
@@ -66,7 +66,7 @@
             </div>
 
             <button type="submit"
-                class="bg-purple-500 hover:bg-purple-600 dark:bg-purple-900 dark:hover:bg-purple-800 text-white rounded-lg px-5 py-2.5">
+                class="bg-primary-500 hover:bg-primary-600 dark:bg-primary-900 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
                 {{ __('Submit') }}
             </button>
         </form>

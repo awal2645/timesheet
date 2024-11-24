@@ -5,7 +5,7 @@
         class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-gray-200 dark:border-gray-800 dark:bg-gray-900 shadow-md">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Edit Language') }}</h2>
         <a href="{{ route('languages.index') }}"
-            class="bg-purple-500 dark:bg-purple-900 text-white hover:bg-purple-600 rounded-lg px-4 py-2">
+            class="bg-primary-500 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
             {{ __('Go to Language List') }}
         </a>
     </div>
@@ -21,16 +21,16 @@
                     {{ __('Language Name') }}
                 </label>
                 <select name="name" id="name"
-                    class="select2 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
+                    class="select2 w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
                     @foreach ($translations as $key => $country)
-                    <option {{ old('name', $language->name) == $country['name'] ? 'selected' : '' }}
-                        value="{{ $country['code'] }}">
-                        {{ $country['name'] }}
-                    </option>
+                        <option {{ old('name', $language->name) == $country['name'] ? 'selected' : '' }}
+                            value="{{ $country['code'] }}">
+                            {{ $country['name'] }}
+                        </option>
                     @endforeach
                 </select>
                 @error('name')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -40,14 +40,14 @@
                     {{ __('Direction') }}
                 </label>
                 <select name="direction" id="direction"
-                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-purple-500 focus:border-purple-500">
+                    class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
                     <option value="ltr" {{ old('direction', $language->direction) == 'ltr' ? 'selected' : '' }}>
                         {{ __('Left to Right') }}</option>
                     <option value="rtl" {{ old('direction', $language->direction) == 'rtl' ? 'selected' : '' }}>
                         {{ __('Right to Left') }}</option>
                 </select>
                 @error('direction')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Language Icon -->
@@ -61,12 +61,12 @@
                 <input type="hidden" name="icon" id="icon" value="{{ old('icon', $language->icon) }}">
                 <div id="target" class="mb-2"></div>
                 @error('icon')
-                <span class="text-red-500 text-sm">{{ $message }}</span>
+                    <span class="text-red-500 text-sm">{{ $message }}</span>
                 @enderror
             </div>
 
             <button type="submit"
-                class="bg-purple-500 hover:bg-purple-600 dark:bg-purple-900 dark:hover:bg-purple-800 text-white rounded-lg px-5 py-2.5">
+                class="bg-primary-500 hover:bg-primary-600 dark:bg-primary-900 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
                 {{ __('Update') }}
             </button>
         </form>
@@ -109,6 +109,7 @@
 
         // Set the initial value of the icon input using JavaScript
         $('#icon').val('{{ old('icon', $language->icon) }}'); // Set the value of the hidden input
-        $('#target').iconpicker('setIcon', '{{ old('icon', $language->icon) }}'); // Set the icon picker to the current icon
+        $('#target').iconpicker('setIcon',
+        '{{ old('icon', $language->icon) }}'); // Set the icon picker to the current icon
     });
 </script>

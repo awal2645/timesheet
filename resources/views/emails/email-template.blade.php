@@ -33,9 +33,9 @@
                     @php $type = $email_template->type ?? 'new'; @endphp
                     <li>
                         <a href="#"
-                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-purple-500 hover:text-white dark:hover:bg-purple-700"
+                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-700"
                             :class="{
-                                'bg-purple-500 dark:bg-purple-500 text-white': activeTab === '{{ $type }}',
+                                'bg-primary-500 dark:bg-primary-500 text-white': activeTab === '{{ $type }}',
                                 'text-gray-700 dark:text-gray-300': activeTab !== '{{ $type }}'
                             }"
                             @click.prevent="activeTab = '{{ $type }}'; initEditor();">
@@ -63,7 +63,7 @@
                                         <label
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Name') }}</label>
                                         <input readonly type="text" id="name"
-                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                             value="{{ __($email_template->name) ?? '' }}">
                                         <x-forms.error name="name" />
                                     </div>
@@ -73,7 +73,7 @@
                                         <label
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Subject') }}</label>
                                         <input type="text" name="subject" id="subject"
-                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
+                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300"
                                             value="{{ $email_template->subject ?? '' }}">
                                         <x-forms.error name="subject" />
                                     </div>
@@ -83,7 +83,7 @@
                                         <label
                                             class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Message') }}</label>
                                         <textarea name="message" id="message_{{ $email_template->id }}"
-                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-purple-500 focus:border-purple-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
+                                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
                                             cols="30" rows="10">{{ $email_template->message ?? '' }}</textarea>
                                         <x-forms.error name="message" />
                                     </div>
@@ -93,14 +93,14 @@
                                     <label class="block text-sm font-medium text-red-700 dark:text-red-300">
                                         <i class="fa-solid fa-circle-info"></i>
                                         {{ __('Note: Do not modify the text within
-                                                                            {brackets}.') }}
+                                                                                                                    {brackets}.') }}
                                     </label>
                                 </div>
 
                                 <!-- Submit Button -->
                                 <div class="flex justify-center mt-6">
                                     <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-purple-500 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         <i class="fas fa-sync mr-2"></i>{{ __('Update') }}
                                     </button>
                                 </div>

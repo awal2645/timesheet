@@ -11,14 +11,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-purple-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('order.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg">
+                <a href="{{ route('order.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg">
                     <i class="fa-solid fa-plus"></i> {{ __('Create Order') }}
                 </a>
             </div>
@@ -124,7 +124,7 @@
                                                                 class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                         @else
                                                             <span
-                                                                class="px-2 py-1 text-sm bg-purple-500 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                                class="px-2 py-1 text-sm bg-primary-500 text-white rounded">{{ $transaction->plan->label }}</span>
                                                         @endif
                                                     </td>
                                                     <td class="p-4">
@@ -138,7 +138,7 @@
                                                             ? __('offline') .
                                                                 (optional($transaction->manualPayment)->name
                                                                     ? "
-                                                                                                                                                                                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                                                                                                                                                                                                                                                                                    (<b>{$transaction->manualPayment->name}</b>)"
                                                                     : '')
                                                             : ucfirst($transaction->payment_provider) }}
                                                     </td>

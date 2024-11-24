@@ -2,8 +2,8 @@
     <div class="container mx-auto px-5 my-8 justify-center text-center">
         <div class="flex justify-center">
             <div class="mb-4 text-center">
-                <button wire:click="loadPreviousWeek" class="btn-purple-500">Previous Week</button>
-                <button wire:click="loadNextWeek" class="btn-purple-500">Next Week</button>
+                <button wire:click="loadPreviousWeek" class="btn-primary-500">Previous Week</button>
+                <button wire:click="loadNextWeek" class="btn-primary-500">Next Week</button>
             </div>
         </div>
         <div class="flex justify-center">
@@ -30,8 +30,8 @@
                     @endphp<div class="container mx-auto px-5 my-8 justify-cente text-center">
                         <div class="flex justify-center">
                             <div class="mb-4 text-center">
-                                <button wire:click="loadPreviousWeek" class="btn-purple-500">Previous Week</button>
-                                <button wire:click="loadNextWeek" class="btn-purple-500">Next Week</button>
+                                <button wire:click="loadPreviousWeek" class="btn-primary-500">Previous Week</button>
+                                <button wire:click="loadNextWeek" class="btn-primary-500">Next Week</button>
                             </div>
                         </div>
 
@@ -59,7 +59,7 @@
                                 @endforeach
 
                                 <div class="mt-4 text-center col-span-full">
-                                    <button type="submit" class="btn-purple-500">Save</button>
+                                    <button type="submit" class="btn-primary-500">Save</button>
                                 </div>
                             </form>
                         </div>
@@ -67,7 +67,7 @@
                 @endforeach
 
                 <div class="mt-4 text-center col-span-full">
-                    <button type="submit" class="btn-purple-500">Save</button>
+                    <button type="submit" class="btn-primary-500">Save</button>
                 </div>
             </form>
         </div>SearchCountry
