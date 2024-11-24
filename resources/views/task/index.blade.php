@@ -44,8 +44,8 @@
 </style>
 <x-app-layout>
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+        <div class="m-6">
+            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md p-6">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search Task') }}</label>
@@ -54,11 +54,11 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search Task') }}" />
                             <button
-                                class="bg-teal-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('task.create') }}" class="bg-teal-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('task.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
             </div>
             <!-- Start heading here -->
@@ -67,7 +67,7 @@
                     <div class="dashboard-right pl-0 ">
                         <div class="tasks-table ">
                             <h2 class="text-xl font-semibold mb-4">{{ __('Latest Tasks') }}</h2>
-                            <div class="overflow-x-auto pb-1">
+                            <div class="overflow-x-auto pb-1 rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10 px-5 pb-20 pt-6 shadow-default sm:px-7.5">
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead
                                         class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
