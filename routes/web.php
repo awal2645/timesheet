@@ -246,6 +246,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/emails/send', [EmailController::class, 'send'])->name('emails.send');
     Route::get('/email/histories', [EmailController::class, 'index'])->name('emails.index');
 
-    Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
-    Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
+        Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
+    });
 });
