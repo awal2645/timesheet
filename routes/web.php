@@ -31,6 +31,7 @@ use App\Http\Controllers\WeeklyHolidayController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\LeaveApplicationController;
+use App\Http\Controllers\ThemeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -244,4 +245,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/emails/send', [EmailController::class, 'showForm'])->name('emails.send.form');
     Route::post('/emails/send', [EmailController::class, 'send'])->name('emails.send');
     Route::get('/email/histories', [EmailController::class, 'index'])->name('emails.index');
+
+    Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
+    Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
 });
