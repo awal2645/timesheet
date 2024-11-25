@@ -11,14 +11,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-black/10 bg-white/10  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-500 text-black dark:text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('client.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('client.create') }}" class="bg-primary-500 text-black dark:text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Client') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -33,7 +33,7 @@
                                     <div class="max-w-full overflow-x-auto">
                                         <table class="w-full table-auto">
                                             <thead>
-                                                <tr class="bg-gray-200  rounded-2xl text-left dark:bg-gray-700">
+                                                <tr class="rounded-2xl text-left ">
                                                     <th
                                                         class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11 ">
                                                         <div class="flex gap-2 items-center text-base">

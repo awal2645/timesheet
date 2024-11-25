@@ -11,14 +11,14 @@
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-purple-500 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('project.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('project.create') }}" class="bg-purple-500 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -133,8 +133,7 @@
                                                      
                                                         <a rel="noopener noreferrer">
                                                             @if ($project->hr_budget)
-                                                                ${{ ($totalCost, 2) ?? '' }}
-                                                            @else
+                                                            ${{ number_format($totalCost, 2) ?? '' }}                                                            @else
                                                                 ${{ $project->total_cost ?? '' }}
                                                             @endif
                                                         </a>
@@ -171,7 +170,7 @@
                                                     <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('project.edit', $project->id) }}"
-                                                                class="font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                                                                class="font-medium text-purple-600 dark:text-purple-500 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">

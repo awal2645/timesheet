@@ -227,7 +227,7 @@
 
                     <!-- Leave Management Dropdown -->
                     <li x-data="{ open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} }">
-                        <a href="{{ route('leave.index') }}"
+                        <a href="#" @click.stop="open = !open"
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-slate-200' }} hover:text-primary-500 truncate transition duration-150 text-gray-600">
                             <div>
                                 <span
@@ -240,7 +240,7 @@
                                 </span>
                             </div>
                             <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer"
-                                @click.prevent="open = !open">
+                               >
                                 <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-white"
                                     :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
                                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -249,6 +249,24 @@
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
                             <ul class="pl-9 mt-1" x-show="open" x-collapse>
+                                  <!-- Weekly Holidays -->
+                                  <li class="mb-1 last:mb-0">
+                                    <a href="{{ route('leave.index') }}"
+                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('leave.*') ? 'text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-slate-200' }} hover:text-primary-500 truncate transition duration-150 text-gray-600">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center">
+                                                <span
+                                                    class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-primary-500 inline-flex justify-center items-center">
+                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                </span>
+                                                <span
+                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                    {{ __('Leave') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
                                 <!-- Weekly Holidays -->
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('weekly_holidays.index') }}"
