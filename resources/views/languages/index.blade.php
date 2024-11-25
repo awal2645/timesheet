@@ -31,7 +31,7 @@
                                     <div class="max-w-full overflow-x-auto">
                                         <table class="w-full table-auto">
                                             <thead>
-                                                <tr class="bg-gray-200 rounded-2xl text-left dark:bg-gray-700">
+                                                <tr class="rounded-2xl text-left">
                                                     <th
                                                         class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
                                                         {{ __('Language Name') }}</th>

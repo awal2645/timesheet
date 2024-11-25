@@ -45,7 +45,8 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md p-6">
+            <div
+                class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md p-6">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search Task') }}</label>
@@ -67,10 +68,10 @@
                     <div class="dashboard-right pl-0 ">
                         <div class="tasks-table ">
                             <h2 class="text-xl font-semibold mb-4">{{ __('Latest Tasks') }}</h2>
-                            <div class="overflow-x-auto pb-1 rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10 px-5 pb-20 pt-6 shadow-default sm:px-7.5">
+                            <div
+                                class="overflow-x-auto pb-1 rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10 px-5 pb-20 pt-6 shadow-default sm:px-7.5">
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                         <tr>
                                             <th scope="col"
                                                 class="px-6 py-3 border border-gray-300 dark:border-gray-700">
@@ -107,7 +108,7 @@
                                         @if ($tasks->count() > 0)
                                             @foreach ($tasks as $key => $task)
                                                 <tr
-                                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                    class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                                     <th scope="row"
                                                         class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">

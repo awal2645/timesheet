@@ -256,7 +256,7 @@
                                                             ? __('offline') .
                                                                 (optional($transaction->manualPayment)->name
                                                                     ? "
-                                                                                                        (<b>{$transaction->manualPayment->name}</b>)"
+                                                                                                                                                                (<b>{$transaction->manualPayment->name}</b>)"
                                                                     : '')
                                                             : ucfirst($transaction->payment_provider) }}
                                                     </td>
@@ -284,8 +284,7 @@
 
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <thead
-                                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                             <tr>
 
                                                 <th scope="col"

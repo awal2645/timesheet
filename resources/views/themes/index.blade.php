@@ -23,48 +23,85 @@
                     <form method="POST" action="{{ route('themes.update') }}" class="space-y-6">
                         @csrf
                         @method('PUT')
-
-                        <!-- Primary Color -->
-                        <div class="space-y-2">
-                            <label for="primary_color"
-                                class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
-                                    </path>
-                                </svg>
-                                Primary Color
-                            </label>
-                            <div class="flex items-center space-x-3">
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="primary_color" name="primary_color"
-                                    value="{{ $theme->primary_color ?? '#0d6efd' }}">
-                                <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                    {{ $theme->primary_color ?? '#0d6efd' }}
-                                </span>
+                        <div class="grid grid-cols-4 gap-4">
+                            <!-- Primary Color -->
+                            <div class="space-y-2">
+                                <label for="primary_color"
+                                    class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                                        </path>
+                                    </svg>
+                                    Primary Color
+                                </label>
+                                <div class="flex items-center space-x-3">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="primary_color" name="primary_color"
+                                        value="{{ $theme->primary_color ?? '#0d6efd' }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->primary_color ?? '#0d6efd' }}
+                                    </span>
+                                </div>
                             </div>
-                        </div>
+    
+                            <!-- Secondary Color -->
+                            <div class="space-y-2">
+                                <label for="secondary_color"
+                                    class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                        </path>
+                                    </svg>
+                                    Secondary Color
+                                </label>
+                                <div class="flex items-center space-x-3">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="secondary_color" name="secondary_color"
+                                        value="{{ $theme->secondary_color ?? '#6c757d' }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->secondary_color ?? '#6c757d' }}
+                                    </span>
+                                </div>
+                            </div>
 
-                        <!-- Secondary Color -->
-                        <div class="space-y-2">
-                            <label for="secondary_color"
-                                class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
-                                    </path>
-                                </svg>
-                                Secondary Color
-                            </label>
-                            <div class="flex items-center space-x-3">
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="secondary_color" name="secondary_color"
-                                    value="{{ $theme->secondary_color ?? '#6c757d' }}">
-                                <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                    {{ $theme->secondary_color ?? '#6c757d' }}
-                                </span>
+                            <!-- Sidebar Dark -->
+                            <div class="space-y-2">
+                                <label for="sidebar_dark" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Sidebar Dark</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark ?? '#f8f9fa' }}">
+                            </div>
+
+                            <!-- Sidebar Light -->
+                            <div class="space-y-2">
+                                <label for="sidebar_light" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Sidebar Light</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light ?? '#f8f9fa' }}">
+                            </div>
+
+                            <!-- Header Dark -->
+                            <div class="space-y-2">
+                                <label for="header_dark" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Header Dark</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="header_dark" name="header_dark" value="{{ $theme->header_dark ?? '#f8f9fa' }}">
+                            </div>
+
+                            <!-- Header Light -->
+                            <div class="space-y-2">
+                                <label for="header_light" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Header Light</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="header_light" name="header_light" value="{{ $theme->header_light ?? '#f8f9fa' }}">
+                            </div>
+
+                            <!-- Body Dark -->
+                            <div class="space-y-2">
+                                <label for="body_dark" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Body Dark</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="body_dark" name="body_dark" value="{{ $theme->body_dark ?? '#f8f9fa' }}">
+                            </div>
+
+                            <!-- Body Light -->
+                            <div class="space-y-2">
+                                <label for="body_light" class="flex items-center text-sm font-medium text-gray-700 dark:text-white/90">Body Light</label>
+                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer" id="body_light" name="body_light" value="{{ $theme->body_light ?? '#f8f9fa' }}">
                             </div>
                         </div>
 

@@ -1,4 +1,4 @@
-<header class="sticky top-0 bg-white dark:bg-gray-800 border-b border-slate-200 dark:border-slate-700 z-10">
+<header class="sticky top-0 bg-header-light dark:bg-header-dark border-b border-slate-200 dark:border-slate-700 z-10">
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 -mb-px">
             <!-- Header: Left side -->

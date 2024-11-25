@@ -12,6 +12,12 @@ return new class extends Migration
             $table->id();
             $table->string('primary_color')->default('#0d6efd');
             $table->string('secondary_color')->default('#6c757d');
+            $table->string('sidebar_dark')->default('#f8f9fa');
+            $table->string('sidebar_light')->default('#f8f9fa');
+            $table->string('header_dark')->default('#f8f9fa');
+            $table->string('header_light')->default('#f8f9fa');
+            $table->string('body_dark')->default('#f8f9fa');
+            $table->string('body_light')->default('#f8f9fa');
             $table->string('font_family')->default('Inter');
             $table->boolean('is_active')->default(false);
             $table->timestamps();

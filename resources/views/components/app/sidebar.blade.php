@@ -1,16 +1,16 @@
 <div>
     <!-- Sidebar backdrop (mobile only) -->
-    <div class="relative inset-0 bg-gray-900 bg-opacity-30 z-40 lg:hidden  lg:z-auto transition-opacity duration-200"
+    <div class="relative inset-0 bg-sidebar-light dark:bg-sidebar-dark bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200"
         :class="sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak></div>
 
     <!-- Sidebar -->
     <div id="sidebar"
-        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 dark:bg-gray-800 bg-white  transition-all duration-200 ease-in-out"
+        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 bg-sidebar-light dark:bg-sidebar-dark transition-all duration-200 ease-in-out"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" @click.outside="sidebarOpen = false"
         @keydown.escape.window="sidebarOpen = false" x-cloak="lg" class="relative">
 
         <!-- Sidebar header -->
-        <div class="flex justify-between px-3 py-1 sticky top-0 z-50 bg-white dark:bg-gray-800">
+        <div class="flex px-3 py-1 sticky top-0 z-50 bg-sidebar-light dark:bg-sidebar-dark" :class="sidebarOpen ? 'justify-between':'justify-center'">
 
             <!-- Hamburger button -->
             <button x-show="!sidebarExpanded" class="text-slate-500 hover:text-slate-600 lg:block hidden"
@@ -226,8 +226,11 @@
                     @endcanany
 
                     <!-- Leave Management Dropdown -->
-                    <li x-data="{ open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} }">
-                        <a href="#" @click.stop="open = !open"
+                    <li x-data="{ 
+                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} 
+                    }" 
+                    x-effect="if (!sidebarOpen) open = true">
+                        <a href="#" @click.stop="sidebarOpen && (open = !open)"
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-slate-200' }} hover:text-primary-500 truncate transition duration-150 text-gray-600">
                             <div>
                                 <span
@@ -248,7 +251,7 @@
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
-                            <ul class="pl-9 mt-1" x-show="open" x-collapse>
+                            <ul class="mt-1" :class="sidebarOpen ? 'pl-9':'pl-0'" x-show="open" x-collapse>
                                   <!-- Weekly Holidays -->
                                   <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave.index') }}"

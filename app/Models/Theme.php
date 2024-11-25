@@ -9,6 +9,12 @@ class Theme extends Model
     protected $fillable = [
         'primary_color',
         'secondary_color',
+        'sidebar_dark',
+        'sidebar_light',
+        'header_dark',
+        'header_light',
+        'body_dark',
+        'body_light',
         'font_family',
         'is_active'
     ];

@@ -18,6 +18,12 @@ class ThemeController extends Controller
         $validated = $request->validate([
             'primary_color' => 'required|string',
             'secondary_color' => 'required|string',
+            'sidebar_dark' => 'required|string',
+            'sidebar_light' => 'required|string',
+            'header_dark' => 'required|string',
+            'header_light' => 'required|string',
+            'body_dark' => 'required|string',
+            'body_light' => 'required|string',
             'font_family' => 'required|string',
         ]);
 
@@ -34,6 +40,12 @@ class ThemeController extends Controller
     {
         $primaryColor = $this->hexToRgb($theme->primary_color);
         $secondaryColor = $this->hexToRgb($theme->secondary_color);
+        $sidebarDark = $this->hexToRgb($theme->sidebar_dark);
+        $sidebarLight = $this->hexToRgb($theme->sidebar_light);
+        $headerDark = $this->hexToRgb($theme->header_dark);
+        $headerLight = $this->hexToRgb($theme->header_light);
+        $bodyDark = $this->hexToRgb($theme->body_dark);
+        $bodyLight = $this->hexToRgb($theme->body_light);
 
         $css = ":root {\n";
         
@@ -67,6 +79,14 @@ class ThemeController extends Controller
                 $opacity
             );
         }
+
+        // Add direct color variables for sidebar, header, and body
+        $css .= sprintf("  --sidebar-dark: %s;\n", $theme->sidebar_dark);
+        $css .= sprintf("  --sidebar-light: %s;\n", $theme->sidebar_light);
+        $css .= sprintf("  --header-dark: %s;\n", $theme->header_dark);
+        $css .= sprintf("  --header-light: %s;\n", $theme->header_light);
+        $css .= sprintf("  --body-dark: %s;\n", $theme->body_dark);
+        $css .= sprintf("  --body-light: %s;\n", $theme->body_light);
 
         $css .= "}\n\n";
         

@@ -33,7 +33,7 @@
                                     class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10 px-5 pb-20 pt-6 shadow-default sm:px-7.5">
                                     <table class="w-full table-auto">
                                         <thead>
-                                            <tr class="bg-gray-200 rounded-2xl text-left dark:bg-gray-700">
+                                            <tr class="rounded-2xl text-left">
                                                 <th class="p-4 font-medium text-black dark:text-white">
                                                     <div class="flex gap-2 items-center text-base">
                                                         <span>{{ __('Employee Name') }}</span>

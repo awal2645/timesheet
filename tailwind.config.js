@@ -15,6 +15,18 @@ export default {
     theme: {
         extend: {
             colors: {
+                sidebar: {
+                    dark: "var(--sidebar-dark)",
+                    light: "var(--sidebar-light)",
+                },
+                header: {
+                    dark: "var(--header-dark)",
+                    light: "var(--header-light)",
+                },
+                body: {
+                    dark: "var(--body-dark)",
+                    light: "var(--body-light)",
+                },
                 primary: {
                     50: "var(--primary-50)",
                     100: "var(--primary-100)",
