@@ -10,19 +10,21 @@
         @keydown.escape.window="sidebarOpen = false" x-cloak="lg" class="relative">
 
         <!-- Sidebar header -->
-        <div class="flex px-3 py-1 sticky top-0 z-50 bg-sidebar-light dark:bg-sidebar-dark" :class="sidebarOpen ? 'justify-between':'justify-center'">
+        <div class="px-3 py-1 sticky top-0 z-50 bg-sidebar-light dark:bg-sidebar-dark">
 
-            <!-- Hamburger button -->
-            <button x-show="!sidebarExpanded" class="text-slate-500 hover:text-slate-600 lg:block hidden"
-                @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
-                @click="sidebarExpanded = !sidebarExpanded">
-                <span class="sr-only">Open sidebar</span>
-                <i class="fa-solid fa-bars text-2xl text-gray-900/80 dark:text-white/40 w-6"></i>
-            </button>
-            <!-- Logo link (shown only when sidebarExpanded is true) -->
-            <a class="block" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
-                <img src="{{ asset('images/logo-inv.png') }}" alt="" class="">
-            </a>
+            <div class="flex" :class="sidebarExpanded ? 'justify-between':'justify-center'">
+                <!-- Hamburger button -->
+                <button x-show="!sidebarExpanded" class="text-slate-500 hover:text-slate-600 lg:block hidden"
+                    @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
+                    @click="sidebarExpanded = !sidebarExpanded">
+                    <span class="sr-only">Open sidebar</span>
+                    <i class="fa-solid fa-bars text-2xl text-gray-900/80 dark:text-white/40 w-6"></i>
+                </button>
+                <!-- Logo link (shown only when sidebarExpanded is true) -->
+                <a class="block" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
+                    <img src="{{ asset('images/logo-inv.png') }}" alt="" class="">
+                </a>
+            </div>
 
             <a class="lg:hidden" x-show="!sidebarExpanded" href="{{ route('dashboard') }}">
                 <img src="{{ asset('images/logo-inv.png') }}" alt="" class="">
@@ -229,8 +231,8 @@
                     <li x-data="{ 
                         open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} 
                     }" 
-                    x-effect="if (!sidebarOpen) open = true">
-                        <a href="#" @click.stop="sidebarOpen && (open = !open)"
+                    x-effect="if (!sidebarExpanded) open = true">
+                        <a href="#" @click.stop="sidebarExpanded && (open = !open)"
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-slate-200' }} hover:text-primary-500 truncate transition duration-150 text-gray-600">
                             <div>
                                 <span
@@ -251,7 +253,7 @@
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
-                            <ul class="mt-1" :class="sidebarOpen ? 'pl-9':'pl-0'" x-show="open" x-collapse>
+                            <ul class="mt-1" :class="sidebarExpanded ? 'pl-9':'pl-0'" x-show="open" x-collapse>
                                   <!-- Weekly Holidays -->
                                   <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave.index') }}"
