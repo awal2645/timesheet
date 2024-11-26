@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cms;
 use App\Models\Role;
 use App\Models\Smtp;
 use App\Models\Task;
@@ -316,5 +317,12 @@ if (! function_exists('smtp')) {
     function smtp()
     {
         return Smtp::where('created_by', auth()->user()->id)->first();
+    }
+}
+
+if (! function_exists('cms')) {
+    function cms()
+    {
+        return Cms::first();
     }
 }
