@@ -570,6 +570,26 @@
                             </a>
                         </li>
                     @endcanany
+                    <!-- Cms -->
+                    @canany('Cms')
+                        <li>
+                            <a href="{{ route('cms.index') }}"
+                                class="block px-3 py-1.5 rounded {{ request()->routeIs('cms.index') ? 'text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-slate-200' }} hover:text-primary-500 truncate transition duration-150 text-gray-600 ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span
+                                            class="w-8 h-8 rounded bg-white dark:bg-gray-500 border border-gray-50 dark:border-transparent shadow-lg text-primary-500 inline-flex justify-center items-center">
+                                            <i class="fa-solid fa-gears text-base"></i>
+                                        </span>
+                                        <span
+                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                            {{ __('Cms') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endcanany
                     <!-- upgrade -->
                     @canany('General Settings')
                         <li>

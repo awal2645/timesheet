@@ -1,12 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CmsController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SMTPController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\AccountController;
@@ -31,7 +33,6 @@ use App\Http\Controllers\WeeklyHolidayController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\LeaveApplicationController;
-use App\Http\Controllers\ThemeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -246,8 +247,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/emails/send', [EmailController::class, 'send'])->name('emails.send');
     Route::get('/email/histories', [EmailController::class, 'index'])->name('emails.index');
 
-    Route::middleware(['auth'])->group(function () {
-        Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
-        Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
-    });
+    Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
+    Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
+
+   // In routes/web.php
+Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
+Route::put('/cms', [CmsController::class, 'update'])->name('cms.update');
+Route::post('/file/upload', [CmsController::class, 'uploadFile'])->name('file.upload');
+Route::post('/file/delete', [CmsController::class, 'deleteFile'])->name('file.delete');
 });
