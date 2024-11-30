@@ -1,16 +1,39 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 /* Additional styles */
-@import 'additional-styles/utility-patterns.css';
-@import 'additional-styles/flatpickr.css';
-@import 'additional-styles/custom.css';
+@import "additional-styles/utility-patterns.css";
+@import "additional-styles/flatpickr.css";
+@import "additional-styles/custom.css";
 
 /* Custom utility class using Tailwind */
+
 .card {
     @apply p-6 rounded-2xl dark:bg-card-dark bg-card-light backdrop-blur border border-black/10 dark:border-white/10; /* Tailwind utility for centering text */
 }
-
-
+.sidebar-menu-item {
+    @apply block px-3 py-1.5 rounded text-text-light hover:!text-black dark:text-text-dark dark:hover:!text-primary-100 font-medium truncate transition duration-150;
+}
+.sidebar-menu-icon {
+    @apply w-8 h-8 rounded bg-primary-50 text-white inline-flex justify-center items-center;
+}
+.sidebar-menu-text {
+    @apply text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
+}
+.sidebar-menu-item.active {
+    @apply text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500;
+}
+.table-header {
+    @apply bg-primary-300 !text-text-light dark:!text-text-dark border-separate;
+}
+.table-header th {
+    @apply px-4 py-4 font-medium;
+}
+.table-header tr th:first-child {
+    @apply rounded-l-md;
+}
+.table-header tr th:last-child {
+    @apply rounded-r-md;
+}
 

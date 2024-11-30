@@ -35,7 +35,7 @@
                             <div>
                                 <div class="card">
                                     <table class="w-full table-auto">
-                                        <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                        <thead class="table-header">
                                             <tr>
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Days of the Week') }}

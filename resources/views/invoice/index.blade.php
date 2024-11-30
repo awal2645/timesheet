@@ -29,7 +29,7 @@
                                 {{ __('Invoice List') }}</h2>
                             <div class="card">
                                 <table class="w-full table-auto">
-                                    <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                    <thead class="table-header">
                                         <tr class="rounded-2xl text-left">
                                             <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white">
                                                 {{ __('Invoice Number') }}</th>

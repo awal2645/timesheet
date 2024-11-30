@@ -2,8 +2,7 @@
 
 <x-app-layout>
     <div class="m-6">
-        <div
-            class="card flex justify-between items-center mb-12">
+        <div class="card flex justify-between items-center mb-12">
             <form action="{{ route('languages.index') }}" method="GET" class="w-full">
                 <div class="mb-5">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -33,64 +32,59 @@
                         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
                             {{ __('Language List') }}</h2>
                         <div class="card">
-                                <table class="w-full table-auto">
-                                    <thead class="bg-primary-300 text-text-light dark:text-text-dark">
-                                        <tr class="rounded-2xl text-left">
-                                            <th class="min-w-[220px] px-4 py-4 font-medium">
-                                                {{ __('Language Name') }}</th>
-                                            <th class="min-w-[150px] px-4 py-4 font-medium">
-                                                {{ __('Language Code') }}</th>
-                                            <th class="min-w-[150px] px-4 py-4 font-medium">
-                                                {{ __('Direction') }}</th>
-                                            <th class="px-4 py-4 font-medium">
-                                                {{ __('Actions') }}
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @if ($languagesList->count() > 0)
-                                            @foreach ($languagesList as $language)
-                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                        {{ $language->name }}</td>
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                        {{ $language->code }}</td>
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                        {{ __($language->direction) }}</td>
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                        <div class="flex justify-end">
-                                                            <a href="{{ route('languages.json.edit', $language->code) }}"
-                                                                class="text-primary-500 hover:text-primary-300">{{ __('Edit Json') }}</a>
-                                                            <a href="{{ route('languages.edit', $language->id) }}"
-                                                                class="text-primary-500 hover:text-primary-300">{{ __('Edit') }}</a>
-                                                            <form
-                                                                action="{{ route('languages.destroy', $language->id) }}"
-                                                                method="POST"
-                                                                onsubmit="return confirm('Are you sure you want to delete this language?');"
-                                                                class="ml-2">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="text-red-500 hover:text-red-700">{{ __('Delete') }}</button>
-                                                            </form>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        @else
-                                            <tr>
-                                                <td colspan="4" class="text-center py-8  ">
-                                                    <img src="{{ asset('images/no-data-found.svg') }}"
-                                                        alt="No data found" class="mx-auto max-w-xs">
+                            <table class="w-full table-auto">
+                                <thead class="table-header">
+                                    <tr class="rounded-2xl text-left">
+                                        <th class="min-w-[220px] px-4 py-4 font-medium">
+                                            {{ __('Language Name') }}</th>
+                                        <th class="min-w-[150px] px-4 py-4 font-medium">
+                                            {{ __('Language Code') }}</th>
+                                        <th class="min-w-[150px] px-4 py-4 font-medium">
+                                            {{ __('Direction') }}</th>
+                                        <th class="px-4 py-4 font-medium">
+                                            {{ __('Actions') }}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($languagesList->count() > 0)
+                                        @foreach ($languagesList as $language)
+                                            <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    {{ $language->name }}</td>
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    {{ $language->code }}</td>
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    {{ __($language->direction) }}</td>
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    <div class="flex justify-end">
+                                                        <a href="{{ route('languages.json.edit', $language->code) }}"
+                                                            class="text-primary-500 hover:text-primary-300">{{ __('Edit Json') }}</a>
+                                                        <a href="{{ route('languages.edit', $language->id) }}"
+                                                            class="text-primary-500 hover:text-primary-300">{{ __('Edit') }}</a>
+                                                        <form action="{{ route('languages.destroy', $language->id) }}"
+                                                            method="POST"
+                                                            onsubmit="return confirm('Are you sure you want to delete this language?');"
+                                                            class="ml-2">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                class="text-red-500 hover:text-red-700">{{ __('Delete') }}</button>
+                                                        </form>
+                                                    </div>
                                                 </td>
                                             </tr>
-                                        @endif
-                                    </tbody>
-                                </table>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="4" class="text-center py-8  ">
+                                                <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found"
+                                                    class="mx-auto max-w-xs">
+                                            </td>
+                                        </tr>
+                                    @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

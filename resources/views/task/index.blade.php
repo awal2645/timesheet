@@ -45,8 +45,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div
-                class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
+            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search Task') }}</label>
@@ -70,30 +69,29 @@
                             <h2 class="text-xl font-semibold mb-4">{{ __('Latest Tasks') }}</h2>
                             <div class="card">
                                 <div class="max-w-full">
-
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+                                        <thead class="table-header">
                                             <tr>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Task Name') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Client Name') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Employer Name') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Employee Name') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Time') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Status') }}
                                                 </th>
-                                                <th scope="col" class="px-6 py-3  ">
+                                                <th scope="col" class="">
                                                     {{ __('Action') }}
                                                 </th>
                                             </tr>
@@ -112,22 +110,22 @@
                                                                     {{ $task->task_name ?? '' }}</div>
                                                             </div>
                                                         </th>
-                                                        <td class="px-6 py-4  ">
+                                                        <td class="px-6 py-4">
                                                             <a rel="noopener noreferrer">
                                                                 {{ $task->client->client_name ?? '' }}
                                                             </a>
                                                         </td>
-                                                        <td class="px-6 py-4  ">
+                                                        <td class="px-6 py-4">
                                                             <a rel="noopener noreferrer">
                                                                 {{ $task->employer->employer_name ?? '' }}
                                                             </a>
                                                         </td>
-                                                        <td class="px-6 py-4  ">
+                                                        <td class="px-6 py-4">
                                                             <a rel="noopener noreferrer">
                                                                 {{ $task->employee->employee_name ?? '' }}
                                                             </a>
                                                         </td>
-                                                        <td class="px-6 py-4 d-flex  ">
+                                                        <td class="px-6 py-4 d-flex">
                                                             <div id="timer-{{ $task->id }}">
                                                                 {{ $task->time ?? '00:00' }}
                                                             </div>
@@ -158,7 +156,7 @@
                                                                 Stop
                                                             </button>
                                                         </td>
-                                                        <td class="px-6 py-4  ">
+                                                        <td class="px-6 py-4">
                                                             <div class="flex items-center space-x-2">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     id="statusIndicator"
@@ -187,7 +185,7 @@
                                                                 </form>
                                                             </div>
                                                         </td>
-                                                        <td class="px-6 py-4  ">
+                                                        <td class="px-6 py-4">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('task.edit', $task->id) }}"
                                                                     class="font-medium text-primary-600 dark:text-primary-300 hover:underline">
