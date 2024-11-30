@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <div
-        class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-gray-200 dark:border-gray-800 dark:bg-gray-900 shadow-md">
+        class="flex justify-between card">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Edit Language') }}</h2>
         <a href="{{ route('languages.index') }}"
             class="bg-primary-300 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
@@ -75,7 +75,6 @@
 
 <!-- Include CDN Links -->
 <link href="https://cdn.jsdelivr.net/npm/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-iconpicker/1.10.0/css/bootstrap-iconpicker.min.css"
     rel="stylesheet">
 

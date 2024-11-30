@@ -2,9 +2,9 @@
 
 <x-app-layout>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col m-6">
         <div class="w-full">
-            <div class="bg-white shadow-md rounded-lg">
+            <div class="card">
                 <div class="px-6 py-4 border-b">
                     <h3 class="text-lg font-semibold">
                         {{ $language->name }} - {{ __('translate_language') }}
@@ -18,17 +18,17 @@
                 <div class="p-6">
                     <!-- filter -->
                     <form id="formSubmit" action="" method="GET" onchange="this.submit();">
-                        <div class="flex flex-wrap mb-4">
-                            <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                                <label class="block text-sm font-medium text-gray-700">{{ __('search') }}</label>
+                        <div class="flex gap-4 items-center mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-light dark:text-dark">{{ __('search') }}</label>
                                 <input name="keyword" type="text" placeholder="{{ __('title') }}"
                                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200"
                                     value="{{ request('keyword') }}">
                             </div>
-                            <div class="w-full md:w-1/4">
+                            <div>
                                 <label class="block">&nbsp;</label>
                                 <button type="submit"
-                                    class="mt-2 w-full bg-primary-300 text-white rounded-md px-4 py-2">
+                                    class="w-full bg-primary-300 text-white rounded-md px-4 py-2">
                                     {{ __('search') }}
                                 </button>
                             </div>
@@ -53,7 +53,7 @@
                                             width="48%">{{ __('translation_text') }}</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tbody class="bg-white dark:bg-card-dark divide-y divide-gray-200">
                                     @php
                                         $lastPageTotalData =
                                             request()->input('page') == null || request()->input('page') == 1
