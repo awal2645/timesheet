@@ -5,7 +5,7 @@
 <x-app-layout>
     <div>
 
-        <div class="m-6 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
+        <div class="m-6 card">
 
             <div class="">
 

@@ -2,14 +2,12 @@
     {{ __('Create Leave Type') }}
 @endsection
 <x-app-layout>
-    <div
-        class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-black/10 dark:border-white/10 dark:bg-black/10 backdrop-blur">
+    <div class="flex justify-between m-8 card">
         <h2 class="text-xl font-medium">{{ __('Create Leave Type') }}</h2>
         <a href="{{ route('leave_types.index') }}"
             class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Leave Type List') }}</a>
     </div>
-    <div
-        class="m-8 p-6 bg-white/10 backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 rounded-lg shadow-md">
+    <div class="card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Leave Type') }}</h2>
         <form method="POST" action="{{ route('leave_types.store') }}">
             @csrf

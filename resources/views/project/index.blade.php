@@ -32,7 +32,7 @@
                     <div class="invoices-table ">
                         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
                             {{ __('Latest Project') }}</h2>
-                        <div class="table-card">
+                        <div class="card">
                             <div class="max-w-full">
                                 <table class="w-full table-auto">
                                     <thead class="bg-primary-300 text-text-light dark:text-text-dark">

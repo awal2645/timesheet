@@ -2,9 +2,9 @@
     {{ 'List Client' }}
 @endsection
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
-            <div class="my-8 card">
+    <div class="relative m-6">
+        <div>
+            <div class="my-8 card flex justify-between items-center">
                 <form action="{{ route('client.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -34,11 +34,10 @@
                         <div class="invoices-table ">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ">
                                 {{ __('Client
-                                                                                                List') }}
+                                                                                                                                                                                                List') }}
                             </h2>
                             <div>
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark  px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                <div class="card">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="bg-primary-300 text-text-light dark:text-text-dark">

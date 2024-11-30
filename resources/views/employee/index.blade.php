@@ -2,9 +2,9 @@
     {{ 'List Employee' }}
 @endsection
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
-            <div class="my-8 card">
+    <div class="relative m-6">
+        <div>
+            <div class="my-8 card flex justify-between items-center">
                 <form action="{{ route('employee.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">

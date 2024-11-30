@@ -2,8 +2,8 @@
     {{ 'TimeSheet Report' }}
 @endsection
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
+    <div class="relative m-6">
+        <div>
             <div class="my-8 card">
                 <form action="{{ route('reports.index') }}" method="GET" class="w-full">
                     <div class="mb-5">

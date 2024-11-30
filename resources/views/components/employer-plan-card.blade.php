@@ -1,7 +1,7 @@
 @props(['plan'])
 
 <div
-    class="bg-white/10 dark:bg-black/10 backdrop-blur rounded-lg shadow-md p-6 text-center flex flex-col justify-between h-full">
+    class="card">
     <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}</h2>
 
     @if ($plan->recommended)

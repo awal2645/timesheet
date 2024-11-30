@@ -2,9 +2,9 @@
     {{ __('Create Employee') }}
 @endsection
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4"> {{ __('Create Employee') }}</h2>
-        <form method="POST" action="{{ route('employee.store') }}" class="max-w-md mx-auto">
+        <form method="POST" action="{{ route('employee.store') }}" class="card">
             @csrf
             <!-- Employee Name -->
             <div class="relative z-0 w-full mb-5 group">

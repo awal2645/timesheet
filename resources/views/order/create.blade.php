@@ -2,15 +2,13 @@
     {{ __('Create Order') }}
 @endsection
 <x-app-layout>
-    <div
-        class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-black/10 dark:border-white/10 dark:bg-black/10 backdrop-blur">
+    <div class="flex items-center justify-between m-6 card">
         <h2 class="text-xl font-medium">{{ __('Create Order') }}</h2>
         <a href="{{ route('order.index') }}"
             class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Order List') }}</a>
     </div>
 
-    <div
-        class="m-8 p-6 bg-white/10 backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 rounded-lg shadow-md">
+    <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Order') }}</h2>
 
         <form method="POST" action="{{ route('order.store') }}">
