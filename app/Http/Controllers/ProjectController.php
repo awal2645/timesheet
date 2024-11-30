@@ -157,7 +157,7 @@ class ProjectController extends Controller
             // Your logic to update status goes here
             $project = Project::findOrFail($id);
             // Update employee
-            $project->update(['status' => $request->status]);
+            $project->update(['status' => $project->status == '1' ? '0' : '1']);
             // Determine color based on the updated status
 
             return redirect()->back()->with('success', 'Status updated successfully');

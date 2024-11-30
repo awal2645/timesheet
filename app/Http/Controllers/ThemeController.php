@@ -24,6 +24,8 @@ class ThemeController extends Controller
             'header_light' => 'required|string',
             'body_dark' => 'required|string',
             'body_light' => 'required|string',
+            'text_light' => 'required|string',
+            'text_dark' => 'required|string',
             'font_family' => 'required|string',
         ]);
 
@@ -46,6 +48,8 @@ class ThemeController extends Controller
         $headerLight = $this->hexToRgb($theme->header_light);
         $bodyDark = $this->hexToRgb($theme->body_dark);
         $bodyLight = $this->hexToRgb($theme->body_light);
+        $textLight = $this->hexToRgb($theme->text_light);
+        $textDark = $this->hexToRgb($theme->text_dark);
 
         $css = ":root {\n";
         
@@ -87,6 +91,8 @@ class ThemeController extends Controller
         $css .= sprintf("  --header-light: %s;\n", $theme->header_light);
         $css .= sprintf("  --body-dark: %s;\n", $theme->body_dark);
         $css .= sprintf("  --body-light: %s;\n", $theme->body_light);
+        $css .= sprintf("  --text-light: %s;\n", $theme->text_light);
+        $css .= sprintf("  --text-dark: %s;\n", $theme->text_dark);
 
         $css .= "}\n\n";
         

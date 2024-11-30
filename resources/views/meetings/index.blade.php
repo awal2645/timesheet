@@ -6,7 +6,7 @@
         <div class="m-6">
             <div
                 class="flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
-                <a href="{{ route('meeting.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('meeting.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -15,33 +15,33 @@
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
-                            <h2 class="text-xl font-semibold mb-4">{{ __('Latest Meeting') }}</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Meeting') }}</h2>
                             <div class="overflow-x-auto pb-1">
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                         <tr>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Meeting Topic') }}
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Host Mail') }}
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Start Date') }}
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Password') }}
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Status') }}
                                             </th>
                                             <th scope="col"
-                                                class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                class="px-6 py-3  ">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
@@ -63,7 +63,7 @@
                                                             </div>
                                                         </div>
                                                     </th>
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-6 py-4  ">
 
                                                         <div class="">
                                                             <div class="text-base font-semibold">
@@ -73,30 +73,30 @@
                                                             </div>
                                                             <div class="font-normal text-gray-500 mt-5">
                                                                 <a target="__blank"
-                                                                    class="text-white bg-primary-700 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-900"
+                                                                    class="text-white bg-primary-300 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-900"
                                                                     href=" {{ $meeting->meeting_join_url ?? '#' }}">
                                                                     {{ __('Join Zoom') }}
                                                                 </a>
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-6 py-4  ">
                                                         <a rel="noopener noreferrer">
                                                             {{ $meeting->start_time ?? '' }}
                                                         </a>
                                                     </td>
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-6 py-4  ">
                                                         <a rel="noopener noreferrer">
                                                             {{ $meeting->password ?? '' }}
                                                         </a>
                                                     </td>
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-6 py-4  ">
                                                         <a
                                                             rel="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:focus:ring-yellow-900">
                                                             {{ $meeting->status ?? '' }}
                                                         </a>
                                                     </td>
-                                                    {{-- <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    {{-- <td class="px-6 py-4  ">
                                                 <div class="flex items-center space-x-2">
                                                     <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
                                                         style="background-color: {{ $project->status === 1 ? 'green' : 'red' }};">
@@ -120,7 +120,7 @@
 
                                                 </div>
                                             </td> --}}
-                                                    <td class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                    <td class="px-6 py-4  ">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('project.edit', $meeting->id) }}"
                                                                 class="font-medium text-primary-600 dark:text-primary-500 hover:underline">
@@ -147,7 +147,7 @@
                                         @else
                                             <tr>
                                                 <td colspan="6"
-                                                    class="text-center py-8 border border-gray-300 dark:border-gray-700">
+                                                    class="text-center py-8  ">
                                                     <img src="{{ asset('images/no-data-found.svg') }}"
                                                         alt="No data found" class="mx-auto max-w-xs">
                                                 </td>

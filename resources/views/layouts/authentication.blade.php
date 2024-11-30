@@ -277,7 +277,7 @@
                 </div>
             </div>
         </section>
-        <div class="fixed top-0 end-0 w-1/2 bg-primary-500 h-screen -z-10"></div>
+        <div class="fixed top-0 end-0 w-1/2 bg-primary-300 h-screen -z-10"></div>
     </main>
 
     @livewireScripts

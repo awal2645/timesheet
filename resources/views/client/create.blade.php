@@ -5,7 +5,7 @@
     <div
         class="flex justify-between m-8 bg-white/10 px-8 py-4 rounded-lg border border-black/10 dark:border-white/10 dark:bg-black/10 backdrop-blur">
         <h2 class="text-xl font-medium">{{ __('Create Client') }}</h2>
-        <a href="{{ route('client.index') }}" class="btn bg-primary-500 dark:bg-primary-900 text-white">{{ __('Go to Client List') }}</a>
+        <a href="{{ route('client.index') }}" class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Client List') }}</a>
     </div>
     <div
         class="m-8 p-6 bg-white/10 backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 rounded-lg shadow-md">
@@ -93,7 +93,7 @@
                     value="{{ old('contact_name') }}" />
             </div>
             <button type="submit"
-                class="text-white bg-primary-500 dark:bg-primary-900 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+                class="text-white bg-primary-300 dark:bg-primary-900 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
         </form>
     </div>
 </x-app-layout>

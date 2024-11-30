@@ -123,7 +123,7 @@
 
             <!-- SAVE BUTTON -->
             <button type="submit"
-                class="w-full text-white bg-primary-500 hover:bg-primary-700 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
+                class="w-full text-white bg-primary-300 hover:bg-primary-300 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
                 {{ __('Save') }}
             </button>
         </form>

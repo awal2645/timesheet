@@ -36,23 +36,30 @@
         <ul>
             @if (auth()->user()->role != 'superadmin')
             <li>
-                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
+                <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
                     href="{{ route('my.account') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false">{{ __('Account Settings') }}</a>
+                    @focusout="open = false">
+                    <i class="fa-solid fa-gear mr-2"></i>
+                    {{ __('Account Settings') }}
+                </a>
             </li>
             @endif
             <li>
-                <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
+                <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
                     href="{{ route('profile.show') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false">{{ __('User Settings') }}</a>
+                    @focusout="open = false">
+                    <i class="fa-solid fa-user mr-2"></i>
+                    {{ __('User Settings') }}
+                </a>
             </li>
             <li>
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
 
-                    <a class="font-medium text-sm text-indigo-500 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center py-1 px-3"
+                    <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
                         href="{{ route('logout') }}" @click.prevent="$root.submit();" @focus="open = true"
                         @focusout="open = false">
+                        <i class="fa-solid fa-right-from-bracket mr-2"></i>
                         {{ __('Sign Out') }}
                     </a>
                 </form>

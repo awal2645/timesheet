@@ -7,7 +7,7 @@
                 <button x-show="sidebarExpanded" class="text-slate-500 text-2xl hover:text-slate-600"
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
-                    <span class="sr-only">Open sidebar</span>
+                    <span class="sr-only">{{ __('Open sidebar') }}</span>
                     <i class="fa-solid fa-bars text-black dark:text-white"></i>
                 </button>
 
@@ -15,11 +15,14 @@
                 <button x-show="!sidebarExpanded" class=" lg:hidden text-slate-500 text-2xl hover:text-slate-600"
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
-                    <span class="sr-only">Open sidebar</span>
+                    <span class="sr-only">{{ __('Open sidebar') }}</span>
                     <i class="fa-solid fa-bars text-2xl p-3 text-black dark:text-white"></i>
                 </button>
                 <a x-show="!sidebarExpanded" class="hidden lg:block" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto">
+                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
+                    <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
+                    
+                    
                 </a>
             </div>
 

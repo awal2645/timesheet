@@ -200,31 +200,31 @@
                         <div class="invoices-table ">
                             <div class="overflow-x-auto pb-1">
                                 @if (auth()->user()->role != 'employee')
-                                    <h2 class="text-xl font-semibold mb-4">{{ __('Recent Invoice') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Recent Invoice') }}</h2>
 
                                     <table class="min-w-full table-auto text-sm">
                                         <thead
                                             class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
                                             <tr class="text-center">
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Invoice Number') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Date') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Plan') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Employer') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Amount') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Payment Gateway') }}
                                                 </th>
-                                                <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                                <th class="p-3  ">
                                                     {{ __('Payment Status') }}
                                                 </th>
                                             </tr>
@@ -232,26 +232,26 @@
                                         <tbody>
                                             @forelse ($transactions as $transaction)
                                                 <tr class="text-center  mt-5 pt-5">
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         #{{ $transaction->order_id }}</td>
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         @if ($transaction->payment_type == 'per_job_based')
                                                             <span
                                                                 class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                         @else
                                                             <span
-                                                                class="px-2 py-1 text-sm bg-primary-500 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                                class="px-2 py-1 text-sm bg-primary-300 text-white rounded">{{ $transaction->plan->label }}</span>
                                                         @endif
                                                     </td>
 
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         {{ ucfirst($transaction->employer->user->username) }}</td>
 
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         ${{ $transaction->usd_amount }}</td>
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         {{ $transaction->payment_provider == 'offline'
                                                             ? __('offline') .
                                                                 (optional($transaction->manualPayment)->name
@@ -260,7 +260,7 @@
                                                                     : '')
                                                             : ucfirst($transaction->payment_provider) }}
                                                     </td>
-                                                    <td class="py-3 border border-gray-300 dark:border-gray-700">
+                                                    <td class="py-3  ">
                                                         <span
                                                             class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
                                                             {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
@@ -270,7 +270,7 @@
                                             @empty
                                                 <tr>
                                                     <td colspan="7"
-                                                        class="text-center py-8 border border-gray-300 dark:border-gray-700 dark:text-gray-100">
+                                                        class="text-center py-8   dark:text-gray-100">
                                                         <img src="{{ asset('images/no-data-found.svg') }}"
                                                             alt="No data found" class="mx-auto max-w-xs">
                                                     </td>
@@ -280,7 +280,7 @@
                                     </table>
                                 @endif
                                 @if (auth()->user()->role === 'employee')
-                                    <h2 class="text-xl font-semibold mb-4">{{ __('Latest Report Status') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Report Status') }}</h2>
 
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -288,15 +288,15 @@
                                             <tr>
 
                                                 <th scope="col"
-                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    class="px-6 py-3  ">
                                                     Name
                                                 </th>
                                                 <th scope="col"
-                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    class="px-6 py-3  ">
                                                     Date
                                                 </th>
                                                 <th scope="col"
-                                                    class="px-6 py-3 border border-gray-300 dark:border-gray-700">
+                                                    class="px-6 py-3  ">
                                                     Status
                                                 </th>
                                             </tr>
@@ -305,7 +305,7 @@
                                             @if ($timeReports->count() > 0)
                                                 @foreach ($timeReports as $key => $timeReport)
                                                     <tr
-                                                        class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                        class="bg-white dark:bg-gray-800   hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                                         <th scope="row"
                                                             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -317,7 +317,7 @@
                                                             </div>
                                                         </th>
                                                         <td
-                                                            class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                            class="px-6 py-4  ">
                                                             <div class="">
                                                                 <div class="text-base font-semibold">
                                                                     {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
@@ -325,7 +325,7 @@
                                                             </div>
                                                         </td>
                                                         <td
-                                                            class="px-6 py-4 border border-gray-300 dark:border-gray-700">
+                                                            class="px-6 py-4  ">
                                                             <div class="flex items-center space-x-2">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     id="statusIndicator"

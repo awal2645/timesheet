@@ -44,7 +44,7 @@
             </div>
 
             <button type="submit"
-                class="bg-primary-500 text-white px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
+                class="bg-primary-300 text-white px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
         </form>
     </div>
 

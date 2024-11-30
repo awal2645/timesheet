@@ -99,7 +99,7 @@
                         href="../../templates/agency/index.html" aria-current="page">Home</a>
 
                     <div>
-                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-500 font-medium text-sm text-white rounded-md focus:outline-none px-5"
+                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-300 font-medium text-sm text-white rounded-md focus:outline-none px-5"
                             href="{{ route('login') }}">
                             Login
                         </a>
@@ -552,7 +552,7 @@
                         </div>
                         <!-- End Item -->
 
-                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-300 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                             href="#">
                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -722,7 +722,7 @@
                                 </p>
 
                                 <p class="mt-5">
-                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-500 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-300 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                                         href="#">
                                         {{ __('Submit') }}
                                         <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5 group-hover:translate-x-0 group-focus:translate-x-0.5 group-focus:translate-x-0"
@@ -866,7 +866,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -896,7 +896,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -926,7 +926,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-500 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>

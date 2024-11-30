@@ -51,6 +51,10 @@ export default {
                     800: "var(--secondary-800)",
                     900: "var(--secondary-900)",
                 },
+                text: {
+                    light: "var(--text-light)",
+                    dark: "var(--text-dark)",
+                }
             },
             boxShadow: {
                 DEFAULT:

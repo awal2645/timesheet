@@ -69,12 +69,12 @@
         {{-- Paypal payment --}}
         @if (config('paypal.mode') == 'sandbox')
             @if (config('paypal.active') && config('paypal.sandbox.client_id') && config('paypal.sandbox.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-primary-500 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-primary-300 rounded-lg px-4 py-2">
                     <i class="fa-brands fa-paypal"></i> </button>
             @endif
         @else
             @if (config('paypal.active') && config('paypal.live.client_id') && config('paypal.live.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn bg-primary-500 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn bg-primary-300 rounded-lg px-4 py-2">
                     {{ __('Pay with PayPal') }}
                 </button>
             @endif

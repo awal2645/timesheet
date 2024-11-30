@@ -10,7 +10,7 @@
                         {{ $language->name }} - {{ __('translate_language') }}
                     </h3>
                     <a href="{{ route('languages.index') }}"
-                        class="btn bg-primary-500 text-white float-right flex items-center justify-center px-4 py-2 rounded">
+                        class="btn bg-primary-300 text-white float-right flex items-center justify-center px-4 py-2 rounded">
                         <i class="fas fa-arrow-left"></i>
                         {{ __('back') }}
                     </a>
@@ -28,7 +28,7 @@
                             <div class="w-full md:w-1/4">
                                 <label class="block">&nbsp;</label>
                                 <button type="submit"
-                                    class="mt-2 w-full bg-primary-500 text-white rounded-md px-4 py-2">
+                                    class="mt-2 w-full bg-primary-300 text-white rounded-md px-4 py-2">
                                     {{ __('search') }}
                                 </button>
                             </div>

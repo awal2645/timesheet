@@ -138,7 +138,7 @@
             {{-- Submit Button --}}
             <div class="relative z-0 w-full mb-5 group">
                 <button type="submit"
-                    class="w-full text-white bg-primary-500 hover:bg-primary-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700">
+                    class="w-full text-white bg-primary-300 hover:bg-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300">
                     {{ __('Update Task') }}
                 </button>
             </div>

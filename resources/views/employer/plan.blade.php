@@ -18,7 +18,7 @@
                                     </p>
                                     <div class="mt-6">
                                         <a href="{{ route('plans.index') }}"
-                                            class="btn bg-primary-500 text-white py-2 px-6 rounded-full hover:bg-primary-500 dark:bg-primary-700 dark:hover:bg-primary-800 shadow-md transition">
+                                            class="btn bg-primary-300 text-white py-2 px-6 rounded-full hover:bg-primary-300 dark:bg-primary-300 dark:hover:bg-primary-800 shadow-md transition">
                                             {{ __('Upgrade plan') }}
                                         </a>
                                     </div>
@@ -50,24 +50,24 @@
                         </div>
                         <!-- Invoice Table Section -->
                         <div class="invoices-table mt-10">
-                            <h2 class="text-xl font-semibold mb-4">{{ __('Latest Plan') }}</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Plan') }}</h2>
                             <div class="overflow-x-auto pb-1">
                                 <table class="min-w-full table-auto text-sm">
                                     <thead
                                         class="bg-white shadow-lg rounded-sm border border-slate-200 dark:border-gray-800 dark:text-gray-100 dark:bg-gray-800">
                                         <tr class="text-center">
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Invoice Number') }}
                                             </th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Date') }}</th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Plan') }}</th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Employer') }}</th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Amount') }}</th>
-                                            <th class="p-3 border border-gray-300 dark:border-gray-700">
+                                            <th class="p-3  ">
                                                 {{ __('Payment Gateway') }}</th>
                                         </tr>
                                     </thead>
@@ -75,22 +75,22 @@
                                         @forelse ($transactions as $transaction)
                                             <tr
                                                 class="border-b text-center border-gray-200 dark:border-gray-800 mt-5 pt-5">
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     #{{ $transaction->order_id }}</td>
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     @if ($transaction->payment_type == 'per_job_based')
                                                         <span
                                                             class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                     @else
                                                         <span
-                                                            class="px-2 py-1 text-sm bg-primary-500 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
+                                                            class="px-2 py-1 text-sm bg-primary-300 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
                                                     @endif
                                                 </td>
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     ${{ $transaction->usd_amount }}</td>
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     {{ $transaction->payment_provider == 'offline'
                                                         ? __('offline') .
                                                             (optional($transaction->manualPayment)->name
@@ -99,7 +99,7 @@
                                                                 : '')
                                                         : ucfirst($transaction->payment_provider) }}
                                                 </td>
-                                                <td class="p-5 border border-gray-300 dark:border-gray-700">
+                                                <td class="p-5  ">
                                                     <span
                                                         class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
                                                         {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}

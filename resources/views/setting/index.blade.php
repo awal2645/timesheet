@@ -24,7 +24,7 @@
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-500 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -61,7 +61,7 @@
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-500 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -97,7 +97,7 @@
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-500 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -246,7 +246,7 @@
             </div>
 
             <button type="submit"
-                class="mt-6 text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                class="mt-6 text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
                 {{ __('Save Settings') }}
             </button>
         </form>

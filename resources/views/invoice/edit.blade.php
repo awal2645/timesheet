@@ -6,7 +6,7 @@
         <div
             class="mb-12 px-5 py-6 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
 
-            <a href="{{ route('invoice.index') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg"><i
+            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
                     class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
         </div>
         <div class="p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10 shadow-md">
@@ -87,7 +87,7 @@
                 </div>
 
                 <button type="submit"
-                    class="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
+                    class="text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
             </form>
         </div>
     </div>

@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <div class="m-6 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
-        <h2 class="text-xl font-semibold mb-4">Add Weekly Holiday</h2>
+        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">Add Weekly Holiday</h2>
 
         <form action="{{ route('weekly_holidays.store') }}" method="POST">
             @csrf
@@ -19,7 +19,7 @@
                     <option value="Sunday">Sunday</option>
                 </select>
             </div>
-            <button type="submit" class="bg-primary-500 text-white px-4 py-2 rounded-lg">Add Holiday</button>
+            <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg">Add Holiday</button>
         </form>
     </div>
 

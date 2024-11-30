@@ -46,7 +46,7 @@ class ClientController extends Controller
                 }
 
                 // Paginate the filtered clients
-                $clients = $clients->paginate(5);
+                $clients = $clients->paginate(10);
 
             } else {
                 // If user is not an employer, show all clients
@@ -68,7 +68,7 @@ class ClientController extends Controller
                 }
 
                 // Paginate the filtered clients
-                $clients = $clients->paginate(5);
+                $clients = $clients->paginate(10);
             }
 
             // Fetch all employers
@@ -181,7 +181,7 @@ class ClientController extends Controller
             $client = Client::findOrFail($id);
 
             // Update employee
-            $client->update(['status' => $request->status]);
+            $client->update(['status' => $client->status == '1' ? '0' : '1']);
             // Determine color based on the updated status
 
             return redirect()->back()->with('success', 'Status updated successfully');

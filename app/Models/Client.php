@@ -21,4 +21,21 @@ class Client extends Model
     {
         return $this->hasMany(TimeReport::class);
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+   
+    public function totalProject()
+    {
+        return $this->projects()->count();
+    }
+
+    public function totalTask()
+{
+    return Task::whereIn('project_id', $this->projects()->pluck('id'))->count();
+}
+
 }

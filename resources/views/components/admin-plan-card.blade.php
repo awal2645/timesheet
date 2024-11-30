@@ -62,7 +62,7 @@
 
     <div class="flex justify-between items-center">
         <a href="{{ route('plans.edit', $plan->id) }}"
-            class="text-white bg-primary-500 hover:bg-primary-600 rounded-lg px-4 py-2">
+            class="text-white bg-primary-300 hover:bg-primary-600 rounded-lg px-4 py-2">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
         <form id="delete-form-{{ $plan->id }}" action="{{ route('plans.destroy', $plan->id) }}" method="POST"

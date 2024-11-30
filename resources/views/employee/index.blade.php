@@ -1,24 +1,29 @@
 @section('title')
-    {{ __('List Employee') }}
+{{ 'List Employee' }}
 @endsection
 <x-app-layout>
-    <div class="relative overflow-x-auto">
-        <div class="container mx-8">
+    <div class="relative m-3">
+        <div class="container mx-auto px-4">
             <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
-                <form action="{{ route('employee.index') }}" method="GET">
+                class="my-8 px-5 py-3 rounded-2xl dark:bg-header-dark bg-header-light backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+                <form action="{{ route('employee.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
+                            {{ __('Search') }}
+                        </label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-header-dark bg-header-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-500 text-white px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                {{ __('Search') }}
+                            </button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('employee.create') }}" class="bg-primary-500 text-white px-4 py-2 rounded-lg">
+                <a href="{{ route('employee.create') }}"
+                    class="bg-primary-300 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                     <i class="fa-solid fa-plus"></i> {{ __('Create Employee') }}
                 </a>
             </div>
@@ -27,82 +32,55 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-xl font-semibold mb-4">{{ __('Employee List') }}</h2>
-                            <div class="overflow-x-auto">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Employee List') }}</h2>
+                            <div class="overflow-hidden">
                                 <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-white/10 backdrop-blur dark:bg-black/10 px-5 pb-20 pt-6 shadow-default sm:px-7.5">
-                                    <table class="w-full table-auto">
-                                        <thead>
-                                            <tr class="rounded-2xl text-left">
-                                                <th class="p-4 font-medium text-black dark:text-white">
-                                                    <div class="flex gap-2 items-center text-base">
-                                                        <span>{{ __('Employee Name') }}</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="bi bi-arrow-down size-3" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                        </svg>
-                                                    </div>
-                                                </th>
-                                                <th class="p-4 font-medium text-black dark:text-white">
-                                                    <div class="flex gap-2 items-center text-base">
-                                                        <span>{{ __('Employer Name') }}</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="bi bi-arrow-down size-3" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                        </svg>
-                                                    </div>
-                                                </th>
-                                                <th class="p-4 font-medium text-black dark:text-white">
-                                                    <div class="flex gap-2 items-center text-base">
-                                                        <span>{{ __('Total Leave') }}</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="bi bi-arrow-down size-3" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                        </svg>
-                                                    </div>
-                                                </th>
-                                                <th class="p-4 font-medium text-black dark:text-white">
-                                                    <div class="flex gap-2 items-center text-base">
-                                                        <span>{{ __('Status') }}</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            class="bi bi-arrow-down size-3" viewBox="0 0 16 16">
-                                                            <path fill-rule="evenodd"
-                                                                d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1" />
-                                                        </svg>
-                                                    </div>
-                                                </th>
-                                                <th class="p-4 font-medium text-black dark:text-white">
-                                                    {{ __('Action') }}</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($employees as $employee)
-                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                    <td class="p-4">
-                                                        <div class="flex items-center">
-                                                            @if ($employee->user->image)
-                                                                <img class="w-10 h-10 rounded-full"
-                                                                    src="{{ asset($employee->user->image) }}"
-                                                                    alt="image">
-                                                            @else
-                                                                <img class="w-10 h-10 rounded-full"
-                                                                    src="https://img.freepik.com/premium-vector/company-icon-simple-element-illustration-company-concept-symbol-design-can-be-used-web-mobile_159242-7784.jpg"
-                                                                    alt="image">
-                                                            @endif
-                                                            <div class="ml-3">
-                                                                <div class="text-base font-semibold">
-                                                                    {{ $employee->employee_name }}</div>
-                                                                <div class="text-sm text-gray-500">
-                                                                    {{ $employee->user->email }}</div>
-                                                            </div>
+                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                    <div class="max-w-full">
+                                        <table class="w-full table-auto">
+                                            <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                                <tr class="rounded-2xl text-left">
+                                                    <th class="min-w-[220px] px-4 py-4 font-medium">
+                                                        <div class="flex gap-2 items-center text-base">
+                                                            <span>{{ __('Employee Name') }}</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="min-w-[150px] px-4 py-4 font-medium">
+                                                        <div class="flex gap-2 items-center text-base">
+                                                            <span>{{ __('Employer Name') }}</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="min-w-[120px] px-4 py-4 font-medium">
+                                                        <div class="flex gap-2 items-center text-base">
+                                                            <span>{{ __('Total Leave') }}</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="px-4 py-4 font-medium">
+                                                        <div class="flex gap-2 items-center text-base">
+                                                            <span>{{ __('Status') }}</span>
+                                                        </div>
+                                                    </th>
+                                                    <th class="px-4 py-4 font-medium"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($employees as $employee)
+                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-strokedark xl:pl-11">
+                                                        <div class="text-sm font-semibold">
+                                                            {{ $employee->employee_name }}
+                                                        </div>
+                                                        <div class="text-xs font-normal text-gray-500">
+                                                            {{ $employee->user->email }}
                                                         </div>
                                                     </td>
-                                                    <td class="p-4">{{ $employee->employer->employer_name }}</td>
-                                                    <td class="p-4">{{ $employee->approvedLeaveCount() ?? 0 }}</td>
-                                                    <td class="p-4">
+                                                    <td class="text-sm border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        {{ $employee->employer->employer_name }}
+                                                    </td>
+                                                    <td class="text-sm border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        {{ $employee->approvedLeaveCount() ?? 0 }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5 dark:border-strokedark">
                                                         <div class="flex items-center">
                                                             <div class="h-2.5 w-2.5 rounded-full mr-2"
                                                                 style="background-color: {{ $employee->status === 1 ? 'green' : 'red' }};">
@@ -124,15 +102,14 @@
                                                             </form>
                                                         </div>
                                                     </td>
-                                                    <td class="p-4">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                         <div class="flex justify-end">
                                                             <span x-data="{ openDropdown: false }" class="relative">
                                                                 <button @click="openDropdown = !openDropdown"
                                                                     class="focus:outline-none border border-black/30 dark:border-white/30 px-2 py-1.5 rounded">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="16" height="16"
-                                                                        fill="currentColor" class="bi bi-three-dots"
-                                                                        viewBox="0 0 16 16">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                        height="16" fill="currentColor"
+                                                                        class="bi bi-three-dots" viewBox="0 0 16 16">
                                                                         <path
                                                                             d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
                                                                     </svg>
@@ -143,67 +120,81 @@
                                                                     <a href="{{ route('employee.edit', $employee->id) }}"
                                                                         class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke-width="1.5" stroke="currentColor"
-                                                                            class="w-4 h-4">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                                                                            fill="currentColor"
+                                                                            class="bi bi-pencil-square size-4"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                                            <path fill-rule="evenodd"
+                                                                                d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                                                         </svg>
-                                                                        Edit
+                                                                        {{ __('Edit') }}
                                                                     </a>
                                                                     <button
                                                                         onclick="showConfirmation({{ $employee->id }})"
                                                                         class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                                            fill="none" viewBox="0 0 24 24"
-                                                                            stroke-width="1.5" stroke="currentColor"
-                                                                            class="w-4 h-4">
-                                                                            <path stroke-linecap="round"
-                                                                                stroke-linejoin="round"
-                                                                                d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                                                            fill="currentColor"
+                                                                            class="bi bi-trash size-4"
+                                                                            viewBox="0 0 16 16">
+                                                                            <path
+                                                                                d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                                                            <path
+                                                                                d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                                                                         </svg>
-                                                                        Delete
+                                                                        {{ __('Delete') }}
                                                                     </button>
                                                                 </div>
                                                             </span>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                            @empty
+                                                @empty
                                                 <tr>
-                                                    <td colspan="5" class="text-center py-8">
+                                                    <td colspan="5"
+                                                        class="text-center py-8  ">
                                                         <img src="{{ asset('images/no-data-found.svg') }}"
                                                             alt="No data found" class="mx-auto max-w-xs">
                                                     </td>
                                                 </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             @if ($employees->total() > $employees->count())
-                <div class=" mt-2">
-                    <div class="d-flex justify-content-center">
-                        {{ $employees->links() }}
-                    </div>
+            <div class="mt-2">
+                <div class="d-flex justify-content-center">
+                    {{ $employees->links() }}
                 </div>
+            </div>
             @endif
         </div>
     </div>
+    <script>
+        function showConfirmation(id) {
+            Swal.fire({
+                title: 'Want to delete this Employee!',
+                text: "{{ __('If you are ready?') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/employee/destroy/" + id;
+                }
+            });
+        }
+    </script>
+    <style>
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
 </x-app-layout>
-<style>
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
-
-    #searchInput {
-        width: 160px;
-        /* Adjust the width as needed */
-    }
-</style>

@@ -16,7 +16,9 @@ class Theme extends Model
         'body_dark',
         'body_light',
         'font_family',
-        'is_active'
+        'is_active',
+        'text_light',
+        'text_dark'
     ];
 
     public static function getActive()

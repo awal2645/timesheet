@@ -33,9 +33,9 @@
                     @php $type = $email_template->type ?? 'new'; @endphp
                     <li>
                         <a href="#"
-                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-700"
+                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-primary-300 hover:text-white dark:hover:bg-primary-300"
                             :class="{
-                                'bg-primary-500 dark:bg-primary-500 text-white': activeTab === '{{ $type }}',
+                                'bg-primary-300 dark:bg-primary-300 text-white': activeTab === '{{ $type }}',
                                 'text-gray-700 dark:text-gray-300': activeTab !== '{{ $type }}'
                             }"
                             @click.prevent="activeTab = '{{ $type }}'; initEditor();">
@@ -100,7 +100,7 @@
                                 <!-- Submit Button -->
                                 <div class="flex justify-center mt-6">
                                     <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-500 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-300 hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         <i class="fas fa-sync mr-2"></i>{{ __('Update') }}
                                     </button>
                                 </div>
