@@ -4,8 +4,7 @@
 <x-app-layout>
     <div class="m-6">
         <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">Application Settings</h2>
-        <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data"
-            class="card">
+        <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data" class="card">
             @csrf
             @method('PUT')
 
@@ -123,12 +122,10 @@
 
             <div class="grid grid-cols-2 gap-6 mt-8">
                 <!-- Email -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="email" name="email" id="email"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('email', $settings->email) }}" />
-                    <label for="email"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="email" name="email" id="email" placeholder=" " required
+                        value="{{ old('email', $settings->email) }}" />
+                    <label for="email">
                         {{ __('Email') }}
                     </label>
                     @error('email')
@@ -137,12 +134,10 @@
                 </div>
 
                 <!-- Phone -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="phone" id="phone"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('phone', $settings->phone) }}" />
-                    <label for="phone"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="text" name="phone" id="phone" placeholder=" " required
+                        value="{{ old('phone', $settings->phone) }}" />
+                    <label for="phone">
                         {{ __('Phone') }}
                     </label>
                     @error('phone')
@@ -151,12 +146,10 @@
                 </div>
 
                 <!-- Address -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="address" id="address"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('address', $settings->address) }}" />
-                    <label for="address"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="text" name="address" id="address" placeholder=" " required
+                        value="{{ old('address', $settings->address) }}" />
+                    <label for="address">
                         {{ __('Address') }}
                     </label>
                     @error('address')
@@ -165,12 +158,10 @@
                 </div>
 
                 <!-- Copyright -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="copyright" id="copyright"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('copyright', $settings->copyright) }}" />
-                    <label for="copyright"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="text" name="copyright" id="copyright" placeholder=" " required
+                        value="{{ old('copyright', $settings->copyright) }}" />
+                    <label for="copyright">
                         {{ __('Copyright') }}
                     </label>
                     @error('copyright')
@@ -179,12 +170,10 @@
                 </div>
 
                 <!-- Social Media URLs -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="url" name="facebook_url" id="facebook_url"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('facebook_url', $settings->facebook_url) }}" />
-                    <label for="facebook_url"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="url" name="facebook_url" id="facebook_url" placeholder=" "
+                        value="{{ old('facebook_url', $settings->facebook_url) }}" />
+                    <label for="facebook_url">
                         {{ __('Facebook URL') }}
                     </label>
                     @error('facebook_url')
@@ -192,12 +181,10 @@
                     @enderror
                 </div>
 
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="url" name="instagram_url" id="instagram_url"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('instagram_url', $settings->instagram_url) }}" />
-                    <label for="instagram_url"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="url" name="instagram_url" id="instagram_url" placeholder=" "
+                        value="{{ old('instagram_url', $settings->instagram_url) }}" />
+                    <label for="instagram_url">
                         {{ __('Instagram URL') }}
                     </label>
                     @error('instagram_url')
@@ -205,12 +192,10 @@
                     @enderror
                 </div>
 
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="url" name="linkedin_url" id="linkedin_url"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('linkedin_url', $settings->linkedin_url) }}" />
-                    <label for="linkedin_url"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="url" name="linkedin_url" id="linkedin_url" placeholder=" "
+                        value="{{ old('linkedin_url', $settings->linkedin_url) }}" />
+                    <label for="linkedin_url">
                         {{ __('LinkedIn URL') }}
                     </label>
                     @error('linkedin_url')
@@ -218,12 +203,10 @@
                     @enderror
                 </div>
 
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="url" name="twitter_url" id="twitter_url"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('twitter_url', $settings->twitter_url) }}" />
-                    <label for="twitter_url"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="url" name="twitter_url" id="twitter_url" placeholder=" "
+                        value="{{ old('twitter_url', $settings->twitter_url) }}" />
+                    <label for="twitter_url">
                         {{ __('Twitter URL') }}
                     </label>
                     @error('twitter_url')
@@ -231,12 +214,10 @@
                     @enderror
                 </div>
 
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="url" name="youtube_url" id="youtube_url"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('youtube_url', $settings->youtube_url) }}" />
-                    <label for="youtube_url"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="url" name="youtube_url" id="youtube_url" placeholder=" "
+                        value="{{ old('youtube_url', $settings->youtube_url) }}" />
+                    <label for="youtube_url">
                         {{ __('YouTube URL') }}
                     </label>
                     @error('youtube_url')

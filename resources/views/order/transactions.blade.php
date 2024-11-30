@@ -35,7 +35,7 @@
                             <div>
                                 <div class="card">
                                     <table class="w-full table-auto">
-                                        <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                        <thead class="table-header">
                                             <tr class="rounded-2xl text-left">
                                                 <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Date') }}</th>

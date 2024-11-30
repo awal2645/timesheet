@@ -2,8 +2,7 @@
 
 <x-app-layout>
     <div class="m-6">
-        <div
-            class="flex justify-between card mb-12">
+        <div class="flex justify-between card mb-12">
             <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Create Language') }}</h2>
             <a href="{{ route('languages.index') }}"
                 class="btn bg-primary-300 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
@@ -14,17 +13,17 @@
             <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">{{ __('Create New Language') }}</h2>
             <form method="POST" action="{{ route('languages.store') }}">
                 @csrf
-    
+
                 <!-- Language Name -->
                 <div class="mb-5">
-                    <label for="name"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                    <label for="name">
                         {{ __('Language Name') }}
                     </label>
                     <select name="name"
                         class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
                         @foreach ($translations as $key => $country)
-                            <option {{ old('name') == $country['name'] ? 'selected' : '' }} value="{{ $country['code'] }}">
+                            <option {{ old('name') == $country['name'] ? 'selected' : '' }}
+                                value="{{ $country['code'] }}">
                                 {{ $country['name'] }}
                             </option>
                         @endforeach
@@ -33,7 +32,7 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
-    
+
                 <!-- Language Direction -->
                 <div class="mb-5">
                     <label for="direction" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -41,16 +40,18 @@
                     </label>
                     <select name="direction" id="direction"
                         class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
-                        <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>{{ __('Left to Right') }}
+                        <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>
+                            {{ __('Left to Right') }}
                         </option>
-                        <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>{{ __('Right to Left') }}
+                        <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>
+                            {{ __('Right to Left') }}
                         </option>
                     </select>
                     @error('direction')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
-    
+
                 <!-- Language Icon -->
                 <div class="mb-5 card">
                     <label for="icon" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -65,7 +66,7 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
-    
+
                 <button type="submit"
                     class="bg-primary-500 hover:bg-primary-600 dark:bg-primary-500 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
                     {{ __('Submit') }}

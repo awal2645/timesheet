@@ -29,7 +29,7 @@
             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Email Histories') }}</h2>
             <div>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                    <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                    <thead class="table-header">
                         <tr>
                             <th class="min-w-[150px] px-4 py-4 font-medium">
                                 {{ __('Recipient Email') }}
