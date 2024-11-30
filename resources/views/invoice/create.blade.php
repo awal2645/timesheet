@@ -3,13 +3,12 @@
 @endsection
 <x-app-layout>
     <div class="m-6">
-        <div
-            class="mb-12 px-5 py-6 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
+        <div class="mb-12 card flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
 
             <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
                     class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
         </div>
-        <div class="p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10 shadow-md">
+        <div class="card">
             <h2 class="text-2xl font-bold mb-4">{{ __('Create New Invoice') }}</h2>
 
             <form method="POST" action="{{ route('invoice.store') }}">

@@ -2,9 +2,9 @@
     {{ __('List Role') }}
 @endsection
 <x-app-layout>
-    <div class="relative overflow-x-auto">
+    <div class="relative m-6">
         <div
-            class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
+            class="flex flex-col md:flex-row justify-end items-center card mb-12">
 
             <a href="{{ route('role.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Role') }}
@@ -12,7 +12,7 @@
         </div>
         <!-- Start heading here -->
         <div
-        class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark  px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+        class="card">
         <div class="w-full ">
                 <div class="dashboard-right pl-0 ">
                     <div class="invoices-table ">

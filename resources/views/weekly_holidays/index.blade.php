@@ -31,15 +31,15 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Holiday List') }}</h2>
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                                {{ __('Holiday List') }}</h2>
                             <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="bg-primary-300 text-text-light dark:text-text-dark">
-                                           <tr>
-                                            <th class="min-w-[220px] px-4 py-4 font-medium">
-                                                {{ __('Days of the Week') }}
+                                            <tr>
+                                                <th class="min-w-[220px] px-4 py-4 font-medium">
+                                                    {{ __('Days of the Week') }}
                                                 </th>
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Actions') }}
@@ -50,18 +50,22 @@
                                         <tbody>
                                             @if ($holidays->count() > 0)
                                                 @foreach ($holidays as $holiday)
-                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    <tr
+                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             @php
                                                                 $daysOfWeek = json_decode($holiday->days_of_week);
                                                             @endphp
                                                             {{ is_array($daysOfWeek) ? implode(', ', $daysOfWeek) : $daysOfWeek }}
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             <div class="flex justify-end">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
                                                                     class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
-                                                                <form action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
+                                                                <form
+                                                                    action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
                                                                     method="POST" style="display:inline;">
                                                                     @csrf
                                                                     @method('DELETE')

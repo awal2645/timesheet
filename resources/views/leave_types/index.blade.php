@@ -33,10 +33,10 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Leave Type List') }}</h2>
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                                {{ __('Leave Type List') }}</h2>
                             <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="bg-primary-300 text-text-light dark:text-text-dark">
                                             <tr class="rounded-2xl text-left">
@@ -50,12 +50,16 @@
                                         <tbody>
                                             @if ($leaveTypes->count() > 0)
                                                 @foreach ($leaveTypes as $leaveType)
-                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    <tr
+                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             {{ $leaveType->type }}</td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             {{ $leaveType->description }}</td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             <div class="flex justify-end">
                                                                 <a href="{{ route('leave_types.edit', $leaveType->id) }}"
                                                                     class="text-primary-500 hover:text-primary-300">{{ __('Edit') }}</a>
@@ -75,8 +79,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="3"
-                                                        class="text-center py-8  ">
+                                                    <td colspan="3" class="text-center py-8  ">
                                                         <img src="{{ asset('images/no-data-found.svg') }}"
                                                             alt="No data found" class="mx-auto max-w-xs">
                                                     </td>

@@ -4,11 +4,11 @@
 
 <x-app-layout>
     @if (auth('web')->user()->role == 'superadmin')
-        <div class="m-6 p-6 bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md">
+        <div class="m-6 card">
             <h2 class="text-2xl font-bold mb-4">{{ __('Send Invite') }}</h2>
 
             <form method="POST" action="{{ route('invite.send.employer') }}"
-                class="rounded-lg p-6 bg-white/30 dark:bg-black/30 border border-black/10 dark:border-white/10">
+                class="card">
                 @csrf
                 <div class="relative z-0 w-full mb-5 group">
                     <select name="role_name" id="role_name"

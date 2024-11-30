@@ -8,8 +8,7 @@
     <div class="container mx-auto">
         <!-- Set Recommended and Default Package -->
         @canany('Plan create')
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="my-8 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>

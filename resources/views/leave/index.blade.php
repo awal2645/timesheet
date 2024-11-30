@@ -33,10 +33,10 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Latest Leave Applications') }}</h2>
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                                {{ __('Latest Leave Applications') }}</h2>
                             <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="bg-primary-300 text-text-light dark:text-text-dark">
                                             <tr class="rounded-2xl text-left">
@@ -63,22 +63,28 @@
                                         <tbody>
                                             @if ($applications->count() > 0)
                                                 @foreach ($applications as $application)
-                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                    <tr
+                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="text-sm font-semibold">
                                                                 {{ $application->employee->employee_name ?? '' }}
                                                             </div>
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             {{ $application->start_date }}
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             {{ $application->end_date }}
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             {{ $application->reason }}
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="flex items-center space-x-2">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     style="background-color: {{ $application->status === 'approved' ? 'green' : ($application->status === 'denied' ? 'red' : 'yellow') }};">
@@ -87,19 +93,27 @@
                                                             </div>
                                                         </td>
                                                         @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
-                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                            <td
+                                                                class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                                 <div class="flex space-x-2">
                                                                     @if ($application->status === 'pending')
-                                                                        <form action="{{ route('leave.approve', $application->id) }}" method="POST" style="display:inline;">
+                                                                        <form
+                                                                            action="{{ route('leave.approve', $application->id) }}"
+                                                                            method="POST" style="display:inline;">
                                                                             @csrf
-                                                                            <button type="submit" class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
+                                                                            <button type="submit"
+                                                                                class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
                                                                         </form>
-                                                                        <form action="{{ route('leave.deny', $application->id) }}" method="POST" style="display:inline;">
+                                                                        <form
+                                                                            action="{{ route('leave.deny', $application->id) }}"
+                                                                            method="POST" style="display:inline;">
                                                                             @csrf
-                                                                            <button type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
+                                                                            <button type="submit"
+                                                                                class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
                                                                         </form>
                                                                     @else
-                                                                        <span class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
+                                                                        <span
+                                                                            class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
                                                                     @endif
                                                                 </div>
                                                             </td>
@@ -109,7 +123,8 @@
                                             @else
                                                 <tr>
                                                     <td colspan="6" class="text-center py-8  ">
-                                                        <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found" class="mx-auto max-w-xs">
+                                                        <img src="{{ asset('images/no-data-found.svg') }}"
+                                                            alt="No data found" class="mx-auto max-w-xs">
                                                     </td>
                                                 </tr>
                                             @endif

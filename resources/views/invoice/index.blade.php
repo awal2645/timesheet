@@ -4,8 +4,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div
-                class="mb-12 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="mb-12 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('invoice.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search') }}</label>
@@ -26,12 +25,11 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Invoice List') }}</h2>
-                            <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
-                                    <table class="w-full table-auto">
-                                        <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                                {{ __('Invoice List') }}</h2>
+                            <div class="card">
+                                <table class="w-full table-auto">
+                                    <thead class="bg-primary-300 text-text-light dark:text-text-dark">
                                         <tr class="rounded-2xl text-left">
                                             <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white">
                                                 {{ __('Invoice Number') }}</th>
@@ -76,8 +74,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="5"
-                                                    class="text-center py-8  ">
+                                                <td colspan="5" class="text-center py-8  ">
                                                     <img src="{{ asset('images/no-data-found.svg') }}"
                                                         alt="No data found" class="mx-auto max-w-xs">
                                                 </td>
@@ -89,14 +86,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            @if ($invoices->total() > $invoices->count())
-                <div class="mt-2">
-                    <div class="d-flex justify-content-center">
-                        {{ $invoices->links() }}
+                @if ($invoices->total() > $invoices->count())
+                    <div class="mt-2">
+                        <div class="d-flex justify-content-center">
+                            {{ $invoices->links() }}
+                        </div>
                     </div>
-                </div>
-            @endif
+                @endif
+            </div>
         </div>
-    </div>
 </x-app-layout>

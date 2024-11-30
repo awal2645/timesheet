@@ -1,7 +1,7 @@
 @section('title', 'Send Emails')
 
 <x-app-layout>
-    <div class="container mx-auto px-5">
+    <div class="m-6">
         <h2 class="text-2xl font-semibold mb-4">{{ __('Send Emails') }}</h2>
 
         @if (session('success'))
@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form action="{{ route('emails.send') }}" method="POST">
+        <form action="{{ route('emails.send') }}" method="POST" class="card">
             @csrf
             <div class="mb-4">
                 <label for="subject" class="block text-sm font-medium">{{ __('Subject') }}</label>
@@ -18,29 +18,31 @@
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
             </div>
 
+            <div class="flex items-center gap-5">
+                <div class="mb-4">
+                    <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
+                    <select name="role[]" id="role" class="select2 w-full" multiple="multiple">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="emails" class="block text-sm font-medium">{{ __('Select or Add Emails') }}</label>
+                    <select name="emails[]" id="emails" class="select2 w-full" multiple="multiple" required>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->email }}">{{ $user->email }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             <div class="mb-4">
                 <label for="body" class="block text-sm font-medium">{{ __('Body') }}</label>
                 <textarea name="body" id="body"
                     class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
                     cols="30" rows="10"></textarea>
-            </div>
-
-            <div class="mb-4">
-                <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
-                <select name="role[]" id="role" class="select2 w-full" multiple="multiple">
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="emails" class="block text-sm font-medium">{{ __('Select or Add Emails') }}</label>
-                <select name="emails[]" id="emails" class="select2 w-full" multiple="multiple" required>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->email }}">{{ $user->email }}</option>
-                    @endforeach
-                </select>
             </div>
 
             <button type="submit"

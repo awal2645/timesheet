@@ -33,10 +33,10 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Employer List') }}</h2>
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                                {{ __('Employer List') }}</h2>
                             <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                                <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="bg-primary-300 text-text-light dark:text-text-dark">
                                             <tr class="rounded-2xl text-left">

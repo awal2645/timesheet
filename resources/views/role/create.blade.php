@@ -1,11 +1,11 @@
 <x-app-layout>
     <div
-        class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
+        class="m-6 flex flex-col md:flex-row justify-end items-center card md:gap-6">
         <a href="{{ route('role.page') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg">
             <i class="fa-solid fa-plus"></i> {{ __('Back to Role List') }}
         </a>
     </div>
-    <div class="m-6 p-8 bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-lg">
+    <div class="m-6 card">
         <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">{{ __('Create New Role') }}</h2>
 
         <form method="POST" action="{{ route('role.store') }}" class="space-y-6">
