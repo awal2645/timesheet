@@ -9,7 +9,7 @@ class ThemeController extends Controller
 {
     public function index()
     {
-        $theme = Theme::getActive();
+        $theme = Theme::first();
         return view('themes.index', compact('theme'));
     }
 
@@ -29,10 +29,14 @@ class ThemeController extends Controller
             'font_family' => 'required|string',
         ]);
 
-        $theme = Theme::getActive();
-        $theme->update($validated);
+        $theme = Theme::first();
 
-        // Generate CSS variables for different shades
+        if ($theme) {
+            $theme->update($validated);
+        } else {
+            return redirect()->back()->with('error', 'No theme found to update.');
+        }
+
         $this->generateColorShades($theme);
 
         return redirect()->back()->with('success', 'Theme updated successfully');
@@ -41,27 +45,15 @@ class ThemeController extends Controller
     public function reset()
     {
         try {
-            $theme = Theme::getActive();
-            
-            // Reset to default colors defined in Theme model
-            $theme->update([
-                'primary_color' => Theme::DEFAULT_COLORS['primary_color'],
-                'secondary_color' => Theme::DEFAULT_COLORS['secondary_color'],
-                'sidebar_dark' => Theme::DEFAULT_COLORS['sidebar_dark'],
-                'sidebar_light' => Theme::DEFAULT_COLORS['sidebar_light'],
-                'header_dark' => Theme::DEFAULT_COLORS['header_dark'],
-                'header_light' => Theme::DEFAULT_COLORS['header_light'],
-                'body_dark' => Theme::DEFAULT_COLORS['body_dark'],
-                'body_light' => Theme::DEFAULT_COLORS['body_light'],
-                'text_light' => Theme::DEFAULT_COLORS['text_light'],
-                'text_dark' => Theme::DEFAULT_COLORS['text_dark'],
-                'font_family' => Theme::DEFAULT_COLORS['font_family'],
-            ]);
+            $theme = Theme::first();
 
-            // Regenerate CSS with default colors
-            $this->generateColorShades($theme);
-
-            return redirect()->back()->with('success', 'Theme reset to default colors successfully');
+            if ($theme) {
+                $theme->update(Theme::DEFAULT_COLORS);
+                $this->generateColorShades($theme);
+                return redirect()->back()->with('success', 'Theme reset to default colors successfully');
+            } else {
+                return redirect()->back()->with('error', 'No theme found to reset.');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Failed to reset theme: ' . $e->getMessage());
         }
@@ -82,12 +74,10 @@ class ThemeController extends Controller
 
         $css = ":root {\n";
         
-        // Add font family variable
         $css .= "  --font-family: \"{$theme->font_family}\";\n";
 
         $shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-        // Generate primary shades
         foreach ($shades as $shade) {
             $opacity = 1 - ($shade / 1000);
             $css .= sprintf(
@@ -100,7 +90,6 @@ class ThemeController extends Controller
             );
         }
 
-        // Generate secondary shades
         foreach ($shades as $shade) {
             $opacity = 1 - ($shade / 1000);
             $css .= sprintf(
@@ -113,7 +102,6 @@ class ThemeController extends Controller
             );
         }
 
-        // Add direct color variables for sidebar, header, and body
         $css .= sprintf("  --sidebar-dark: %s;\n", $theme->sidebar_dark);
         $css .= sprintf("  --sidebar-light: %s;\n", $theme->sidebar_light);
         $css .= sprintf("  --header-dark: %s;\n", $theme->header_dark);
@@ -125,12 +113,10 @@ class ThemeController extends Controller
 
         $css .= "}\n\n";
         
-        // Add global font family rule
         $css .= "body {\n";
         $css .= "  font-family: var(--font-family), system-ui, sans-serif;\n";
         $css .= "}\n";
 
-        // Create the css directory if it doesn't exist
         if (!file_exists(public_path('css'))) {
             mkdir(public_path('css'), 0755, true);
         }
@@ -140,10 +126,8 @@ class ThemeController extends Controller
 
     private function hexToRgb($hex)
     {
-        // Remove the hash if present
         $hex = ltrim($hex, '#');
 
-        // Parse the hex color
         if (strlen($hex) == 3) {
             $r = hexdec(str_repeat(substr($hex, 0, 1), 2));
             $g = hexdec(str_repeat(substr($hex, 1, 1), 2));

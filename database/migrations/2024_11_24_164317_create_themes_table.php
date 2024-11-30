@@ -21,9 +21,6 @@ return new class extends Migration
             $table->string('font_family')->default('Inter');
             $table->string('text_light')->default('#090606');
             $table->string('text_dark')->default('#cfd3d0');
-
-
-            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }

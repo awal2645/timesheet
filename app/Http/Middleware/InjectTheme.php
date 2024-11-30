@@ -10,7 +10,7 @@ class InjectTheme
 {
     public function handle(Request $request, Closure $next)
     {
-        $theme = Theme::getActive();
+        $theme = Theme::first();
         view()->share('theme', $theme);
         return $next($request);
     }

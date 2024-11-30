@@ -16,7 +16,6 @@ class Theme extends Model
         'body_dark',
         'body_light',
         'font_family',
-        'is_active',
         'text_light',
         'text_dark'
     ];
@@ -45,9 +44,9 @@ class Theme extends Model
         'Montserrat' => "'Montserrat', sans-serif"
     ];
 
-    public static function getActive()
+    public static function getTheme()
     {
-        return static::where('is_active', true)->first() ?? static::create(self::DEFAULT_COLORS);
+        return static::first(); // Get the first theme (assuming only one exists)
     }
 
     // Add getter for font family with fallback

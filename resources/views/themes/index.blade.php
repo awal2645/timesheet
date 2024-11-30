@@ -38,9 +38,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="primary_color" name="primary_color" value="{{ $theme->primary_color }}">
+                                        id="primary_color" name="primary_color" value="{{ $theme->primary_color ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->primary_color }}
+                                        {{ $theme->primary_color ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -60,9 +60,9 @@
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
                                         id="secondary_color" name="secondary_color"
-                                        value="{{ $theme->secondary_color }}">
+                                        value="{{ $theme->secondary_color ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->secondary_color }}
+                                        {{ $theme->secondary_color ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -76,9 +76,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark }}">
+                                        id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->sidebar_dark }}
+                                        {{ $theme->sidebar_dark ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -92,9 +92,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light }}">
+                                        id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->sidebar_light }}
+                                        {{ $theme->sidebar_light ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -108,9 +108,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="header_dark" name="header_dark" value="{{ $theme->header_dark }}">
+                                        id="header_dark" name="header_dark" value="{{ $theme->header_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->header_dark }}
+                                        {{ $theme->header_dark ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -124,9 +124,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="header_light" name="header_light" value="{{ $theme->header_light }}">
+                                        id="header_light" name="header_light" value="{{ $theme->header_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->header_light }}
+                                        {{ $theme->header_light ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -140,9 +140,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="body_dark" name="body_dark" value="{{ $theme->body_dark }}">
+                                        id="body_dark" name="body_dark" value="{{ $theme->body_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->body_dark }}
+                                        {{ $theme->body_dark ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -156,9 +156,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="body_light" name="body_light" value="{{ $theme->body_light }}">
+                                        id="body_light" name="body_light" value="{{ $theme->body_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->body_light }}
+                                        {{ $theme->body_light ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -172,9 +172,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="text_light" name="text_light" value="{{ $theme->text_light }}">
+                                        id="text_light" name="text_light" value="{{ $theme->text_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->text_light }}
+                                        {{ $theme->text_light ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -188,9 +188,9 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="text_dark" name="text_dark" value="{{ $theme->text_dark }}">
+                                        id="text_dark" name="text_dark" value="{{ $theme->text_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->text_dark }}
+                                        {{ $theme->text_dark ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                                 class="w-full rounded-lg border-gray-300 bg-body-light dark:bg-body-dark shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 @foreach (App\Models\Theme::AVAILABLE_FONTS as $name => $style)
                                     <option value="{{ $name }}"
-                                        {{ $theme->font_family === $name ? 'selected' : '' }}
+                                        {{ ($theme->font_family ?? 'Inter') === $name ? 'selected' : '' }}
                                         style="font-family: {{ $style }}">
                                         {{ $name }}
                                     </option>
