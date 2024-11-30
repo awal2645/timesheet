@@ -132,6 +132,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Account routes
         Route::controller(AccountController::class)->group(function () {
             Route::get('my/account', 'myAccount')->name('my.account');
+            Route::post('employ er/info/update/{id}', 'employerInfoUpdate')->name('employer.info.update');
         });
 
         // Notification routes

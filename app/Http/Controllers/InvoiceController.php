@@ -141,7 +141,7 @@ class InvoiceController extends Controller
                     'enable_remote' => true,
                 ];
                 
-                $invoice = Invoice::with(['client', 'project.tasks' => function ($query) {
+                $invoice = Invoice::with(['client', 'employer', 'project.tasks' => function ($query) {
                     $query->where('status', 'completed'); // Filter tasks by status
                 }])->findOrFail($id);
                 $pdf = PDF::setOptions($options)
