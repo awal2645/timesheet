@@ -9,10 +9,8 @@
         <form method="POST" action="{{ route('leave.store') }}" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @csrf
             @if (Auth::user()->is_employer)
-                <div role="group" class="relative z-0 w-full mb-5 group">
-                    <select name="employee_id" id="employee_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required>
+                <div role="group" class="form-field">
+                    <select name="employee_id" id="employee_id" class="form-select" required>
                         @foreach ($employees as $employee)
                             <option value="{{ old('employee_id', $employee->id) }}">{{ $employee->user->name }}</option>
                         @endforeach
@@ -20,10 +18,8 @@
                 </div>
             @endif
             @if (auth()->user()->role != 'employer' && auth()->user()->role != 'employee')
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="employer_id" id="employer_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required>
+                <div class="form-field">
+                    <select name="employer_id" id="employer_id" class="form-select" required>
                         <option value="">Select Employer</option>
                         @foreach ($employers as $employer)
                             <option value="{{ old('employer_id', $employer->id) }}">{{ $employer->employer_name }}
@@ -31,18 +27,15 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="employee_id" id="employee_select"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required>
+                <div class="form-field">
+                    <select name="employee_id" id="employee_select" class="form-select" required>
                         <option value="">Select Employee</option>
                     </select>
                 </div>
             @endif
             @if (auth()->user()->role == 'employer')
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="employee_id" id="employee_select"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+                <div class="form-field">
+                    <select name="employee_id" id="employee_select" class="form-select">
                         <option class="dark:bg-slate-800" value="">Select Employee</option>
                         @foreach ($employees as $employee)
                             <option class="dark:bg-slate-800" value="{{ old('employee_id', $employee->id) }}">
@@ -52,22 +45,17 @@
                     </select>
                 </div>
             @endif
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="leave_type_id" id="leave_type_id"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required>
+            <div class="form-field">
+                <select name="leave_type_id" id="leave_type_id" class="form-select" required>
                     <option value="">Select Leave Type</option>
                     @foreach ($leaveTypes as $leaveType)
                         <option value="{{ old('leave_type_id', $leaveType->id) }}">{{ $leaveType->type }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required />
-                <label for="start_date"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required />
+                <label for="start_date">
                     {{ __('Start Date') }}</label>
 
                 @error('start_date')
@@ -75,12 +63,9 @@
                 @enderror
             </div>
 
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required />
-                <label for="end_date"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" required />
+                <label for="end_date">
                     {{ __('End Date') }}</label>
 
                 @error('end_date')
@@ -88,12 +73,9 @@
                 @enderror
             </div>
 
-            <div class="relative z-0 w-full mb-5 group">
-                <textarea name="reason" id="reason" rows="4" value="{{ old('reason') }}"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required></textarea>
-                <label for="reason"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <textarea name="reason" id="reason" rows="4" value="{{ old('reason') }}" required></textarea>
+                <label for="reason">
                     {{ __('Reason for Leave') }}</label>
 
                 @error('reason')

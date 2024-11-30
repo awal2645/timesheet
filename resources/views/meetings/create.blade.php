@@ -139,7 +139,7 @@
                     {{ __('Participants') }}
                 </label>
                 <select name="participants[]" id="participants" multiple
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400">
+                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:!bg-gray-700 dark:text-gray-400">
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>

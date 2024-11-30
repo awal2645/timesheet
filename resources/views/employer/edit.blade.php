@@ -16,12 +16,10 @@
             @method('PUT')
 
             <!-- Employer Name -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="employer_name" id="employer_name"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('employer_name', $employee->employer_name) }}" />
-                <label for="employer_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="employer_name" id="employer_name" placeholder=" " required
+                    value="{{ old('employer_name', $employee->employer_name) }}" />
+                <label for="employer_name">
                     {{ __('Employer Name') }}
                 </label>
                 @error('employer_name')
@@ -30,12 +28,10 @@
             </div>
 
             <!-- Employer Email -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="email" name="email" id="email"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('email', $employee->email) }}" />
-                <label for="email"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="email" name="email" id="email" placeholder=" " required
+                    value="{{ old('email', $employee->email) }}" />
+                <label for="email">
                     {{ __('Email') }}
                 </label>
                 @error('email')
@@ -44,12 +40,10 @@
             </div>
 
             <!-- FEIN Number -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="fein_number" id="fein_number"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " value="{{ old('fein_number', $employee->fein_number) }}" />
-                <label for="fein_number"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="fein_number" id="fein_number" placeholder=" "
+                    value="{{ old('fein_number', $employee->fein_number) }}" />
+                <label for="fein_number">
                     {{ __('FEIN/Registration Number') }}
                 </label>
                 @error('fein_number')
@@ -58,12 +52,10 @@
             </div>
 
             <!-- Phone -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="phone" id="phone"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " value="{{ old('phone', $employee->phone) }}" />
-                <label for="phone"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="phone" id="phone" placeholder=" "
+                    value="{{ old('phone', $employee->phone) }}" />
+                <label for="phone">
                     {{ __('Phone') }}
                 </label>
                 @error('phone')
@@ -72,12 +64,10 @@
             </div>
 
             <!-- Contact Person Name -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="contact_person_name" id="contact_person_name"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " value="{{ old('contact_person_name', $employee->contact_person_name) }}" />
-                <label for="contact_person_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="contact_person_name" id="contact_person_name" placeholder=" "
+                    value="{{ old('contact_person_name', $employee->contact_person_name) }}" />
+                <label for="contact_person_name">
                     {{ __('Contact Person Name') }}
                 </label>
                 @error('contact_person_name')
@@ -86,12 +76,10 @@
             </div>
 
             <!-- Website -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="website" id="website"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " value="{{ old('website', $employee->website) }}" />
-                <label for="website"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="website" id="website" placeholder=" "
+                    value="{{ old('website', $employee->website) }}" />
+                <label for="website">
                     {{ __('Website') }}
                 </label>
                 @error('website')
@@ -100,9 +88,8 @@
             </div>
 
             <!-- Status -->
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="status" id="status"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+            <div class="form-field">
+                <select name="status" id="status" class="form-select">
                     <option value="1" {{ $employee->status == 1 ? 'selected' : '' }} class="dark:bg-slate-800">
                         {{ __('Active') }}
                     </option>
@@ -110,8 +97,7 @@
                         {{ __('Inactive') }}
                     </option>
                 </select>
-                <label for="status"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <label for="status" class="form-label">
                     {{ __('Status') }}
                 </label>
                 @error('status')
@@ -121,24 +107,20 @@
 
             <!-- Address Fields -->
             <div class="grid md:grid-cols-2 md:gap-6">
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="address" id="address"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('address', $employee->address) }}" />
-                    <label for="address"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="text" name="address" id="address" placeholder=" "
+                        value="{{ old('address', $employee->address) }}" />
+                    <label for="address">
                         {{ __('Address 1') }}
                     </label>
                     @error('address')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="address1" id="address1"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " value="{{ old('address1', $employee->address1) }}" />
-                    <label for="address1"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                <div class="form-field">
+                    <input type="text" name="address1" id="address1" placeholder=" "
+                        value="{{ old('address1', $employee->address1) }}" />
+                    <label for="address1">
                         {{ __('Address 2') }}
                     </label>
                     @error('address1')

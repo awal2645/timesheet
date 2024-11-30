@@ -10,12 +10,9 @@
             @csrf
 
             <!-- Plan Label -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="label" id="label"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('label') }}" />
-                <label for="label"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="text" name="label" id="label" placeholder=" " required value="{{ old('label') }}" />
+                <label for="label">
                     {{ __('Plan Label') }}
                 </label>
                 @error('label')
@@ -24,12 +21,9 @@
             </div>
 
             <!-- Description -->
-            <div class="relative z-0 w-full mb-5 group">
-                <textarea name="description" id="description"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" ">{{ old('description') }}</textarea>
-                <label for="description"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <textarea name="description" id="description" placeholder=" ">{{ old('description') }}</textarea>
+                <label for="description">
                     {{ __('Plan Description') }}
                 </label>
                 @error('description')
@@ -38,24 +32,20 @@
             </div>
 
             <!-- Plan Price -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="number" step="0.01" name="price" id="price"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('price') }}" />
-                <label for="price"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">{{ __('Price') }}</label>
+            <div class="form-field">
+                <input type="number" step="0.01" name="price" id="price" placeholder=" " required
+                    value="{{ old('price') }}" />
+                <label for="price">{{ __('Price') }}</label>
                 @error('price')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <!-- Employee Limit -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="employee_limit" id="employee_limit"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('employee_limit') }}" />
-                <label for="employee_limit"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="number" name="employee_limit" id="employee_limit" placeholder=" " required
+                    value="{{ old('employee_limit') }}" />
+                <label for="employee_limit">
                     {{ __('Employee Limit') }}
                 </label>
                 @error('employee_limit')
@@ -64,12 +54,10 @@
             </div>
 
             <!-- Client Limit -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="client_limit" id="client_limit"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('client_limit') }}" />
-                <label for="client_limit"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="number" name="client_limit" id="client_limit" placeholder=" " required
+                    value="{{ old('client_limit') }}" />
+                <label for="client_limit">
                     {{ __('Client Limit') }}
                 </label>
                 @error('client_limit')
@@ -78,12 +66,10 @@
             </div>
 
             <!-- Project Limit -->
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="number" name="project_limit" id="project_limit"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('project_limit') }}" />
-                <label for="project_limit"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-300 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+            <div class="form-field">
+                <input type="number" name="project_limit" id="project_limit" placeholder=" " required
+                    value="{{ old('project_limit') }}" />
+                <label for="project_limit">
                     {{ __('Project Limit') }}
                 </label>
                 @error('project_limit')
