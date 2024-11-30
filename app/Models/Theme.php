@@ -23,7 +23,7 @@ class Theme extends Model
 
     // Add default colors and fonts as constants
     const DEFAULT_COLORS = [
-        'primary_color' => '#8e02d9',
+        'primary_color' => '#04a9f5',
         'secondary_color' => '#fca311',
         'sidebar_dark' => '#0c0f12',
         'sidebar_light' => '#ffffff',
