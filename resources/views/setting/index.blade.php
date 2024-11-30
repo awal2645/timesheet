@@ -2,10 +2,10 @@
     {{ __('General Setting') }}
 @endsection
 <x-app-layout>
-    <div class="py-12 px-8">
+    <div class="m-6">
         <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">Application Settings</h2>
         <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data"
-            class="bg-white/10 dark:bg-black/10 p-8 border border-black/10 dark:border-white/10 rounded-xl">
+            class="card">
             @csrf
             @method('PUT')
 

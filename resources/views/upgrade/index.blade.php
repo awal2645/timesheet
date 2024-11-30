@@ -3,7 +3,7 @@
 @endsection
 
 <x-app-layout>
-    <div class="m-6 p-6 bg-white/10 border border-black/10 dark:border-white/10 dark:bg-black/10 rounded-lg shadow-md">
+    <div class="m-6 card">
         <!-- Header Section -->
         <div class="dark:bg-primary-200/10 bg-primary-900/10 p-4 rounded-md">
             <h2 class="text-lg font-semibold text-primary-300">{{ __('Upgrade Guide') }} ({{ __('Current version') }}
