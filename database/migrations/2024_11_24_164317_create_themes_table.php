@@ -11,7 +11,8 @@ return new class extends Migration
         Schema::create('themes', function (Blueprint $table) {
             $table->id();
             $table->string('primary_color')->default('#8e02d9');
-            $table->string('secondary_color')->default('#fca311');
+            $table->string('card_dark')->default('#fca311');
+            $table->string('card_light')->default('#fca311');
             $table->string('sidebar_dark')->default('#0c0f12');
             $table->string('sidebar_light')->default('#ffffff');
             $table->string('header_dark')->default('#0f1215');

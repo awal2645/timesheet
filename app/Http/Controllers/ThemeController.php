@@ -17,7 +17,8 @@ class ThemeController extends Controller
     {
         $validated = $request->validate([
             'primary_color' => 'required|string',
-            'secondary_color' => 'required|string',
+            'card_dark' => 'required|string',
+            'card_light' => 'required|string',
             'sidebar_dark' => 'required|string',
             'sidebar_light' => 'required|string',
             'header_dark' => 'required|string',
@@ -62,7 +63,8 @@ class ThemeController extends Controller
     private function generateColorShades($theme)
     {
         $primaryColor = $this->hexToRgb($theme->primary_color);
-        $secondaryColor = $this->hexToRgb($theme->secondary_color);
+        $cardDark = $this->hexToRgb($theme->card_dark);
+        $cardLight = $this->hexToRgb($theme->card_light);
         $sidebarDark = $this->hexToRgb($theme->sidebar_dark);
         $sidebarLight = $this->hexToRgb($theme->sidebar_light);
         $headerDark = $this->hexToRgb($theme->header_dark);
@@ -90,18 +92,9 @@ class ThemeController extends Controller
             );
         }
 
-        foreach ($shades as $shade) {
-            $opacity = 1 - ($shade / 1000);
-            $css .= sprintf(
-                "  --secondary-%d: rgba(%d, %d, %d, %s);\n",
-                $shade,
-                $secondaryColor['r'],
-                $secondaryColor['g'],
-                $secondaryColor['b'],
-                $opacity
-            );
-        }
 
+        $css .= sprintf("  --card-dark: %s;\n", $theme->card_dark);
+        $css .= sprintf("  --card-light: %s;\n", $theme->card_light);
         $css .= sprintf("  --sidebar-dark: %s;\n", $theme->sidebar_dark);
         $css .= sprintf("  --sidebar-light: %s;\n", $theme->sidebar_light);
         $css .= sprintf("  --header-dark: %s;\n", $theme->header_dark);

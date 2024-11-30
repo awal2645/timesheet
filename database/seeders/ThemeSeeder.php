@@ -13,7 +13,8 @@ class ThemeSeeder extends Seeder
         if (Theme::count() == 0) {
             Theme::create([
                 'primary_color' => '#04a9f5',
-                'secondary_color' => '#fca311',
+                'card_dark' => '#000000',
+                'card_light' => '#ffffff',
                 'sidebar_dark' => '#0c0f12',
                 'sidebar_light' => '#ffffff',
                 'header_dark' => '#0f1215',

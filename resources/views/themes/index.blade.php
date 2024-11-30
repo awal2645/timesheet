@@ -47,22 +47,44 @@
 
                             <!-- Secondary Color -->
                             <div class="space-y-2">
-                                <label for="secondary_color"
+                                <label for="card_dark"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
                                         </path>
                                     </svg>
-                                    Secondary Color
+                                    Card Dark
                                 </label>
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="secondary_color" name="secondary_color"
-                                        value="{{ $theme->secondary_color ?? '#ffffff' }}">
+                                        id="card_dark" name="card_dark"
+                                        value="{{ $theme->card_dark ?? '#000000' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->secondary_color ?? '#ffffff' }}
+                                        {{ $theme->card_dark ?? '#000000' }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Secondary Color -->
+                            <div class="space-y-2">
+                                <label for="card_light"
+                                    class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
+                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
+                                        </path>
+                                    </svg>
+                                    Card Light
+                                </label>
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="card_light" name="card_light"
+                                        value="{{ $theme->card_light ?? '#ffffff' }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->card_light ?? '#ffffff' }}
                                     </span>
                                 </div>
                             </div>

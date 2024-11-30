@@ -8,7 +8,8 @@ class Theme extends Model
 {
     protected $fillable = [
         'primary_color',
-        'secondary_color',
+        'card_dark',
+        'card_light',
         'sidebar_dark',
         'sidebar_light',
         'header_dark',
@@ -23,7 +24,8 @@ class Theme extends Model
     // Add default colors and fonts as constants
     const DEFAULT_COLORS = [
         'primary_color' => '#04a9f5',
-        'secondary_color' => '#fca311',
+        'card_dark' => '#000000',
+        'card_light' => '#ffffff',
         'sidebar_dark' => '#0c0f12',
         'sidebar_light' => '#ffffff',
         'header_dark' => '#0f1215',
