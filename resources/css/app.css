@@ -44,7 +44,8 @@
     margin-bottom: 1.25rem;
 }
 
-.form-field input {
+.form-field input,
+.form-field textarea {
     display: block;
     padding: 0.625rem 1.25rem; /* py-2.5 px-5 */
     border-radius: 0.375rem; /* rounded-md */
@@ -55,12 +56,14 @@
     border: 1px solid rgb(209 213 219); /* border-gray-300 */
     appearance: none;
 }
-.dark .form-field input {
+.dark .form-field input,
+.dark .form-field textarea {
     border: 1px solid rgb(75 85 99);
     color: #d1d5db;
 }
 
-.form-field input:focus {
+.form-field input:focus,
+.form-field textarea:focus {
     outline: none;
     border-color: var(--primary-500); /* focus:border-primary-600 */
     box-shadow: none; /* focus:ring-0 */
@@ -78,9 +81,14 @@
     pointer-events: none;
     z-index: 50;
 }
+.form-field:has(textarea) label {
+    top: 20px;
+}
 
 .form-field input:focus + label,
-.form-field input:not(:placeholder-shown) + label {
+.form-field textarea:focus + label,
+.form-field input:not(:placeholder-shown) + label,
+.form-field textarea:not(:placeholder-shown) + label {
     background-color: var(--primary-50);
     border-radius: 6px;
     font-weight: 500; 

@@ -55,7 +55,8 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
 
-                <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
+                <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">
+                    {{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
 
                 <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
                     role="alert">
@@ -72,20 +73,19 @@
                 </div>
 
                 <!-- File Upload Input -->
-                <div class="mb-4">
-                    <label for="file" class="block text-gray-400 font-medium">{{ __('Choose a file:') }}</label>
+                <div class="form-field">
+                    <label for="file">{{ __('Choose a file:') }}</label>
                     <input @if ($timeReport) disabled @endif type="file" id="file"
-                        name="image" class="mt-1 p-2 border rounded-md w-full">
+                        name="image">
                     @error('image')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <!-- Textarea -->
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-400 font-medium">{{ __('Your Message:') }}</label>
-                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4"
-                        class="mt-1 p-2 border rounded-md dark:text-white w-full dark:bg-gray-800">{{ $timeReport->comment ?? '' }}</textarea>
+                <div class="form-field">
+                    <label for="message">{{ __('Your Message:') }}</label>
+                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4">{{ $timeReport->comment ?? '' }}</textarea>
                 </div>
 
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">

@@ -5,17 +5,15 @@
     <div class="relative m-6">
         <div>
             <div class="my-8 card">
-                <form action="{{ route('reports.index') }}" method="GET" class="w-full">
+                <form action="{{ route('reports.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
-                        <div class="flex">
+                        <div class="flex gap-3 items-center form-field">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-header-dark bg-header-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
-                            <select name="status"
-                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 p-2.5 dark:bg-header-dark bg-header-light dark:border-gray-600 dark:text-white pr-8">
+                            <select name="status" class="form-select">
                                 <option value="">{{ __('Select Status') }}</option>
                                 <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
                                     {{ __('Pending') }}
