@@ -5,7 +5,7 @@
 <x-app-layout>
     <!-- index.blade.php -->
 
-    <div class="container mx-auto">
+    <div class="m-6">
         <!-- Set Recommended and Default Package -->
         @canany('Plan create')
             <div class="my-8 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">

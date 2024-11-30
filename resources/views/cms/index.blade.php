@@ -19,13 +19,11 @@
             @method('PUT')
 
             @foreach (['banner_image', 'approach_image', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5'] as $image)
-                <div class="w-full mb-5">
-                    <label for="{{ $image }}"
-                        class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div class="form-field">
+                    <label for="{{ $image }}">
                         {{ ucfirst(str_replace('_', ' ', $image)) }}
                     </label>
-                    <input type="file" id="{{ $image }}" name="{{ $image }}"
-                        class="border rounded-lg px-3 py-2 w-full bg-white dark:bg-gray-800">
+                    <input type="file" id="{{ $image }}" name="{{ $image }}">
                 </div>
             @endforeach
 

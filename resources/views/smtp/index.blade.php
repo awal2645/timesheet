@@ -11,7 +11,7 @@
             @csrf
 
             <!-- MAIL HOST -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="text" id="mail_host" placeholder="" required name="mail_host"
                     value="{{ smtp() ? smtp()->host : env('MAIL_HOST') }}" />
                 <label for="mail_host">
@@ -23,7 +23,7 @@
             </div>
 
             <!-- MAIL PORT -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="text" id="mail_port" placeholder="" required name="mail_port"
                     value="{{ smtp() ? smtp()->port : env('MAIL_PORT') }}" />
                 <label for="mail_port">
@@ -35,7 +35,7 @@
             </div>
 
             <!-- MAIL USERNAME -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="text" id="mail_username" placeholder="" name="mail_username"
                     value="{{ smtp() ? smtp()->username : env('MAIL_USERNAME') }}" />
                 <label for="mail_username">
@@ -47,7 +47,7 @@
             </div>
 
             <!-- MAIL PASSWORD -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="password" id="mail_password" placeholder="" name="mail_password"
                     value="{{ smtp() ? smtp()->password : env('MAIL_PASSWORD') }}" autocomplete="false" />
                 <label for="mail_password">
@@ -59,8 +59,8 @@
             </div>
 
             <!-- MAIL ENCRYPTION -->
-            <div class="relative z-0 w-full group">
-                <select name="mail_encryption" id="mail_encryption">
+            <div class="form-field">
+                <select name="mail_encryption" id="mail_encryption" class="form-select">
                     <option class="dark:bg-slate-800" value="tls"
                         {{ smtp() ? (smtp()->encryption == 'tls' ? 'selected' : '') : (env('MAIL_ENCRYPTION') == 'tls' ? 'selected' : '') }}>
                         {{ __('TLS') }}
@@ -71,7 +71,7 @@
                     </option>
                 </select>
 
-                <label for="mail_encryption">
+                <label for="mail_encryption" class="form-label">
                     {{ __('MAIL ENCRYPTION') }}
                 </label>
                 @error('mail_encryption')
@@ -80,7 +80,7 @@
             </div>
 
             <!-- MAIL FROM ADDRESS -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="email" id="mail_from_address" placeholder="" required name="mail_from_address"
                     value="{{ env('MAIL_FROM_ADDRESS') }}" />
                 <label for="mail_from_address">
@@ -92,7 +92,7 @@
             </div>
 
             <!-- MAIL FROM NAME -->
-            <div class="relative z-0 w-full group">
+            <div class="form-field">
                 <input type="text" id="mail_from_name" placeholder="" required name="mail_from_name"
                     value="{{ smtp() ? smtp()->mail_from_name : env('MAIL_FROM_NAME') }}" />
                 <label for="mail_from_name">

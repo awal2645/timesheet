@@ -1,56 +1,55 @@
 @props(['plan'])
 
-<div
-    class="card">
-    <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}</h2>
+<div class="card flex flex-col">
+    <div class="grow">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}</h2>
 
-    @if ($plan->recommended)
-        <div class="mt-2">
+        @if ($plan->recommended)
+            <div class="mt-2">
 
-            <span
-                class="bg-green-200 text-green-700 dark:bg-green-700 dark:text-green-200 p-3 rounded-full text-xs">Recommended</span>
+                <span
+                    class="bg-green-200 text-green-700 dark:bg-green-700 dark:text-green-200 p-3 rounded-full text-xs">Recommended</span>
+            </div>
+        @endif
+
+        <div class="text-3xl font-bold my-4 text-gray-800 dark:text-gray-100">
+            ${{ $plan->price }}
         </div>
-    @endif
 
-    <div class="text-3xl font-bold my-4 text-gray-800 dark:text-gray-100">
-        ${{ $plan->price }}
+        <p class="text-sm text-gray-500 dark:text-gray-400">
+            {{ $plan->description }}
+        </p>
+        <br>
+        <hr>
+        <ul class="my-4 space-y-2 text-center">
+            <li class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="text-gray-800 dark:text-gray-100">Employee Limit: {{ $plan->employee_limit }}</span>
+            </li>
+            <li class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                </svg>
+                <span class="text-gray-800 dark:text-gray-100">Client Limit: {{ $plan->client_limit }}</span>
+            </li>
+            <li class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0z"></path>
+                </svg>
+                <span class="text-gray-800 dark:text-gray-100">Project Limit: {{ $plan->project_limit }}</span>
+            </li>
+        </ul>
     </div>
 
-    <p class="text-sm text-gray-500 dark:text-gray-400">
-        {{ $plan->description }}
-    </p>
-    <br>
-    <hr>
-    <ul class="my-4 space-y-2 text-center">
-        <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-            <span class="text-gray-800 dark:text-gray-100">Employee Limit: {{ $plan->employee_limit }}</span>
-        </li>
-        <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
-            <span class="text-gray-800 dark:text-gray-100">Client Limit: {{ $plan->client_limit }}</span>
-        </li>
-        <li class="flex items-center space-x-2">
-            <svg class="w-5 h-5 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M9 12h6m2 0a2 2 0 11-4 0 2 2 0z"></path>
-            </svg>
-            <span class="text-gray-800 dark:text-gray-100">Project Limit: {{ $plan->project_limit }}</span>
-        </li>
-    </ul>
-
-    <div class="flex justify-between items-center " style="
-    margin-top: 89px;
-">
+    <div class="flex justify-between items-center">
         {{-- stripe payment --}}
         @if (config('zenxserv.stripe_active') && config('zenxserv.stripe_key') && config('zenxserv.stripe_secret'))
             <form action="{{ route('stripe.payment.purchase') }}" method="post">

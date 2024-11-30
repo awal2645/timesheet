@@ -2,14 +2,14 @@
 
 <x-app-layout>
     <div
-        class="flex justify-between card">
+        class="flex justify-between card m-6">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Edit Language') }}</h2>
         <a href="{{ route('languages.index') }}"
             class="bg-primary-300 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
             {{ __('Go to Language List') }}
         </a>
     </div>
-    <div class="m-8 p-6 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-lg">
+    <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">{{ __('Edit Language Details') }}</h2>
         <form method="POST" action="{{ route('languages.update', $language->id) }}">
             @csrf

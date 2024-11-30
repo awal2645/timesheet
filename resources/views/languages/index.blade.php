@@ -57,7 +57,7 @@
                                                 <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                     {{ __($language->direction) }}</td>
                                                 <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                    <div class="flex justify-end">
+                                                    <div class="flex gap-5 items-center justify-end">
                                                         <a href="{{ route('languages.json.edit', $language->code) }}"
                                                             class="text-primary-500 hover:text-primary-300">{{ __('Edit Json') }}</a>
                                                         <a href="{{ route('languages.edit', $language->id) }}"

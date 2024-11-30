@@ -16,7 +16,7 @@
             @method('PUT')
 
             <!-- Role Name -->
-            <div class="relative z-0 w-full">
+            <div class="relative z-0 form-field">
                 <input type="text" name="role_name" id="role_name" placeholder=" " required
                     value="{{ old('role_name') ?? $role->name }}" />
                 <label for="role_name">

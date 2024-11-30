@@ -12,23 +12,23 @@
 
         <form action="{{ route('emails.send') }}" method="POST" class="card">
             @csrf
-            <div class="mb-4">
-                <label for="subject" class="block text-sm font-medium">{{ __('Subject') }}</label>
+            <div class="form-field">
+                <label for="subject">{{ __('Subject') }}</label>
                 <input type="text" name="subject" id="subject"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+                    required>
             </div>
 
             <div class="flex items-center gap-5">
-                <div class="mb-4">
+                <div class="mb-4 w-1/2">
                     <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
-                    <select name="role[]" id="role" class="select2 w-full" multiple="multiple">
+                    <select name="role[]" id="role" class="select2 !w-full" multiple="multiple">
                         @foreach ($roles as $role)
                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4 w-1/2">
                     <label for="emails" class="block text-sm font-medium">{{ __('Select or Add Emails') }}</label>
                     <select name="emails[]" id="emails" class="select2 w-full" multiple="multiple" required>
                         @foreach ($users as $user)

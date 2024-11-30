@@ -15,38 +15,38 @@
                 @csrf
                 <!-- Employer Name -->
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id">
+                    <select name="employer_id" id="employer_id" class="form-select">
                         <option value="" selected>{{ __('Select Employer') }}</option>
                         @foreach ($employers as $employer)
                             <option value="{{ $employer->id }}">{{ $employer->employer_name }}</option>
                         @endforeach
                     </select>
                     <label for="employer_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Employer Name') }}</label>
+                        class="form-label">{{ __('Employer Name') }}</label>
                 </div>
 
                 <!-- Client Name -->
                 <div class="form-field">
-                    <select name="client_id" id="client_id">
+                    <select name="client_id" id="client_id" class="form-select">
                         <option value="" selected>{{ __('Select Client') }}</option>
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}">{{ $client->client_name }}</option>
                         @endforeach
                     </select>
                     <label for="client_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Client Name') }}</label>
+                        class="form-label">{{ __('Client Name') }}</label>
                 </div>
 
                 <!-- Project Name -->
                 <div class="form-field">
-                    <select name="project_id" id="project_id">
+                    <select name="project_id" id="project_id" class="form-select">
                         <option value="" selected>{{ __('Select Project') }}</option>
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}">{{ $project->project_name }}</option>
                         @endforeach
                     </select>
                     <label for="project_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Project Name') }}</label>
+                        class="form-label">{{ __('Project Name') }}</label>
                 </div>
 
                 <!-- Invoice Number -->

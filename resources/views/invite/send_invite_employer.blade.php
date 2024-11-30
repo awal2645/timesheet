@@ -11,7 +11,7 @@
                 @csrf
                 <div class="form-field">
                     <select name="role_name" id="role_name"
-                        class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:bg-color-gray-600 dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+                        class="form-select">
                         <option value="" class="dark:bg-slate-800">
                             {{ __('Select Role') }}
                         </option>
@@ -21,7 +21,7 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="role_name">
+                    <label for="role_name" class="form-label">
                         {{ __('Role Name') }}</label>
                     @error('role_name')
                         <span class="text-red-500">{{ $message }}</span>

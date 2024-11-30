@@ -125,7 +125,7 @@
                                                                 {{ $task->employee->employee_name ?? '' }}
                                                             </a>
                                                         </td>
-                                                        <td class="px-6 py-4 d-flex">
+                                                        <td class="px-6 py-4 flex gap-2 items-center">
                                                             <div id="timer-{{ $task->id }}">
                                                                 {{ $task->time ?? '00:00' }}
                                                             </div>
@@ -157,14 +157,14 @@
                                                             </button>
                                                         </td>
                                                         <td class="px-6 py-4">
-                                                            <div class="flex items-center space-x-2">
+                                                            <div class="flex items-center gap-2">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     id="statusIndicator"
                                                                     style="background-color: {{ $task->status === 'completed' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">
                                                                 </div>
                                                                 <form id="statusForm{{ $task->id }}"
                                                                     action="{{ route('task.updateStatus', $task->id) }}"
-                                                                    method="post">
+                                                                    method="post" class="mb-0">
                                                                     @csrf
                                                                     <select name="status" id="status"
                                                                         class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
