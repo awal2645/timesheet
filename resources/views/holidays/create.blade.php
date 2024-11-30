@@ -2,12 +2,12 @@
     {{ __('Create Holiday') }}
 @endsection
 <x-app-layout>
-    <div class="flex justify-between m-8 card">
+    <div class="flex justify-between m-6 card">
         <h2 class="text-xl font-medium">{{ __('Create Holiday') }}</h2>
         <a href="{{ route('holidays.index') }}"
             class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Holiday List') }}</a>
     </div>
-    <div class="card">
+    <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Holiday') }}</h2>
         <form method="POST" action="{{ route('holidays.store') }}">
             @csrf
@@ -15,17 +15,15 @@
             <div class="form-field">
                 <input type="text" name="name" id="name" placeholder=" " required
                     value="{{ old('name') }}" />
-                <label for="name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Holiday Name') }}</label>
+                <label for="name" class="">{{ __('Holiday Name') }}</label>
                 @error('name')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Holiday Date -->
             <div class="form-field">
-                <input type="date" name="date" id="date" required value="{{ old('date') }}" />
-                <label for="date"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Holiday Date') }}</label>
+                <input type="date" name="date" id="date" required value="{{ old('date') }}" onclick="this.showPicker()" />
+                <label for="date" class="">{{ __('Holiday Date') }}</label>
                 @error('date')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror

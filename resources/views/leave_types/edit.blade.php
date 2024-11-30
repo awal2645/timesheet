@@ -2,9 +2,9 @@
     {{ __('Edit Leave Type') }}
 @endsection
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4">{{ __('Edit Leave Type') }}</h2>
-        <form method="POST" action="{{ route('leave_types.update', $leaveType->id) }}" class="max-w-md mx-auto">
+        <form method="POST" action="{{ route('leave_types.update', $leaveType->id) }}">
             @csrf
             @method('PUT')
             <!-- Leave Type -->

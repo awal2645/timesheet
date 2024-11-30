@@ -49,10 +49,8 @@
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search Task') }}</label>
-                        <div class="flex">
-                            <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-300 focus:border-primary-300 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-300 dark:focus:border-primary-300"
-                                placeholder="{{ __('Search Task') }}" />
+                        <div class="flex form-field">
+                            <input type="text" id="search" name="search" value="{{ request('search') }}" />
                             <button
                                 class="bg-primary-300 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>

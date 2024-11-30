@@ -30,7 +30,7 @@
                             class="mb-4 p-4 sm:p-2 bg-white rounded-md shadow-md text-center dark:bg-gray-800 dark:text-white">
                             <label for="{{ $day }}"
                                 class="block text-sm font-medium text-gray-700 dark:text-white">{{ $day }}</label>
-                            <div class="flex mt-2">
+                            <div class="flex mt-2 form-field">
                                 <input type="number" min="1" name="hours[{{ $day }}]"
                                     value="{{ $hours[$day] }}"
                                     class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"

@@ -25,10 +25,9 @@
                 <div id="zoomCredentials" class="hidden">
                     <!-- Zoom Account ID -->
                     <div class="form-field mt-6">
-                        <label for="zoom_account_id">{{ __('Zoom Account ID') }}</label>
                         <input type="text" name="zoom_account_id" id="zoom_account_id"
-                            placeholder="{{ __('Enter Zoom Account ID') }}"
-                            value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
+                        value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
+                        <label for="zoom_account_id">{{ __('Zoom Account ID') }}</label>
                         @error('zoom_account_id')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -36,10 +35,9 @@
 
                     <!-- Zoom Client ID -->
                     <div class="form-field">
-                        <label for="zoom_client_id">{{ __('Zoom Client ID') }}</label>
                         <input type="text" name="zoom_client_id" id="zoom_client_id"
-                            placeholder="{{ __('Enter Zoom Client ID') }}"
-                            value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
+                        value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
+                        <label for="zoom_client_id">{{ __('Zoom Client ID') }}</label>
                         @error('zoom_client_id')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -47,10 +45,9 @@
 
                     <!-- Zoom Client Secret -->
                     <div class="form-field">
-                        <label for="zoom_client_secret">{{ __('Zoom Client Secret') }}</label>
                         <input type="password" name="zoom_client_secret" id="zoom_client_secret"
-                            placeholder="{{ __('Enter Zoom Client Secret') }}"
-                            value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
+                        value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
+                        <label for="zoom_client_secret">{{ __('Zoom Client Secret') }}</label>
                         @error('zoom_client_secret')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -67,9 +64,9 @@
             </script>
             <!-- Topic -->
             <div class="form-field">
-                <label for="topic">{{ __('Topic') }}</label>
                 <input type="text" name="topic" id="topic" placeholder="{{ __('Enter Topic') }}"
-                    value="{{ old('topic') }}" required>
+                value="{{ old('topic') }}" required>
+                <label for="topic">{{ __('Topic') }}</label>
                 @error('topic')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -77,11 +74,10 @@
 
             <!-- Start Date -->
             <div class="form-field">
+                <input type="datetime-local" name="start_date" id="start_date" onclick="this.showPicker()" value="{{ old('start_date') }}"
+                required>
                 <label
-                    for="start_date">{{ __('Start
-                                                                                                                                                                                    Date') }}</label>
-                <input type="datetime-local" name="start_date" id="start_date" value="{{ old('start_date') }}"
-                    required>
+                    for="start_date">{{ __('Start  Date') }}</label>
                 @error('start_date')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -89,11 +85,10 @@
 
             <!-- Meeting Password -->
             <div class="form-field">
-                <label
-                    for="password">{{ __('Meeting
-                                                                                                                                                                                    Password') }}</label>
                 <input type="password" name="password" id="password" placeholder="{{ __('Enter password') }}"
-                    value="{{ old('password') }}" required>
+                value="{{ old('password') }}" required>
+                <label
+                    for="password">{{ __('Meeting Password') }}</label>
                 @error('password')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -124,10 +119,7 @@
             </div>
             <!-- Participants -->
             <div class="form-field">
-                <label for="participants">
-                    {{ __('Participants') }}
-                </label>
-                <select name="participants[]" id="participants" multiple>
+                <select name="participants[]" id="participants" multiple class="form-select">
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>
@@ -135,6 +127,9 @@
                         </option>
                     @endforeach
                 </select>
+                <label for="participants" class="form-label">
+                    {{ __('Participants') }}
+                </label>
                 @error('participants')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -142,8 +137,8 @@
 
             <!-- Meeting Description -->
             <div class="form-field">
-                <label for="description">{{ __('Meeting Description') }}</label>
                 <textarea name="description" id="description" rows="4" placeholder="{{ __('Enter Description') }}">{{ old('description') }}</textarea>
+                <label for="description">{{ __('Meeting Description') }}</label>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror

@@ -2,9 +2,9 @@
     {{ __('Edit Holiday') }}
 @endsection
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Edit Holiday') }}</h2>
-        <form method="POST" action="{{ route('holidays.update', $holiday->id) }}" class="max-w-md mx-auto">
+        <form method="POST" action="{{ route('holidays.update', $holiday->id) }}">
             @csrf
             @method('PUT')
             <!-- Holiday Name -->

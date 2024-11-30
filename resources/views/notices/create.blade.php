@@ -6,24 +6,23 @@
 
         <form action="{{ route('notices.store') }}" method="POST">
             @csrf
-            <div class="mb-4">
-                <label for="title" class="block mb-2">Title</label>
-                <input type="text" id="title" name="title"
-                    class="bg-gray-50 dark:bg-gray-900   rounded-lg w-full p-2.5" required>
+            <div class="form-field">
+                <input type="text" id="title" name="title"required>
+                <label for="title">Title</label>
             </div>
-            <div class="mb-4">
-                <label for="content" class="block mb-2">Content</label>
-                <textarea id="content" name="content" class="bg-gray-50 dark:bg-gray-900   rounded-lg w-full p-2.5" required></textarea>
+            <div class="form-field">
+                <textarea id="content" name="content" required></textarea>
+                <label for="content">Content</label>
             </div>
-            <div class="mb-4">
-                <label for="role" class="block mb-2">Role</label>
+            <div class="form-field">
                 <select multiple id="role" name="role[]"
-                    class="bg-gray-50 dark:!bg-gray-900   rounded-lg w-full p-2.5">
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                    @endforeach
-                </select>
-            </div>
+                class="form-select">
+                @foreach ($roles as $role)
+                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                @endforeach
+            </select>
+        <label for="role" class="block mb-2">Role</label>
+        </div>
             <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg">Create Notice</button>
         </form>
     </div>
