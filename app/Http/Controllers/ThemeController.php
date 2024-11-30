@@ -38,6 +38,35 @@ class ThemeController extends Controller
         return redirect()->back()->with('success', 'Theme updated successfully');
     }
 
+    public function reset()
+    {
+        try {
+            $theme = Theme::getActive();
+            
+            // Reset to default colors defined in Theme model
+            $theme->update([
+                'primary_color' => Theme::DEFAULT_COLORS['primary_color'],
+                'secondary_color' => Theme::DEFAULT_COLORS['secondary_color'],
+                'sidebar_dark' => Theme::DEFAULT_COLORS['sidebar_dark'],
+                'sidebar_light' => Theme::DEFAULT_COLORS['sidebar_light'],
+                'header_dark' => Theme::DEFAULT_COLORS['header_dark'],
+                'header_light' => Theme::DEFAULT_COLORS['header_light'],
+                'body_dark' => Theme::DEFAULT_COLORS['body_dark'],
+                'body_light' => Theme::DEFAULT_COLORS['body_light'],
+                'text_light' => Theme::DEFAULT_COLORS['text_light'],
+                'text_dark' => Theme::DEFAULT_COLORS['text_dark'],
+                'font_family' => Theme::DEFAULT_COLORS['font_family'],
+            ]);
+
+            // Regenerate CSS with default colors
+            $this->generateColorShades($theme);
+
+            return redirect()->back()->with('success', 'Theme reset to default colors successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to reset theme: ' . $e->getMessage());
+        }
+    }
+
     private function generateColorShades($theme)
     {
         $primaryColor = $this->hexToRgb($theme->primary_color);

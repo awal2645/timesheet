@@ -249,6 +249,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/themes', [ThemeController::class, 'index'])->name('themes.index');
     Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
+    Route::post('/themes/reset', [ThemeController::class, 'reset'])->name('themes.reset');
 
    // In routes/web.php
 Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');

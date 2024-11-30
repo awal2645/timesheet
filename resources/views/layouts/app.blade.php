@@ -61,7 +61,7 @@
     </style>
 </head>
 
-<body class="font-inter antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
+<body class="antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
     :class="{ 'sidebar-expanded': sidebarExpanded }"
     x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
     x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))" x-cloak>

@@ -7,7 +7,7 @@
         <!-- Header -->
         <div class="mb-8">
             <h1 class="text-3xl font-bold text-text-light dark:text-text-dark">
-               🎨 {{ __(' Theme Customization') }}
+                🎨 {{ __(' Theme Customization') }}
             </h1>
             <p class="mt-2 text-text-light dark:text-text-dark">
                 {{ __('Customize your site\'s appearance with colors and fonts') }}
@@ -35,17 +35,16 @@
                                     </svg>
                                     Primary Color
                                 </label>
-                                <div class="flex items-center space-x-3">
+                                <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="primary_color" name="primary_color"
-                                        value="{{ $theme->primary_color ?? '#0d6efd' }}">
+                                        id="primary_color" name="primary_color" value="{{ $theme->primary_color }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->primary_color ?? '#0d6efd' }}
+                                        {{ $theme->primary_color }}
                                     </span>
                                 </div>
                             </div>
-    
+
                             <!-- Secondary Color -->
                             <div class="space-y-2">
                                 <label for="secondary_color"
@@ -57,13 +56,13 @@
                                     </svg>
                                     Secondary Color
                                 </label>
-                                <div class="flex items-center space-x-3">
+                                <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
                                         id="secondary_color" name="secondary_color"
-                                        value="{{ $theme->secondary_color ?? '#6c757d' }}">
+                                        value="{{ $theme->secondary_color }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->secondary_color ?? '#6c757d' }}
+                                        {{ $theme->secondary_color }}
                                     </span>
                                 </div>
                             </div>
@@ -72,25 +71,32 @@
                             <div class="space-y-2">
                                 <label for="sidebar_dark"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                    {{ __('Sidebar Dark') }}   
+                                    {{ __('Sidebar Dark') }}
                                 </label>
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
-                                        {{ $theme->secondary_color ?? '#6c757d' }}
+                                        {{ $theme->sidebar_dark }}
                                     </span>
+                                </div>
                             </div>
 
                             <!-- Sidebar Light -->
                             <div class="space-y-2">
                                 <label for="sidebar_light"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                    {{ __('Sidebar Light') }}   
+                                    {{ __('Sidebar Light') }}
                                 </label>
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->sidebar_light }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Header Dark -->
@@ -99,8 +105,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Header Dark') }}
                                 </label>
-                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="header_dark" name="header_dark" value="{{ $theme->header_dark ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="header_dark" name="header_dark" value="{{ $theme->header_dark }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->header_dark }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Header Light -->
@@ -109,9 +121,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Header Light') }}
                                 </label>
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="header_light" name="header_light" value="{{ $theme->header_light ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="header_light" name="header_light" value="{{ $theme->header_light }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->header_light }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Body Dark -->
@@ -120,8 +137,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Body Dark') }}
                                 </label>
-                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="body_dark" name="body_dark" value="{{ $theme->body_dark ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="body_dark" name="body_dark" value="{{ $theme->body_dark }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->body_dark }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Body Light -->
@@ -130,9 +153,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Body Light') }}
                                 </label>
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="body_light" name="body_light" value="{{ $theme->body_light ?? '#f8f9fa' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="body_light" name="body_light" value="{{ $theme->body_light }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->body_light }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Text Light -->
@@ -141,8 +169,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Text Light') }}
                                 </label>
-                                <input type="color" class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="text_light" name="text_light" value="{{ $theme->text_light ?? '#000' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="text_light" name="text_light" value="{{ $theme->text_light }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->text_light }}
+                                    </span>
+                                </div>
                             </div>
 
                             <!-- Text Dark -->
@@ -151,9 +185,14 @@
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
                                     {{ __('Text Dark') }}
                                 </label>
-                                <input type="color"
-                                    class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                    id="text_dark" name="text_dark" value="{{ $theme->text_dark ?? '#fff' }}">
+                                <div class="flex gap-3 items-center">
+                                    <input type="color"
+                                        class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
+                                        id="text_dark" name="text_dark" value="{{ $theme->text_dark }}">
+                                    <span class="text-sm font-mono text-gray-600 dark:text-white/60">
+                                        {{ $theme->text_dark }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -170,26 +209,42 @@
                             </label>
                             <select id="font_family" name="font_family"
                                 class="w-full rounded-lg border-gray-300 bg-body-light dark:bg-body-dark shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                                @foreach (['Inter', 'Poppins', 'Roboto', 'Open Sans', 'Montserrat'] as $font)
-                                    <option value="{{ $font }}"
-                                        class="text-text-light dark:text-text-dark bg-body-light dark:bg-body-dark "
-                                        {{ ($theme->font_family ?? '') == $font ? 'selected' : '' }}
-                                        style="font-family: '{{ $font }}'">
-                                        {{ $font }}
+                                @foreach (App\Models\Theme::AVAILABLE_FONTS as $name => $style)
+                                    <option value="{{ $name }}"
+                                        {{ $theme->font_family === $name ? 'selected' : '' }}
+                                        style="font-family: {{ $style }}">
+                                        {{ $name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <button type="submit"
-                            class="mt-6 w-full flex justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-300 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            {{ __('Save Theme') }}
-                        </button>
-                    </form>
+                        <div class="grid grid-cols-2 gap-5 mt-6">
+                            <button type="submit"
+                                class="flex-1 mr-2 justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-300 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                {{ __('Update Theme') }}
+                            </button>
+                        </form>
+
+                        <form action="{{ route('themes.reset') }}" method="POST" class="flex-1 ml-2">
+                            @csrf
+                            <button type="submit"
+                                class="w-full justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-secondary-300 hover:bg-secondary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-all duration-200">
+                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                    </path>
+                                </svg>
+                                {{ __('Reset to Default') }}
+                            </button>
+                        </form>
+                    </div>
                 </div>
 
                 <!-- Preview Section -->
@@ -222,46 +277,76 @@
         </div>
     </div>
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const primaryColorInput = document.getElementById('primary_color');
-                const secondaryColorInput = document.getElementById('secondary_color');
-                const fontFamilySelect = document.getElementById('font_family');
-                const preview = document.getElementById('preview');
-                const previewButton = preview.querySelector('.preview-button');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const primaryColorInput = document.getElementById('primary_color');
+            const secondaryColorInput = document.getElementById('secondary_color');
+            const fontFamilySelect = document.getElementById('font_family');
+            const preview = document.getElementById('preview');
+            const previewButton = preview.querySelector('.preview-button');
 
-                function updatePreview() {
-                    const primaryColor = primaryColorInput.value;
-                    const secondaryColor = secondaryColorInput.value;
-                    const fontFamily = fontFamilySelect.value;
+            function updatePreview() {
+                const primaryColor = primaryColorInput.value;
+                const secondaryColor = secondaryColorInput.value;
+                const fontFamily = fontFamilySelect.value;
 
-                    preview.style.backgroundColor = secondaryColor;
-                    preview.style.fontFamily = fontFamily;
-                    preview.style.color = getContrastColor(secondaryColor);
+                preview.style.backgroundColor = secondaryColor;
+                preview.style.fontFamily = fontFamily;
+                preview.style.color = getContrastColor(secondaryColor);
 
-                    previewButton.style.backgroundColor = primaryColor;
-                    previewButton.style.color = getContrastColor(primaryColor);
-                    previewButton.style.boxShadow = `0 4px 14px ${primaryColor}40`;
+                previewButton.style.backgroundColor = primaryColor;
+                previewButton.style.color = getContrastColor(primaryColor);
+                previewButton.style.boxShadow = `0 4px 14px ${primaryColor}40`;
 
-                    // Update color value displays
-                    primaryColorInput.nextElementSibling.textContent = primaryColor;
-                    secondaryColorInput.nextElementSibling.textContent = secondaryColor;
-                }
+                // Update color value displays
+                primaryColorInput.nextElementSibling.textContent = primaryColor;
+                secondaryColorInput.nextElementSibling.textContent = secondaryColor;
+            }
 
-                function getContrastColor(hexcolor) {
-                    const r = parseInt(hexcolor.substr(1, 2), 16);
-                    const g = parseInt(hexcolor.substr(3, 2), 16);
-                    const b = parseInt(hexcolor.substr(5, 2), 16);
-                    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-                    return (yiq >= 128) ? '#000000' : '#ffffff';
-                }
+            function getContrastColor(hexcolor) {
+                const r = parseInt(hexcolor.substr(1, 2), 16);
+                const g = parseInt(hexcolor.substr(3, 2), 16);
+                const b = parseInt(hexcolor.substr(5, 2), 16);
+                const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+                return (yiq >= 128) ? '#000000' : '#ffffff';
+            }
 
-                primaryColorInput.addEventListener('input', updatePreview);
-                secondaryColorInput.addEventListener('input', updatePreview);
-                fontFamilySelect.addEventListener('change', updatePreview);
+            primaryColorInput.addEventListener('input', updatePreview);
+            secondaryColorInput.addEventListener('input', updatePreview);
+            fontFamilySelect.addEventListener('change', updatePreview);
 
-                // Initial preview
+            // Initial preview
+            updatePreview();
+
+            // Add default colors
+            const defaultColors = @json(\App\Models\Theme::DEFAULT_COLORS);
+
+            // Add reset preview function
+            function resetPreview() {
+                primaryColorInput.value = defaultColors.primary_color;
+                secondaryColorInput.value = defaultColors.secondary_color;
+                fontFamilySelect.value = defaultColors.font_family;
+                // Update all other color inputs
+                document.getElementById('sidebar_dark').value = defaultColors.sidebar_dark;
+                document.getElementById('sidebar_light').value = defaultColors.sidebar_light;
+                document.getElementById('header_dark').value = defaultColors.header_dark;
+                document.getElementById('header_light').value = defaultColors.header_light;
+                document.getElementById('body_dark').value = defaultColors.body_dark;
+                document.getElementById('body_light').value = defaultColors.body_light;
+                document.getElementById('text_light').value = defaultColors.text_light;
+                document.getElementById('text_dark').value = defaultColors.text_dark;
+
                 updatePreview();
+            }
+
+            // Add click handler for reset button
+            document.querySelector('form[action*="reset"]').addEventListener('submit', function(e) {
+                if (!confirm('Are you sure you want to reset to default colors?')) {
+                    e.preventDefault();
+                } else {
+                    resetPreview(); // Call resetPreview if user confirms
+                }
             });
-        </script>
+        });
+    </script>
 </x-app-layout>
