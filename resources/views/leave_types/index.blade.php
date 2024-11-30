@@ -3,10 +3,9 @@
 @endsection
 
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-header-dark bg-header-light backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+    <div class="relative m-6">
+        <div class="">
+            <div class="card flex justify-between items-center">
                 <form action="{{ route('leave_types.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -29,13 +28,13 @@
                 </a>
             </div>
 
-            <div class="flex flex-wrap">
+            <div class="mt-12 flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
                                 {{ __('Leave Type List') }}</h2>
-                            <div class="overflow-hidden">
+                            <div>
                                 <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="bg-primary-300 text-text-light dark:text-text-dark">

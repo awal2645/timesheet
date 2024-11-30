@@ -3,10 +3,10 @@
 @endsection
 
 <x-app-layout>
-    <div class="m-6 p-6 bg-white/10 dark:bg-black/10 rounded-lg shadow-md border border-black/10 dark:border-white/10">
+    <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Leave Application') }}</h2>
 
-        <form method="POST" action="{{ route('leave.store') }}" class="">
+        <form method="POST" action="{{ route('leave.store') }}" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @csrf
             @if (Auth::user()->is_employer)
                 <div role="group" class="relative z-0 w-full mb-5 group">
@@ -101,10 +101,12 @@
                 @enderror
             </div>
 
-            <button type="submit"
-                class="w-full px-4 py-2 text-white bg-primary-300 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
-                {{ __('Create Leave Application') }}
-            </button>
+            <div class="col-span-full">
+                <button type="submit"
+                    class="px-4 py-2 text-white bg-primary-300 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                    {{ __('Create Leave Application') }}
+                </button>
+            </div>
         </form>
     </div>
 

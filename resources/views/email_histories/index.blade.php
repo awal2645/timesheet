@@ -2,8 +2,7 @@
 
 <x-app-layout>
     <div class="m-6">
-        <div
-            class="card flex justify-between items-center">
+        <div class="card flex justify-between items-center">
             <form action="{{ route('emails.index') }}" method="GET" class="w-full">
                 <div class="mb-5">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -28,7 +27,7 @@
 
         <div class="card mt-12">
             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Email Histories') }}</h2>
-            <div class="overflow-hidden">
+            <div>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="bg-primary-300 text-text-light dark:text-text-dark">
                         <tr>

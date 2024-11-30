@@ -4,44 +4,37 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div
-                class="flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
+            <div class="flex flex-col md:flex-row justify-end items-center md:space-y-0 card">
                 <a href="{{ route('meeting.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
-            <div
-                class="flex flex-wrap mt-12 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
+            <div class="flex flex-wrap mt-12 card">
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
-                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Meeting') }}</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">
+                                {{ __('Latest Meeting') }}</h2>
                             <div class="overflow-x-auto pb-1">
                                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                     <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                         <tr>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Meeting Topic') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Host Mail') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Start Date') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Password') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Status') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
@@ -146,8 +139,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="6"
-                                                    class="text-center py-8  ">
+                                                <td colspan="6" class="text-center py-8  ">
                                                     <img src="{{ asset('images/no-data-found.svg') }}"
                                                         alt="No data found" class="mx-auto max-w-xs">
                                                 </td>

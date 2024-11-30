@@ -7,8 +7,7 @@
 
 <x-app-layout>
 
-    <div
-        class="m-6 p-6 shadow-md p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
+    <div class="m-6 p-6 shadow-md card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Meeting') }}</h2>
         <form method="POST" action="{{ route('meeting.store') }}">
             @csrf
@@ -88,7 +87,7 @@
             <div class="mb-5">
                 <label for="start_date"
                     class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Start
-                                                                                                    Date') }}</label>
+                                                                                                                        Date') }}</label>
                 <input type="datetime-local" name="start_date" id="start_date"
                     class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
                     value="{{ old('start_date') }}" required>
@@ -101,7 +100,7 @@
             <div class="mb-5">
                 <label for="password"
                     class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Meeting
-                                                                                                    Password') }}</label>
+                                                                                                                        Password') }}</label>
                 <input type="password" name="password" id="password"
                     class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
                     placeholder="{{ __('Enter password') }}" value="{{ old('password') }}" required>
@@ -114,7 +113,7 @@
             <div class="mb-5">
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                     {{ __('Select
-                                                                                                    Participants Role') }}
+                                                                                                                        Participants Role') }}
                 </label>
                 <div class="flex items-center space-x-4">
                     @foreach ($roles as $role)

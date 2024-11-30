@@ -4,8 +4,7 @@
 <x-app-layout>
     <div class="relative m-3">
         <div class="container mx-auto px-4">
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-header-dark bg-header-light backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+            <div class="my-8 card">
                 <form action="{{ route('employee.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -34,7 +33,7 @@
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
                                 {{ __('Employee List') }}</h2>
-                            <div class="overflow-hidden">
+                            <div>
                                 <div class="card">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
