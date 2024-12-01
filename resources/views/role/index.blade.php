@@ -5,7 +5,7 @@
     <div class="relative m-6">
         <div class="flex flex-col md:flex-row justify-end items-center card mb-12">
 
-            <a href="{{ route('role.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg">
+            <a href="{{ route('role.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Role') }}
             </a>
         </div>

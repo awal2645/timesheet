@@ -3,7 +3,7 @@
 @endsection
 
 <x-app-layout>
-    <div class="m-6 p-6 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md">
+    <div class="m-6 p-6 bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4">{{ __('SMTP Config') }}</h2>
         <form method="POST" action="{{ route('email.update') }}" class="card grid gris-cols-1 md:grid-cols-2 gap-8"
             autocomplete="off">

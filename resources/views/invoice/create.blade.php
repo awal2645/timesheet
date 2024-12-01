@@ -5,7 +5,7 @@
     <div class="m-6">
         <div class="mb-12 card flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
 
-            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
+            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                     class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
         </div>
         <div class="card">

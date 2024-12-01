@@ -1,7 +1,6 @@
 @section('title')
     {{ 'List Task' }}
 @endsection
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <style>
     @keyframes rotateMinuteHand {
         0% {
@@ -48,15 +47,16 @@
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium">{{ __('Search Task') }}</label>
+                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
+                            {{ __('Search Task') }}</label>
                         <div class="flex form-field">
                             <input type="text" id="search" name="search" value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-300 text-white px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('task.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('task.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
             </div>
             <!-- Start heading here -->

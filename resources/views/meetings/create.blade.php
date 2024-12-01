@@ -11,7 +11,6 @@
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Meeting') }}</h2>
         <form method="POST" action="{{ route('meeting.store') }}">
             @csrf
-
             <!-- Collapsible Section for Zoom Credentials -->
             <div class="mb-5">
                 <label class="inline-flex items-center cursor-pointer">
@@ -64,7 +63,7 @@
             </script>
             <!-- Topic -->
             <div class="form-field">
-                <input type="text" name="topic" id="topic" placeholder="{{ __('Enter Topic') }}"
+                <input type="text" name="topic" id="topic"
                 value="{{ old('topic') }}" required>
                 <label for="topic">{{ __('Topic') }}</label>
                 @error('topic')
@@ -85,7 +84,7 @@
 
             <!-- Meeting Password -->
             <div class="form-field">
-                <input type="password" name="password" id="password" placeholder="{{ __('Enter password') }}"
+                <input type="password" name="password" id="password" 
                 value="{{ old('password') }}" required>
                 <label
                     for="password">{{ __('Meeting Password') }}</label>
@@ -137,7 +136,7 @@
 
             <!-- Meeting Description -->
             <div class="form-field">
-                <textarea name="description" id="description" rows="4" placeholder="{{ __('Enter Description') }}">{{ old('description') }}</textarea>
+                <textarea name="description" id="description" rows="4" >{{ old('description') }}</textarea>
                 <label for="description">{{ __('Meeting Description') }}</label>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
@@ -146,7 +145,7 @@
 
 
             <!-- Submit Button -->
-            <div class="flex justify-end">
+            <div class="flex">
                 <button type="submit"
                     class="bg-primary-300 text-white px-4 py-2 rounded shadow hover:bg-primary-300 dark:bg-primary-300 dark:hover:bg-primary-300">
                     {{ __('Save') }}
@@ -157,7 +156,6 @@
     <script>
         $(document).ready(function() {
             $('#participants').select2({
-                placeholder: "Select participants",
                 allowClear: true,
                 width: '100%', // Full-width dropdown
             });

@@ -21,7 +21,7 @@
                 <input type="text" id="role" name="role" value="{{ $notice->role }}"
                     class="bg-gray-50 dark:bg-gray-900   rounded-lg w-full p-2.5">
             </div>
-            <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg">Update Notice</button>
+            <button type="submit" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Update Notice</button>
         </form>
     </div>
 </x-app-layout>

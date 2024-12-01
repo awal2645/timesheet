@@ -31,7 +31,7 @@
                         {{ in_array('Sunday', json_decode($holiday->days_of_week)) ? 'selected' : '' }}>Sunday</option>
                 </select>
             </div>
-            <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg">Update Holiday</button>
+            <button type="submit" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Update Holiday</button>
         </form>
     </div>
 
