@@ -9,7 +9,7 @@
 
 /* Custom utility class using Tailwind */
 .card {
-    @apply p-6 rounded-2xl dark:bg-card-dark bg-card-light backdrop-blur border border-black/10 dark:border-white/10; /* Tailwind utility for centering text */
+    @apply p-6 rounded-2xl dark:bg-card-dark shadow-xl bg-card-light backdrop-blur border border-black/10 dark:border-white/10; /* Tailwind utility for centering text */
 }
 
 
