@@ -435,10 +435,21 @@
             <div class="payment-info">
                 <h3>Payment Info:</h3>
                 <div>
-                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Account No:</strong> 0000 000 000</p>
-                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>A/C Name:</strong> Example name</p>
-                    <p style="margin-top: 8px; margin-bottom: 0px;"><strong>Bank Details:</strong> Add your bank details
-                    </p>
+
+                    @php
+                    $lines = explode("\n", $invoice->project->employer->account_details);
+                @endphp
+                
+                @foreach ($lines as $line)
+                    @php
+                        [$key, $value] = array_pad(explode(':', $line, 2), 2, null);
+                    @endphp
+                    @if ($key && $value)
+                        <strong>{{ trim($key) }}:</strong> {{ trim($value) }}<br>
+                    @else
+                        {{ $line }}<br>
+                    @endif
+                    @endforeach
                 </div>
             </div>
 

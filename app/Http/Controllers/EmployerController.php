@@ -183,6 +183,7 @@ class EmployerController extends Controller
             'country' => 'required|string|max:255',
             'zip' => 'required|string|max:255',
             'role_name' => 'required',
+            'account_details' => 'nullable|string',
         ]);
 
         try {

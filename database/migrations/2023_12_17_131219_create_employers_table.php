@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('employer_name')->nullable();
             $table->string('fein_number')->nullable();
+            $table->string('image')->nullable();
             $table->string('phone')->nullable();
             $table->string('contact_person_name')->nullable();
             $table->string('website')->nullable();
@@ -28,6 +29,7 @@ return new class extends Migration
             $table->string('state')->nullable();
             $table->string('country')->nullable();
             $table->string('zip')->nullable();
+            $table->text('account_details')->nullable();
             $table->timestamps();
         });
     }
