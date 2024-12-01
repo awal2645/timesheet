@@ -17,7 +17,7 @@
                 <button x-show="!sidebarExpanded" class="text-text-light hover:text-text-dark lg:block hidden"
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
-                    <span class="sr-only">Open sidebar {{ __() }}</span>
+                    <span class="sr-only">{{ __('Open sidebar') }} {{ __() }}</span>
                     <i class="fa-solid fa-bars text-2xl text-text-light dark:text-text-dark w-6"></i>
                 </button>
                 <!-- Logo link (shown only when sidebarExpanded is true) -->
@@ -213,7 +213,7 @@
 
                     <!-- Leave Management Dropdown -->
                     <li x-data="{
-                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }}
+                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
                     }" x-effect="if (!sidebarExpanded) open = true">
                         <a href="#" @click.stop="sidebarExpanded && (open = !open)"
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
