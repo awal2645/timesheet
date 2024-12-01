@@ -4,44 +4,49 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div
-                class="flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
-                <a href="{{ route('meeting.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
+            
+            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
+                <form action="{{ route('meeting.index') }}" method="GET">
+                    <div class="mb-5">
+                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
+                            {{ __('Search') }}</label>
+                        <div class="flex form-field">
+                            <input type="text" id="search" name="search" value="{{ request('search') }}" />
+                            <button
+                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                        </div>
+                    </div>
+                </form>
+                <a href="{{ route('meeting.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
-            <div
-                class="flex flex-wrap mt-12 p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
-                <div class="w-full ">
-                    <div class="dashboard-right pl-0 ">
-                        <div class="invoices-table ">
-                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Meeting') }}</h2>
-                            <div class="overflow-x-auto pb-1">
-                                <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-                                        <tr>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+            <div class="flex flex-wrap">
+                <div class="w-full">
+                    <div class="dashboard-right pl-0">
+                        <div class="invoices-table">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                {{ __('Latest Meeting') }}</h2>
+                                <div class="card">
+                                    <table class="w-full table-auto">
+                                        <thead class="table-header">
+                                        <tr class="rounded-2xl text-left">
+                                            <th class="min-w-[220px] px-4 py-4 font-medium">
                                                 {{ __('Meeting Topic') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th class="min-w-[150px] px-4 py-4 font-medium">
                                                 {{ __('Host Mail') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th class="min-w-[120px] px-4 py-4 font-medium">
                                                 {{ __('Start Date') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th class="min-w-[120px] px-4 py-4 font-medium">
                                                 {{ __('Password') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Status') }}
                                             </th>
-                                            <th scope="col"
-                                                class="px-6 py-3  ">
+                                            <th scope="col" class="px-6 py-3  ">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
@@ -109,10 +114,12 @@
                                                             class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                             onchange="document.getElementById('statusForm{{ $project->id }}').submit()">
                                                             <!-- Replace data-project-id with the actual project ID -->
-                                                            <option class="dark:bg-slate-800" value="1" {{ $project->
+                                                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="1" {{ $project->
                                                                 status === 1 ? 'selected' : '' }}>
                                                                 {{__('Active')}}
-                                                            <option class="dark:bg-slate-800" value="0" {{ $project->
+                                                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="0" {{ $project->
                                                                 status === 0 ? 'selected' : '' }}>
                                                                 {{__('Inactive')}}
                                                         </select>
@@ -146,8 +153,7 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="6"
-                                                    class="text-center py-8  ">
+                                                <td colspan="6" class="text-center py-8  ">
                                                     <img src="{{ asset('images/no-data-found.svg') }}"
                                                         alt="No data found" class="mx-auto max-w-xs">
                                                 </td>

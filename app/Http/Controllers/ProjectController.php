@@ -75,7 +75,6 @@ class ProjectController extends Controller
             'client_id' => 'required|exists:clients,id',
             'employer_id' => 'required|exists:employers,id',
             'employee_id' => 'required|exists:employees,id',
-            'employee_share' => 'required|numeric',
             'project_name' => 'required|string',
             'payment_type' => 'required',
             'fixed_budget' => 'sometimes',

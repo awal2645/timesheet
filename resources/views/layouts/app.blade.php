@@ -25,8 +25,6 @@
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js"></script> --}}
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-
     <!-- Styles -->
     @livewireStyles
 
@@ -42,29 +40,10 @@
 
     <!-- Theme CSS -->
     <link href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}" rel="stylesheet">
-
-    <!-- Dynamic Styles -->
-    <style>
-        :root {
-            --font-family: {
-                    {
-                    $theme->font_family ?? 'Inter'
-                }
-            }
-
-            ;
-        }
-
-        body {
-            font-family: var(--font-family), sans-serif !important;
-        }
-    </style>
 </head>
 
-<body class="font-inter antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
-    :class="{ 'sidebar-expanded': sidebarExpanded }"
-    x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }"
-    x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))" x-cloak>
+<body class="antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
+    :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))" x-cloak>
 
     <script>
         if (localStorage.getItem('sidebar-expanded') == 'true') {

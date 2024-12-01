@@ -8,7 +8,8 @@ class Theme extends Model
 {
     protected $fillable = [
         'primary_color',
-        'secondary_color',
+        'card_dark',
+        'card_light',
         'sidebar_dark',
         'sidebar_light',
         'header_dark',
@@ -16,18 +17,43 @@ class Theme extends Model
         'body_dark',
         'body_light',
         'font_family',
-        'is_active',
         'text_light',
         'text_dark'
     ];
 
-    public static function getActive()
+    // Add default colors and fonts as constants
+    const DEFAULT_COLORS = [
+        'primary_color' => '#04a9f5',
+        'card_dark' => '#1b232d',
+        'card_light' => '#ffffff',
+        'sidebar_dark' => '#1d2630',
+        'sidebar_light' => '#ffffff',
+        'header_dark' => '#0f1215',
+        'header_light' => '#f8f9fa',
+        'body_dark' => '#131920',
+        'body_light' => '#f4f7fa',
+        'text_light' => '#090606',
+        'text_dark' => '#cfd3d0',
+        'font_family' => 'Inter'
+    ];
+
+    // Add available fonts
+    const AVAILABLE_FONTS = [
+        'Inter' => "'Inter', sans-serif",
+        'Poppins' => "'Poppins', sans-serif",
+        'Roboto' => "'Roboto', sans-serif",
+        'Open Sans' => "'Open Sans', sans-serif",
+        'Montserrat' => "'Montserrat', sans-serif"
+    ];
+
+    public static function getTheme()
     {
-        return static::where('is_active', true)->first() ?? static::create([
-            'primary_color' => '#0d6efd',
-            'secondary_color' => '#6c757d',
-            'font_family' => 'Inter',
-            'is_active' => true
-        ]);
+        return static::first(); // Get the first theme (assuming only one exists)
+    }
+
+    // Add getter for font family with fallback
+    public function getFontFamilyStyleAttribute()
+    {
+        return self::AVAILABLE_FONTS[$this->font_family] ?? self::AVAILABLE_FONTS['Inter'];
     }
 } 

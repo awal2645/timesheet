@@ -19,7 +19,7 @@
                     <option value="Sunday">Sunday</option>
                 </select>
             </div>
-            <button type="submit" class="bg-primary-300 text-white px-4 py-2 rounded-lg">Add Holiday</button>
+            <button type="submit" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Add Holiday</button>
         </form>
     </div>
 

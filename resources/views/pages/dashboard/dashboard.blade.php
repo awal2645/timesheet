@@ -2,7 +2,7 @@
     {{ 'Dashboard' }}
 @endsection
 <x-app-layout>
-    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+    <div class="m-6">
 
         <!-- Welcome banner -->
         <div
@@ -336,13 +336,16 @@
                                                                     method="post">
                                                                     @csrf
                                                                     @if (auth('web')->user()->role == 'employee')
-                                                                        <div class="dark:bg-slate-800"
+                                                                        <div class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             {{ $timeReport->status === 'approve' ? '' : 'hidden' }}>
                                                                             Approve</div>
-                                                                        <div class="dark:bg-slate-800"
+                                                                        <div class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             {{ $timeReport->status === 'decline' ? '' : 'hidden' }}>
                                                                             Decline</div>
-                                                                        <div class="dark:bg-slate-800"
+                                                                        <div class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             {{ $timeReport->status === 'pending' ? '' : 'hidden' }}>
                                                                             Pending</div>
                                                                     @else
@@ -351,17 +354,20 @@
                                                                             class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                                             onchange="document.getElementById('statusForm{{ $timeReport->id }}').submit()">
                                                                             <!-- Replace data-project-id with the actual project ID -->
-                                                                            <option class="dark:bg-slate-800"
+                                                                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                                 value="approve"
                                                                                 {{ $timeReport->status === 'approve' ? 'selected' : '' }}>
                                                                                 Approve
                                                                             </option>
-                                                                            <option class="dark:bg-slate-800"
+                                                                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                                 value="decline"
                                                                                 {{ $timeReport->status === 'decline' ? 'selected' : '' }}>
                                                                                 Decline
                                                                             </option>
-                                                                            <option class="dark:bg-slate-800"
+                                                                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                                 value="pending"
                                                                                 {{ $timeReport->status === 'pending' ? 'selected' : '' }}>
                                                                                 Pending

@@ -7,12 +7,10 @@
 
 <x-app-layout>
 
-    <div
-        class="m-6 p-6 shadow-md p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10">
+    <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Meeting') }}</h2>
         <form method="POST" action="{{ route('meeting.store') }}">
             @csrf
-
             <!-- Collapsible Section for Zoom Credentials -->
             <div class="mb-5">
                 <label class="inline-flex items-center cursor-pointer">
@@ -25,39 +23,30 @@
                 </label>
                 <div id="zoomCredentials" class="hidden">
                     <!-- Zoom Account ID -->
-                    <div class="mb-5">
-                        <label for="zoom_account_id"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Zoom Account ID') }}</label>
+                    <div class="form-field mt-6">
                         <input type="text" name="zoom_account_id" id="zoom_account_id"
-                            class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                            placeholder="{{ __('Enter Zoom Account ID') }}"
-                            value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
+                        value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
+                        <label for="zoom_account_id">{{ __('Zoom Account ID') }}</label>
                         @error('zoom_account_id')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <!-- Zoom Client ID -->
-                    <div class="mb-5">
-                        <label for="zoom_client_id"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Zoom Client ID') }}</label>
+                    <div class="form-field">
                         <input type="text" name="zoom_client_id" id="zoom_client_id"
-                            class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                            placeholder="{{ __('Enter Zoom Client ID') }}"
-                            value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
+                        value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
+                        <label for="zoom_client_id">{{ __('Zoom Client ID') }}</label>
                         @error('zoom_client_id')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                     </div>
 
                     <!-- Zoom Client Secret -->
-                    <div class="mb-5">
-                        <label for="zoom_client_secret"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Zoom Client Secret') }}</label>
+                    <div class="form-field">
                         <input type="password" name="zoom_client_secret" id="zoom_client_secret"
-                            class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                            placeholder="{{ __('Enter Zoom Client Secret') }}"
-                            value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
+                        value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
+                        <label for="zoom_client_secret">{{ __('Zoom Client Secret') }}</label>
                         @error('zoom_client_secret')
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
@@ -73,38 +62,32 @@
                 });
             </script>
             <!-- Topic -->
-            <div class="mb-5">
-                <label for="topic"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Topic') }}</label>
+            <div class="form-field">
                 <input type="text" name="topic" id="topic"
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                    placeholder="{{ __('Enter Topic') }}" value="{{ old('topic') }}" required>
+                value="{{ old('topic') }}" required>
+                <label for="topic">{{ __('Topic') }}</label>
                 @error('topic')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <!-- Start Date -->
-            <div class="mb-5">
-                <label for="start_date"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Start
-                                                                                                    Date') }}</label>
-                <input type="datetime-local" name="start_date" id="start_date"
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                    value="{{ old('start_date') }}" required>
+            <div class="form-field">
+                <input type="datetime-local" name="start_date" id="start_date" onclick="this.showPicker()" value="{{ old('start_date') }}"
+                required>
+                <label
+                    for="start_date">{{ __('Start  Date') }}</label>
                 @error('start_date')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <!-- Meeting Password -->
-            <div class="mb-5">
-                <label for="password"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Meeting
-                                                                                                    Password') }}</label>
-                <input type="password" name="password" id="password"
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                    placeholder="{{ __('Enter password') }}" value="{{ old('password') }}" required>
+            <div class="form-field">
+                <input type="password" name="password" id="password" 
+                value="{{ old('password') }}" required>
+                <label
+                    for="password">{{ __('Meeting Password') }}</label>
                 @error('password')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -113,8 +96,7 @@
             <!-- Participants Role -->
             <div class="mb-5">
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
-                    {{ __('Select
-                                                                                                    Participants Role') }}
+                    {{ __('Select Participants Role') }}
                 </label>
                 <div class="flex items-center space-x-4">
                     @foreach ($roles as $role)
@@ -135,12 +117,8 @@
                 @enderror
             </div>
             <!-- Participants -->
-            <div class="mb-5">
-                <label for="participants" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
-                    {{ __('Participants') }}
-                </label>
-                <select name="participants[]" id="participants" multiple
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400">
+            <div class="form-field">
+                <select name="participants[]" id="participants" multiple class="form-select">
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>
@@ -148,18 +126,18 @@
                         </option>
                     @endforeach
                 </select>
+                <label for="participants" class="form-label">
+                    {{ __('Participants') }}
+                </label>
                 @error('participants')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <!-- Meeting Description -->
-            <div class="mb-5">
-                <label for="description"
-                    class="block text-sm font-medium text-gray-700 dark:text-gray-400">{{ __('Meeting Description') }}</label>
-                <textarea name="description" id="description" rows="4"
-                    class="mt-1 block w-full border-gray-300 dark:border-gray-600 rounded-md shadow-sm dark:bg-gray-700 dark:text-gray-400"
-                    placeholder="{{ __('Enter Description') }}">{{ old('description') }}</textarea>
+            <div class="form-field">
+                <textarea name="description" id="description" rows="4" >{{ old('description') }}</textarea>
+                <label for="description">{{ __('Meeting Description') }}</label>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -167,7 +145,7 @@
 
 
             <!-- Submit Button -->
-            <div class="flex justify-end">
+            <div class="flex">
                 <button type="submit"
                     class="bg-primary-300 text-white px-4 py-2 rounded shadow hover:bg-primary-300 dark:bg-primary-300 dark:hover:bg-primary-300">
                     {{ __('Save') }}
@@ -178,7 +156,6 @@
     <script>
         $(document).ready(function() {
             $('#participants').select2({
-                placeholder: "Select participants",
                 allowClear: true,
                 width: '100%', // Full-width dropdown
             });

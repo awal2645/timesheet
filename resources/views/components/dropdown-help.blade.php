@@ -16,7 +16,8 @@
         </svg>
     </button>
     <div
-        class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 {{$align === 'right' ? 'right-0' : 'left-0'}}"                
+        class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800   text-text-light  
+ dark:text-text-dark   border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 {{$align === 'right' ? 'right-0' : 'left-0'}}"                
         @click.outside="open = false"
         @keydown.escape.window="open = false"
         x-show="open"

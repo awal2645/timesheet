@@ -3,142 +3,131 @@
 @endsection
 
 <x-app-layout>
-    <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+    <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Edit Task') }}</h2>
 
-        <form method="POST" action="{{ route('task.update', $task->id) }}" class="max-w-md mx-auto">
+        <form method="POST" action="{{ route('task.update', $task->id) }}">
             @csrf
             @method('PUT')
 
             {{-- Select Employer --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="employer_id" id="employer_id"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required>
-                    <option class="dark:bg-slate-800" value="" disabled>{{ __('Select Employer') }}</option>
+            <div class="form-field">
+                <select name="employer_id" id="employer_id" required class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
                     @foreach ($employers as $employer)
-                        <option class="dark:bg-slate-800" value="{{ $employer->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}"
                             {{ $task->employer_id == $employer->id ? 'selected' : '' }}>
                             {{ $employer->employer_name }}
                         </option>
                     @endforeach
                 </select>
+                <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
                 @error('employer_id')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Select Employee --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="employee_id" id="employee_id"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required>
-                    <option class="dark:bg-slate-800" value="" disabled>{{ __('Select Employee') }}</option>
+            <div class="form-field">
+                <select name="employee_id" id="employee_id" required class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800" value="{{ $employee->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}"
                             {{ $task->employee_id == $employee->id ? 'selected' : '' }}>
                             {{ $employee->employee_name }}
                         </option>
                     @endforeach
                 </select>
+                <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                 @error('employee_id')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Select Project --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="project_id" id="project_id"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    required>
-                    <option class="dark:bg-slate-800" value="" disabled>{{ __('Select Project') }}</option>
+            <div class="form-field">
+                <select name="project_id" id="project_id" required class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Project') }}</option>
                     @foreach ($projects as $project)
-                        <option class="dark:bg-slate-800" value="{{ $project->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $project->id }}"
                             {{ $task->project_id == $project->id ? 'selected' : '' }}>
                             {{ $project->project_name }}
                         </option>
                     @endforeach
                 </select>
+                <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
                 @error('project_id')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Task Name --}}
-            <div class="relative z-0 w-full mb-5 group">
+            <div class="form-field">
                 <input type="text" name="task_name" id="task_name" value="{{ $task->task_name }}" required
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                     placeholder=" " />
-                <label for="task_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    {{ __('Task Name') }}</label>
+                <label for="task_name" class="form-label">{{ __('Task Name') }}</label>
                 @error('task_name')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Task Time --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="text" name="time" id="time" value="{{ $task->time }}"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder="0:00" />
-                <label for="time"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    {{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
+            <div class="form-field">
+                <input type="text" name="time" id="time" value="{{ $task->time }}" />
+                <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Priority --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="priority" id="priority"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
-                    <option class="dark:bg-slate-800" value="low" {{ $task->priority == 'low' ? 'selected' : '' }}>
-                        {{ __('Low Priority') }}</option>
-                    <option class="dark:bg-slate-800" value="medium"
+            <div class="form-field">
+                <select name="priority" id="priority" class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="low"
+                        {{ $task->priority == 'low' ? 'selected' : '' }}>{{ __('Low Priority') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="medium"
                         {{ $task->priority == 'medium' ? 'selected' : '' }}>{{ __('Medium Priority') }}</option>
-                    <option class="dark:bg-slate-800" value="high" {{ $task->priority == 'high' ? 'selected' : '' }}>
-                        {{ __('High Priority') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="high"
+                        {{ $task->priority == 'high' ? 'selected' : '' }}>{{ __('High Priority') }}</option>
                 </select>
+                <label for="priority" class="form-label">{{ __('Priority') }}</label>
                 @error('priority')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Due Date --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <input type="date" name="due_date" id="due_date" value="{{ $task->due_date }}"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
+            <div class="form-field">
+                <input type="date" name="due_date" id="due_date"
+                {{-- @dd($task->due_date) --}}
+                    value="{{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') : '' }}"
                     placeholder=" " required />
-                <label for="due_date"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
-                    {{ __('Due Date') }}</label>
+                <label for="due_date" class="form-label">{{ __('Due Date') }}</label>
                 @error('due_date')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Task Status --}}
-            <div class="relative z-0 w-full mb-5 group">
-                <select name="status" id="status"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
-                    <option class="dark:bg-slate-800" value="pending"
+            <div class="form-field">
+                <select name="status" id="status" class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending"
                         {{ $task->status == 'pending' ? 'selected' : '' }}>{{ __('Pending') }}</option>
-                    <option class="dark:bg-slate-800" value="inprogress"
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="inprogress"
                         {{ $task->status == 'inprogress' ? 'selected' : '' }}>{{ __('In Progress') }}</option>
-                    <option class="dark:bg-slate-800" value="completed"
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="completed"
                         {{ $task->status == 'completed' ? 'selected' : '' }}>{{ __('Completed') }}</option>
                 </select>
+                <label for="status" class="form-label">{{ __('Status') }}</label>
                 @error('status')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
 
             {{-- Submit Button --}}
-            <div class="relative z-0 w-full mb-5 group">
+            <div class="col-span-full">
                 <button type="submit"
-                    class="w-full text-white bg-primary-300 hover:bg-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300">
+                    class="px-4 py-2 text-white bg-primary-500 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
                     {{ __('Update Task') }}
                 </button>
             </div>

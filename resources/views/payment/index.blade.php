@@ -3,11 +3,12 @@
 @endsection
 
 <x-app-layout>
-    <div
-        class="grid grid-cols-1 md:grid-cols-2 gap-8 m-6 p-6 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-md">
+    <h2 class="text-2xl font-bold mb-4">{{ __('Payment Settings') }}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 m-6 p-6 bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-md">
+        
         <!-- PayPal Settings -->
         <form action="{{ route('payment.update') }}" method="POST" enctype="multipart/form-data"
-            class="p-6 rounded-lg border boredr-black/10 dark:border-white/10 bg-white/30 dark:bg-black/30 ">
+            class="p-6 rounded-lg border border-black/10 dark:border-white/10 bg-card-light dark:bg-card-dark ">
             @method('PUT')
             @csrf
             <input type="hidden" name="type" value="paypal">
@@ -92,7 +93,7 @@
 
         <!-- Stripe Settings -->
         <form action="{{ route('payment.update') }}" method="POST" enctype="multipart/form-data"
-            class="p-6 rounded-lg border boredr-black/10 dark:border-white/10 bg-white/30 dark:bg-black/30 ">
+            class="p-6 rounded-lg border border-black/10 dark:border-white/10 bg-card-light dark:bg-card-dark ">
             @method('PUT')
             @csrf
             <input type="hidden" name="type" value="stripe">

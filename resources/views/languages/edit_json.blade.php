@@ -2,10 +2,10 @@
 
 <x-app-layout>
 
-    <div class="flex flex-col">
+    <div class="flex flex-col m-6">
         <div class="w-full">
-            <div class="bg-white shadow-md rounded-lg">
-                <div class="px-6 py-4 border-b">
+            <div class="">
+                <div class="card flex justify-between items-center">
                     <h3 class="text-lg font-semibold">
                         {{ $language->name }} - {{ __('translate_language') }}
                     </h3>
@@ -15,45 +15,41 @@
                         {{ __('back') }}
                     </a>
                 </div>
-                <div class="p-6">
+                <div class="card my-12">
                     <!-- filter -->
+                    <h2 class="mb-3">{{ __('Search by text') }}</h2>
                     <form id="formSubmit" action="" method="GET" onchange="this.submit();">
-                        <div class="flex flex-wrap mb-4">
-                            <div class="w-full md:w-1/3 mb-4 md:mb-0">
-                                <label class="block text-sm font-medium text-gray-700">{{ __('search') }}</label>
+                        <div>
+                            <div class="form-field">
+                                <label>{{ __('search') }}</label>
                                 <input name="keyword" type="text" placeholder="{{ __('title') }}"
-                                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200"
                                     value="{{ request('keyword') }}">
                             </div>
-                            <div class="w-full md:w-1/4">
-                                <label class="block">&nbsp;</label>
-                                <button type="submit"
-                                    class="mt-2 w-full bg-primary-300 text-white rounded-md px-4 py-2">
-                                    {{ __('search') }}
-                                </button>
-                            </div>
+                            <button type="submit" class="bg-primary-300 text-white rounded-md px-4 py-2">
+                                {{ __('search') }}
+                            </button>
                         </div>
                     </form>
                 </div>
 
-                <div class="p-6">
+                <div class="card">
                     <form action="{{ route('languages.transUpdate') }}" method="POST">
                         @csrf
                         <input type="hidden" name="lang_id" value="{{ $language->id }}">
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
-                                <thead>
+                            <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                                <thead class="table-header">
                                     <tr>
                                         <th
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            class="px-6 py-3">
                                             #</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        <th class="px-6 py-3"
                                             width="48%">{{ __('english_text') }}</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                        <th class="px-6 py-3"
                                             width="48%">{{ __('translation_text') }}</th>
                                     </tr>
                                 </thead>
-                                <tbody class="bg-white divide-y divide-gray-200">
+                                <tbody class="bg-white dark:bg-card-dark divide-y divide-gray-200 dark:divide-gray-700">
                                     @php
                                         $lastPageTotalData =
                                             request()->input('page') == null || request()->input('page') == 1
@@ -67,7 +63,7 @@
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 {{ ucwords(str_replace('_', ' ', $key)) }}</td> <!-- Updated line -->
                                             <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="flex items-center">
+                                                <div class="flex items-center form-field">
 
                                                     <input type="text"
                                                         class="form-control w-full border-gray-300 rounded-md shadow-sm focus:border-primary-500 focus:ring focus:ring-primary-200"

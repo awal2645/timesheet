@@ -9,7 +9,7 @@ class ThemeController extends Controller
 {
     public function index()
     {
-        $theme = Theme::getActive();
+        $theme = Theme::first();
         return view('themes.index', compact('theme'));
     }
 
@@ -17,7 +17,8 @@ class ThemeController extends Controller
     {
         $validated = $request->validate([
             'primary_color' => 'required|string',
-            'secondary_color' => 'required|string',
+            'card_dark' => 'required|string',
+            'card_light' => 'required|string',
             'sidebar_dark' => 'required|string',
             'sidebar_light' => 'required|string',
             'header_dark' => 'required|string',
@@ -29,19 +30,41 @@ class ThemeController extends Controller
             'font_family' => 'required|string',
         ]);
 
-        $theme = Theme::getActive();
-        $theme->update($validated);
+        $theme = Theme::first();
 
-        // Generate CSS variables for different shades
+        if ($theme) {
+            $theme->update($validated);
+        } else {
+            return redirect()->back()->with('error', 'No theme found to update.');
+        }
+
         $this->generateColorShades($theme);
 
         return redirect()->back()->with('success', 'Theme updated successfully');
     }
 
+    public function reset()
+    {
+        try {
+            $theme = Theme::first();
+
+            if ($theme) {
+                $theme->update(Theme::DEFAULT_COLORS);
+                $this->generateColorShades($theme);
+                return redirect()->back()->with('success', 'Theme reset to default colors successfully');
+            } else {
+                return redirect()->back()->with('error', 'No theme found to reset.');
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to reset theme: ' . $e->getMessage());
+        }
+    }
+
     private function generateColorShades($theme)
     {
         $primaryColor = $this->hexToRgb($theme->primary_color);
-        $secondaryColor = $this->hexToRgb($theme->secondary_color);
+        $cardDark = $this->hexToRgb($theme->card_dark);
+        $cardLight = $this->hexToRgb($theme->card_light);
         $sidebarDark = $this->hexToRgb($theme->sidebar_dark);
         $sidebarLight = $this->hexToRgb($theme->sidebar_light);
         $headerDark = $this->hexToRgb($theme->header_dark);
@@ -53,12 +76,10 @@ class ThemeController extends Controller
 
         $css = ":root {\n";
         
-        // Add font family variable
         $css .= "  --font-family: \"{$theme->font_family}\";\n";
 
         $shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-        // Generate primary shades
         foreach ($shades as $shade) {
             $opacity = 1 - ($shade / 1000);
             $css .= sprintf(
@@ -71,20 +92,9 @@ class ThemeController extends Controller
             );
         }
 
-        // Generate secondary shades
-        foreach ($shades as $shade) {
-            $opacity = 1 - ($shade / 1000);
-            $css .= sprintf(
-                "  --secondary-%d: rgba(%d, %d, %d, %s);\n",
-                $shade,
-                $secondaryColor['r'],
-                $secondaryColor['g'],
-                $secondaryColor['b'],
-                $opacity
-            );
-        }
 
-        // Add direct color variables for sidebar, header, and body
+        $css .= sprintf("  --card-dark: %s;\n", $theme->card_dark);
+        $css .= sprintf("  --card-light: %s;\n", $theme->card_light);
         $css .= sprintf("  --sidebar-dark: %s;\n", $theme->sidebar_dark);
         $css .= sprintf("  --sidebar-light: %s;\n", $theme->sidebar_light);
         $css .= sprintf("  --header-dark: %s;\n", $theme->header_dark);
@@ -96,12 +106,10 @@ class ThemeController extends Controller
 
         $css .= "}\n\n";
         
-        // Add global font family rule
         $css .= "body {\n";
         $css .= "  font-family: var(--font-family), system-ui, sans-serif;\n";
         $css .= "}\n";
 
-        // Create the css directory if it doesn't exist
         if (!file_exists(public_path('css'))) {
             mkdir(public_path('css'), 0755, true);
         }
@@ -111,10 +119,8 @@ class ThemeController extends Controller
 
     private function hexToRgb($hex)
     {
-        // Remove the hash if present
         $hex = ltrim($hex, '#');
 
-        // Parse the hex color
         if (strlen($hex) == 3) {
             $r = hexdec(str_repeat(substr($hex, 0, 1), 2));
             $g = hexdec(str_repeat(substr($hex, 1, 1), 2));

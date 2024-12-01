@@ -5,15 +5,14 @@
 <x-app-layout>
     <!-- index.blade.php -->
 
-    <div class="container mx-auto">
+    <div class="m-6">
         <!-- Set Recommended and Default Package -->
         @canany('Plan create')
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="my-8 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>
-                        <label for="recommended_package" class="block mb-2 text-sm font-medium">Set Recommended
+                        <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Set Recommended
                             Package</label>
                         <div class="flex">
                             <select name="plan_id" id="recommended_package"
@@ -25,11 +24,11 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button class="bg-primary-300 text-white px-4 py-2 rounded-lg ml-2">Update</button>
+                            <button class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">Update</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('plans.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
+                <a href="{{ route('plans.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> Create Plan</a>
             </div>
         @endcanany

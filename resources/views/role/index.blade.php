@@ -2,35 +2,31 @@
     {{ __('List Role') }}
 @endsection
 <x-app-layout>
-    <div class="relative overflow-x-auto">
-        <div
-            class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
+    <div class="relative m-6">
+        <div class="flex flex-col md:flex-row justify-end items-center card mb-12">
 
-            <a href="{{ route('role.create') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg">
+            <a href="{{ route('role.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Role') }}
             </a>
         </div>
         <!-- Start heading here -->
-        <div
-        class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark  px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
-        <div class="w-full ">
+        <div class="card">
+            <div class="w-full ">
                 <div class="dashboard-right pl-0 ">
                     <div class="invoices-table ">
-                        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Role List') }}</h2>
+                        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Role List') }}
+                        </h2>
                         <div class="overflow-x-auto pb-1">
                             <table class="w-full table-auto">
-                                <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                <thead class="table-header">
                                     <tr>
-                                        <th scope="col"
-                                            class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3  ">
                                             {{ __('Role Name') }}
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3  ">
                                             {{ __('Permission') }}
                                         </th>
-                                        <th scope="col"
-                                            class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3  ">
                                             {{ __('Action') }}
                                         </th>
                                     </tr>
@@ -41,7 +37,7 @@
                                             @if (auth()->user()->role != 'superadmin')
                                                 @if ($role->name != 'superadmin' && $role->name != 'employer')
                                                     <tr
-                                                    class="hover:bg-gray-100 bg-body-light hover:dark:bg-body-dark transition duration-200">
+                                                        class="hover:bg-gray-100 bg-body-light hover:dark:bg-body-dark transition duration-200">
                                                         <th scope="row"
                                                             class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                             <div class="">
@@ -50,14 +46,14 @@
                                                             </div>
                                                         </th>
                                                         <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-stroke dark xl:pl-11">
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-stroke dark xl:pl-11">
                                                             @foreach ($role->permissions as $permission)
                                                                 <span
                                                                     class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-500 rounded-full">{{ $permission->name }}</span>
                                                             @endforeach
                                                         </td>
                                                         <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-stroke dark xl:pl-11">
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-stroke dark xl:pl-11">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('role.edit', $role->id) }}"
                                                                     class="font-medium text-primary-600 dark:text-primary-500 hover:underline">

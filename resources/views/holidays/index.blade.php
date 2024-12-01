@@ -3,10 +3,9 @@
 @endsection
 
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-header-dark bg-header-light backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+    <div class="relative m-6">
+        <div class="">
+            <div class="card flex justify-between items-center">
                 <form action="{{ route('holidays.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -29,16 +28,16 @@
                 </a>
             </div>
 
-            <div class="flex flex-wrap">
+            <div class="mt-12 flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Holiday List') }}</h2>
-                            <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                {{ __('Holiday List') }}</h2>
+                            <div>
+                                <div class="card">
                                     <table class="w-full table-auto">
-                                        <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                        <thead class="table-header">
                                             <tr class="rounded-2xl text-left">
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Holiday Name') }}</th>
@@ -50,12 +49,16 @@
                                         <tbody>
                                             @if ($holidays->count() > 0)
                                                 @foreach ($holidays as $holiday)
-                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                    <tr
+                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             {{ $holiday->name }}</td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             {{ $holiday->date }}</td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                             <div class="flex justify-end">
                                                                 <a href="{{ route('holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-500 hover:text-primary-300">{{ __('Edit') }}</a>
@@ -75,8 +78,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="3"
-                                                        class="text-center py-8  ">
+                                                    <td colspan="3" class="text-center py-8  ">
                                                         <img src="{{ asset('images/no-data-found.svg') }}"
                                                             alt="No data found" class="mx-auto max-w-xs">
                                                     </td>

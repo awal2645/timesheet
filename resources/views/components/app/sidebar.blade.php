@@ -12,25 +12,26 @@
         <!-- Sidebar header -->
         <div class="px-3 py-1 sticky top-0 z-50 bg-sidebar-light dark:bg-sidebar-dark">
 
-            <div class="flex" :class="sidebarExpanded ? 'justify-between':'justify-center'">
+            <div class="flex" :class="sidebarExpanded ? 'justify-between' : 'justify-center'">
                 <!-- Hamburger button -->
                 <button x-show="!sidebarExpanded" class="text-text-light hover:text-text-dark lg:block hidden"
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
-                    <span class="sr-only">Open sidebar {{ __() }}</span>
+                    <span class="sr-only">{{ __('Open sidebar') }} {{ __() }}</span>
                     <i class="fa-solid fa-bars text-2xl text-text-light dark:text-text-dark w-6"></i>
                 </button>
                 <!-- Logo link (shown only when sidebarExpanded is true) -->
                 <a class="block" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
-                    <img  class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt="" class="">
+                    <img class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt=""
+                        class="">
                     <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class="awal">
 
                 </a>
             </div>
 
             <a class="lg:hidden" x-show="!sidebarExpanded" href="{{ route('dashboard') }}">
-                <img  class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt="" class="">
-                <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class="">            </a>
+                <img class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt="" class="">
+                <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class=""> </a>
         </div>
 
         <!-- Links -->
@@ -40,16 +41,14 @@
                 <ul class="mt-3 space-y-2">
                     <!-- Dashboard -->
                     <li>
-                        <a class="block px-3 py-1.5 rounded {{ request()->routeIs('dashboard') ? 'text-white  bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 font-medium truncate transition duration-150 text-text-light"
+                        <a class="sidebar-menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                             href="{{ route('dashboard') }}">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span
-                                                   class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
+                                    <span class="sidebar-menu-icon">
                                         <i class="fa-solid fa-gauge text-base"></i>
                                     </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <span class="sidebar-menu-text">
                                         {{ __('Dashboard') }}</span>
                                 </div>
                             </div>
@@ -58,16 +57,14 @@
                     <!-- Order -->
                     @canany('Order view')
                         <li>
-                            <a class="block px-3 py-1.5 rounded {{ request()->routeIs('order.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light"
+                            <a class="sidebar-menu-item {{ request()->routeIs('order.*') ? 'active' : '' }}"
                                 href="{{ route('order.index') }}">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                            class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
+                                        <span class="sidebar-menu-icon">
                                             <i class="fa-solid fa-money-bill-wave text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Order') }}</span>
                                     </div>
                                 </div>
@@ -78,16 +75,14 @@
                     @canany('Employer view')
                         <li>
                             <a href="{{ route('employer.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light"
+                                class="sidebar-menu-item {{ request()->routeIs('employer.*') ? 'active' : '' }}"
                                 href="#0">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-building text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-building text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Employer') }}</span>
                                     </div>
                                 </div>
@@ -98,14 +93,13 @@
                     @canany('Client view')
                         <li>
                             <a href="{{ route('employee.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employee.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('employee.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-user-tie text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-user-tie text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Employee') }}</span>
                                     </div>
                                 </div>
@@ -116,14 +110,13 @@
                     @canany('Client view')
                         <li>
                             <a href="{{ route('client.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('client.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('client.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-user-secret text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-user-secret text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Client') }}</span>
                                     </div>
                                 </div>
@@ -134,14 +127,13 @@
                     @if (auth('web')->user()->role != 'employee')
                         <li>
                             <a href="{{ route('project.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('project.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('project.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-list-check text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-list-check text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Project') }}</span>
                                     </div>
                                 </div>
@@ -151,14 +143,13 @@
                     <!-- task -->
                     <li>
                         <a href="{{ route('task.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('task.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                            class="sidebar-menu-item {{ request()->routeIs('task.*') ? 'active' : '' }} ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
-                                        <i class="fa-solid fa-briefcase"></i> </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <span class="sidebar-menu-icon">
+                                        <i class="fa-solid fa-briefcase"> </i>
+                                    </span>
+                                    <span class="sidebar-menu-text">
                                         {{ __('Task') }}</span>
                                 </div>
                             </div>
@@ -168,14 +159,13 @@
                     @canany('Plan view')
                         <li>
                             <a href="{{ route('plans.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('plans.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('plans.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-money-check-dollar text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-money-check-dollar text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
 
                                             {{ __('Price Plan') }}
                                         </span>
@@ -188,14 +178,13 @@
                     @canany('Timesheet view')
                         <li>
                             <a href="{{ route('timesheet.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('timesheet.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500  truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('timesheet.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-hourglass text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-hourglass text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Timesheet') }}
                                         </span>
                                     </div>
@@ -207,14 +196,13 @@
                     @canany('Report view')
                         <li>
                             <a href="{{ route('reports.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('reports.index') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('reports.index') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-chart-line text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-chart-line text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Timesheet Report') }}
                                         </span>
                                     </div>
@@ -224,24 +212,19 @@
                     @endcanany
 
                     <!-- Leave Management Dropdown -->
-                    <li x-data="{ 
-                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'true' : 'false' }} 
-                    }" 
-                    x-effect="if (!sidebarExpanded) open = true">
+                    <li x-data="{
+                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
+                    }" x-effect="if (!sidebarExpanded) open = true">
                         <a href="#" @click.stop="sidebarExpanded && (open = !open)"
-                            class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
-                            <div>
-                                <span
-                                class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
-                                    <i class="fa-solid fa-cog text-base"></i>
-                                </span>
-                                <span
-                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                            class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
+                            <div class="flex items-center">
+                                <span class="sidebar-menu-icon">
+                                    <i class="fa-solid fa-person-walking-arrow-right"></i>                                </span>
+                                <span class="sidebar-menu-text">
                                     {{ __('Leave Management') }}
                                 </span>
                             </div>
-                            <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer"
-                               >
+                            <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
                                 <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-white"
                                     :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
                                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
@@ -249,18 +232,16 @@
                             </div>
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
-                            <ul class="mt-1" :class="sidebarExpanded ? 'pl-9':'pl-0'" x-show="open" x-collapse>
-                                  <!-- Weekly Holidays -->
-                                  <li class="mb-1 last:mb-0">
+                            <ul class="mt-1" :class="sidebarExpanded ? 'pl-9' : 'pl-0'" x-show="open" x-collapse>
+                                <!-- Weekly Holidays -->
+                                <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave.index') }}"
-                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('leave.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                        class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <span
-                                                class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
-                                                <span
-                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                <span class="sidebar-menu-icon">
+                                                    <i class="fa-solid fa-person-through-window"></i>                                                </span>
+                                                <span class="sidebar-menu-text">
                                                     {{ __('Leave') }}
                                                 </span>
                                             </div>
@@ -270,14 +251,12 @@
                                 <!-- Weekly Holidays -->
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('weekly_holidays.index') }}"
-                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('weekly_holidays.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                        class="sidebar-menu-item {{ request()->routeIs('weekly_holidays.*') ? 'active' : '' }} ">
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <span
-                                                class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
-                                                <span
-                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                <span class="sidebar-menu-icon">
+                                                    <i class="fa-solid fa-retweet"></i>                                                </span>
+                                                <span class="sidebar-menu-text">
                                                     {{ __('Weekly Holidays') }}
                                                 </span>
                                             </div>
@@ -288,14 +267,12 @@
                                 <!-- Holidays -->
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('holidays.index') }}"
-                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('holidays.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                        class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <span
-                                                class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
-                                                <span
-                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                <span class="sidebar-menu-icon">
+                                                    <i class="fa-solid fa-mug-hot"></i>                                                </span>
+                                                <span class="sidebar-menu-text">
                                                     {{ __('Holidays') }}
                                                 </span>
                                             </div>
@@ -305,14 +282,13 @@
                                 <!-- Leave Types -->
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave_types.index') }}"
-                                        class="block px-3 py-1.5 rounded {{ request()->routeIs('leave_types.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                        class="sidebar-menu-item {{ request()->routeIs('leave_types.*') ? 'active' : '' }} ">
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
-                                                <span
-                                                class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                <span class="sidebar-menu-icon">
+                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
                                                 </span>
-                                                <span
-                                                    class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                                <span class="sidebar-menu-text">
                                                     {{ __('Leave Types') }}
                                                 </span>
                                             </div>
@@ -326,15 +302,13 @@
                     {{-- @canany('Notice') --}}
                     <li>
                         <a href="{{ route('notices.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('notices.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                            class="sidebar-menu-item {{ request()->routeIs('notices.*') ? 'active' : '' }} ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
+                                    <span class="sidebar-menu-icon">
                                         <i class="fa-solid fa-bullhorn text-base"></i>
                                     </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <span class="sidebar-menu-text">
                                         {{ __('Notice') }}
                                     </span>
                                 </div>
@@ -346,14 +320,13 @@
                     @canany('Zoom Meeting')
                         <li>
                             <a href="{{ route('meeting.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('meeting.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                                class="sidebar-menu-item {{ request()->routeIs('meeting.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-video text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-video text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Zoom Meeting') }}</span>
                                     </div>
                                 </div>
@@ -364,15 +337,13 @@
                     {{-- @canany('Invoice view') --}}
                     <li>
                         <a href="{{ route('invoice.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('invoice.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light">
+                            class="sidebar-menu-item {{ request()->routeIs('invoice.*') ? 'active' : '' }} ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
+                                    <span class="sidebar-menu-icon">
                                         <i class="fa-solid fa-file-invoice text-base"></i>
                                     </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <span class="sidebar-menu-text">
                                         {{ __('Invoice') }}</span>
                                 </div>
                             </div>
@@ -383,14 +354,13 @@
                     @canany('Invite send')
                         <li>
                             <a href="{{ route('invite.send.employer.page') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('invite.send.employer.page') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('invite.send.employer.page') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-regular fa-paper-plane text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-regular fa-paper-plane text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Send Invite') }}
                                         </span>
                                     </div>
@@ -402,14 +372,13 @@
                     @canany('Email view')
                         <li>
                             <a href="{{ route('emails.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('emails.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('emails.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-regular fa-envelope text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-regular fa-envelope text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Send Mail') }}
                                         </span>
                                     </div>
@@ -421,14 +390,13 @@
                     @canany('Role view')
                         <li>
                             <a href="{{ route('role.page') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('role.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('role.*') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-user-lock text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-user-lock text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Role Management') }}
                                         </span>
                                     </div>
@@ -440,14 +408,13 @@
                     @canany('SMTP Config')
                         <li>
                             <a href="{{ route('smtp') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('smtp') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('smtp') ? 'active' : '' }} ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-brands fa-mailchimp tetx-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-brands fa-mailchimp tetx-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('SMTP Config') }}
                                         </span>
                                     </div>
@@ -459,14 +426,13 @@
                     @canany('Email Templates')
                         <li>
                             <a href="{{ route('email_templates') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('email_templates') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('email_templates') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-regular fa-envelope text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-regular fa-envelope text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Email Templates') }}
                                         </span>
                                     </div>
@@ -478,14 +444,13 @@
                     @canany('General Settings')
                         <li>
                             <a href="{{ route('payment') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('payment') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('payment') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-file-invoice-dollar text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-file-invoice-dollar text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Payment Gateway') }}
                                         </span>
                                     </div>
@@ -497,15 +462,13 @@
                     {{-- @canany('Language') --}}
                     <li>
                         <a href="{{ route('languages.index') }}"
-                            class="block px-3 py-1.5 rounded {{ request()->routeIs('languages.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                            class="sidebar-menu-item {{ request()->routeIs('languages.*') ? 'active' : '' }}  ">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">
-                                    <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">
+                                    <span class="sidebar-menu-icon">
                                         <i class="fa-solid fa-language text-base"></i>
                                     </span>
-                                    <span
-                                        class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                    <span class="sidebar-menu-text">
                                         {{ __('Language') }}
                                     </span>
                                 </div>
@@ -517,14 +480,13 @@
                     @canany('General Settings')
                         <li>
                             <a href="{{ route('setting') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('setting') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('setting') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-gears text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-gears text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('General Setting') }}
 
                                         </span>
@@ -537,14 +499,12 @@
                     @canany('General Settings')
                         <li>
                             <a href="{{ route('themes.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('themes.*') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('themes.*') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-gears text-base"></i>
-                                        </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-brands fa-elementor"></i>                                        </span>
+                                        <span class="sidebar-menu-text">
                                             {{ __('Theme Settings') }}
 
                                         </span>
@@ -557,14 +517,12 @@
                     @canany('Cms')
                         <li>
                             <a href="{{ route('cms.index') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('cms.index') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('cms.index') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-gears text-base"></i>
-                                        </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-arrows-to-circle"></i>                                        </span>
+                                        <span class="sidebar-menu-text">
                                             {{ __('Cms') }}
                                         </span>
                                     </div>
@@ -576,14 +534,13 @@
                     @canany('General Settings')
                         <li>
                             <a href="{{ route('upgrade') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('upgrade') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150 text-text-light ">
+                                class="sidebar-menu-item {{ request()->routeIs('upgrade') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-upload text-base"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-upload text-base"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Upgrade Application') }}
                                         </span>
                                     </div>
@@ -594,15 +551,14 @@
                     @if (auth()->user()->role === 'employer')
                         <li>
                             <a href="{{ route('employer.plan') }}"
-                                class="block px-3 py-1.5 rounded {{ request()->routeIs('employer.plan') ? 'text-white bg-primary-300 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500' : 'dark:text-text-dark' }} hover:text-primary-500 truncate transition duration-150"
+                                class="sidebar-menu-item {{ request()->routeIs('employer.plan') ? 'active' : '' }} hover:text-primary-500 truncate transition duration-150"
                                 href="#0">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
-                                        <span
-                                        class="w-8 h-8 rounded bg-text-light-light dark:bg-body-dark shadow-text-light  dark:shadow-text-dark shadow-sm  inline-flex justify-center items-center">                                            <i class="fa-solid fa-cart-shopping w-8"></i>
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-cart-shopping w-8"></i>
                                         </span>
-                                        <span
-                                            class="text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                        <span class="sidebar-menu-text">
                                             {{ __('Biling & Plan') }}
                                         </span>
                                     </div>

@@ -82,7 +82,6 @@ class EmployerController extends Controller
             'state' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'zip' => 'required|string|max:255',
-            'role_name' => 'required',
         ]);
 
         try {

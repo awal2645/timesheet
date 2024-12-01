@@ -3,13 +3,12 @@
 @endsection
 <x-app-layout>
     <div class="m-6">
-        <div
-            class="mb-12 px-5 py-6 rounded-2xl dark:bg-black/10 bg-white/10 backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
+        <div class="mb-12 card flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
 
-            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg"><i
+            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                     class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
         </div>
-        <div class="p-6 bg-white/10 dark:bg-black/10 rounded-lg border border-black/10 dark:border-white/10 shadow-md">
+        <div class="card">
             <h2 class="text-2xl font-bold mb-4">{{ __('Edit Invoice') }}</h2>
 
             <form method="POST" action="{{ route('invoice.update', $invoice->id) }}">
@@ -17,9 +16,8 @@
                 @method('PUT')
 
                 <!-- Employer Name -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="employer_id" id="employer_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+                <div class="form-field">
+                    <select name="employer_id" id="employer_id">
                         @foreach ($employers as $employer)
                             <option value="{{ $employer->id }}"
                                 {{ $invoice->employer_id == $employer->id ? 'selected' : '' }}>
@@ -31,9 +29,8 @@
                 </div>
 
                 <!-- Client Name -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="client_id" id="client_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+                <div class="form-field">
+                    <select name="client_id" id="client_id">
                         @foreach ($clients as $client)
                             <option value="{{ $client->id }}"
                                 {{ $invoice->client_id == $client->id ? 'selected' : '' }}>
@@ -45,9 +42,8 @@
                 </div>
 
                 <!-- Project Name -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <select name="project_id" id="project_id"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
+                <div class="form-field">
+                    <select name="project_id" id="project_id">
                         @foreach ($projects as $project)
                             <option value="{{ $project->id }}"
                                 {{ $invoice->project_id == $project->id ? 'selected' : '' }}>
@@ -60,28 +56,25 @@
                 </div>
 
                 <!-- Invoice Number -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="invoice_number" id="invoice_number"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required value="{{ $invoice->invoice_number }}" />
+                <div class="form-field">
+                    <input type="text" name="invoice_number" id="invoice_number" required
+                        value="{{ $invoice->invoice_number }}" />
                     <label for="invoice_number"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Number') }}</label>
                 </div>
 
                 <!-- Invoice Date -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="date" name="invoice_date" id="invoice_date"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required value="{{ $invoice->invoice_date }}" />
+                <div class="form-field">
+                    <input type="date" name="invoice_date" id="invoice_date" required
+                        value="{{ $invoice->invoice_date }}" />
                     <label for="invoice_date"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Date') }}</label>
                 </div>
 
                 <!-- Total Cost -->
-                <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="total_cost" id="total_cost"
-                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        required value="{{ $invoice->total_cost }}" />
+                <div class="form-field">
+                    <input type="text" name="total_cost" id="total_cost" required
+                        value="{{ $invoice->total_cost }}" />
                     <label for="total_cost"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Total Cost') }}</label>
                 </div>

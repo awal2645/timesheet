@@ -3,10 +3,9 @@
 @endsection
 
 <x-app-layout>
-    <div class="relative m-3">
-        <div class="container mx-auto px-4">
-            <div
-                class="my-8 px-5 py-3 rounded-2xl dark:bg-header-dark bg-header-light backdrop-blur border border-black/10 dark:border-white/10 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+    <div class="relative m-6">
+        <div>
+            <div class="my-8 card flex justify-between items-center">
                 <form action="{{ route('employer.index') }}" method="GET" class="w-full">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -33,12 +32,12 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Employer List') }}</h2>
-                            <div class="overflow-hidden">
-                                <div
-                                    class="rounded-lg border border-black/10 dark:border-white/10 shadow-lg bg-body-light backdrop-blur dark:bg-body-dark px-5 pb-2.5 pt-6 shadow-default sm:px-7.5 xl:pb-1">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                {{ __('Employer List') }}</h2>
+                            <div>
+                                <div class="card">
                                     <table class="w-full table-auto">
-                                        <thead class="bg-primary-300 text-text-light dark:text-text-dark">
+                                        <thead class="table-header">
                                             <tr class="rounded-2xl text-left">
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     <div class="flex gap-2 items-center text-base">

@@ -5,7 +5,7 @@
 <x-app-layout>
     <div>
 
-        <div class="m-6 bg-white/10 dark:bg-black/10 p-6 rounded-lg border border-black/10 dark:border-white/10">
+        <div class="m-6 card">
 
             <div class="">
 
@@ -30,7 +30,7 @@
                             class="mb-4 p-4 sm:p-2 bg-white rounded-md shadow-md text-center dark:bg-gray-800 dark:text-white">
                             <label for="{{ $day }}"
                                 class="block text-sm font-medium text-gray-700 dark:text-white">{{ $day }}</label>
-                            <div class="flex mt-2">
+                            <div class="flex mt-2 form-field">
                                 <input type="number" min="1" name="hours[{{ $day }}]"
                                     value="{{ $hours[$day] }}"
                                     class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
@@ -55,7 +55,8 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
 
-                <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
+                <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">
+                    {{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
 
                 <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
                     role="alert">
@@ -72,20 +73,21 @@
                 </div>
 
                 <!-- File Upload Input -->
-                <div class="mb-4">
-                    <label for="file" class="block text-gray-400 font-medium">{{ __('Choose a file:') }}</label>
+                <div class="form-field">
                     <input @if ($timeReport) disabled @endif type="file" id="file"
-                        name="image" class="mt-1 p-2 border rounded-md w-full">
+                        name="image">
+                        <label for="file" class="form-label">{{ __('Choose a file:') }}</label>
+
                     @error('image')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
 
                 <!-- Textarea -->
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-400 font-medium">{{ __('Your Message:') }}</label>
-                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4"
-                        class="mt-1 p-2 border rounded-md dark:text-white w-full dark:bg-gray-800">{{ $timeReport->comment ?? '' }}</textarea>
+                <div class="form-field">
+                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="2">{{ $timeReport->comment ?? '' }}</textarea>
+                    <label for="message" class="form-label">{{ __('Your Message:') }}</label>
+
                 </div>
 
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">

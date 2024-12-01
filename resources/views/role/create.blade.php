@@ -1,23 +1,20 @@
 <x-app-layout>
-    <div
-        class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 p-6 rounded-lg bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10">
-        <a href="{{ route('role.page') }}" class="bg-primary-300 text-white px-4 py-2 rounded-lg">
+    <div class="m-6 flex flex-col md:flex-row justify-end items-center card md:gap-6">
+        <a href="{{ route('role.page') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
             <i class="fa-solid fa-plus"></i> {{ __('Back to Role List') }}
         </a>
     </div>
-    <div class="m-6 p-8 bg-white dark:bg-black/10 border border-black/10 dark:border-white/10 rounded-lg shadow-lg">
+    <div class="m-6 card">
         <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">{{ __('Create New Role') }}</h2>
 
         <form method="POST" action="{{ route('role.store') }}" class="space-y-6">
             @csrf
 
             <!-- Role Name -->
-            <div class="relative z-0 w-full">
-                <input type="text" name="role_name" id="role_name"
-                    class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                    placeholder=" " required value="{{ old('role_name') }}" />
-                <label for="role_name"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Role Name') }}</label>
+            <div class="relative z-0 form-field">
+                <input type="text" name="role_name" id="role_name" placeholder=" " required
+                    value="{{ old('role_name') }}" />
+                <label for="role_name">{{ __('Role Name') }}</label>
                 @error('role_name')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror

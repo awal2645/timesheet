@@ -3,7 +3,7 @@
 @endsection
 
 <x-app-layout>
-    <div class="m-6 p-6 bg-white/10 border border-black/10 dark:border-white/10 dark:bg-black/10 rounded-lg shadow-md">
+    <div class="m-6 card">
         <!-- Header Section -->
         <div class="dark:bg-primary-200/10 bg-primary-900/10 p-4 rounded-md">
             <h2 class="text-lg font-semibold text-primary-300">{{ __('Upgrade Guide') }} ({{ __('Current version') }}
@@ -12,7 +12,7 @@
         </div>
 
         <!-- Upgrade Instructions Section -->
-        <div class="bg-primary-300/50 text-white p-6 mt-4 rounded-md">
+        <div class="bg-card-light dark:bg-card-dark text-text-light dark:text-text-dark p-6 mt-4 rounded-md">
             <ul class="list-disc ml-4">
                 <li>{{ __('Application current version') }} <strong>{{ config('app.version') }}</strong>
                     <a href="https://engagingdot.com/knowledge-base/upgrade-guide/"

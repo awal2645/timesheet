@@ -1,7 +1,7 @@
 @section('title', 'Send Emails')
 
 <x-app-layout>
-    <div class="container mx-auto px-5">
+    <div class="m-6">
         <h2 class="text-2xl font-semibold mb-4">{{ __('Send Emails') }}</h2>
 
         @if (session('success'))
@@ -10,12 +10,31 @@
             </div>
         @endif
 
-        <form action="{{ route('emails.send') }}" method="POST">
+        <form action="{{ route('emails.send') }}" method="POST" class="card">
             @csrf
-            <div class="mb-4">
-                <label for="subject" class="block text-sm font-medium">{{ __('Subject') }}</label>
-                <input type="text" name="subject" id="subject"
-                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required>
+            <div class="form-field">
+                <input type="text" name="subject" id="subject" required placeholder=" ">
+                <label for="subject" class="form-label">{{ __('Subject') }}</label>
+            </div>
+
+            <div class="flex items-center gap-5">
+                <div class="mb-4 w-1/2">
+                    <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
+                    <select name="role[]" id="role" class="select2 !w-full" multiple="multiple">
+                        @foreach ($roles as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-4 w-1/2">
+                    <label for="emails" class="block text-sm font-medium">{{ __('Select or Add Emails') }}</label>
+                    <select name="emails[]" id="emails" class="select2 w-full" multiple="multiple" required>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->email }}">{{ $user->email }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <div class="mb-4">
@@ -25,26 +44,8 @@
                     cols="30" rows="10"></textarea>
             </div>
 
-            <div class="mb-4">
-                <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
-                <select name="role[]" id="role" class="select2 w-full" multiple="multiple">
-                    @foreach ($roles as $role)
-                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div class="mb-4">
-                <label for="emails" class="block text-sm font-medium">{{ __('Select or Add Emails') }}</label>
-                <select name="emails[]" id="emails" class="select2 w-full" multiple="multiple" required>
-                    @foreach ($users as $user)
-                        <option value="{{ $user->email }}">{{ $user->email }}</option>
-                    @endforeach
-                </select>
-            </div>
-
             <button type="submit"
-                class="bg-primary-300 text-white px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
+                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
         </form>
     </div>
 
