@@ -219,8 +219,7 @@
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
                             <div class="flex items-center">
                                 <span class="sidebar-menu-icon">
-                                    <i class="fa-solid fa-cog text-base"></i>
-                                </span>
+                                    <i class="fa-solid fa-person-walking-arrow-right"></i>                                </span>
                                 <span class="sidebar-menu-text">
                                     {{ __('Leave Management') }}
                                 </span>
@@ -241,8 +240,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
                                                 <span class="sidebar-menu-icon">
-                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
+                                                    <i class="fa-solid fa-person-through-window"></i>                                                </span>
                                                 <span class="sidebar-menu-text">
                                                     {{ __('Leave') }}
                                                 </span>
@@ -257,8 +255,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
                                                 <span class="sidebar-menu-icon">
-                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
+                                                    <i class="fa-solid fa-retweet"></i>                                                </span>
                                                 <span class="sidebar-menu-text">
                                                     {{ __('Weekly Holidays') }}
                                                 </span>
@@ -274,8 +271,7 @@
                                         <div class="flex items-center justify-between">
                                             <div class="flex items-center">
                                                 <span class="sidebar-menu-icon">
-                                                    <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                </span>
+                                                    <i class="fa-solid fa-mug-hot"></i>                                                </span>
                                                 <span class="sidebar-menu-text">
                                                     {{ __('Holidays') }}
                                                 </span>
@@ -507,8 +503,7 @@
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
                                         <span class="sidebar-menu-icon">
-                                            <i class="fa-solid fa-gears text-base"></i>
-                                        </span>
+                                            <i class="fa-brands fa-elementor"></i>                                        </span>
                                         <span class="sidebar-menu-text">
                                             {{ __('Theme Settings') }}
 
@@ -526,8 +521,7 @@
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
                                         <span class="sidebar-menu-icon">
-                                            <i class="fa-solid fa-gears text-base"></i>
-                                        </span>
+                                            <i class="fa-solid fa-arrows-to-circle"></i>                                        </span>
                                         <span class="sidebar-menu-text">
                                             {{ __('Cms') }}
                                         </span>

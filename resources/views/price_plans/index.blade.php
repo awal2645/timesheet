@@ -12,7 +12,7 @@
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>
-                        <label for="recommended_package" class="block mb-2 text-sm font-medium">Set Recommended
+                        <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Set Recommended
                             Package</label>
                         <div class="flex">
                             <select name="plan_id" id="recommended_package"

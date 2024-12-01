@@ -46,7 +46,7 @@
             </ul>
             <!-- Tab Content -->
             <div
-                class="md:w-2/3 p-4 bg-white/30 dark:bg-black/30 border border-black/10 rounded-lg dark:border-white/10">
+                class=" card md:w-2/3 p-4 bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg">
                 @foreach ($email_templates as $email_template)
                     @php $type = $email_template->type ?? 'new'; @endphp
                     <div x-show="activeTab === '{{ $type }}'" x-cloak>
@@ -56,7 +56,7 @@
                                 <input type="hidden" name="id" value="{{ $email_template->id }}">
                             @endisset
 
-                            <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg px-6 pb-6">
+                            <div class="card shadow-md rounded-lg px-6 pb-6 mt-3">
                                 <div class="grid grid-cols-1 gap-6">
                                     <!-- Name Input -->
                                     <div class="mb-4">

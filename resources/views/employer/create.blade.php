@@ -83,25 +83,6 @@
                 @enderror
             </div>
 
-            @if (auth('web')->user()->role != 'employer')
-                <!-- User Role -->
-                <div class="form-field">
-                    <select name="role_name" id="role_name" class="form-select">
-                        <option value="" class="dark:bg-slate-800">{{ __('Select Role') }}</option>
-                        @foreach ($roles as $role)
-                            <option class="dark:bg-slate-800 capitalize" value="employer">{{ ucfirst($role->name) }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <label for="role_name" class="form-label">
-                        {{ __('Role Name') }}
-                    </label>
-                    @error('role_name')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-            @endif
-
             <!-- Address Fields -->
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="form-field">
@@ -125,8 +106,53 @@
                 </div>
             </div>
 
+             <!-- city and state Fields -->
+             <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="form-field">
+                    <input type="text" name="city" id="city" placeholder=" " value="{{ old('city') }}" />
+                    <label for="city">
+                        {{ __('City') }}
+                    </label>
+                    @error('city')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-field">
+                    <input type="text" name="state" id="state" placeholder=" "
+                        value="{{ old('state') }}" />
+                    <label for="state">
+                        {{ __('State') }}
+                    </label>
+                    @error('state')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+             <!-- zip and country Fields -->
+             <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="form-field">
+                    <input type="text" name="zip" id="zip" placeholder=" " value="{{ old('zip') }}" />
+                    <label for="zip">
+                        {{ __('Zip') }}
+                    </label>
+                    @error('zip')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-field">
+                    <input type="text" name="country" id="country" placeholder=" "
+                        value="{{ old('country') }}" />
+                    <label for="country">
+                        {{ __('Country') }}
+                    </label>
+                    @error('country')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
             <button type="submit"
-                class="text-white bg-primary-300 dark:bg-primary-900 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                class="text-text-light dark:text-text-dark bg-primary-300 dark:bg-primary-300 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                 {{ __('Submit') }}
             </button>
         </form>

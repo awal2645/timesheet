@@ -94,11 +94,15 @@
                 </div>
                 <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300"> Show User Panel</span>
             </label>
+            <br>
+            <br>
             <!-- Submit Button -->
-            <button type="submit"
-                class="w-full px-4 mt-2 py-2 text-white bg-primary-300 dark:bg-primary-900 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
-                Update Plan
-            </button>
+            <div class="col-span-full">
+                <button type="submit"
+                    class="px-4 py-2 text-white bg-primary-500 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                     {{ __('Update Plan') }}
+                </button>
+            </div>
         </form>
     </div>
 </x-app-layout>

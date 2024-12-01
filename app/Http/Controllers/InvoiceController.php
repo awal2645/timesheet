@@ -42,7 +42,6 @@ class InvoiceController extends Controller
              'client_id' => 'required|exists:clients,id',
              'project_id' => 'required|exists:projects,id',
              'invoice_number' => 'required|string|max:255',
-             'total_cost' => 'required|numeric',
          ]);
  
          Invoice::create($request->all());
@@ -66,7 +65,6 @@ class InvoiceController extends Controller
              'employer_id' => 'required|exists:employers,id',
              'invoice_number' => 'required|string|max:255',
              'invoice_date' => 'required|date',
-             'total_cost' => 'required|numeric',
          ]);
  
          $invoice->update($request->all());

@@ -30,7 +30,7 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Recent Invoice') }}</h2>
                             <div>
                                 <div class="card">
@@ -63,7 +63,7 @@
                                                         @endif
                                                     </td>
                                                     <td class="p-4">
-                                                        {{ ucfirst($transaction->employer->user->username) ?? '' }}
+                                                        {{ ucfirst($transaction->employer->employer_name) ?? '' }}
                                                     </td>
                                                     <td class="p-4">${{ $transaction->usd_amount }}</td>
                                                     <td class="p-4">
@@ -74,27 +74,6 @@
                                                             class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
                                                             {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
                                                         </span>
-                                                    </td>
-                                                    <td class="p-4">
-                                                        <div class="flex justify-end">
-                                                            <span x-data="{ openDropdown: false }" class="relative">
-                                                                <button @click="openDropdown = !openDropdown"
-                                                                    class="focus:outline-none border border-black/30 dark:border-white/30 px-2 py-1.5 rounded">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="16" height="16"
-                                                                        fill="currentColor" class="bi bi-three-dots"
-                                                                        viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3" />
-                                                                    </svg>
-                                                                </button>
-                                                                <div x-show="openDropdown"
-                                                                    @click.away="openDropdown = false"
-                                                                    class="absolute mt-2 right-0 w-32 bg-white dark:bg-black/80 py-2 rounded-md shadow-lg z-10">
-                                                                    <!-- Action buttons can be added here -->
-                                                                </div>
-                                                            </span>
-                                                        </div>
                                                     </td>
                                                 </tr>
                                             @empty

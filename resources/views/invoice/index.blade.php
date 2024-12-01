@@ -26,7 +26,7 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Invoice List') }}</h2>
                             <div class="card">
                                 <table class="w-full table-auto">

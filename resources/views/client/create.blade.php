@@ -3,12 +3,13 @@
 @endsection
 <x-app-layout>
     <div class="flex justify-between m-6 card">
-        <h2 class="text-xl font-medium">{{ __('Create Client') }}</h2>
+        <h2 class="text-xl text-text-light dark:text-text-dark font-medium">{{ __('Create Client') }}</h2>
         <a href="{{ route('client.index') }}"
-            class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Client List') }}</a>
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Client
+            List') }}</a>
     </div>
     <div class="card m-6">
-        <h2 class="text-2xl font-bold mb-4">{{ __('Create New Client') }}</h2>
+        <h2 class="text-2xl text-text-light dark:text-text-dark font-bold mb-4">{{ __('Create New Client') }}</h2>
         <form method="POST" action="{{ route('client.store') }}">
             @csrf
             <!-- Employer Name -->
@@ -17,7 +18,8 @@
                     <select name="employer_id" id="employer_id" class="form-select" required>
                         <option value="" disabled selected hidden>{{ __('Select Employer') }}</option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800" value="{{ $employer->id }}">
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark "
+                                value="{{ $employer->id }}">
                                 {{ $employer->employer_name }}
                             </option>
                         @endforeach
@@ -72,13 +74,13 @@
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-            <!-- Contact Image -->
+            {{-- <!-- Contact Image -->
             <div class="relative z-0 w-full mb-5">
                 <input type="file" name="contact_name" class="filepond" required
                     value="{{ old('contact_name') }}" />
-            </div>
+            </div> --}}
             <button type="submit"
-                class="text-white bg-primary-300 dark:bg-primary-900 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
         </form>
     </div>
 </x-app-layout>

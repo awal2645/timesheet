@@ -61,11 +61,13 @@
             <!-- MAIL ENCRYPTION -->
             <div class="form-field">
                 <select name="mail_encryption" id="mail_encryption" class="form-select">
-                    <option class="dark:bg-slate-800" value="tls"
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="tls"
                         {{ smtp() ? (smtp()->encryption == 'tls' ? 'selected' : '') : (env('MAIL_ENCRYPTION') == 'tls' ? 'selected' : '') }}>
                         {{ __('TLS') }}
                     </option>
-                    <option class="dark:bg-slate-800" value="ssl"
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="ssl"
                         {{ smtp() ? (smtp()->encryption == 'ssl' ? 'selected' : '') : (env('MAIL_ENCRYPTION') == 'ssl' ? 'selected' : '') }}>
                         {{ __('SSL') }}
                     </option>

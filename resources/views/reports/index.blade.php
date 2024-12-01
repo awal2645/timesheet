@@ -13,15 +13,15 @@
                         <div class="flex gap-3 items-center form-field">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 placeholder="{{ __('Search') }}" />
-                            <select name="status" class="form-select">
-                                <option value="">{{ __('Select Status') }}</option>
-                                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
+                            <select name="status" class="form-select ">
+                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Status') }}</option>
+                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
                                     {{ __('Pending') }}
                                 </option>
-                                <option value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>
+                                <option  class="dark:bg-slate-800 text-text-light dark:text-text-dark"value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>
                                     {{ __('Approved') }}
                                 </option>
-                                <option value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>
+                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>
                                     {{ __('Declined') }}
                                 </option>
                             </select>
@@ -38,7 +38,7 @@
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Latest Report') }}</h2>
                             <div>
                                 <div class="card">

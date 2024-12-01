@@ -8,7 +8,7 @@
             <div class="mt-2">
 
                 <span
-                    class="bg-green-200 text-green-700 dark:bg-green-700 dark:text-green-200 p-3 rounded-full text-xs">Recommended</span>
+                    class="bg-green-200 text-text-light dark:bg-primary-300 dark:text-text-dark p-3 rounded-full text-xs">Recommended</span>
             </div>
         @endif
 

@@ -12,7 +12,7 @@
         </div>
 
         <!-- Upgrade Instructions Section -->
-        <div class="bg-primary-300/50 text-white p-6 mt-4 rounded-md">
+        <div class="bg-card-light dark:bg-card-dark text-text-light dark:text-text-dark p-6 mt-4 rounded-md">
             <ul class="list-disc ml-4">
                 <li>{{ __('Application current version') }} <strong>{{ config('app.version') }}</strong>
                     <a href="https://engagingdot.com/knowledge-base/upgrade-guide/"

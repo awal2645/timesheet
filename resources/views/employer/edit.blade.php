@@ -8,13 +8,22 @@
             class="btn bg-primary-300 dark:bg-primary-900 text-white">{{ __('Go to Employer List') }}</a>
     </div>
 
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
     <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4">{{ __('Edit Employer Details') }}</h2>
 
         <form method="POST" action="{{ route('employer.update', $employee->id) }}">
             @csrf
             @method('PUT')
-
             <!-- Employer Name -->
             <div class="form-field">
                 <input type="text" name="employer_name" id="employer_name" placeholder=" " required
@@ -30,7 +39,7 @@
             <!-- Employer Email -->
             <div class="form-field">
                 <input type="email" name="email" id="email" placeholder=" " required
-                    value="{{ old('email', $employee->email) }}" />
+                    value="{{ old('email', $employee->user->email) }}" />
                 <label for="email">
                     {{ __('Email') }}
                 </label>
@@ -76,35 +85,16 @@
             </div>
 
             <!-- Website -->
-            <div class="form-field">
-                <input type="text" name="website" id="website" placeholder=" "
-                    value="{{ old('website', $employee->website) }}" />
-                <label for="website">
-                    {{ __('Website') }}
-                </label>
-                @error('website')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <!-- Status -->
-            <div class="form-field">
-                <select name="status" id="status" class="form-select">
-                    <option value="1" {{ $employee->status == 1 ? 'selected' : '' }} class="dark:bg-slate-800">
-                        {{ __('Active') }}
-                    </option>
-                    <option value="0" {{ $employee->status == 0 ? 'selected' : '' }} class="dark:bg-slate-800">
-                        {{ __('Inactive') }}
-                    </option>
-                </select>
-                <label for="status" class="form-label">
-                    {{ __('Status') }}
-                </label>
-                @error('status')
-                    <span class="text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-
+                <div class="form-field">
+                    <input type="text" name="website" id="website" placeholder=" "
+                        value="{{ old('website', $employee->website) }}" />
+                    <label for="website">
+                        {{ __('Website') }}
+                    </label>
+                    @error('website')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
             <!-- Address Fields -->
             <div class="grid md:grid-cols-2 md:gap-6">
                 <div class="form-field">
@@ -129,8 +119,54 @@
                 </div>
             </div>
 
+            <!-- City and State Fields -->
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="form-field">
+                    <input type="text" name="city" id="city" placeholder=" " value="{{ old('city', $employee->city) }}" />
+                    <label for="city">
+                        {{ __('City') }}
+                    </label>
+                    @error('city')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-field">
+                    <input type="text" name="state" id="state" placeholder=" "
+                        value="{{ old('state', $employee->state) }}" />
+                    <label for="state">
+                        {{ __('State') }}
+                    </label>
+                    @error('state')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
+            <!-- Zip and Country Fields -->
+            <div class="grid md:grid-cols-2 md:gap-6">
+                <div class="form-field">
+                    <input type="text" name="zip" id="zip" placeholder=" " value="{{ old('zip', $employee->zip) }}" />
+                    <label for="zip">
+                        {{ __('Zip') }}
+                    </label>
+                    @error('zip')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="form-field">
+                    <input type="text" name="country" id="country" placeholder=" "
+                        value="{{ old('country', $employee->country) }}" />
+                    <label for="country">
+                        {{ __('Country') }}
+                    </label>
+                    @error('country')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+
             <button type="submit"
-                class="text-white bg-primary-300 dark:bg-primary-900 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                class="text-text-light dark:text-text-dark bg-primary-300 dark:bg-primary-300 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                 {{ __('Update') }}
             </button>
         </form>

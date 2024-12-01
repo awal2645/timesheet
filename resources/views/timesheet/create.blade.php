@@ -74,9 +74,10 @@
 
                 <!-- File Upload Input -->
                 <div class="form-field">
-                    <label for="file">{{ __('Choose a file:') }}</label>
                     <input @if ($timeReport) disabled @endif type="file" id="file"
                         name="image">
+                        <label for="file" class="form-label">{{ __('Choose a file:') }}</label>
+
                     @error('image')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
@@ -84,8 +85,9 @@
 
                 <!-- Textarea -->
                 <div class="form-field">
-                    <label for="message">{{ __('Your Message:') }}</label>
-                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="4">{{ $timeReport->comment ?? '' }}</textarea>
+                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="2">{{ $timeReport->comment ?? '' }}</textarea>
+                    <label for="message" class="form-label">{{ __('Your Message:') }}</label>
+
                 </div>
 
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">

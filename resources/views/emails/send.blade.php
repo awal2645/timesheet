@@ -13,9 +13,8 @@
         <form action="{{ route('emails.send') }}" method="POST" class="card">
             @csrf
             <div class="form-field">
-                <label for="subject">{{ __('Subject') }}</label>
-                <input type="text" name="subject" id="subject"
-                    required>
+                <input type="text" name="subject" id="subject" required placeholder=" ">
+                <label for="subject" class="form-label">{{ __('Subject') }}</label>
             </div>
 
             <div class="flex items-center gap-5">

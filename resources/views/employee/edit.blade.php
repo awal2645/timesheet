@@ -40,7 +40,8 @@
                     <select name="employer_id" id="employer_id" class="form-select">
 
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800" value="{{ $employer->id }}"
+                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $employer->id }}"
                                 {{ $employee->employer_id == $employer->id ? 'selected' : '' }}>
                                 {{ $employer->employer_name }}
                             </option>
@@ -77,7 +78,8 @@
                     <select name="client_id" id="client_id"
                         class="form-select">
                         @foreach ($clients as $client)
-                            <option class="dark:bg-slate-800" value="{{ $client->id }}"
+                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $client->id }}"
                                 {{ $client->id == $employee->client_id ? 'selected' : '' }}>
                                 {{ $client->client_name }}
                             </option>
@@ -90,15 +92,18 @@
                 <!-- Gender -->
                 <div class="form-field">
                     <select name="gender" id="project_id" class="form-select">
-                        <option class="dark:bg-slate-800" value="male"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="male"
                             {{ 'male' == $employee->gender ? 'selected' : '' }}>
                             {{ __('Male') }}
                         </option>
-                        <option class="dark:bg-slate-800" value="female"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="female"
                             {{ 'female' == $employee->gender ? 'selected' : '' }}>
                             {{ __('Female') }}
                         </option>
-                        <option class="dark:bg-slate-800" value="other"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="other"
                             {{ 'other' == $employee->gender ? 'selected' : '' }}>
                             {{ __('Other') }}
                         </option>
@@ -109,10 +114,12 @@
                 <!-- Payment Type -->
                 <div class="form-field">
                     <select name="payment_type" id="payment_type" class="form-select">
-                        <option class="dark:bg-slate-800" value="monthly"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="monthly"
                             {{ 'monthly' == $employee->payment_type ? 'selected' : '' }}>
                             {{ __('Monthly Salary') }}</option>
-                        <option class="dark:bg-slate-800" value="project"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="project"
                             {{ 'project' == $employee->payment_type ? 'selected' : '' }}>
                             {{ __('Project Based') }}</option>
                     </select>

@@ -21,7 +21,6 @@ return new class extends Migration
             $table->foreignIdFor(Project::class)->constrained()->cascadeOnDelete();
             $table->string('invoice_number')->unique();
             $table->date('invoice_date')->default(now());
-            $table->string('total_cost');
             $table->string('status')->default('pending');
             $table->timestamps();
         });

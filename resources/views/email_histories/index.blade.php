@@ -26,7 +26,7 @@
         </div>
 
         <div class="card mt-12">
-            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Email Histories') }}</h2>
+            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">{{ __('Email Histories') }}</h2>
             <div>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead class="table-header">

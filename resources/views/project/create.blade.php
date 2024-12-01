@@ -2,6 +2,17 @@
     {{ __('Create Project') }}
 @endsection
 
+
+
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <x-app-layout>
     <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4">{{ __('Create New Project') }}</h2>
@@ -12,11 +23,13 @@
             @if (auth('web')->user()->role != 'employer')
                 <div class="form-field">
                     <select name="employer_id" id="employer_id" class="form-select">
-                        <option class="dark:bg-slate-800" value="" selected>
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="" selected>
                             {{ __('Select Employer') }}
                         </option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800" value="{{ $employer->id }}">
+                            <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $employer->id }}">
                                 {{ $employer->employer_name }}
                             </option>
                         @endforeach
@@ -36,11 +49,13 @@
 
             <div class="form-field">
                 <select name="client_id" id="client_id" class="form-select">
-                    <option class="dark:bg-slate-800" value="" selected>
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="" selected>
                         {{ __('Select Client') }}
                     </option>
                     @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800" value="{{ $client->id }}">
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $client->id }}">
                             {{ $client->client_name }}
                         </option>
                     @endforeach
@@ -54,11 +69,13 @@
 
             <div class="form-field">
                 <select name="employee_id" id="employee_id" class="form-select">
-                    <option class="dark:bg-slate-800" value="" selected>
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="" selected>
                         {{ __('Select Employee') }}
                     </option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800" value="{{ $employee->id }}">
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $employee->id }}">
                             {{ $employee->employee_name }}
                         </option>
                     @endforeach
@@ -83,15 +100,18 @@
 
             <div class="form-field">
                 <select name="payment_type" id="payment_type" class="form-select">
-                    <option class="dark:bg-slate-800" value="hourly"
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="hourly"
                         {{ old('payment_type') == 'hourly' ? 'selected' : '' }}>
                         {{ __('Hourly Based') }}
                     </option>
-                    <option class="dark:bg-slate-800" value="fixed"
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="fixed"
                         {{ old('payment_type') == 'fixed' ? 'selected' : '' }}>
                         {{ __('Fixed Price') }}
                     </option>
-                    <option class="dark:bg-slate-800" value="non"
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="non"
                         {{ old('payment_type') == 'non' ? 'selected' : '' }}>
                         {{ __('Non Billable') }}
                     </option>

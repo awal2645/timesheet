@@ -2,11 +2,9 @@
     {{ 'Create Plan' }}
 @endsection
 <x-app-layout>
-    <div
-        class="m-6 p-12 bg-white/10 dark:bg-black/10 border dark:border-white/10 border-black/10 backdrop-blur rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4"> {{ __('Create New Plan') }}</h2>
-        <form method="POST" action="{{ route('plans.store') }}"
-            class="w-full bg-black/30 rounded-lg p-8 border border-white/10">
+    <div class="m-6 card">
+        <h2 class="text-2xl text-text-light dark:text-text-dark font-bold mb-4"> {{ __('Create New Plan') }}</h2>
+        <form method="POST" action="{{ route('plans.store') }}">
             @csrf
 
             <!-- Plan Label -->
@@ -98,11 +96,12 @@
                     {{ __('Show User Panel') }}</span>
             </label>
             <br>
-
+            <br>
             <!-- Submit Button -->
-            <button type="submit"
-                class="w-full px-4 mt-2 py-2 text-white bg-primary-300 dark:bg-primary-900 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
-                {{ __('Create Plan') }}
+            <div class="col-span-full">
+                <button type="submit"
+                    class="px-4 py-2 text-white bg-primary-500 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                   {{ __('Create Plan') }}
             </button>
         </form>
     </div>

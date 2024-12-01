@@ -33,7 +33,8 @@
             <!-- Employer Name -->
             <div class="form-field">
                 <select disabled name="employer_id" id="employer_id">
-                    <option class="dark:bg-slate-800" value="{{ $employee->employer->id }}">
+                    <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $employee->employer->id }}">
                         {{ $employee->employer->employer_name }}
                     </option>
                 </select>
@@ -59,7 +60,8 @@
                 <div class="form-field">
                     <select disabled name="client_id" id="client_id"
                         class="block py-2.5 px-0 w-full text-sm text-gray-900  bg-transparent 	 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:bg-color-gray-600 dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
-                        <option class="dark:bg-slate-800" value="{{ $employee->client->id ?? ' ' }}">
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="{{ $employee->client->id ?? ' ' }}">
                             {{ $employee->client->client_name ?? '' }}
                         </option>
                     </select>
@@ -69,15 +71,18 @@
                 <!-- Gender -->
                 <div class="form-field">
                     <select name="gender" id="project_id">
-                        <option class="dark:bg-slate-800" value="male"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="male"
                             {{ 'male' == $employee->gender ? 'selected' : '' }}>
                             Male
                         </option>
-                        <option class="dark:bg-slate-800" value="female"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="female"
                             {{ 'female' == $employee->gender ? 'selected' : '' }}>
                             Female
                         </option>
-                        <option class="dark:bg-slate-800" value="other"
+                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  " value="other"
                             {{ 'other' == $employee->gender ? 'selected' : '' }}>
                             Other
                         </option>

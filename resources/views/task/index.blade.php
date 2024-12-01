@@ -167,15 +167,18 @@
                                                                     <select name="status" id="status"
                                                                         class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                                         onchange="document.getElementById('statusForm{{ $task->id }}').submit()">
-                                                                        <option class="dark:bg-slate-800"
+                                                                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             value="pending"
                                                                             {{ $task->status === 'pending' ? 'selected' : '' }}>
                                                                             {{ __('Pending') }}
-                                                                        <option class="dark:bg-slate-800"
+                                                                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             value="inprogress"
                                                                             {{ $task->status === 'inprogress' ? 'selected' : '' }}>
                                                                             {{ __('In Progress') }}
-                                                                        <option class="dark:bg-slate-800"
+                                                                        <option class="dark:bg-slate-800   text-text-light  
+ dark:text-text-dark  "
                                                                             value="complete"
                                                                             {{ $task->status === 'completed' ? 'selected' : '' }}>
                                                                             {{ __('Complete') }}
