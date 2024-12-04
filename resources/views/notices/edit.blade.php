@@ -1,8 +1,13 @@
 @section('title', 'Edit Notice')
 
 <x-app-layout>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Notice') }}</h2>
+        <a href="{{ route('notices.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Notice List') }}</a>
+    </div>
     <div class="m-6 card">
-        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">Edit Notice</h2>
+        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">Edit Notice</h2>
 
         <form action="{{ route('notices.update', $notice->id) }}" method="POST">
             @csrf
@@ -21,7 +26,7 @@
                 <input type="text" id="role" name="role" value="{{ $notice->role }}"
                     class="bg-gray-50 dark:bg-gray-900   rounded-lg w-full p-2.5">
             </div>
-            <button type="submit" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Update Notice</button>
+            <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Update Notice</button>
         </form>
     </div>
 </x-app-layout>

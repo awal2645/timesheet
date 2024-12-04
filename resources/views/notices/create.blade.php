@@ -1,8 +1,13 @@
 @section('title', 'Create Notice')
 
 <x-app-layout>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Notice') }}</h2>
+        <a href="{{ route('notices.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Notice List') }}</a>
+    </div>
     <div class="m-6 card">
-        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Create Notice') }}</h2>
+        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Create Notice') }}</h2>
 
         <form action="{{ route('notices.store') }}" method="POST">
             @csrf

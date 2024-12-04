@@ -57,7 +57,7 @@
 <body class="bg-neutral-900">
     <!-- ========== HEADER ========== -->
     <header class="sticky top-4 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
-        <nav class="relative container mx-auto w-full bg-white/10 border border-white/30 backdrop-blur rounded-lg py-4 px-6 md:flex md:items-center md:justify-between"
+        <nav class="relative container mx-auto w-full bg-card-light border border-white/30 backdrop-blur rounded-lg py-4 px-6 md:flex md:items-center md:justify-between"
             aria-label="Global">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
@@ -99,7 +99,7 @@
                         href="../../templates/agency/index.html" aria-current="page">Home</a>
 
                     <div>
-                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-300 font-medium text-sm text-white rounded-md focus:outline-none px-5"
+                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-50 font-medium text-sm text-white rounded-md focus:outline-none px-5"
                             href="{{ route('login') }}">
                             Login
                         </a>
@@ -293,7 +293,7 @@
                 <!-- Title -->
                 <div class="max-w-3xl mb-10 lg:mb-14">
                     <h4
-                        class="text-white inline-flex rounded px-4 py-2 font-semibold text-xl md:text-2xl md:leading-tight backdrop-blur bg-white/10 border border-primary-500">
+                        class="text-white inline-flex rounded px-4 py-2 font-semibold text-xl md:text-2xl md:leading-tight backdrop-blur bg-card-light border border-primary-500">
                         {{ __('Features') }}</h4>
                     <h2 class="mt-8 text-2xl md:text-4xl text-gray-100">{{ __('ClockGo SaaS - Time Tracking Tool') }}
                     </h2>
@@ -552,7 +552,7 @@
                         </div>
                         <!-- End Item -->
 
-                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-300 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                        <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-50 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                             href="#">
                             <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -592,7 +592,7 @@
 
                 <!-- Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16">
-                    <div class="md:order-2 bg-white/10 p-8 rounded-lg border border-white/30 mb-10">
+                    <div class="md:order-2 bg-card-light p-8 rounded-lg border border-white/30 mb-10">
                         <form>
                             <div class="space-y-4">
                                 <!-- Input -->
@@ -722,7 +722,7 @@
                                 </p>
 
                                 <p class="mt-5">
-                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-300 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                                    <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-50 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
                                         href="#">
                                         {{ __('Submit') }}
                                         <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5 group-hover:translate-x-0 group-focus:translate-x-0.5 group-focus:translate-x-0"
@@ -829,7 +829,7 @@
                 <h2 class="text-4xl text-white my-8 text-center">
                     {{ __('Our Pricing') }}
                 </h2>
-                <div class="px-8 py-6 border border-white/30 rounded-xl bg-white/10 backdrop-blur max-w-6xl mx-auto">
+                <div class="px-8 py-6 border border-white/30 rounded-xl bg-card-light backdrop-blur max-w-6xl mx-auto">
                     <div class="space-y-2 mb-8">
                         <h1 class="text-2xl md:text-3xl font-semibold text-white">
                             {{ __('The biggest ever Black Friday sale!') }}
@@ -866,7 +866,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -896,7 +896,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>
@@ -926,7 +926,7 @@
                                 </div>
                             </div>
                             <button
-                                class="w-full py-2 px-4 bg-primary-300 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
+                                class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
                                 Get deal
                             </button>
                         </div>

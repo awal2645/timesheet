@@ -215,6 +215,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
         Route::get('task/edit/{id}', 'edit')->name('task.edit');
         Route::put('task/update/{id}', 'update')->name('task.update');
+        Route::get('task/destroy/{id}', 'destroy')->name('task.destroy');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
 

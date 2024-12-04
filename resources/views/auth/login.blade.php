@@ -5,8 +5,8 @@
         </div>
     @endif
     <!-- Form -->
-    <h2 class="text-2xl font-bold mb-6 text-white">{{ __('Login') }}</h2>
-    <form method="POST" action="{{ route('login') }}" class="text-white">
+    <h2 class="text-2xl font-bold mb-6  text-text-light dark:text-text-dark">{{ __('Login') }}</h2>
+    <form method="POST" action="{{ route('login') }}" class="text-text-light dark:text-text-dark" >
         @csrf
         <div class="space-y-4">
             <div>
@@ -20,14 +20,14 @@
         </div>
         <div class="flex flex-col gap-3 mt-6">
             @if (Route::has('password.request'))
-                <a class="text-base font-medium text-white/90 hover:text-white no-underline hover:underline"
+                <a class="text-base font-medium text-text-light dark:text-text-dark hover:text-text-light dark:hover:text-text-dark no-underline hover:underline"
                     href="{{ route('password.request') }}">
                     {{ __('Forgot Password?') }}
                 </a>
             @endif
-            <x-button class="bg-violet-600 hover:bg-violet-700">
+            <button type="submit" class="btn bg-blue-500  text-text-light dark:text-text-dark">
                 {{ __('Sign in') }}
-            </x-button>
+            </button>
         </div>
     </form>
     @if (env('APP_MODE') === 'demo')
@@ -39,14 +39,14 @@
 
         <div class="mt-6 grid grid-cols-2 gap-4">
             <button onclick="submitLoginForm('superadmin')"
-                class="w-full text-white bg-primary-300 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
+                class="w-full text-white bg-primary-50 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Super Admin Login') }}</button>
             <button onclick="submitLoginForm('employer')"
                 class="w-full full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                 {{ __('Employer Login') }}
             </button>
             <button onclick="submitLoginForm('employee')"
-                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-600 dark:focus:ring-primary-800">
+                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Employee Login') }}
             </button>
             <button onclick="submitLoginForm('client')"

@@ -6,7 +6,7 @@
 
         <!-- Welcome banner -->
         <div
-            class="relative bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4 sm:p-6 overflow-hidden mb-8">
+            class="relative bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4 sm:p-6 overflow-hidden mb-8">
 
             <!-- Background illustration -->
             <div class="absolute right-0 top-0 -mt-4 mr-16 pointer-events-none hidden xl:block" aria-hidden="true">
@@ -110,7 +110,7 @@
         </div>
 
         <!-- Cards -->
-        <div class="grid grid-cols-12 gap-6">
+        <div class="grid grid-cols-12 gap-6 mx-auto">
 
             <!-- Line chart (Acme Plus) -->
             <x-dashboard.dashboard-card-01 />
@@ -124,7 +124,7 @@
             <!-- New Chart Cards -->
             <div class="col-span-12 xl:col-span-6">
                 <div
-                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
                     <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Monthly Earnings') }}</h3>
                     <div style="height: 300px;">
                         <canvas id="monthlyChart"></canvas>
@@ -134,7 +134,7 @@
 
             <div class="col-span-12 xl:col-span-6">
                 <div
-                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
                     <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Task Distribution') }}</h3>
                     <div style="height: 300px;">
                         <canvas id="taskChart"></canvas>
@@ -145,7 +145,7 @@
             <!-- Notice Board -->
             <div class="col-span-12">
                 <div
-                    class="bg-white/10 rounded-lg backdrop-blur border border-black/10 dark:bg-black/10 dark:border-white/10 p-4">
+                    class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
                     <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Notice Board') }}</h3>
 
                     <!-- News Ticker/Scroller -->
@@ -154,7 +154,7 @@
                         <div class="animate-scroll inline-flex gap-4" id="scrollContent">
                             @forelse (notice() as $notice)
                                 <div
-                                    class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-white/10 dark:hover:bg-gray-700/50 transition-all duration-300">
+                                    class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
                                     <div class="flex justify-between items-start">
                                         <h4 class="font-semibold text-gray-900 dark:text-white">
                                             {{ $notice->title }}
@@ -192,7 +192,7 @@
             </div>
 
         </div>
-        <div class="mt-5 container mx-auto">
+        <div class="mt-5 container">
             <div class="flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0 ">
@@ -200,12 +200,12 @@
                         <div class="invoices-table ">
                             <div class="overflow-x-auto pb-1">
                                 @if (auth()->user()->role != 'employee')
-                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Recent Invoice') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Recent Invoice') }}</h2>
 
-                                    <table class="min-w-full table-auto text-sm">
-                                        <thead
-                                            class="bg-white/10 backdrop-blur shadow-lg rounded-lg border border-slate-200 dark:border-gray-800 text-slate-900 dark:text-gray-300 dark:bg-black/10">
-                                            <tr class="text-center">
+                                    <div class="card">
+                                        <table class="w-full table-auto">
+                                            <thead class="table-header">
+                                                <tr class="rounded-2xl text-left">
                                                 <th class="p-3  ">
                                                     {{ __('Invoice Number') }}
                                                 </th>
@@ -242,7 +242,7 @@
                                                                 class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                         @else
                                                             <span
-                                                                class="px-2 py-1 text-sm bg-primary-300 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                                class="px-2 py-1 text-sm bg-primary-50 text-white rounded">{{ $transaction->plan->label }}</span>
                                                         @endif
                                                     </td>
 
@@ -278,9 +278,10 @@
                                             @endforelse
                                         </tbody>
                                     </table>
+                                    </div>
                                 @endif
                                 @if (auth()->user()->role === 'employee')
-                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Report Status') }}</h2>
+                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Latest Report Status') }}</h2>
 
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

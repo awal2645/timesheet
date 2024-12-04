@@ -48,15 +48,15 @@
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-5">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-                            {{ __('Search Task') }}</label>
+                            {{ __('Search') }}</label>
                         <div class="flex form-field">
-                            <input type="text" id="search" name="search" value="{{ request('search') }}" />
+                            <input type="text" id="search" name="search" placeholder="{{ __('Search') }}" value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('task.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('task.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
             </div>
             <!-- Start heading here -->
@@ -64,7 +64,7 @@
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="tasks-table ">
-                            <h2 class="text-xl font-semibold mb-4">{{ __('Latest Tasks') }}</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">{{ __('Latest Tasks') }}</h2>
                             <div class="card">
                                 <div class="max-w-full">
                                     <table
@@ -110,7 +110,7 @@
                                                         </th>
                                                         <td class="px-6 py-4">
                                                             <a rel="noopener noreferrer">
-                                                                {{ $task->client->client_name ?? '' }}
+                                                                {{ $task->project->client->client_name ?? '' }}
                                                             </a>
                                                         </td>
                                                         <td class="px-6 py-4">
@@ -179,7 +179,7 @@
                                                                             {{ __('In Progress') }}
                                                                         <option class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
-                                                                            value="complete"
+                                                                            value="completed"
                                                                             {{ $task->status === 'completed' ? 'selected' : '' }}>
                                                                             {{ __('Complete') }}
                                                                     </select>
@@ -189,43 +189,28 @@
                                                         <td class="px-6 py-4">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('task.edit', $task->id) }}"
-                                                                    class="font-medium text-primary-600 dark:text-primary-300 hover:underline">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        fill="none" viewBox="0 0 24 24"
-                                                                        stroke-width="1.5" stroke="currentColor"
-                                                                        class="w-6 h-6">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                                    </svg>
-                                                                </a>
+                                                                    class="text-primary-500 hover:text-primary-300">
+                                                                    <i class="fa-solid fa-pen-to-square"></i>                                                                </a>
                                                                 <a onclick="showConfirmation({{ $task->id }})"
-                                                                    class="font-medium cursor-pointer text-red-600 dark:text-red-500 hover:underline">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        fill="none" viewBox="0 0 24 24"
-                                                                        stroke-width="1.5" stroke="currentColor"
-                                                                        class="w-6 h-6">
-                                                                        <path stroke-linecap="round"
-                                                                            stroke-linejoin="round"
-                                                                            d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0A48.108 48.108 0 0 1 7.25 5.392m9.5-.397-.44 9M9.26 9l.442 9m0-9a48.108 48.108 0 0 0-3.478-.397m4.966 0a48.108 48.108 0 0 1 3.478-.397" />
-                                                                    </svg>
-                                                                </a>
-                                                            </div>
+                                                                    class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
+                                                                    <i class="fa-solid fa-trash"></i>                                                            </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             @else
-                                                <tr>
-                                                    <td colspan="5" class="text-center">{{ __('No Tasks Found') }}
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-center py-8">
+                                                    <img src="{{ asset('images/no-data-found.svg') }}"
+                                                        alt="No data found" class="mx-auto max-w-xs">
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="mt-6">
-                                {{-- {{ $tasks->links() }} --}}
+                                {{ $tasks->links() }}
                             </div>
                         </div>
                     </div>
@@ -352,6 +337,23 @@
             body: JSON.stringify({
                 time: time
             })
+        });
+    }
+</script>
+
+<script>
+    function showConfirmation(id) {
+        Swal.fire({
+            title: 'Want to delete this Task!',
+            text: "{{ __('If you are ready?') }}",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "{{ __('Yes') }}",
+            cancelButtonText: "{{ __('Cancel') }}",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/task/destroy/" + id;
+            }
         });
     }
 </script>

@@ -18,7 +18,7 @@
                                     </p>
                                     <div class="mt-6">
                                         <a href="{{ route('plans.index') }}"
-                                            class="btn bg-primary-300 text-white py-2 px-6 rounded-full hover:bg-primary-300 dark:bg-primary-300 dark:hover:bg-primary-800 shadow-md transition">
+                                            class="btn bg-primary-50 text-white py-2 px-6 rounded-full hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 shadow-md transition">
                                             {{ __('Upgrade plan') }}
                                         </a>
                                     </div>
@@ -50,7 +50,7 @@
                         </div>
                         <!-- Invoice Table Section -->
                         <div class="invoices-table mt-10">
-                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Latest Plan') }}</h2>
+                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Latest Plan') }}</h2>
                             <div class="overflow-x-auto pb-1">
                                 <table class="min-w-full table-auto text-sm">
                                     <thead
@@ -85,7 +85,7 @@
                                                             class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
                                                     @else
                                                         <span
-                                                            class="px-2 py-1 text-sm bg-primary-300 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
+                                                            class="px-2 py-1 text-sm bg-primary-50 text-white rounded">{{ $transaction->plan->label ?? 'N/A' }}</span>
                                                     @endif
                                                 </td>
                                                 <td class="p-5  ">

@@ -13,7 +13,7 @@
                     </span>
                 @else
                     <a href="{{ $paginator->previousPageUrl() }}" class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white dark:bg-slate-800   text-text-light  
- dark:text-text-dark   hover:bg-indigo-500 dark:hover:bg-indigo-500 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white shadow-sm">
+ dark:text-text-dark   hover:bg-primary-50 dark:hover:bg-primary-50 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white shadow-sm">
                         <span class="sr-only">{!! __('pagination.previous') !!}</span><wbr />
                         <svg class="h-4 w-4 fill-current" viewBox="0 0 16 16">
                             <path d="M9.4 13.4l1.4-1.4-4-4 4-4-1.4-1.4L4 8z" />
@@ -44,7 +44,7 @@
                             @else
                                 <li>
                                     <a href="{{ $url }}" class="inline-flex items-center justify-center leading-5 px-3.5 py-2 bg-white dark:bg-slate-800   text-text-light  
- dark:text-text-dark   hover:bg-indigo-500 dark:hover:bg-indigo-500 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white @if($page === 1){{ 'rounded-l' }}@elseif($page === $paginator->lastPage()){{ 'rounded-r' }}@endif">{{ $page }}</a>
+ dark:text-text-dark   hover:bg-primary-50 dark:hover:bg-primary-50 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white @if($page === 1){{ 'rounded-l' }}@elseif($page === $paginator->lastPage()){{ 'rounded-r' }}@endif">{{ $page }}</a>
                                 </li>
                             @endif
                         @endforeach
@@ -56,7 +56,7 @@
             <div class="ml-2">
                 @if ($paginator->hasMorePages())
                     <a href="{{ $paginator->nextPageUrl() }}" class="inline-flex items-center justify-center rounded leading-5 px-2.5 py-2 bg-white dark:bg-slate-800   text-text-light  
- dark:text-text-dark   hover:bg-indigo-500 dark:hover:bg-indigo-500 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white shadow-sm">
+ dark:text-text-dark   hover:bg-primary-50 dark:hover:bg-primary-50 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:text-white shadow-sm">
                         <span class="sr-only">{!! __('pagination.next') !!}</span><wbr />
                         <svg class="h-4 w-4 fill-current" viewBox="0 0 16 16">
                             <path d="M6.6 13.4L5.2 12l4-4-4-4 1.4-1.4L12 8z" />

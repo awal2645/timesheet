@@ -5,7 +5,7 @@
 <x-app-layout>
     @if (auth('web')->user()->role == 'superadmin')
         <div class="m-6 card">
-            <h2 class="text-2xl font-bold mb-4">{{ __('Send Invite') }}</h2>
+            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Send Invite') }}</h2>
 
             <form method="POST" action="{{ route('invite.send.employer') }}" class="card">
                 @csrf
@@ -39,12 +39,12 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
+                    class="text-white bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
             </form>
         </div>
     @else
         <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold mb-4">{{ __('Send Invite to Employee') }}</h2>
+            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Send Invite to Employee') }}</h2>
             <form method="POST" action="{{ route('invite.send.employee') }}" class="max-w-md mx-auto">
                 @csrf
                 <div class="form-field">
@@ -80,7 +80,7 @@
                     @enderror
                 </div>
                 <button type="submit"
-                    class="text-white bg-primary-300 dark:bg-primary-900 hover:bg-[#1da8f7] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
+                    class="text-white bg-primary-50 dark:bg-primary-50 hover:bg-[#1da8f7] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">{{ __('Submit') }}</button>
             </form>
         </div>
     @endif

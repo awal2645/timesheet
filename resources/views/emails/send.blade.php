@@ -1,8 +1,13 @@
 @section('title', 'Send Emails')
 
-<x-app-layout>
+<x-app-layout>    
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Send Emails') }}</h2>
+        <a href="{{ route('emails.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Email List') }}</a>
+    </div>
     <div class="m-6">
-        <h2 class="text-2xl font-semibold mb-4">{{ __('Send Emails') }}</h2>
+        <h2 class="text-2xl font-semibold mb-4 text-text-light dark:text-text-dark">{{ __('Send Emails') }}</h2>
 
         @if (session('success'))
             <div class="bg-green-500 text-white p-4 rounded mb-4">
@@ -45,7 +50,7 @@
             </div>
 
             <button type="submit"
-                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
+                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">{{ __('Send Emails') }}</button>
         </form>
     </div>
 

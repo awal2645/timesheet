@@ -53,24 +53,22 @@
     </script>
 </head>
 
-<body class="font-montserrat antialiased">
+<body class="font-montserrat antialiased bg-body-light dark:bg-body-dark">
 
     <main class="min-h-screen flex flex-col relative">
         <header
-            class="bg-black bg-opacity-50 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
-            <img src="{{ asset('images/logo-inv.png') }}" alt="timesheet Logo" class="h-10">
+            class=" card bg-card-light dark:bg-card-dark bg-opacity-50 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
+            {{-- <img src="{{ asset('images/logo-inv.png') }}" alt="timesheet Logo" class="h-10"> --}}
+            <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
+                    <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
+
             <nav class="flex items-center gap-4">
-                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">About
+                <a href="#" class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">About
                     Us</a>
-                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Terms and
+                <a href="#" class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Terms and
                     Conditions</a>
-                <a href="#" class="inline-flex font-semibold text-base text-white hover:text-white/80">Privacy
+                <a href="#" class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Privacy
                     Policy</a>
-                {{-- <select class="text-sm text-gray-600 border-gray-300 rounded-md">
-                    <option>English</option>
-                    <option>Español</option>
-                    <option>Français</option>
-                </select> --}}
                 @php
                     $languages = loadLanguage();
                     $hasMultipleLanguages = count($languages) > 1;
@@ -81,7 +79,7 @@
                 @if ($hasMultipleLanguages)
                     <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
                         <select name="language" id="language-switcher"
-                            class="form-select text-white bg-transparent border-white/60"
+                            class="form-select text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark border-white/60"
                             onchange="document.getElementById('language-switcher-form').submit()">
                             @foreach ($languages as $lang)
                                 <option value="{{ $lang->code }}"
@@ -266,10 +264,8 @@
                         setInterval(setClock, 1000);
                     </script>
                 </div>
-                <div class="w-1/2 relative flex items-center justify-center">
-
-                    <div
-                        class="relative z-50 w-full bg-black bg-opacity-50 backdrop-blur rounded-lg shadow md:mt-0 sm:max-w-lg xl:p-0">
+                <div class="w-1/2  relative flex items-center justify-center">
+                    <div class="relative z-50 w-full card bg-card-light dark:bg-card-dark bg-opacity-50 backdrop-blur rounded-lg shadow md:mt-0 sm:max-w-lg xl:p-0">
                         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                             {{ $slot }}
                         </div>
@@ -277,9 +273,8 @@
                 </div>
             </div>
         </section>
-        <div class="fixed top-0 end-0 w-1/2 bg-primary-300 h-screen -z-10"></div>
+        <div class="fixed top-0 end-0 w-1/2 bg-primary-50 h-screen -z-10"></div>
     </main>
-
     @livewireScripts
 </body>
 

@@ -26,7 +26,7 @@ class EmailTemplateSeeder extends Seeder
                     <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
                     <h1 style='color:#0b4dc4;'>New Plan Purchased</h1>
                     <p><strong>{user_name}</strong> has purchased the <strong>{plan_label}</strong> plan!</p>
-                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
@@ -43,7 +43,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>To unlock access to our innovative features and services, we kindly ask you to verify your email address.</p>
                     <p><a href='{verify_link}' style='background-color:#1fa8f8;color:#fff;font-size:14px;padding:15px 20px;border-radius:5px;text-decoration:none;display:inline-block;'>Verify Now</a></p>
                     <p>Once your email address is verified, you'll be all set to explore everything Zenxserv Technologies has to offer.</p>
-                    <p>If you have any questions or need assistance, feel free to reach out to our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions or need assistance, feel free to reach out to our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© {year} Zenxserv Technologies Pvt LTD. All rights reserved.</small>
@@ -60,7 +60,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>To unlock access to our innovative features and services, we kindly ask you to verify your email address.</p>
                     <p><a href='{verify_link}' style='background-color:#1fa8f8;color:#fff;font-size:14px;padding:15px 20px;border-radius:5px;text-decoration:none;display:inline-block;'>Verify Now</a></p>
                     <p>Once your email address is verified, you'll be all set to explore everything Zenxserv Technologies has to offer.</p>
-                    <p>If you have any questions or need assistance, feel free to reach out to our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions or need assistance, feel free to reach out to our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© {year} Zenxserv Technologies Pvt LTD. All rights reserved.</small>
@@ -108,7 +108,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been submitted successfully.</p>
                     <p>Reason: <strong>{reason}</strong></p>
-                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
@@ -124,7 +124,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been approved.</p>
                     <p>Reason: <strong>{reason}</strong></p>
-                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
@@ -140,7 +140,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been denied.</p>
                     <p>Reason: <strong>{reason}</strong></p>
-                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>
@@ -157,7 +157,7 @@ class EmailTemplateSeeder extends Seeder
                     <p>You have a new meeting scheduled on <strong>{start_time}</strong>.</p>
                     <p>Topic: <strong>{meeting_topic}</strong></p>
                     <p>Join the meeting using the following link: <a href='{join_url}'>{join_url}</a></p>
-                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@engagingdot.com' style='color:#2c1d66;'>support@engagingdot.com</a>.</p>
+                    <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
                     <small style='font-size:12px;color:#2c1d66;'>© ".date('Y')." $appName. All rights reserved.</small>

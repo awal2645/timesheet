@@ -5,7 +5,7 @@
     <div class="relative m-6">
         <div class="flex flex-col md:flex-row justify-end items-center card mb-12">
 
-            <a href="{{ route('role.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
+            <a href="{{ route('role.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Role') }}
             </a>
         </div>
@@ -14,7 +14,7 @@
             <div class="w-full ">
                 <div class="dashboard-right pl-0 ">
                     <div class="invoices-table ">
-                        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark ">{{ __('Role List') }}
+                        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Role List') }}
                         </h2>
                         <div class="overflow-x-auto pb-1">
                             <table class="w-full table-auto">
@@ -49,7 +49,7 @@
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-stroke dark xl:pl-11">
                                                             @foreach ($role->permissions as $permission)
                                                                 <span
-                                                                    class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-500 rounded-full">{{ $permission->name }}</span>
+                                                                    class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
                                                             @endforeach
                                                         </td>
                                                         <td
@@ -94,7 +94,7 @@
                                                     <td class="px-6 py-4  ">
                                                         @foreach ($role->permissions as $permission)
                                                             <span
-                                                                class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-500 rounded-full">{{ $permission->name }}</span>
+                                                                class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
                                                         @endforeach
                                                     </td>
                                                     <td class="px-6 py-4  ">

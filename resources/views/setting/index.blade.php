@@ -11,19 +11,18 @@
             <div class="flex gap-6">
                 <!-- Upload Logo -->
                 <div class="flex-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg" x-data="logoUpload()">
-                    <h3 class="text-xl mb-4">Upload Logo</h3>
+                    <h3 class="text-xl mb-4 text-text-light dark:text-text-dark">{{ __('Upload Logo') }}</h3>
                     <div class="flex flex-col gap-6 items-center">
                         <div class="preview-container">
                             <img :src="logoPreview" alt="Logo preview"
                                 class="w-full h-[300px] rounded object-contain" x-show="logoPreview">
                         </div>
                         <div>
-                            <p class="max-w-3xl text-base mb-5">Upload a high-resolution company logo in JPEG or PNG
-                                format.</p>
+                            <p class="max-w-3xl text-base mb-5">Upload a high-resolution logo in JPEG or PNG .</p>
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-50 shadow-md text-text-light dark:text-text-dark">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -48,7 +47,7 @@
 
                 <!-- Upload Dark Logo -->
                 <div class="flex-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg" x-data="darkLogoUpload()">
-                    <h3 class="text-xl mb-4">Upload Dark Logo</h3>
+                    <h3 class="text-xl mb-4 text-text-light dark:text-text-dark">{{ __('Upload Dark Logo') }}</h3>
                     <div class="flex flex-col gap-6 items-center">
                         <div class="preview-container">
                             <img :src="darkLogoPreview" alt="Dark Logo preview"
@@ -60,7 +59,7 @@
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-50 shadow-md text-text-light dark:text-text-dark">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -85,7 +84,7 @@
 
                 <!-- Favicon -->
                 <div class="flex-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg" x-data="faviconUpload()">
-                    <h3 class="text-xl mb-4">Upload Favicon</h3>
+                    <h3 class="text-xl mb-4 text-text-light dark:text-text-dark">{{ __('Upload Favicon') }}</h3>
                     <div class="flex flex-col gap-6 items-center">
                         <div class="preview-container">
                             <img :src="faviconPreview" alt="Favicon preview"
@@ -96,7 +95,7 @@
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-300 shadow-md text-white dark:text-black">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-50 shadow-md text-text-light dark:text-text-dark">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                                             <path
@@ -109,7 +108,7 @@
                                             accept="image/jpeg,image/png" style="display:none;">
                                     </label>
                                     <button @click="removeFavicon" type="button"
-                                        class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 dark:text-white">
+                                        class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 text-text-light dark:text-text-dark ">
                                         <span>Remove Favicon</span>
                                     </button>
                                 </div>
@@ -227,7 +226,7 @@
             </div>
 
             <button type="submit"
-                class="mt-6 text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
+                class="mt-6 text-white bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Save Settings') }}
             </button>
         </form>

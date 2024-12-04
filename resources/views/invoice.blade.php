@@ -317,7 +317,16 @@
             <!-- Header -->
             <div class="header-section clearfix">
                 <div class="company-logo">
-                    <span>BUSINESS<br>Your Slogan Here</span>
+                    @php
+
+                    $dark_logo = $invoice->project->employer->logo ??  public_path('images/dark_logo.png');
+                    if ($dark_logo && file_exists($dark_logo)) {
+
+                        $base64_image = base64_encode(file_get_contents($dark_logo));
+                        
+                        echo '<img src="data:image/jpeg;base64,' . $base64_image . '" alt="logo" style="height: 80px">';
+                    }
+                    @endphp
                 </div>
                 <div class="invoice-title">
                     <h1 style="margin:0">INVOICE</h1>
@@ -385,7 +394,12 @@
                         <td style="text-align:left;">
                             {{ $item->task_name }}<br>
                         </td>
-                        <td>${{ number_format($item->project->total_cost ?? 0, 2) }}</td>
+                        <td>
+                            ${{ $item->project->payment_type == 'fixed' ? 
+                                $item->project->total_paid : 
+                                (number_format($invoice->project->hr_budget ?? 0, 2) . '/hr')
+                            }}
+                        </td>
                         <td>{{ $item->time ?? 0 }}</td>
                         @php
                         $timeParts = explode(':', $task->time);
@@ -406,7 +420,7 @@
                         // Calculate total cost based on hours
                         $taskCost = $totalHours * $hrBudget;
                         @endphp
-                        <td>${{ number_format($taskCost, 2) }}</td>
+                        <td>${{ $item->project->payment_type == 'fixed' ? $item->project->total_paid : number_format($taskCost, 2) }}</td>
                     </tr>
                     @endif
                     @endforeach
@@ -417,16 +431,16 @@
                 <table class="totals-table" >
                     <tr class="sub-total" style="background: #6b21a8;">
                         <td>Sub Total:</td>
-                        <td align="right">${{ number_format($totalCost, 2) }}</td>
+                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_paid : number_format($totalCost, 2) }}</td>
                     </tr>
-                    <tr class="tax" style="background: #6b21a8;">
+                    {{-- <tr class="tax" style="background: #6b21a8;">
                         <td>Tax ({{ $invoice->tax_rate }}%):</td>
-                        <td align="right">${{ number_format($totalCost ) }}</td>
+                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_paid : number_format($totalCost * $invoice->tax_rate / 100, 2) }}</td>
                         <!-- Updated line to calculate tax correctly -->
-                    </tr>
+                    </tr> --}}
                     <tr class="grand-total" style="background: #6b21a8;">
                         <td>GRAND TOTAL:</td>
-                        <td align="right">${{ number_format($totalCost + $invoice->tax_amount, 2) }}</td>
+                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_paid : number_format($totalCost + $invoice->tax_amount, 2) }}</td>
                         <!-- Ensure tax amount is added to total cost -->
                     </tr>
                 </table>

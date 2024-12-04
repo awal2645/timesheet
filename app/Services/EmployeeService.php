@@ -54,6 +54,7 @@ class EmployeeService
             'phone' => $data['phone'],
             'client_id' => $data['client_id'],
             'gender' => $data['gender'],
+            'total_leave' => $data['total_leave'],
             'employee_share' => $data['employee_share'],
             'billing_rate' => $data['billing_rate'],
         ]);

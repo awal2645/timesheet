@@ -1,13 +1,10 @@
 @section('title', __('Edit Language'))
 
 <x-app-layout>
-    <div
-        class="flex justify-between card m-6">
-        <h2 class="text-xl font-semibold text-gray-800 dark:text-gray-200">{{ __('Edit Language') }}</h2>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Language') }}</h2>
         <a href="{{ route('languages.index') }}"
-            class="bg-primary-300 dark:bg-primary-900 text-white hover:bg-primary-600 rounded-lg px-4 py-2">
-            {{ __('Go to Language List') }}
-        </a>
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Language List') }}</a>
     </div>
     <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">{{ __('Edit Language Details') }}</h2>
@@ -66,7 +63,7 @@
             </div>
 
             <button type="submit"
-                class="bg-primary-300 hover:bg-primary-600 dark:bg-primary-900 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
+                class="bg-primary-50 hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
                 {{ __('Update') }}
             </button>
         </form>

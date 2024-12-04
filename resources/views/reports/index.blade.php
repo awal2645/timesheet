@@ -13,7 +13,7 @@
                         <div class="flex gap-3 items-center form-field">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 placeholder="{{ __('Search') }}" />
-                            <select name="status" class="form-select ">
+                            <select name="status" class="form-select">
                                 <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Status') }}</option>
                                 <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
                                     {{ __('Pending') }}
@@ -26,7 +26,7 @@
                                 </option>
                             </select>
                             <button type="submit"
-                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -101,11 +101,11 @@
                                                                         class="absolute mt-2 right-0 w-32 bg-white dark:bg-black/80 py-2 rounded-md shadow-lg z-10">
                                                                         <div class="flex flex-col items-start">
                                                                             <a href="#"
-                                                                                class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 ">
                                                                                 {{ __('View') }}
                                                                             </a>
                                                                             <a href="#"
-                                                                                class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 ">
                                                                                 {{ __('Feedback') }}
                                                                             </a>
                                                                         </div>

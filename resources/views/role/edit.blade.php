@@ -3,12 +3,12 @@
 @endsection
 
 <x-app-layout>
-    <div class="m-6 flex flex-col md:flex-row justify-end items-center md:space-y-0 card">
-        <a href="{{ route('role.page') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
-            <i class="fa-solid fa-plus"></i> {{ __('Back to Role List') }}
-        </a>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Role') }}</h2>
+        <a href="{{ route('role.page') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Role List') }}</a>
     </div>
-    <div class="m-6 card">
+    <div class="m-6">
         <h2 class="text-3xl font-semibold mb-6 text-gray-800 dark:text-gray-100">{{ __('Edit Role') }}</h2>
 
         <form method="POST" action="{{ route('role.update', $role->id) }}" class="space-y-6">
@@ -51,7 +51,7 @@
                                 value="{{ $permission->id }}" class="sr-only peer"
                                 {{ in_array($permission->id, old('permissions', $role->permissions->pluck('id')->toArray())) ? 'checked' : '' }}>
                             <div
-                                class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 dark:bg-gray-700 peer-checked:bg-primary-300 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600">
+                                class="w-11 h-6 bg-gray-300 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 dark:bg-gray-700 peer-checked:bg-primary-50 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full dark:after:border-gray-600">
                             </div>
                         </label>
                         <span
@@ -62,7 +62,7 @@
 
             <!-- Submit Button -->
             <button type="submit"
-                class="block w-full text-lg font-semibold text-white bg-primary-300 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 py-3 rounded-lg shadow-md transition-colors duration-300">
+                class="block w-full text-lg font-semibold text-white bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 py-3 rounded-lg shadow-md transition-colors duration-300">
                 {{ __('Submit') }}
             </button>
         </form>

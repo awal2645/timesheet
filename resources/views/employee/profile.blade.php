@@ -3,7 +3,7 @@
 @endsection
 <x-app-layout>
     <div class="max-w-lg mx-auto mt-6 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 class="text-2xl font-bold mb-4">
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
             Update Account info
         </h2>
         <form method="POST" action="{{ route('employee.info.update') }}" enctype="multipart/form-data"
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-800">
+                class="text-white bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 Submit</button>
         </form>
     </div>

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->decimal('billing_rate', 10, 2)->nullable();
             $table->decimal('monthly_salary', 10, 2)->nullable();
             $table->string('payment_type')->nullable();
+            $table->string('total_leave')->nullable();
             $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->timestamps();
         });

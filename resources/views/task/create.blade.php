@@ -1,10 +1,16 @@
 @section('title')
     {{ __('Create Task') }}
 @endsection
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <x-app-layout>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Task') }}</h2>
+        <a href="{{ route('task.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Task List') }}</a>
+    </div>
     <div class="m-6 card">
-        <h2 class="text-2xl font-bold mb-4">{{ __('Create New Task') }}</h2>
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Create New Task') }}</h2>
 
         <form method="POST" action="{{ route('task.store') }}" >
             @csrf
@@ -67,15 +73,26 @@
             </div>
 
             {{-- Task Time --}}
+            <!-- Include Flatpickr library -->
+
             <div class="form-field">
-                <input type="text" name="time" id="time"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600"
-                    placeholder=""  />
+                <input  type="text" id="time-picker" placeholder=""
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+            <script>
+                flatpickr("#time-picker", {
+                    enableTime: true,
+                    noCalendar: true,
+                    time_24hr: true, // Ensures 24-hour format
+                    dateFormat: "H:i" // Sets format as HH:MM
+                });
+            </script>
+            
+            
 
             {{-- Priority --}}
             <div class="form-field">
@@ -115,7 +132,7 @@
             {{-- Submit Button --}}
             <div class="col-span-full">
                 <button type="submit"
-                    class="px-4 py-2 text-white bg-primary-500 rounded-lg hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-300 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                    class="px-4 py-2 text-white bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
                     {{ __('Create Task') }}
                 </button>
             </div>

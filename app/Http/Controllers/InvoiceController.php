@@ -29,22 +29,24 @@ class InvoiceController extends Controller
      // Show the form for creating a new invoice
      public function create()
      {
-         $employers = Employer::all();
-         $clients = Client::all(); // Fetch all clients
          $projects = Project::all(); // Fetch all projects
-         return view('invoice.create', compact('employers', 'clients', 'projects'));
+         return view('invoice.create', compact('projects'));
      }
      // Store a newly created invoice in storage
      public function store(Request $request)
      {
          $request->validate([
-             'employer_id' => 'required|exists:employers,id',
-             'client_id' => 'required|exists:clients,id',
              'project_id' => 'required|exists:projects,id',
              'invoice_number' => 'required|string|max:255',
          ]);
+         $project = Project::find($request->project_id);
  
-         Invoice::create($request->all());
+         Invoice::create([
+            'project_id' => $project->id,
+            'employer_id' => $project->employer_id,
+            'client_id' => $project->client_id,
+            'invoice_number' => $request->invoice_number,
+         ]);
  
          return redirect()->route('invoice.index')->with('success', __('Invoice created successfully.'));
      }
@@ -53,21 +55,25 @@ class InvoiceController extends Controller
      public function edit(Invoice $invoice)
      {
          $employers = Employer::all();
-         $clients = Client::all(); // Fetch all clients
-         $projects = Project::all(); // Fetch all projects
-         return view('invoice.edit', compact('invoice', 'employers', 'clients', 'projects'));
+        $projects = Project::all(); // Fetch all projects
+         return view('invoice.edit', compact('invoice', 'employers', 'projects'));
      }
  
      // Update the specified invoice in storage
      public function update(Request $request, Invoice $invoice)
      {
          $request->validate([
-             'employer_id' => 'required|exists:employers,id',
+             'project_id' => 'required|exists:projects,id',
              'invoice_number' => 'required|string|max:255',
-             'invoice_date' => 'required|date',
          ]);
+         $project = Project::find($request->project_id);
  
-         $invoice->update($request->all());
+         $invoice->update([
+            'project_id' => $project->id,
+            'employer_id' => $project->employer_id,
+            'client_id' => $project->client_id,
+            'invoice_number' => $request->invoice_number,
+         ]);
  
          return redirect()->route('invoice.index')->with('success', __('Invoice updated successfully.'));
      }

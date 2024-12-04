@@ -10,17 +10,17 @@
                     </label>
                     <div class="flex">
                         <input type="text" id="search" name="search" value="{{ request('search') }}"
-                            class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-header-dark bg-header-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
                         <button
-                            class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                             {{ __('Search') }}
                         </button>
                     </div>
                 </div>
             </form>
             <a href="{{ route('notices.create') }}"
-                class="bg-primary-300 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                 <i class="fa-solid fa-plus"></i> {{ __('Create Notice') }}
             </a>
         </div>
@@ -65,15 +65,15 @@
                                                         @endforeach
                                                     </td>
                                                     <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        <div class="flex justify-end">
+                                                        <div class="flex">
                                                             <a href="{{ route('notices.edit', $notice->id) }}"
-                                                                class="text-primary-600 hover:underline">{{ __('Edit') }}</a>
+                                                                class="text-primary-600 hover:underline mr-2"><i class="fa-solid fa-pen"></i></a>
                                                             <form action="{{ route('notices.destroy', $notice->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    class="text-red-600 hover:underline">{{ __('Delete') }}</button>
+                                                                    class="text-red-600 hover:underline"><i class="fa-solid fa-trash"></i></button>
                                                             </form>
                                                         </div>
                                                     </td>

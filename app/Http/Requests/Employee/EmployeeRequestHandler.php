@@ -27,6 +27,7 @@ class EmployeeRequestHandler
             'billing_rate' => 'nullable|numeric',
             'monthly_salary' => 'nullable|numeric',
             'payment_type' => 'required|string',
+            'total_leave' => 'nullable|numeric',
         ]);
 
         return [
@@ -40,6 +41,7 @@ class EmployeeRequestHandler
             'billing_rate' => $request->billing_rate,
             'monthly_salary' => $request->monthly_salary,
             'payment_type' => $request->payment_type,
+            'total_leave' => $request->total_leave,
         ];
     }
 }

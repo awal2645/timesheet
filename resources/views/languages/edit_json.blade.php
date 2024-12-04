@@ -10,7 +10,7 @@
                         {{ $language->name }} - {{ __('translate_language') }}
                     </h3>
                     <a href="{{ route('languages.index') }}"
-                        class="btn bg-primary-300 text-white float-right flex items-center justify-center px-4 py-2 rounded">
+                        class="btn bg-primary-50 text-white float-right flex items-center justify-center px-4 py-2 rounded">
                         <i class="fas fa-arrow-left"></i>
                         {{ __('back') }}
                     </a>
@@ -25,7 +25,7 @@
                                 <input name="keyword" type="text" placeholder="{{ __('title') }}"
                                     value="{{ request('keyword') }}">
                             </div>
-                            <button type="submit" class="bg-primary-300 text-white rounded-md px-4 py-2">
+                            <button type="submit" class="bg-primary-50 text-white rounded-md px-4 py-2">
                                 {{ __('search') }}
                             </button>
                         </div>

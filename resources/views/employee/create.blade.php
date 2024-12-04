@@ -2,8 +2,13 @@
 {{ __('Create Employee') }}
 @endsection
 <x-app-layout>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Employee') }}</h2>
+        <a href="{{ route('employee.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Employee List') }}</a>
+    </div>
     <div class="card m-6">
-        <h2 class="text-2xl font-bold mb-4"> {{ __('Create Employee') }}</h2>
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark"> {{ __('Create Employee') }}</h2>
         <form method="POST" action="{{ route('employee.store') }}" class="card">
             @csrf
             <!-- Employee Name -->
@@ -20,7 +25,7 @@
             <!-- Employee Email -->
             <div class="form-field">
                 <input type="email" id="email" placeholder="" name="email" required value="{{ old('email') }}" />
-                <label for="email">
+                <label for="email" class="form-label">
                     {{ __('Employee Email') }}</label>
                 @error('email')
                 <span class=" text-red-500">{{ $message }}</span>
@@ -39,7 +44,7 @@
                     </option>
                     @endforeach
                 </select>
-                <label for="employer_id">
+                <label for="employer_id" class="form-label">
                     {{ __('Employer Name') }}
                 </label>
                 @error('employer_id')
@@ -50,14 +55,24 @@
             @if (auth('web')->user()->role == 'employer')
             <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
-            <!-- Phone -->
-            <div class="form-field">
-                <input type="text" name="phone" id="phone" placeholder=" " value="{{ old('phone') }}" />
-                <label for="phone">
-                    {{ __('Phone') }}</label>
-                @error('phone')
-                <span class=" text-red-500">{{ $message }}</span>
-                @enderror
+            <div class="grid md:grid-cols-2 md:gap-6">
+
+                <!-- Phone -->
+                <div class="form-field">
+                    <input type="text" name="phone" id="phone" placeholder=" " value="{{ old('phone') }}" />
+                    <label for="phone">
+                        {{ __('Phone') }}</label>
+                    @error('phone')
+                    <span class=" text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <!-- Total Leave -->
+                <div class="form-field">
+                    <input type="number" name="total_leave" id="total_leave" placeholder=" " value="{{ old('total_leave') }}" />
+                    <label for="total_leave" class="form-label">
+                        {{ __('Total Leave') }}</label>
+                </div>
             </div>
             <div class="grid md:grid-cols-2 md:gap-6">
                 <!-- Client -->
@@ -65,8 +80,7 @@
                     <select name="client_id" id="client_id" class="form-select">
 
                         @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $client->id }}">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}">
                             {{ $client->client_name }}
                         </option>
                         @endforeach
@@ -149,7 +163,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="text-text-light dark:text-text-dark bg-primary-300 dark:bg-primary-300 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{
+                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{
                 __('Submit') }}</button>
 
         </form>

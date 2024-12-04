@@ -14,11 +14,11 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('invoice.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('invoice.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Invoice') }}</a>
             </div>
 
@@ -60,16 +60,22 @@
                                                     <td
                                                         class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                         <a href="{{ route('invoice.edit', $invoice->id) }}"
-                                                            class="text-primary-500 hover:underline">{{ __('Edit') }}</a>
+                                                            class="text-primary-500 hover:text-primary-300">
+                                                            <i class="fa-solid fa-pen-to-square"></i>
+                                                        </a>
                                                         <form action="{{ route('invoice.destroy', $invoice->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                class="text-red-500 hover:underline">{{ __('Delete') }}</button>
+                                                                    class="text-red-500 hover:text-red-300">
+                                                            <i class="fa-solid fa-trash"></i>
+                                                        </button>
                                                         </form>
                                                         <a href="{{ route('invoice.download', $invoice->id) }}"
-                                                            class="text-green-500 hover:underline">{{ __('Download PDF') }}</a>
+                                                            class="text-green-500 hover:text-green-300">
+                                                            <i class="fa-solid fa-file-pdf"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach

@@ -80,7 +80,7 @@
                     value="{{ old('contact_name') }}" />
             </div> --}}
             <button type="submit"
-                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
         </form>
     </div>
 </x-app-layout>
@@ -94,18 +94,4 @@
         border: 1px solid rgba(75, 85, 99, 1)
     }
 </style>
-@vite('resources/js/filepond.js')
-<script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-        const inputElement = document.querySelector('.filepond');
-        // Create a FilePond instance
-        const pond = filepond.create(inputElement, {
-            acceptedFileTypes: ['image/png', 'image/jpeg', 'image/jpg'],
-            maxFileSize: '5MB',
-            storeAsFile: true,
-            allowMultiple: true,
-            credits: false,
-            labelIdle: `Drag & Drop Images or <span class="filepond--label-action">Browse</span><br><p class="filepone-text-size text-gray-500">Recommended image size Width:272px, Height:196px</p>`,
-        });
-    });
-</script>
+

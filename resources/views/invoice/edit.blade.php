@@ -2,63 +2,34 @@
     {{ __('Edit Invoice') }}
 @endsection
 <x-app-layout>
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Notice') }}</h2>
+        <a href="{{ route('notices.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Notice List') }}</a>
+    </div>
     <div class="m-6">
-        <div class="mb-12 card flex flex-col md:flex-row justify-end items-center md:space-y-0 ">
-
-            <a href="{{ route('invoice.index') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                    class="fa-solid fa-plus"></i> {{ __('Back to Invoice List') }}</a>
-        </div>
         <div class="card">
-            <h2 class="text-2xl font-bold mb-4">{{ __('Edit Invoice') }}</h2>
-
+            <h2 class="text-2xl text-text-light dark:text-text-dark font-bold mb-5">{{ __('Edit Invoice') }}</h2>
             <form method="POST" action="{{ route('invoice.update', $invoice->id) }}">
                 @csrf
                 @method('PUT')
 
-                <!-- Employer Name -->
-                <div class="form-field">
-                    <select name="employer_id" id="employer_id">
-                        @foreach ($employers as $employer)
-                            <option value="{{ $employer->id }}"
-                                {{ $invoice->employer_id == $employer->id ? 'selected' : '' }}>
-                                {{ $employer->employer_name }}</option>
-                        @endforeach
-                    </select>
-                    <label for="employer_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Employer Name') }}</label>
-                </div>
-
-                <!-- Client Name -->
-                <div class="form-field">
-                    <select name="client_id" id="client_id">
-                        @foreach ($clients as $client)
-                            <option value="{{ $client->id }}"
-                                {{ $invoice->client_id == $client->id ? 'selected' : '' }}>
-                                {{ $client->client_name }}</option>
-                        @endforeach
-                    </select>
-                    <label for="client_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Client Name') }}</label>
-                </div>
-
                 <!-- Project Name -->
                 <div class="form-field">
-                    <select name="project_id" id="project_id">
+                    <select name="project_id" id="project_id" class="form-select">
                         @foreach ($projects as $project)
-                            <option value="{{ $project->id }}"
+                            <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark" value="{{ $project->id }}"
                                 {{ $invoice->project_id == $project->id ? 'selected' : '' }}>
-                                {{ $project->project_name }}
-                            </option>
+                                {{ $project->project_name }}</option>
                         @endforeach
                     </select>
-                    <label for="project_id"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Project Name') }}</label>
+                    <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
                 </div>
 
                 <!-- Invoice Number -->
                 <div class="form-field">
                     <input type="text" name="invoice_number" id="invoice_number" required
-                        value="{{ $invoice->invoice_number }}" />
+                        value="{{ $invoice->invoice_number }}" placeholder=" " />
                     <label for="invoice_number"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Number') }}</label>
                 </div>
@@ -71,16 +42,8 @@
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Date') }}</label>
                 </div>
 
-                <!-- Total Cost -->
-                <div class="form-field">
-                    <input type="text" name="total_cost" id="total_cost" required
-                        value="{{ $invoice->total_cost }}" />
-                    <label for="total_cost"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Total Cost') }}</label>
-                </div>
-
                 <button type="submit"
-                    class="text-white bg-primary-300 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
+                    class="text-white bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Update') }}</button>
             </form>
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div
-    class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 backdrop-blur bg-white/10 dark:bg-slate-800   text-text-light  
+    class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 backdrop-blur bg-card-light dark:bg-card-dark   text-text-light  
  dark:text-text-dark  /10 shadow-lg rounded-lg border border-black/10 dark:border-white/10">
     <div class="px-5 py-5 pt-5">
         <header class="flex justify-between items-start mb-2">

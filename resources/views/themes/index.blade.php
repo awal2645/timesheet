@@ -230,7 +230,7 @@
                                 {{ __('Font Family') }}
                             </label>
                             <select id="font_family" name="font_family"
-                                class="w-full rounded-lg border-gray-300 bg-body-light dark:bg-body-dark shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                class="w-full rounded-lg border-gray-300 bg-card-light dark:bg-card-dark shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                                 @foreach (App\Models\Theme::AVAILABLE_FONTS as $name => $style)
                                     <option value="{{ $name }}"
                                         {{ ($theme->font_family ?? 'Inter') === $name ? 'selected' : '' }}
@@ -243,7 +243,7 @@
 
                         <div class="grid grid-cols-2 gap-5 mt-6">
                             <button type="submit"
-                                class="flex-1 mr-2 justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-300 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                                class="flex-1 mr-2 justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
                                 <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -256,7 +256,7 @@
                         <form action="{{ route('themes.reset') }}" method="POST" class="flex-1 ml-2">
                             @csrf
                             <button type="submit"
-                                class="w-full justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-500 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-all duration-200">
+                                class="w-full justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-all duration-200">
                                 <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -276,7 +276,7 @@
                             {{ __('Live Preview') }}
                         </h3>
                         <div id="preview" class="p-6 rounded-xl border shadow-sm transition-all duration-200">
-                            <h4 class="text-2xl font-bold mb-4">
+                            <h4 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
                                 {{ __('Primary text') }}
                             </h4>
                             <p class="mb-6">
@@ -284,7 +284,7 @@
                             </p>
                             <div class="flex flex-wrap gap-4">
                                 <button
-                                    class="preview-button bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
+                                    class="preview-button bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
                                     {{ __('Primary button') }}
                                 </button>
                                 <button

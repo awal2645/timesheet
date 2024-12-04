@@ -25,7 +25,7 @@
     }" x-init="initEditor()" @click="initEditor()" class="m-6">
 
         <div
-            class="flex flex-col md:flex-row md:justify-start gap-8 bg-white/10 dark:bg-black/10 border border-black/10 dark:border-white/10 p-5">
+            class="flex flex-col md:flex-row md:justify-start gap-8 bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 p-5">
             <!-- Sidebar with Tab Links -->
             <ul
                 class="flex flex-col md:w-1/3 space-y-2 p-5 bg-white/30 dark:bg-black/30 rounded-lg border dark:border-white/10">
@@ -33,9 +33,9 @@
                     @php $type = $email_template->type ?? 'new'; @endphp
                     <li>
                         <a href="#"
-                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-primary-300 hover:text-white dark:hover:bg-primary-300"
+                            class="block py-2 px-4 rounded-lg cursor-pointer border dark:border-gray-600 dark:bg-gray-800 hover:bg-primary-50 hover:text-white dark:hover:bg-primary-50"
                             :class="{
-                                'bg-primary-300 dark:bg-primary-300 text-white': activeTab === '{{ $type }}',
+                                'bg-primary-50 dark:bg-primary-50 text-white': activeTab === '{{ $type }}',
                                 'text-gray-700 dark:text-gray-300': activeTab !== '{{ $type }}'
                             }"
                             @click.prevent="activeTab = '{{ $type }}'; initEditor();">
@@ -100,7 +100,7 @@
                                 <!-- Submit Button -->
                                 <div class="flex justify-center mt-6">
                                     <button type="submit"
-                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-300 hover:bg-primary-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-50 hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         <i class="fas fa-sync mr-2"></i>{{ __('Update') }}
                                     </button>
                                 </div>

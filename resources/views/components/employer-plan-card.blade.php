@@ -8,7 +8,7 @@
             <div class="mt-2">
 
                 <span
-                    class="bg-green-200 text-text-light dark:bg-primary-300 dark:text-text-dark p-3 rounded-full text-xs">Recommended</span>
+                    class="bg-green-200 text-text-light dark:bg-primary-50 dark:text-text-dark p-3 rounded-full text-xs">Recommended</span>
             </div>
         @endif
 
@@ -68,12 +68,12 @@
         {{-- Paypal payment --}}
         @if (config('paypal.mode') == 'sandbox')
             @if (config('paypal.active') && config('paypal.sandbox.client_id') && config('paypal.sandbox.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-primary-300 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn text-2xl bg-primary-50 rounded-lg px-4 py-2">
                     <i class="fa-brands fa-paypal"></i> </button>
             @endif
         @else
             @if (config('paypal.active') && config('paypal.live.client_id') && config('paypal.live.client_secret'))
-                <button id="paypal_btn" class="text-white paypal_btn bg-primary-300 rounded-lg px-4 py-2">
+                <button id="paypal_btn" class="text-white paypal_btn bg-primary-50 rounded-lg px-4 py-2">
                     {{ __('Pay with PayPal') }}
                 </button>
             @endif

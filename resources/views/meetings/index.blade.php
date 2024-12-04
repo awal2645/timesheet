@@ -13,11 +13,11 @@
                         <div class="flex form-field">
                             <input type="text" id="search" name="search" value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('meeting.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('meeting.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -78,7 +78,7 @@
                                                             </div>
                                                             <div class="font-normal text-gray-500 mt-5">
                                                                 <a target="__blank"
-                                                                    class="text-white bg-primary-300 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-300 dark:hover:bg-primary-300 dark:focus:ring-primary-900"
+                                                                    class="text-white bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900"
                                                                     href=" {{ $meeting->meeting_join_url ?? '#' }}">
                                                                     {{ __('Join Zoom') }}
                                                                 </a>

@@ -3,9 +3,9 @@
 ])
 <div class="relative inline-flex" x-data="{ open: false }">
     <button
-        class="w-8 h-8 flex items-center justify-center bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600/80 rounded-full"
-        :class="{ 'bg-slate-200': open }" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
-        <span class="sr-only">{{ __('Notifications') }}</span>
+        class="w-8 h-8 flex items-center justify-center bg-card-light dark:bg-card-dark hover:bg-primary-50 dark:hover:bg-primary-50 rounded-full"
+        :class="{ 'bg-primary-50': open }" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
+        <span class="sr-only text-text-light dark:text-text-dark">{{ __('Notifications') }}</span>
         <svg class="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <path class="fill-current text-slate-500 dark:text-slate-400"
                 d="M6.5 0C2.91 0 0 2.462 0 5.5c0 1.075.37 2.074 1 2.922V12l2.699-1.542A7.454 7.454 0 006.5 11c3.59 0 6.5-2.462 6.5-5.5S10.09 0 6.5 0z" />
@@ -27,23 +27,23 @@
         </div>
         <ul>
             @foreach (notification() as $notification)
-            <li class="border-b border-slate-200 dark:border-slate-700 last:border-0">
-                <a class="block py-2 px-4 hover:bg-slate-50 dark:hover:bg-slate-700/20" href="#0" @click="open = false"
+            <li class="border-b border-card-light dark:border-card-dark last:border-0">
+                <a class="block py-2 px-4 hover:bg-primary-50 dark:hover:bg-primary-50" href="#0" @click="open = false"
                     @focus="open = true" @focusout="open = false">
                     <span class="block text-sm mb-2">📣
-                        <span class="font-medium text-slate-800 dark:text-slate-100">
+                        <span class="font-medium text-text-light dark:text-text-dark">
                             {{ $notification->message }}
                         </span>
                     </span>
                     <span
-                        class="block text-xs font-medium text-slate-400 dark:text-slate-500">{{$notification->created_at->format('Y-m-d')}}</span>
+                        class="block text-xs font-medium text-text-light dark:text-text-dark">{{$notification->created_at->format('Y-m-d')}}</span>
                 </a>
             </li>
             @endforeach
         </ul>
         <div class="flex justify-center">
             <a href="{{ route('notification.del') }}"
-                class="text-slate-600 cursor-pointer hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-100">
+                class="text-text-light dark:text-text-dark cursor-pointer hover:text-text-dark">
                 {{ __('Mark as Read') }}
             </a>
         </div>

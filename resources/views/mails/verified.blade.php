@@ -97,7 +97,7 @@
                             <table cellpadding="0" cellspacing="0" border="0" width="100%">
                                 <tr lass="logo-wrap">
                                     <td>
-                                        <img src="https://timesheet.engagingdot.com/images/logo.png"
+                                        <img src="https://timesheet.zenxservices.com/images/logo.png"
                                             alt="Zenxserv Technologies" style="max-width: 200px;">
 
                                     </td>
@@ -123,7 +123,7 @@
                             <p>Once your email address is verified, you'll be all set to explore everything Zenxserv
                                 Technologies has to offer.</p>
                             <p>If you have any questions or need assistance, feel free to reach out to our support team
-                                at <a href="mailto:support@engagingdot.com" class="link">support@engagingdot.com</a>.
+                                at <a href="mailto:support@zenxservices.com" class="link">support@zenxservices.com</a>.
                             </p>
                             <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                         </td>

@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = Task::all();
+        $tasks = Task::paginate(10);
         $projects = Project::all();
         return view('task.index', compact('tasks', 'projects'));
     }
@@ -99,5 +99,12 @@ class TaskController extends Controller
         $task->save();
 
         return redirect()->route('task.index')->with('success', 'Task status updated successfully!');
+    }
+
+    public function destroy($id)
+    {
+        $task = Task::find($id);
+        $task->delete();
+        return redirect()->route('task.index')->with('success', 'Task deleted successfully!');
     }
 }

@@ -22,10 +22,10 @@
     @apply text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
 }
 .sidebar-menu-item.active {
-    @apply text-white bg-primary-500 dark:bg-primary-900 hover:text-primary-900 dark:hover:text-primary-500;
+    @apply text-white bg-primary-500 dark:bg-primary-50 hover:text-primary-900 dark:hover:text-primary-500;
 }
 .table-header {
-    @apply bg-primary-300 !text-text-light dark:!text-text-dark border-separate;
+    @apply bg-primary-50 !text-text-light dark:!text-text-dark border-separate;
 }
 .table-header th {
     @apply px-4 py-4 font-medium;
@@ -103,7 +103,7 @@
     width: 100%;
     font-size: 0.875rem; /* text-sm */
     background: transparent;
-    border: 1px solid #d1d5db; /* border-gray-300 */
+    border: 1px solid rgb(75 85 99);/* border-gray-300 */
     appearance: none;
     cursor: pointer;
 }
@@ -132,7 +132,6 @@
     background-color: var(--primary-50);
     font-weight: 500; /* peer-focus:font-medium */
     transform: translateY(-2rem); /* -translate-y-6 scale-75 */
-    color: white; /* peer-focus:text-primary-600 */
 }
 
 .select2-container {

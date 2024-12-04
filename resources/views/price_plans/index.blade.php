@@ -12,11 +12,10 @@
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>
-                        <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Set Recommended
-                            Package</label>
+                        <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Set Recommended Package') }}</label>
                         <div class="flex">
                             <select name="plan_id" id="recommended_package"
-                                class="bg-gray-50 px-10 dark:bg-gray-700 dark:text-gray-300 text-gray-900 text-sm rounded-lg p-2.5 mr-2">
+                                class="bg-gray-50 px-10 dark:bg-card-dark dark:text-text-dark text-text-light text-sm rounded-lg p-2.5 mr-2">
                                 <option value=""> Select Recommended package</option>
                                 @foreach ($pricePlans as $plan)
                                     <option {{ $plan->recommended ? 'selected' : '' }} value="{{ $plan->id }}">
@@ -24,12 +23,12 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">Update</button>
+                            <button class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Update') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('plans.create') }}" class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> Create Plan</a>
+                <a href="{{ route('plans.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                        class="fa-solid fa-plus"></i> {{ __('Create Plan') }}</a>
             </div>
         @endcanany
 

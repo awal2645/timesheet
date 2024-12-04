@@ -24,6 +24,7 @@ class StoreEmployeeRequest extends FormRequest
             'billing_rate' => 'nullable|numeric',
             'payment_type' => 'required',
             'gender' => 'nullable|in:male,female,other',
+            'total_leave' => 'nullable|numeric',
         ];
     }
 }

@@ -6,9 +6,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
 
 <x-app-layout>
-
+    <div class="flex justify-between m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Meeting') }}</h2>
+        <a href="{{ route('meeting.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Meeting List') }}</a>
+    </div>
     <div class="m-6 card">
-        <h2 class="text-2xl font-bold mb-4">{{ __('Create New Meeting') }}</h2>
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Create New Meeting') }}</h2>
         <form method="POST" action="{{ route('meeting.store') }}">
             @csrf
             <!-- Collapsible Section for Zoom Credentials -->
@@ -16,7 +20,7 @@
                 <label class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="toggleZoomCredentialsCheckbox" class="sr-only peer" />
                     <div
-                        class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-300">
+                        class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-50">
                     </div>
                     <span
                         class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Toggle Zoom Credentials') }}</span>
@@ -147,7 +151,7 @@
             <!-- Submit Button -->
             <div class="flex">
                 <button type="submit"
-                    class="bg-primary-300 text-white px-4 py-2 rounded shadow hover:bg-primary-300 dark:bg-primary-300 dark:hover:bg-primary-300">
+                    class="bg-primary-50 text-white px-4 py-2 rounded shadow hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-50">
                     {{ __('Save') }}
                 </button>
             </div>

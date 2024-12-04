@@ -12,17 +12,17 @@
                         </label>
                         <div class="flex">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-header-dark bg-header-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-300 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
                     </div>
                 </form>
                 <a href="{{ route('client.create') }}"
-                    class="bg-primary-300 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-600 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                     <i class="fa-solid fa-plus"></i> {{ __('Create Client') }}
                 </a>
             </div>
@@ -32,9 +32,8 @@
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="invoices-table ">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1 ">
-                                {{ __('Client
-                                                                                                                                                                                                                                List') }}
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                {{ __('Client List') }}
                             </h2>
                             <div>
                                 <div class="card">
@@ -102,7 +101,7 @@
                                                                             class="sr-only peer"
                                                                             onchange="this.form.submit()">
                                                                         <div
-                                                                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-500">
+                                                                            class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-300 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-50">
                                                                         </div>
                                                                     </label>
                                                                 </form>
@@ -138,7 +137,7 @@
                                                                             class="absolute mt-2 right-0 w-32 bg-white dark:bg-black/80 py-2 rounded-md shadow-lg z-10">
                                                                             <div class="flex flex-col items-start">
                                                                                 <a href="{{ route('client.edit', $client->id) }}"
-                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 ">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-pencil-square size-4"
@@ -152,7 +151,7 @@
                                                                                 </a>
                                                                                 <button
                                                                                     onclick="showConfirmation({{ $client->id }})"
-                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 hover:bg-black/10 hover:dark:bg-white/10">
+                                                                                    class="hover:text-primary-500 w-full text-left px-4 py-2 flex gap-3 items-center transition-all duration-300 ">
                                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                                         fill="currentColor"
                                                                                         class="bi bi-trash size-4"
