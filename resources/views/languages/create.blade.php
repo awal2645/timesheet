@@ -14,54 +14,56 @@
             <form method="POST" action="{{ route('languages.store') }}">
                 @csrf
 
-                <!-- Language Name -->
-                <div class="mb-5">
-                    <label for="name">
-                        {{ __('Language Name') }}
-                    </label>
-                    <select name="name"
-                        class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
-                        @foreach ($translations as $key => $country)
-                            <option {{ old('name') == $country['name'] ? 'selected' : '' }}
-                                value="{{ $country['code'] }}">
-                                {{ $country['name'] }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @error('name')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
-                </div>
+                <div class="flex gap-6 items-center">
+                    <!-- Language Name -->
+                    <div class="sm:w-1/2 w-full">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ __('Language Name') }}
+                        </label>
+                        <select name="name"
+                            class="max-h-[200px] overflow-y-auto w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
+                            @foreach ($translations as $key => $country)
+                                <option {{ old('name') == $country['name'] ? 'selected' : '' }}
+                                    value="{{ $country['code'] }}">
+                                    {{ $country['name'] }}
+                                </option>
+                            @endforeach
+                        </select>
+                        @error('name')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
 
-                <!-- Language Direction -->
-                <div class="mb-5">
-                    <label for="direction" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {{ __('Direction') }}
-                    </label>
-                    <select name="direction" id="direction"
-                        class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
-                        <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>
-                            {{ __('Left to Right') }}
-                        </option>
-                        <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>
-                            {{ __('Right to Left') }}
-                        </option>
-                    </select>
-                    @error('direction')
-                        <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                    <!-- Language Direction -->
+                    <div class="sm:w-1/2 w-full">
+                        <label for="direction" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                            {{ __('Direction') }}
+                        </label>
+                        <select name="direction" id="direction"
+                            class="w-full rounded-lg border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white focus:ring-primary-500 focus:border-primary-500">
+                            <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>
+                                {{ __('Left to Right') }}
+                            </option>
+                            <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>
+                                {{ __('Right to Left') }}
+                            </option>
+                        </select>
+                        @error('direction')
+                            <span class="text-red-500 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
 
                 <!-- Language Icon -->
-                <div class="mb-5 card">
-                    <label for="icon" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                <div class="max-w-max my-6">
+                    <label for="icon" class="block mb-6 text-sm font-medium text-gray-700 dark:text-gray-300">
                         {{ __('Select Flag Icon') }}
                         <p class="text-xs text-red-500 dark:text-red-400">
                             {{ __('Note: Locate the flag icon to search for the country code, e.g., US.') }}
                         </p>
                     </label>
                     <input type="hidden" name="icon" id="icon" value="{{ old('icon') }}">
-                    <div id="target" class="card max-w-max mx-auto mb-2"></div>
+                    <div id="target" class="card border max-w-max mx-auto mb-2"></div>
                     @error('icon')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror

@@ -147,6 +147,14 @@
     border-color: var(--gray-700) !important;
     min-height: 40px;
 }
+.dark .select2-dropdown,
+.dark .select2-container--default .select2-results__option--selected {
+    background-color: var(--card-dark) !important;
+    border-color: var(--gray-700) !important;
+}
+.dark .select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: var(--card-dark) !important;
+}
 
 .toast-success {
     background-color: var(--primary-500) !important;
