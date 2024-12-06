@@ -13,7 +13,7 @@
     @apply p-6 rounded-2xl dark:bg-card-dark bg-card-light shadow-xl backdrop-blur border border-black/10 dark:border-white/10; /* Tailwind utility for centering text */
 }
 .sidebar-menu-item {
-    @apply block px-3 py-1.5 rounded text-text-light hover:!text-black dark:text-text-dark dark:hover:!text-primary-100 font-medium truncate transition duration-150;
+    @apply block px-3 py-1.5 rounded text-text-light hover:!text-black dark:text-text-dark dark:hover:!text-white font-medium truncate transition duration-150;
 }
 .sidebar-menu-icon {
     @apply w-8 h-8 rounded bg-primary-50 text-white inline-flex justify-center items-center;

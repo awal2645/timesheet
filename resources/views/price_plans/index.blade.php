@@ -37,7 +37,7 @@
             @if ($pricePlans->isEmpty())
                 <div class="text-center">
                     <!-- Centering the image -->
-                    <img src="{{ asset('images/no-data-found.svg') }}" alt="No data found" class="mx-auto max-w-xs">
+                    <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
                 </div>
             @else
                 @foreach ($pricePlans as $plan)

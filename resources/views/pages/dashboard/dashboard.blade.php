@@ -154,7 +154,7 @@
                         <div class="animate-scroll inline-flex gap-4" id="scrollContent">
                             @forelse (notice() as $notice)
                                 <div
-                                    class="min-w-[350px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
+                                    class="w-[300px] sm:w-[450px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
                                     <div class="flex justify-between items-start">
                                         <h4 class="font-semibold text-gray-900 dark:text-white">
                                             {{ $notice->title }}
@@ -162,7 +162,7 @@
                                         <span
                                             class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans() }}</span>
                                     </div>
-                                    <p class="mt-2 text-gray-600 dark:text-gray-300">
+                                    <p class="mt-2 text-gray-600 dark:text-gray-300 !whitespace-normal">
                                         {{ $notice->content }}
                                     </p>
                                     <div class="mt-2">
@@ -200,104 +200,105 @@
                         <div class="invoices-table ">
                             <div class="overflow-x-auto pb-1">
                                 @if (auth()->user()->role != 'employee')
-                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Recent Invoice') }}</h2>
+                                    <h2
+                                        class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
+                                        {{ __('Recent Invoice') }}</h2>
 
                                     <div class="card">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">
                                                 <tr class="rounded-2xl text-left">
-                                                <th class="p-3  ">
-                                                    {{ __('Invoice Number') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Date') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Plan') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Employer') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Amount') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Payment Gateway') }}
-                                                </th>
-                                                <th class="p-3  ">
-                                                    {{ __('Payment Status') }}
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($transactions as $transaction)
-                                                <tr class="text-center  mt-5 pt-5">
-                                                    <td class="py-3  ">
-                                                        #{{ $transaction->order_id }}</td>
-                                                    <td class="py-3  ">
-                                                        {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                    <td class="py-3  ">
-                                                        @if ($transaction->payment_type == 'per_job_based')
-                                                            <span
-                                                                class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
-                                                        @else
-                                                            <span
-                                                                class="px-2 py-1 text-sm bg-primary-50 text-white rounded">{{ $transaction->plan->label }}</span>
-                                                        @endif
-                                                    </td>
-
-                                                    <td class="py-3  ">
-                                                        {{ ucfirst($transaction->employer->user->username) }}</td>
-
-                                                    <td class="py-3  ">
-                                                        ${{ $transaction->usd_amount }}</td>
-                                                    <td class="py-3  ">
-                                                        {{ $transaction->payment_provider == 'offline'
-                                                            ? __('offline') .
-                                                                (optional($transaction->manualPayment)->name
-                                                                    ? "
-                                                                                                                                                                (<b>{$transaction->manualPayment->name}</b>)"
-                                                                    : '')
-                                                            : ucfirst($transaction->payment_provider) }}
-                                                    </td>
-                                                    <td class="py-3  ">
-                                                        <span
-                                                            class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
-                                                            {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
-                                                        </span>
-                                                    </td>
+                                                    <th class="p-3  ">
+                                                        {{ __('Invoice Number') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Date') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Plan') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Employer') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Amount') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Payment Gateway') }}
+                                                    </th>
+                                                    <th class="p-3  ">
+                                                        {{ __('Payment Status') }}
+                                                    </th>
                                                 </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="7"
-                                                        class="text-center py-8   dark:text-gray-100">
-                                                        <img src="{{ asset('images/no-data-found.svg') }}"
-                                                            alt="No data found" class="mx-auto max-w-xs">
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($transactions as $transaction)
+                                                    <tr class="text-center  mt-5 pt-5">
+                                                        <td class="py-3  ">
+                                                            #{{ $transaction->order_id }}</td>
+                                                        <td class="py-3  ">
+                                                            {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+                                                        <td class="py-3  ">
+                                                            @if ($transaction->payment_type == 'per_job_based')
+                                                                <span
+                                                                    class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
+                                                            @else
+                                                                <span
+                                                                    class="px-2 py-1 text-sm bg-primary-50 text-white rounded">{{ $transaction->plan->label }}</span>
+                                                            @endif
+                                                        </td>
+
+                                                        <td class="py-3  ">
+                                                            {{ ucfirst($transaction->employer->user->username) }}</td>
+
+                                                        <td class="py-3  ">
+                                                            ${{ $transaction->usd_amount }}</td>
+                                                        <td class="py-3  ">
+                                                            {{ $transaction->payment_provider == 'offline'
+                                                                ? __('offline') .
+                                                                    (optional($transaction->manualPayment)->name
+                                                                        ? "
+                                                                                                                                                                                                                            (<b>{$transaction->manualPayment->name}</b>)"
+                                                                        : '')
+                                                                : ucfirst($transaction->payment_provider) }}
+                                                        </td>
+                                                        <td class="py-3  ">
+                                                            <span
+                                                                class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
+                                                                {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="7"
+                                                            class="text-center py-8   dark:text-gray-100">
+                                                            <x-svgs.no-data-found
+                                                                class="mx-auto md:size-[360px] size-[220px]" />
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
                                     </div>
                                 @endif
                                 @if (auth()->user()->role === 'employee')
-                                    <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Latest Report Status') }}</h2>
+                                    <h2
+                                        class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
+                                        {{ __('Latest Report Status') }}</h2>
 
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
                                             <tr>
 
-                                                <th scope="col"
-                                                    class="px-6 py-3  ">
+                                                <th scope="col" class="px-6 py-3  ">
                                                     Name
                                                 </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3  ">
+                                                <th scope="col" class="px-6 py-3  ">
                                                     Date
                                                 </th>
-                                                <th scope="col"
-                                                    class="px-6 py-3  ">
+                                                <th scope="col" class="px-6 py-3  ">
                                                     Status
                                                 </th>
                                             </tr>
@@ -309,7 +310,7 @@
                                                         class="bg-white dark:bg-gray-800   hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                                         <th scope="row"
-                                                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                             <div class="">
                                                                 <div class="text-base font-semibold">
                                                                     {{ $timeReport->user->username }}</div>
@@ -317,16 +318,14 @@
                                                                     {{ $timeReport->user->email }}</div>
                                                             </div>
                                                         </th>
-                                                        <td
-                                                            class="px-6 py-4  ">
+                                                        <td class="px-6 py-4  ">
                                                             <div class="">
                                                                 <div class="text-base font-semibold">
                                                                     {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
                                                                 </div>
                                                             </div>
                                                         </td>
-                                                        <td
-                                                            class="px-6 py-4  ">
+                                                        <td class="px-6 py-4  ">
                                                             <div class="flex items-center space-x-2">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     id="statusIndicator"
@@ -355,19 +354,22 @@
                                                                             class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                                             onchange="document.getElementById('statusForm{{ $timeReport->id }}').submit()">
                                                                             <!-- Replace data-project-id with the actual project ID -->
-                                                                            <option class="dark:bg-slate-800   text-text-light  
+                                                                            <option
+                                                                                class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                                 value="approve"
                                                                                 {{ $timeReport->status === 'approve' ? 'selected' : '' }}>
                                                                                 Approve
                                                                             </option>
-                                                                            <option class="dark:bg-slate-800   text-text-light  
+                                                                            <option
+                                                                                class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                                 value="decline"
                                                                                 {{ $timeReport->status === 'decline' ? 'selected' : '' }}>
                                                                                 Decline
                                                                             </option>
-                                                                            <option class="dark:bg-slate-800   text-text-light  
+                                                                            <option
+                                                                                class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                                 value="pending"
                                                                                 {{ $timeReport->status === 'pending' ? 'selected' : '' }}>
@@ -383,8 +385,8 @@
                                             @else
                                                 <tr>
                                                     <td colspan="5" class="text-center py-8">
-                                                        <img src="{{ asset('images/no-data-found.svg') }}"
-                                                            alt="No data found" class="mx-auto max-w-xs">
+                                                        <x-svgs.no-data-found
+                                                            class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>
                                             @endif

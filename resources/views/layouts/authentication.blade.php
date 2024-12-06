@@ -51,6 +51,7 @@
             document.getElementById('login-form').submit();
         }
     </script>
+    <link href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}" rel="stylesheet">
 </head>
 
 <body class="font-montserrat antialiased bg-body-light dark:bg-body-dark">

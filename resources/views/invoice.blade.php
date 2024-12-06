@@ -389,7 +389,7 @@
                     @foreach ($invoice->project->tasks as $index => $item)
                     @if ($item->status === 'completed')
                     <!-- Only show completed tasks -->
-                    <tr>
+                    <tr class="[&_td]:text-start">
                         <td>{{ $index + 1 }}</td>
                         <td style="text-align:left;">
                             {{ $item->task_name }}<br>

@@ -79,8 +79,7 @@
                                             @else
                                                 <tr>
                                                     <td colspan="3" class="text-center py-8  ">
-                                                        <img src="{{ asset('images/no-data-found.svg') }}"
-                                                            alt="No data found" class="mx-auto max-w-xs">
+                                                        <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>
                                             @endif

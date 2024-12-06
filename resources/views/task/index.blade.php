@@ -50,13 +50,15 @@
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
                         <div class="flex form-field">
-                            <input type="text" id="search" name="search" placeholder="{{ __('Search') }}" value="{{ request('search') }}" />
+                            <input type="text" id="search" name="search" placeholder="{{ __('Search') }}"
+                                value="{{ request('search') }}" />
                             <button
                                 class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('task.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('task.create') }}"
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
             </div>
             <!-- Start heading here -->
@@ -64,7 +66,9 @@
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
                         <div class="tasks-table ">
-                            <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">{{ __('Latest Tasks') }}</h2>
+                            <h2
+                                class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">
+                                {{ __('Latest Tasks') }}</h2>
                             <div class="card">
                                 <div class="max-w-full">
                                     <table
@@ -102,7 +106,7 @@
                                                         class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                                         <th scope="row"
-                                                            class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                             <div class="">
                                                                 <div class="text-base font-semibold">
                                                                     {{ $task->task_name ?? '' }}</div>
@@ -167,17 +171,20 @@
                                                                     <select name="status" id="status"
                                                                         class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                                         onchange="document.getElementById('statusForm{{ $task->id }}').submit()">
-                                                                        <option class="dark:bg-slate-800   text-text-light  
+                                                                        <option
+                                                                            class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                             value="pending"
                                                                             {{ $task->status === 'pending' ? 'selected' : '' }}>
                                                                             {{ __('Pending') }}
-                                                                        <option class="dark:bg-slate-800   text-text-light  
+                                                                        <option
+                                                                            class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                             value="inprogress"
                                                                             {{ $task->status === 'inprogress' ? 'selected' : '' }}>
                                                                             {{ __('In Progress') }}
-                                                                        <option class="dark:bg-slate-800   text-text-light  
+                                                                        <option
+                                                                            class="dark:bg-slate-800   text-text-light  
  dark:text-text-dark  "
                                                                             value="completed"
                                                                             {{ $task->status === 'completed' ? 'selected' : '' }}>
@@ -190,20 +197,21 @@
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('task.edit', $task->id) }}"
                                                                     class="text-primary-500 hover:text-primary-300">
-                                                                    <i class="fa-solid fa-pen-to-square"></i>                                                                </a>
+                                                                    <i class="fa-solid fa-pen-to-square"></i> </a>
                                                                 <a onclick="showConfirmation({{ $task->id }})"
                                                                     class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
-                                                                    <i class="fa-solid fa-trash"></i>                                                            </div>
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 @endforeach
                                             @else
-                                            <tr>
-                                                <td colspan="8" class="text-center py-8">
-                                                    <img src="{{ asset('images/no-data-found.svg') }}"
-                                                        alt="No data found" class="mx-auto max-w-xs">
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td colspan="8" class="text-center py-8">
+                                                        <x-svgs.no-data-found
+                                                            class="mx-auto md:size-[360px] size-[220px]" />
+                                                    </td>
+                                                </tr>
                                             @endif
                                         </tbody>
                                     </table>

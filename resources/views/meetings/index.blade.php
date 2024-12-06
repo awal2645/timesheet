@@ -4,7 +4,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            
+
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
                 <form action="{{ route('meeting.index') }}" method="GET">
                     <div class="mb-5">
@@ -17,7 +17,8 @@
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('meeting.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('meeting.create') }}"
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Project') }}</a>
             </div>
             <!-- Start heading  here -->
@@ -27,9 +28,9 @@
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Latest Meeting') }}</h2>
-                                <div class="card">
-                                    <table class="w-full table-auto">
-                                        <thead class="table-header">
+                            <div class="card">
+                                <table class="w-full table-auto">
+                                    <thead class="table-header">
                                         <tr class="rounded-2xl text-left">
                                             <th class="min-w-[220px] px-4 py-4 font-medium">
                                                 {{ __('Meeting Topic') }}
@@ -59,7 +60,7 @@
                                                     class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
                                                     <th scope="row"
-                                                        class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                        class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                         <div class="">
                                                             <div class="text-base font-semibold">
                                                                 {{ $meeting->topic ?? '' }}</div>
@@ -154,8 +155,8 @@
                                         @else
                                             <tr>
                                                 <td colspan="6" class="text-center py-8  ">
-                                                    <img src="{{ asset('images/no-data-found.svg') }}"
-                                                        alt="No data found" class="mx-auto max-w-xs">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
                                                 </td>
                                             </tr>
 

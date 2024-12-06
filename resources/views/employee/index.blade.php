@@ -74,7 +74,7 @@
                                                 <tr
                                                     class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
                                                     <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 pl-9 dark:border-strokedark xl:pl-11">
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                         <div class="text-sm font-semibold">
                                                             {{ $employee->employee_name }}
                                                         </div>
@@ -170,8 +170,7 @@
                                                 @empty
                                                 <tr>
                                                     <td colspan="5" class="text-center py-8  ">
-                                                        <img src="{{ asset('images/no-data-found.svg') }}"
-                                                            alt="No data found" class="mx-auto max-w-xs">
+                                                        <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>
                                                 @endforelse
