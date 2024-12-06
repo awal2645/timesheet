@@ -4,27 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClockGo SaaS - Time Tracking Tool</title>
+    <title>Timesheet - Time Tracking Tool</title>
     @vite(['resources/css/app.css'])
     <link href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
 </head>
 
 <body>
-    <header class="py-4 bg-primary-500 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
-        <nav class="relative container mx-auto w-full md:flex md:items-center md:justify-between"
+    <header class="py-4 bg-primary-50 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
+        <nav class="relative container px-4 xl:px-0 mx-auto w-full md:flex md:items-center md:justify-between"
             aria-label="Global">
             <div class="flex items-center justify-between">
                 <!-- Logo -->
                 <a class="flex-none rounded-md text-2xl text-white inline-block font-semibold focus:outline-none focus:opacity-80"
-                    href="../../templates/agency/index.html" aria-label="Timesheet">
-                    Timesheet
+                    href="/" aria-label="Timesheet">
+                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto">
                 </a>
                 <!-- End Logo -->
 
                 <div class="md:hidden">
                     <button type="button"
-                        class="hs-collapse-toggle size-8 flex justify-center items-center text-sm font-semibold rounded-full bg-neutral-800 text-white disabled:opacity-50 disabled:pointer-events-none"
+                        class="hs-collapse-toggle size-8 flex justify-center items-center text-sm font-semibold rounded-full bg-transparent text-white disabled:opacity-50 disabled:pointer-events-none"
                         data-hs-collapse="#navbar-collapse" aria-controls="navbar-collapse"
                         aria-label="Toggle navigation">
                         <svg class="hs-collapse-open:hidden flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg"
@@ -52,8 +53,8 @@
                     class="flex flex-col gap-y-4 gap-x-0 mt-5 md:flex-row md:items-center md:justify-end md:gap-y-0 md:gap-x-7 md:mt-0 md:ps-7">
 
                     <div>
-                        <a class="group inline-flex items-center gap-x-2 py-2 bg-primary-50 font-medium text-sm text-white rounded-md focus:outline-none px-5"
-                            href="{{ route('login') }}">
+                        <a class="group inline-flex items-center gap-x-2 py-2 bg-gray-900 font-medium text-sm text-white rounded-md focus:outline-none px-5"
+                            href="{{ route('login') }}" data-aos="fade-up">
                             Login
                         </a>
                     </div>
@@ -64,71 +65,71 @@
     </header>
     
     <!-- Hero Section -->
-    <section class="bg-primary-500">
+    <section class="bg-primary-50">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
-                    <div class="inline-block">
+                    <div class="inline-block" data-aos="fade-in">
                         <span
-                            class="inline-flex items-center rounded-full bg-white px-4 py-1 text-sm font-medium text-primary-500">
+                            class="inline-flex items-center rounded-full bg-black px-4 py-1 text-sm font-medium text-white">
                             70% Special Offer
                         </span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold text-white">
-                        ClockGo SaaS - Time Tracking Tool
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900" data-aos="fade-up">
+                        Timesheet - Time Tracking Tool
                     </h1>
-                    <p class="text-lg text-white/90">
+                    <p class="text-lg text-gray-900/90" data-aos="fade-up" data-aos-delay="100">
                         Use these awesome forms to login or create new account in your project for free.
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="px-6 py-3 bg-white text-primary-500 rounded-md hover:bg-gray-100">
+                        <a href="#" class="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-900" data-aos="fade-up" data-aos-delay="200">
                             Live Demo <span class="ml-2">▶</span>
                         </a>
                         <a href="#"
-                            class="px-6 py-3 bg-transparent text-white border border-white rounded-md hover:bg-white/10">
+                            class="px-6 py-3 bg-transparent text-gray-900 border border-black rounded-md hover:bg-gray-900/10" data-aos="fade-up" data-aos-delay="300">
                             Buy Now <span class="ml-2">↓</span>
                         </a>
                     </div>
                 </div>
-                <div class="relative">
+                <div class="relative" data-aos="fade-up" data-aos-delay="400">
                     <div class="rounded-lg overflow-hidden shadow-xl">
-                        <img src="https://placehold.co/800x600" alt="ClockGo Dashboard" class="w-full h-auto">
+                        <img src="https://placehold.co/800x600" alt="Timesheet Dashboard" class="w-full h-auto">
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Trust Badge -->
-        <div class="bg-primary-500 border-t border-white/10 py-8">
+        <div class="bg-primary-50 py-8 border-t border-black/10 shadow-xl">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-white mb-6">Trusted by 1000+ Customer</p>
+                <p class="text-center text-gray-900 mb-6">Trusted by 1000+ Customer</p>
                 <div class="flex justify-between items-center gap-8 overflow-hidden">
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 1"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="200">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 1"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 2"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 2"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 3"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="400">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 3"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 4"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 4"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 5"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="600">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 5"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 6"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="700">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 6"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
-                    <div class="flex-shrink-0">
-                        <img src="https://placehold.co/120x50" alt="ClockGo Logo 7"
+                    <div class="flex-shrink-0" data-aos="fade-up" data-aos-delay="800">
+                        <img src="https://placehold.co/120x50" alt="Timesheet Logo 7"
                             class="h-8 w-auto object-contain brightness-0 invert opacity-75">
                     </div>
                 </div>
@@ -141,14 +142,15 @@
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div class="space-y-6">
-                    <p class="text-sm font-semibold text-primary-500">FEATURES</p>
-                    <h2 class="text-3xl md:text-4xl text-gray-900 font-bold">All In One Place CRM System</h2>
-                    <p class="text-gray-400">
-                        Use these awesome forms to login or create new account in your project for free. Use these
-                        awesome forms to login or create new account in your project for free.
+                    <p class="text-sm font-semibold text-primary-50">FEATURES</p>
+                    <h2 class="text-3xl md:text-4xl text-gray-900 font-bold" data-aos="fade-up">
+                        All In One Place CRM System
+                    </h2>
+                    <p class="text-gray-700" data-aos="fade-up" data-aos-delay="100">
+                        Use these awesome forms to login or create new account in your project for free.
                     </p>
                     <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-primary-500 text-white rounded-md hover:bg-green-600">
+                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-green-600" data-aos="fade-up" data-aos-delay="200">
                         Buy Now <span class="ml-2">↓</span>
                     </a>
                 </div>
@@ -156,32 +158,29 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Feature Card -->
-                <div class="bg-primary-500 rounded-lg p-8">
+                <div class="bg-primary-50 rounded-lg p-8" data-aos="fade-up" data-aos-delay="200">
                     <div class="text-4xl mb-4">⚡</div>
                     <h3 class="text-xl font-semibold mb-4">Feature</h3>
                     <p class="text-white/90">
-                        Use these awesome forms to login or create new account in your project for free.Use these
-                        awesome forms to login or create new account in your project for free.
+                        Use these awesome forms to login or create new account in your project for free.
                     </p>
                 </div>
 
                 <!-- Support Card -->
-                <div class="bg-card-dark rounded-lg p-8">
+                <div class="bg-card-dark hover:bg-primary-50 transition-color duration-300 rounded-lg p-8" data-aos="fade-up" data-aos-delay="300">
                     <div class="text-4xl mb-4">⭕</div>
                     <h3 class="text-xl font-semibold mb-4">Support</h3>
                     <p class="text-white/90">
-                        Use these awesome forms to login or create new account in your project for free.Use these
-                        awesome forms to login or create new account in your project for free.
+                        Use these awesome forms to login or create new account in your project for free.
                     </p>
                 </div>
 
                 <!-- Integration Card -->
-                <div class="bg-card-dark rounded-lg p-8">
+                <div class="bg-card-dark hover:bg-primary-50 transition-color duration-300 rounded-lg p-8" data-aos="fade-up" data-aos-delay="400">
                     <div class="text-4xl mb-4">⚡</div>
                     <h3 class="text-xl font-semibold mb-4">Integration</h3>
                     <p class="text-white/90">
-                        Use these awesome forms to login or create new account in your project for free.Use these
-                        awesome forms to login or create new account in your project for free.
+                        Use these awesome forms to login or create new account in your project for free.
                     </p>
                 </div>
             </div>
@@ -189,17 +188,17 @@
     </section>
 
     <!-- Time Tracking Tool Section -->
-    <section class="bg-primary-500 text-white pb-20">
+    <section class="bg-primary-50 text-white pb-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="text-center space-y-4 mb-12">
                 <p class="text-sm font-semibold text-primary-500">FEATURES</p>
-                <h2 class="text-3xl md:text-4xl font-bold">ClockGo SaaS - Time Tracking Tool</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold">Timesheet - Time Tracking Tool</h2>
+                <p class="text-gray-800 max-w-2xl mx-auto">
                     Use these awesome forms to login or create new account in your project for free.
                 </p>
             </div>
 
-            <div class="rounded-lg overflow-hidden shadow-2xl">
+            <div class="rounded-lg overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="100">
                 <img src="https://placehold.co/1200x600" alt="Time Tracking Dashboard" class="w-full h-auto">
             </div>
         </div>
@@ -211,34 +210,34 @@
             <!-- First Screenshot -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="space-y-6">
-                    <p class="text-sm font-semibold text-clockgo-green">FEATURES</p>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">ClockGo SaaS - Time Tracking Tool</h2>
-                    <p class="text-gray-600">
+                    <p class="text-sm font-semibold text-Timesheet-green">FEATURES</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Timesheet - Time Tracking Tool</h2>
+                    <p class="text-gray-600" data-aos="fade-up" data-aos-delay="100">
                         Use these awesome forms to login or create new account in your project for free.
                     </p>
                     <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-clockgo-green text-white rounded-md hover:bg-green-600">
+                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green text-white rounded-md hover:bg-green-600" data-aos="fade-up" data-aos-delay="200">
                         Buy Now <span class="ml-2">↓</span>
                     </a>
                 </div>
-                <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200">
+                <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200" data-aos="fade-up" data-aos-delay="300">
                     <img src="https://placehold.co/800x500" alt="Timesheet View" class="w-full h-auto">
                 </div>
             </div>
 
             <!-- Second Screenshot -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200 order-2 lg:order-1">
+                <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200 order-2 lg:order-1" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://placehold.co/800x500" alt="Project Templates View" class="w-full h-auto">
                 </div>
-                <div class="space-y-6 order-1 lg:order-2">
-                    <p class="text-sm font-semibold text-clockgo-green">FEATURES</p>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">ClockGo SaaS - Time Tracking Tool</h2>
+                <div class="space-y-6 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="100">
+                    <p class="text-sm font-semibold text-Timesheet-green">FEATURES</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Timesheet - Time Tracking Tool</h2>
                     <p class="text-gray-600">
                         Use these awesome forms to login or create new account in your project for free.
                     </p>
                     <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-clockgo-green text-white rounded-md hover:bg-green-600">
+                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green text-white rounded-md hover:bg-green-600" data-aos="fade-up" data-aos-delay="200">
                         Buy Now <span class="ml-2">↓</span>
                     </a>
                 </div>
@@ -246,15 +245,230 @@
         </div>
     </section>
 
+    <!-- Pricing -->
+    <section class="bg-gray-50">
+        <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
+            <h2 class="text-4xl text-primary-50 mb-16 text-center" data-aos="fade-up">
+                {{ __('Our Pricing') }}
+            </h2>
+            <div class="px-8 py-6 border border-white/30 rounded-xl bg-primary-50 shadow-xl backdrop-blur" data-aos="fade-up" data-aos-delay="100">
+                <div class="space-y-2 mb-8">
+                    <h1 class="text-2xl md:text-3xl font-semibold text-white" data-aos="fade-up">
+                        {{ __('The biggest ever Black Friday sale!') }}
+                    </h1>
+                    <p class="text-white/90" data-aos="fade-up" data-aos-delay="100">
+                        {{ __('You\'ll love these great deals that were handpicked just for you.') }}
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Pricing Plan -->
+                    <div class="bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
+                        <p class="text-white/90 mb-12">
+                            Everything you need to create a website
+                        </p>
+                        <div class="relative inline-block">
+                            <div class="text-white/90 line-through text-sm">$9.99</div>
+                            <div class="absolute start-full -top-2 rotate-60">
+                                <span
+                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+                                    80% OFF
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl text-white font-bold">$1.99</span>
+                                <span class="text-white/90">/mo</span>
+                            </div>
+                            <div class="text-sm text-white/90 my-8">
+                                when getting a 4-year subscription
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                            Get deal
+                        </button>
+                    </div>
+                    <!-- Pricing Plan -->
+                    <div class="bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
+                        <p class="text-white/90 mb-12">
+                            Everything you need to create a website
+                        </p>
+                        <div class="relative inline-block">
+                            <div class="text-white/90 line-through text-sm">$9.99</div>
+                            <div class="absolute start-full -top-2 rotate-60">
+                                <span
+                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+                                    80% OFF
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl text-white font-bold">$1.99</span>
+                                <span class="text-white/90">/mo</span>
+                            </div>
+                            <div class="text-sm text-white/90 my-8">
+                                when getting a 4-year subscription
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                            Get deal
+                        </button>
+                    </div>
+                    <!-- Pricing Plan -->
+                    <div class="bg-gray-900 rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
+                        <p class="text-white/90 mb-12">
+                            Everything you need to create a website
+                        </p>
+                        <div class="relative inline-block">
+                            <div class="text-white/90 line-through text-sm">$9.99</div>
+                            <div class="absolute start-full -top-2 rotate-60">
+                                <span
+                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
+                                    80% OFF
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
+                            <div class="flex items-baseline gap-1">
+                                <span class="text-3xl text-white font-bold">$1.99</span>
+                                <span class="text-white/90">/mo</span>
+                            </div>
+                            <div class="text-sm text-white/90 my-8">
+                                when getting a 4-year subscription
+                            </div>
+                        </div>
+                        <button
+                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors" data-aos="fade-up" data-aos-delay="300">
+                            Get deal
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonial -->
+    <section class="bg-white py-20">
+        <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
+            <div class="space-y-4 max-w-3xl mb-12">
+                <p class="text-sm font-semibold text-gray-900">TESTIMONIALS</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">From our Clients</h2>
+                <p class="text-gray-900">
+                    Use these awesome forms to login or create new account in your project for free.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Testimonial Card 1 -->
+                <div class="bg-primary-50 rounded-lg p-8 space-y-4 shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start">
+                        <div class="w-8 h-8 bg-gray-900 flex items-center justify-center rounded">
+                            <span class="text-white">"</span>
+                        </div>
+                        <div class="flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
+                    <p class="text-gray-800 italic" data-aos="fade-up" data-aos-delay="200">
+                        Very quick customer support, installing this application on my machine locally, within 5 minutes
+                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
+                        EXCELLENT! Thank you very much
+                    </p>
+                    <div class="flex items-center gap-3 pt-4">
+                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
+                        <div class="text-sm">
+                            <p class="text-white font-medium">Chordsnstrings</p>
+                            <p class="text-gray-800">from codecanyon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 2 -->
+                <div class="bg-primary-50 rounded-lg p-8 space-y-4 shadow-xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex justify-between items-start">
+                        <div class="w-8 h-8 bg-white/10 flex items-center justify-center rounded">
+                            <span class="text-white">"</span>
+                        </div>
+                        <div class="flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
+                    <p class="text-gray-800 italic">
+                        Very quick customer support, installing this application on my machine locally, within 5 minutes
+                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
+                        EXCELLENT! Thank you very much
+                    </p>
+                    <div class="flex items-center gap-3 pt-4">
+                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
+                        <div class="text-sm">
+                            <p class="text-white font-medium">Chordsnstrings</p>
+                            <p class="text-gray-800">from codecanyon</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="bg-primary-50 rounded-lg p-8 space-y-4 shadow-xl" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex justify-between items-start">
+                        <div class="w-8 h-8 bg-white/10 flex items-center justify-center rounded">
+                            <span class="text-white">"</span>
+                        </div>
+                        <div class="flex">
+                            ★★★★★
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
+                    <p class="text-gray-800 italic">
+                        Very quick customer support, installing this application on my machine locally, within 5 minutes
+                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
+                        EXCELLENT! Thank you very much
+                    </p>
+                    <div class="flex items-center gap-3 pt-4">
+                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
+                        <div class="text-sm">
+                            <p class="text-white font-medium">Chordsnstrings</p>
+                            <p class="text-gray-800">from codecanyon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-gray-600 max-w-6xl mx-auto text-center" data-aos="fade-up" data-aos-delay="600">
+                WorkDo seCommerce package offers you a "sales-ready," secure online store. The package puts all the key
+                pieces together, from design to payment processing. This gives you a headstart in your eCommerce
+                venture. Every store is built using a reliable PHP framework -laravel. This speeds up the development
+                process while increasing the store's security and performance. Additionally, thanks to the accompanying
+                mobile app, you and your team can manage the store on the go. What's more, because the app works both
+                for you and your customers, you can use it to reach a wider audience. And, unlike popular eCommerce
+                platforms, it doesn't bind you to any terms and conditions or recurring fees. You get to choose where
+                you host it or which payment gateway you use. Lastly, you get complete control over the looks of the
+                store. And if it lacks any functionalities that you need, just reach out, and let's discuss
+                customization possibilities
+            </p>
+        </div>
+    </section>
+
     <!-- Contact -->
-    <section class="bg-primary-500">
+    <section class="bg-primary-50">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <!-- Title -->
             <div class="max-w-3xl mb-10 lg:mb-14">
-                <h2 class="text-white font-semibold text-2xl md:text-4xl md:leading-tight">
+                <h2 class="text-white font-semibold text-2xl md:text-4xl md:leading-tight" data-aos="fade-up">
                     {{ __('Contact us') }}
                 </h2>
-                <p class="mt-1 text-neutral-400">
+                <p class="mt-1 text-gray-800" data-aos="fade-up" data-aos-delay="100">
                     {{ __('Whatever your goal - we will get you there.') }}
                 </p>
             </div>
@@ -262,13 +476,13 @@
 
             <!-- Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 lg:gap-x-16">
-                <div class="md:order-2 bg-primary-500 p-8 rounded-lg border border-white/30 mb-10">
+                <div class="md:order-2 bg-primary-500 p-8 rounded-lg border border-white/30 mb-10" data-aos="fade-up" data-aos-delay="200">
                     <form>
                         <div class="space-y-4">
                             <!-- Input -->
                             <div class="relative">
                                 <input type="text" id="hs-tac-input-name"
-                                    class="peer p-4 block w-full bg-neutral-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
+                                    class="peer p-4 block w-full bg-black/10 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -277,13 +491,13 @@
               autofill:pb-2"
                                     placeholder="Name">
                                 <label for="hs-tac-input-name"
-                                    class="absolute top-0 start-0 p-4 h-full text-neutral-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                    class="absolute top-0 start-0 p-4 h-full text-gray-800 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
                 peer-focus:text-xs
                 peer-focus:-translate-y-1.5
-                peer-focus:text-neutral-400
+                peer-focus:text-gray-800
                 peer-[:not(:placeholder-shown)]:text-xs
                 peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                peer-[:not(:placeholder-shown)]:text-neutral-400">
+                peer-[:not(:placeholder-shown)]:text-gray-800">
                                     {{ __('Name') }}
                                 </label>
                             </div>
@@ -292,7 +506,7 @@
                             <!-- Input -->
                             <div class="relative">
                                 <input type="email" id="hs-tac-input-email"
-                                    class="peer p-4 block w-full bg-neutral-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
+                                    class="peer p-4 block w-full bg-black/10 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -301,13 +515,13 @@
               autofill:pb-2"
                                     placeholder="Email">
                                 <label for="hs-tac-input-email"
-                                    class="absolute top-0 start-0 p-4 h-full text-neutral-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                    class="absolute top-0 start-0 p-4 h-full text-gray-800 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
                 peer-focus:text-xs
                 peer-focus:-translate-y-1.5
-                peer-focus:text-neutral-400
+                peer-focus:text-gray-800
                 peer-[:not(:placeholder-shown)]:text-xs
                 peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                peer-[:not(:placeholder-shown)]:text-neutral-400">
+                peer-[:not(:placeholder-shown)]:text-gray-800">
                                     {{ __('Email') }}
                                 </label>
                             </div>
@@ -316,7 +530,7 @@
                             <!-- Input -->
                             <div class="relative">
                                 <input type="text" id="hs-tac-input-company"
-                                    class="peer p-4 block w-full bg-neutral-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
+                                    class="peer p-4 block w-full bg-black/10 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -325,13 +539,13 @@
               autofill:pb-2"
                                     placeholder="Company">
                                 <label for="hs-tac-input-company"
-                                    class="absolute top-0 start-0 p-4 h-full text-neutral-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                    class="absolute top-0 start-0 p-4 h-full text-gray-800 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
                 peer-focus:text-xs
                 peer-focus:-translate-y-1.5
-                peer-focus:text-neutral-400
+                peer-focus:text-gray-800
                 peer-[:not(:placeholder-shown)]:text-xs
                 peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                peer-[:not(:placeholder-shown)]:text-neutral-400">
+                peer-[:not(:placeholder-shown)]:text-gray-800">
                                     {{ __('Company') }}
                                 </label>
                             </div>
@@ -340,7 +554,7 @@
                             <!-- Input -->
                             <div class="relative">
                                 <input type="text" id="hs-tac-input-phone"
-                                    class="peer p-4 block w-full bg-neutral-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
+                                    class="peer p-4 block w-full bg-black/10 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -349,13 +563,13 @@
               autofill:pb-2"
                                     placeholder="Phone">
                                 <label for="hs-tac-input-phone"
-                                    class="absolute top-0 start-0 p-4 h-full text-neutral-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                    class="absolute top-0 start-0 p-4 h-full text-gray-800 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
                 peer-focus:text-xs
                 peer-focus:-translate-y-1.5
-                peer-focus:text-neutral-400
+                peer-focus:text-gray-800
                 peer-[:not(:placeholder-shown)]:text-xs
                 peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                peer-[:not(:placeholder-shown)]:text-neutral-400">
+                peer-[:not(:placeholder-shown)]:text-gray-800">
                                     {{ __('Phone') }}
                                 </label>
                             </div>
@@ -364,7 +578,7 @@
                             <!-- Textarea -->
                             <div class="relative">
                                 <textarea id="hs-tac-message"
-                                    class="peer p-4 block w-full bg-neutral-800 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
+                                    class="peer p-4 block w-full bg-black/10 border-transparent rounded-lg text-sm text-white placeholder:text-transparent focus:outline-none focus:ring-0 focus:border-transparent disabled:opacity-50 disabled:pointer-events-none
               focus:pt-6
               focus:pb-2
               [&:not(:placeholder-shown)]:pt-6
@@ -373,13 +587,13 @@
               autofill:pb-2"
                                     placeholder="This is a textarea placeholder"></textarea>
                                 <label for="hs-tac-message"
-                                    class="absolute top-0 start-0 p-4 h-full text-neutral-400 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                                    class="absolute top-0 start-0 p-4 h-full text-gray-800 text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent peer-disabled:opacity-50 peer-disabled:pointer-events-none
                 peer-focus:text-xs
                 peer-focus:-translate-y-1.5
-                peer-focus:text-neutral-400
+                peer-focus:text-gray-800
                 peer-[:not(:placeholder-shown)]:text-xs
                 peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                peer-[:not(:placeholder-shown)]:text-neutral-400">
+                peer-[:not(:placeholder-shown)]:text-gray-800">
                                     {{ __('Tell us about your project') }}
                                 </label>
                             </div>
@@ -392,7 +606,7 @@
                             </p>
 
                             <p class="mt-5">
-                                <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-primary-50 font-medium text-sm text-neutral-800 rounded-full focus:outline-none"
+                                <a class="group inline-flex items-center gap-x-2 py-2 px-3 bg-gray-900 font-medium text-sm text-white rounded-full focus:outline-none"
                                     href="#">
                                     {{ __('Submit') }}
                                     <svg class="flex-shrink-0 size-4 transition group-hover:translate-x-0.5 group-hover:translate-x-0 group-focus:translate-x-0.5 group-focus:translate-x-0"
@@ -409,7 +623,7 @@
                 </div>
                 <!-- End Col -->
 
-                <div class="space-y-14">
+                <div class="space-y-14" data-aos="fade-up" data-aos-delay="300">
                     <!-- Item -->
                     <div class="flex gap-x-5">
                         <svg class="flex-shrink-0 size-6 text-neutral-500" xmlns="http://www.w3.org/2000/svg"
@@ -419,11 +633,11 @@
                             <circle cx="12" cy="10" r="3" />
                         </svg>
                         <div class="grow">
-                            <h4 class="text-white font-semibold">
+                            <h4 class="text-white font-semibold" data-aos="fade-up">
                                 {{ __('Our address:') }}
                             </h4>
 
-                            <address class="mt-1 text-neutral-400 text-sm not-italic">
+                            <address class="mt-1 text-gray-800 text-sm not-italic" data-aos="fade-up" data-aos-delay="100">
                                 {{ __('300 Bath Street, Tay House') }}<br>
                                 {{ __('Glasgow G2 4JR, United Kingdom') }}
                             </address>
@@ -441,11 +655,11 @@
                             <path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10" />
                         </svg>
                         <div class="grow">
-                            <h4 class="text-white font-semibold">
+                            <h4 class="text-white font-semibold" data-aos="fade-up">
                                 {{ __('Email us:') }}
                             </h4>
 
-                            <a class="mt-1 text-neutral-400 text-sm" href="#mailto:example@site.co" target="_blank">
+                            <a class="mt-1 text-gray-800 text-sm" href="#mailto:example@site.co" target="_blank">
                                 hello@example.so
                             </a>
                         </div>
@@ -461,10 +675,10 @@
                             <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6" />
                         </svg>
                         <div class="grow">
-                            <h4 class="text-white font-semibold">
+                            <h4 class="text-white font-semibold" data-aos="fade-up">
                                 {{ __('We\'re hiring') }}
                             </h4>
-                            <p class="mt-1 text-neutral-400">
+                            <p class="mt-1 text-gray-800" data-aos="fade-up" data-aos-delay="100">
                                 {{ __('We\'re thrilled to announce that we\'re expanding our team and looking for talented individuals like you to join us.') }}
                             </p>
                             <p class="mt-2">
@@ -490,234 +704,20 @@
         </div>
     </section>
 
-    <!-- Testimonial -->
-    <section>
-        <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
-            <h2 class="text-4xl text-primary-500 my-8 text-center">
-                {{ __('Our Pricing') }}
-            </h2>
-            <div class="px-8 py-6 border border-white/30 rounded-xl bg-primary-500 backdrop-blur max-w-6xl mx-auto">
-                <div class="space-y-2 mb-8">
-                    <h1 class="text-2xl md:text-3xl font-semibold text-white">
-                        {{ __('The biggest ever Black Friday sale!') }}
-                    </h1>
-                    <p class="text-white/90">
-                        {{ __('You\'ll love these great deals that were handpicked just for you.') }}
-                    </p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-6">
-                    <!-- Pricing Plan -->
-                    <div class="bg-black rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
-                        <p class="text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-white/90 line-through text-sm">$9.99</div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-white font-bold">$1.99</span>
-                                <span class="text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-white/90 my-8">
-                                when getting a 4-year subscription
-                            </div>
-                        </div>
-                        <button
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
-                            Get deal
-                        </button>
-                    </div>
-                    <!-- Pricing Plan -->
-                    <div class="bg-black rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
-                        <p class="text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-white/90 line-through text-sm">$9.99</div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-white font-bold">$1.99</span>
-                                <span class="text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-white/90 my-8">
-                                when getting a 4-year subscription
-                            </div>
-                        </div>
-                        <button
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
-                            Get deal
-                        </button>
-                    </div>
-                    <!-- Pricing Plan -->
-                    <div class="bg-black rounded-lg p-6">
-                        <h2 class="text-xl font-semibold text-white">Get a new hosting plan</h2>
-                        <p class="text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-white/90 line-through text-sm">$9.99</div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-white font-bold">$1.99</span>
-                                <span class="text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-white/90 my-8">
-                                when getting a 4-year subscription
-                            </div>
-                        </div>
-                        <button
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors">
-                            Get deal
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="bg-white py-20">
-        <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
-            <div class="space-y-4 max-w-3xl mb-12">
-                <p class="text-sm font-semibold text-gray-900">TESTIMONIALS</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">From our Clients</h2>
-                <p class="text-gray-600">
-                    Use these awesome forms to login or create new account in your project for free.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                <!-- Testimonial Card 1 -->
-                <div class="bg-primary-500 rounded-lg p-8 space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div class="w-8 h-8 bg-black flex items-center justify-center rounded">
-                            <span class="text-white">"</span>
-                        </div>
-                        <div class="flex">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
-                    <p class="text-gray-400 italic">
-                        Very quick customer support, installing this application on my machine locally, within 5 minutes
-                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
-                        EXCELLENT! Thank you very much
-                    </p>
-                    <div class="flex items-center gap-3 pt-4">
-                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
-                        <div class="text-sm">
-                            <p class="text-white font-medium">Chordsnstrings</p>
-                            <p class="text-gray-400">from codecanyon</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial Card 2 -->
-                <div class="bg-primary-500 rounded-lg p-8 space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div class="w-8 h-8 bg-white/10 flex items-center justify-center rounded">
-                            <span class="text-white">"</span>
-                        </div>
-                        <div class="flex">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
-                    <p class="text-gray-400 italic">
-                        Very quick customer support, installing this application on my machine locally, within 5 minutes
-                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
-                        EXCELLENT! Thank you very much
-                    </p>
-                    <div class="flex items-center gap-3 pt-4">
-                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
-                        <div class="text-sm">
-                            <p class="text-white font-medium">Chordsnstrings</p>
-                            <p class="text-gray-400">from codecanyon</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial Card 3 -->
-                <div class="bg-primary-500 rounded-lg p-8 space-y-4">
-                    <div class="flex justify-between items-start">
-                        <div class="w-8 h-8 bg-white/10 flex items-center justify-center rounded">
-                            <span class="text-white">"</span>
-                        </div>
-                        <div class="flex">
-                            ★★★★★
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white">Tbistone</h3>
-                    <p class="text-gray-400 italic">
-                        Very quick customer support, installing this application on my machine locally, within 5 minutes
-                        of creating a ticket, the developer was able to fix the issue I had within 10 minutes.
-                        EXCELLENT! Thank you very much
-                    </p>
-                    <div class="flex items-center gap-3 pt-4">
-                        <img src="https://placehold.co/40x40" alt="" class="w-10 h-10 rounded-full">
-                        <div class="text-sm">
-                            <p class="text-white font-medium">Chordsnstrings</p>
-                            <p class="text-gray-400">from codecanyon</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <p class="text-gray-600 max-w-6xl mx-auto text-center">
-                WorkDo seCommerce package offers you a "sales-ready,"secure online store. The package puts all the key
-                pieces together, from design to payment processing. This gives you a headstart in your eCommerce
-                venture. Every store is built using a reliable PHP framework -laravel. Thisspeeds up the development
-                process while increasing the store's security and performance.Additionally, thanks to the accompanying
-                mobile app, you and your team can manage the store on the go. What's more, because the app works both
-                for you and your customers, you can use it to reach a wider audience.And, unlike popular eCommerce
-                platforms, it doesn't bind you to any terms and conditions or recurring fees. You get to choose where
-                you host it or which payment gateway you use. Lastly, you getcomplete control over the looks of the
-                store. And if it lacks any functionalities that you need, just reach out, and let's discuss
-                customization possibilities
-            </p>
-        </div>
-    </section>
-
     <!-- Footer -->
-    <footer class="bg-primary-900 border-t">
+    <footer class="bg-primary-50 border-t">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Logo and Description -->
-                <div class="space-y-4">
-                    <img src="https://placehold.co/120x40" alt="ClockGo" class="h-8">
+                <div class="space-y-4" data-aos="fade-up">
+                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto">
                     <p class="text-gray-600">
                         We build modern web tools to help you jump-start your daily business work.
                     </p>
                 </div>
 
                 <!-- Links -->
-                <div>
+                <div data-aos="fade-up">
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-600 hover:text-gray-900">About Us</a></li>
                         <li><a href="#" class="text-gray-600 hover:text-gray-900">Terms and Conditions</a></li>
@@ -726,14 +726,14 @@
                 </div>
 
                 <!-- Newsletter -->
-                <div class="space-y-4">
+                <div class="space-y-4" data-aos="fade-up">
                     <h3 class="text-xl font-bold">Join Our Community</h3>
                     <p class="text-gray-600">
                         We build modern web tools to help you jump-start your daily business work.
                     </p>
                     <form class="flex gap-2">
                         <input type="email" placeholder="Type your email address..."
-                            class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-clockgo-green">
+                            class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-Timesheet-green">
                         <button type="submit" class="px-6 py-2 bg-gray-900 text-white rounded-md hover:bg-gray-800">
                             Join Us!
                         </button>
@@ -742,10 +742,16 @@
             </div>
 
             <div class="border-t mt-12 pt-8 text-center text-gray-600">
-                © 2024 ClockGo SaaS
+                © 2024 Timesheet
             </div>
         </div>
     </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        once: false,
+      });
+    </script>
 </body>
 
 </html>
