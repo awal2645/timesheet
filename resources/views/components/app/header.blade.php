@@ -42,7 +42,29 @@
 
                 <!-- Dark mode toggle -->
                 <x-theme-toggle />
+                @php
+                    $languages = loadLanguage();
+                    $hasMultipleLanguages = count($languages) > 1;
+                    $current_language = currentLanguage() ?: loadDefaultLanguage();
+                    // dd($current_language);
+                @endphp
 
+                @if ($hasMultipleLanguages)
+                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                        <select name="language" id="language-switcher"
+                            class="form-select text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark border-white/60"
+                            onchange="document.getElementById('language-switcher-form').submit()">
+                            @foreach ($languages as $lang)
+                                <option value="{{ $lang->code }}"
+                                    {{ $lang->code === $current_language ? 'selected' : '' }}>
+                                    {{ $lang->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+
+
+                @endif
                 <!-- Divider -->
                 <hr class="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
 
