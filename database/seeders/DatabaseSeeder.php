@@ -27,12 +27,19 @@ class DatabaseSeeder extends Seeder
             CreateEmployerUserSeeder::class,
             CreateEmployeeUserSeeder::class,
             CreateClientUserSeeder::class,
-            ClientSeeder::class,
             EmailTemplateSeeder::class,
             ProjectSeeder::class,
             PlanDatabaseSeeder::class,
             LanguageDatabaseSeeder::class,
-            ThemeSeeder::class
+            ThemeSeeder::class,
+            LeaveTypeSeeder::class,
+            HolidaySeeder::class,
+            LeaveApplicationSeeder::class,
+            NoticeSeeder::class,
+            InvoiceSeeder::class,
+            TaskSeeder::class,
+            EarningSeeder::class,
+            UserPlanSeeder::class,
         ]);
     }
 }

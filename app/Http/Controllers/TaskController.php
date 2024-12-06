@@ -12,7 +12,7 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = Task::paginate(10);
+        $tasks = Task::latest()->paginate(10);
         $projects = Project::all();
         return view('task.index', compact('tasks', 'projects'));
     }
@@ -44,6 +44,7 @@ class TaskController extends Controller
             'task_name' => $request->task_name,
             'time' => $request->time,
             'status' => $request->status,
+            'due_date' => $request->due_date,
         ]);
 
         return redirect()->route('task.index')->with('success', 'Task created successfully!');
@@ -61,6 +62,7 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $request->validate([
             'employer_id' => 'required|exists:employers,id',
             'employee_id' => 'required|exists:employees,id',
@@ -78,6 +80,7 @@ class TaskController extends Controller
             'task_name' => $request->task_name,
             'time' => $request->time,
             'status' => $request->status,
+            'due_date' => $request->due_date,
         ]);
 
         return redirect()->route('task.index')->with('success', 'Task updated successfully!');

@@ -117,7 +117,7 @@
 .form-field .form-label {
     position: absolute;
     font-size: 12px; /* text-sm */
-    color: #6b7280; /* text-gray-500 */
+    color: #ffffff; /* text-gray-500 */
     padding: 0 1.25rem; /* px-5 */
     transition: all 0.3s ease;
     transform: translateY(-50%) scale(1);

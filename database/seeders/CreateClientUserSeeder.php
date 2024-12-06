@@ -14,42 +14,90 @@ class CreateClientUserSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run(): void
     {
+        // Get the client role
         $clientRole = Role::find(4);
 
-        // Define specific permissions for employees
-        $clientPermissions =
-        [
-             13, 14, 16, 17
-        ];
+        if ($clientRole) {
+            // Define specific permissions for clients
+            $clientPermissions = [13, 14, 16, 17];
 
-        foreach ($clientPermissions as $permissionId) {
-            $permission = Permission::find($permissionId);
+            // Assign permissions to the client role
+            foreach ($clientPermissions as $permissionId) {
+                $permission = Permission::find($permissionId);
+                if ($permission) {
+                    $clientRole->givePermissionTo($permission);
+                }
+            }
 
-            if ($permission) {
-                $clientRole->givePermissionTo($permission);
+            // Check if employer with ID 1 exists
+            $employer = Employer::find(1);
+
+            if ($employer) {
+                // Define a list of clients with their associated user data
+                $clients = [
+                    [
+                        'user' => [
+                            'username' => 'client',
+                            'email' => 'client@mail.com',
+                            'password' => bcrypt('123456'),
+                            'role' => 'client',
+                        ],
+                        'client' => [
+                            'client_name' => 'Acme Corp',
+                            'contact_name' => 'John Doe',
+                            'client_phone' => '555-123-4567',
+                            'status' => true,
+                        ],
+                    ],
+                    [
+                        'user' => [
+                            'username' => 'client2',
+                            'email' => 'client2@gmail.com',
+                            'password' => bcrypt('123456'),
+                            'role' => 'client',
+                        ],
+                        'client' => [
+                            'client_name' => 'Tech Innovations',
+                            'contact_name' => 'Jane Smith',
+                            'client_phone' => '555-234-5678',
+                            'status' => true,
+                        ],
+                    ],
+                    [
+                        'user' => [
+                            'username' => 'client3',
+                            'email' => 'client3@gmail.com',
+                            'password' => bcrypt('123456'),
+                            'role' => 'client',
+                        ],
+                        'client' => [
+                            'client_name' => 'Global Enterprises',
+                            'contact_name' => 'Emily Johnson',
+                            'client_phone' => '555-345-6789',
+                            'status' => true,
+                        ],
+                    ],
+                ];
+
+                // Loop through each client and create both user and client records
+                foreach ($clients as $clientData) {
+                    // Create the user
+                    $clientUser = User::create($clientData['user']);
+
+                    if ($clientUser) {
+                        // Assign the client role to the user
+                        $clientUser->assignRole([$clientRole->name]);
+
+                        // Create the client record associated with the employer
+                        Client::create(array_merge(
+                            $clientData['client'],
+                            ['employer_id' => $employer->id, 'client_email' => $clientData['user']['email']]
+                        ));
+                    }
+                }
             }
         }
-
-        // Create an employee user
-        $client = User::create([
-            'username' => 'client',
-            'email' => 'client@gmail.com',
-            'password' => bcrypt('123456'),
-            'role' => 'client',
-        ]);
-
-        Client::create([
-            'employer_id' => 1,
-            'client_name' => "Client",
-            'client_email' => "client@gmail.com",
-            'contact_name' => "Contact Name",
-            'client_phone' => "123-456-789$",
-            'status' => true,
-        ]);
-
-        // Assign the employee role to the user
-        $client->assignRole([$clientRole->name]);
     }
 }

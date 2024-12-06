@@ -73,26 +73,15 @@
             </div>
 
             {{-- Task Time --}}
-            <!-- Include Flatpickr library -->
 
             <div class="form-field">
-                <input  type="text" id="time-picker" placeholder=""
+                <input  type="text" id="time-picker" placeholder="" name="time"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-            <script>
-                flatpickr("#time-picker", {
-                    enableTime: true,
-                    noCalendar: true,
-                    time_24hr: true, // Ensures 24-hour format
-                    dateFormat: "H:i" // Sets format as HH:MM
-                });
-            </script>
-            
-            
 
             {{-- Priority --}}
             <div class="form-field">
@@ -139,4 +128,15 @@
         </form>
     </div>
 
+
+    <script>
+        flatpickr("#time-picker", {
+            enableTime: true,
+            noCalendar: true,
+
+            time_24hr: true, // Ensures 24-hour format
+            dateFormat: "H:i" // Sets format as HH:MM
+        });
+    </script>
+    
 </x-app-layout>

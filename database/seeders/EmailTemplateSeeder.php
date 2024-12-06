@@ -21,11 +21,12 @@ class EmailTemplateSeeder extends Seeder
             [
                 'name' => 'New Plan Purchased',
                 'type' => 'new_plan_purchase',
-                'subject' => 'New Plan Has Purchased',
+                'subject' => 'New Plan Has Been Purchased',
                 'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
                     <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
                     <h1 style='color:#0b4dc4;'>New Plan Purchased</h1>
                     <p><strong>{user_name}</strong> has purchased the <strong>{plan_label}</strong> plan!</p>
+                    <p>Thank you for your purchase!</p>
                     <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
@@ -39,7 +40,7 @@ class EmailTemplateSeeder extends Seeder
                 'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
                     <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
                     <h1 style='color:#0b4dc4;'>Welcome to {app_name}</h1>
-                    <p>Thank you for employer</p>
+                    <p>Thank you for your invitation.</p>
                     <p>To unlock access to our innovative features and services, we kindly ask you to verify your email address.</p>
                     <p><a href='{verify_link}' style='background-color:#1fa8f8;color:#fff;font-size:14px;padding:15px 20px;border-radius:5px;text-decoration:none;display:inline-block;'>Verify Now</a></p>
                     <p>Once your email address is verified, you'll be all set to explore everything Zenxserv Technologies has to offer.</p>
@@ -56,7 +57,7 @@ class EmailTemplateSeeder extends Seeder
                 'message' => "<div style='box-sizing:border-box;font-family:Arial,sans-serif;font-size:16px;text-align:center;background-color:#f4f6ff;color:#000;margin:0;padding:20px;width:100%;'>
                     <div style='background:#fff;color:#2c1d66;font-family:Arial,sans-serif;font-size:16px;text-align:left;max-width:680px;margin:0 auto 20px;border:1px solid #e5e4e6;border-radius:10px;padding:20px;'>
                     <h1 style='color:#0b4dc4;'>Welcome to {app_name}</h1>
-                    <p>Thank you for employee</p>
+                    <p>Thank you for your invitation.</p>
                     <p>To unlock access to our innovative features and services, we kindly ask you to verify your email address.</p>
                     <p><a href='{verify_link}' style='background-color:#1fa8f8;color:#fff;font-size:14px;padding:15px 20px;border-radius:5px;text-decoration:none;display:inline-block;'>Verify Now</a></p>
                     <p>Once your email address is verified, you'll be all set to explore everything Zenxserv Technologies has to offer.</p>
@@ -107,7 +108,7 @@ class EmailTemplateSeeder extends Seeder
                     <h1 style='color:#0b4dc4;'>Leave Application Submitted</h1>
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been submitted successfully.</p>
-                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>Thank you for your application!</p>
                     <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
@@ -123,7 +124,7 @@ class EmailTemplateSeeder extends Seeder
                     <h1 style='color:#0b4dc4;'>Leave Application Approved</h1>
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been approved.</p>
-                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>Thank you for your application!</p>
                     <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>
@@ -139,7 +140,7 @@ class EmailTemplateSeeder extends Seeder
                     <h1 style='color:#0b4dc4;'>Leave Application Denied</h1>
                     <p>Dear <strong>{user_name}</strong>,</p>
                     <p>Your leave application from <strong>{start_date}</strong> to <strong>{end_date}</strong> has been denied.</p>
-                    <p>Reason: <strong>{reason}</strong></p>
+                    <p>Thank you for your application!</p>
                     <p>If you have any questions, feel free to contact our support team at <a href='mailto:support@zenxservices.com' style='color:#2c1d66;'>support@zenxservices.com</a>.</p>
                     <p>Thank you for choosing Zenxserv Technologies. We look forward to serving you!</p>
                     </div>

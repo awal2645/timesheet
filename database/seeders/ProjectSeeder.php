@@ -15,29 +15,46 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        // Assuming there is a Client with id = 1, an Employer with id = 1, and an Employee with id = 1
+        // Fetch existing client, employer, and employee records
         $client = Client::find(1);
         $employer = Employer::find(1);
         $employee = Employee::find(1);
 
         // Check if the client, employer, and employee exist
         if ($client && $employer && $employee) {
-            // Insert 10 sample projects
-            for ($i = 1; $i <= 10; $i++) {
+            // Define a list of realistic project names and details
+            $projects = [
+                ['name' => 'Website Redesign', 'description' => 'Revamp the client’s corporate website.'],
+                ['name' => 'Mobile App Development', 'description' => 'Develop a cross-platform mobile app.'],
+                ['name' => 'Digital Marketing Campaign', 'description' => 'Execute an SEO and social media campaign.'],
+                ['name' => 'E-commerce Platform Setup', 'description' => 'Build and deploy an online store.'],
+                ['name' => 'Database Optimization', 'description' => 'Optimize database performance and queries.'],
+                ['name' => 'Cloud Migration', 'description' => 'Migrate on-premises infrastructure to the cloud.'],
+                ['name' => 'Brand Strategy', 'description' => 'Develop a comprehensive branding strategy.'],
+                ['name' => 'CRM Integration', 'description' => 'Integrate a customer relationship management tool.'],
+                ['name' => 'IT Infrastructure Setup', 'description' => 'Set up servers, networking, and security.'],
+                ['name' => 'User Training Program', 'description' => 'Conduct training sessions for end-users.'],
+            ];
+
+            // Loop through projects and create them in the database
+            foreach ($projects as $index => $project) {
                 // Randomly assign a payment type
                 $paymentType = ['hourly', 'fixed', 'non'][array_rand(['hourly', 'fixed', 'non'])];
 
-                // Determine budgets based on payment type
+                // Randomly determine budgets based on payment type
                 $fixedBudget = null;
                 $hrBudget = null;
 
-                if ($paymentType == 'hourly') {
-                    $hrBudget = $i * 50; // Example value for hourly budget
-                } elseif ($paymentType == 'project') {
-                    $fixedBudget = $i * 1000; // Example value for fixed budget
+                if ($paymentType === 'hourly') {
+                    $hrBudget = rand(50, 200) * 10; // Example hourly budget range
+                } elseif ($paymentType === 'fixed') {
+                    $fixedBudget = rand(1000, 10000); // Example fixed budget range
                 }
 
-                // Insert the project into the database
+                // Calculate total cost
+                $totalCost = ($hrBudget ?? 0) + ($fixedBudget ?? 0);
+
+                // Create the project record
                 Project::create([
                     'client_id' => $client->id,
                     'employer_id' => $employer->id,
@@ -45,9 +62,9 @@ class ProjectSeeder extends Seeder
                     'payment_type' => $paymentType,
                     'fixed_budget' => $fixedBudget,
                     'hr_budget' => $hrBudget,
-                    'total_cost' => $hrBudget + $fixedBudget,
-                    'project_name' => "Sample Project $i",
-                    'status' => true, // Default status
+                    'total_cost' => $totalCost,
+                    'project_name' => $project['name'],
+                    'status' => true, // Default status to active
                 ]);
             }
         }

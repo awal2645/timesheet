@@ -1,7 +1,8 @@
 @section('title')
     {{ __('Edit Task') }}
 @endsection
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <x-app-layout>
     <div class="flex justify-between m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Task') }}</h2>
@@ -68,17 +69,16 @@
 
             {{-- Task Name --}}
             <div class="form-field">
-                <input type="text" name="task_name" id="task_name" value="{{ $task->task_name }}" required
-                    placeholder=" " />
+                <input  type="text" id="task_name" placeholder="" name="task_name" value="{{ $task->task_name }}"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
                 <label for="task_name" class="form-label">{{ __('Task Name') }}</label>
                 @error('task_name')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-
             {{-- Task Time --}}
             <div class="form-field">
-                <input type="text" name="time" id="time" value="{{ $task->time }}" />
+                <input type="text" placeholder=""  name="time" id="time-picker" value="{{ $task->time }}" />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
@@ -103,9 +103,8 @@
 
             {{-- Due Date --}}
             <div class="form-field">
-                <input type="date" name="due_date" id="due_date"
-                {{-- @dd($task->due_date) --}}
-                    value="{{ $task->due_date ? \Carbon\Carbon::parse($task->due_date)->format('Y-m-d') : '' }}"
+                <input type="text" name="due_date" id="due_date" 
+                    value="{{ $task->due_date }}" 
                     placeholder=" " required />
                 <label for="due_date" class="form-label">{{ __('Due Date') }}</label>
                 @error('due_date')
@@ -138,4 +137,19 @@
             </div>
         </form>
     </div>
+
+    <script>
+        flatpickr("#time-picker", {
+            enableTime: true,
+            noCalendar: true,
+            time_24hr: true, // Ensures 24-hour format
+            dateFormat: "H:i" // Sets format as HH:MM
+        });
+
+        flatpickr("#due_date", {
+            dateFormat: "Y-m-d", // Sets format as YYYY-MM-DD
+            allowInput: true // Allows manual input
+        });
+    </script>
+    
 </x-app-layout>

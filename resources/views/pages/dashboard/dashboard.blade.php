@@ -192,7 +192,7 @@
             </div>
 
         </div>
-        <div class="mt-5 container">
+        <div class="mt-5">
             <div class="flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0 ">

@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -16,6 +17,10 @@ return new class extends Migration
             $table->json('days_of_week')->nullable();
             $table->timestamps();
         });
+
+        DB::table('weekly_holidays')->insert([
+            'days_of_week' => json_encode(['saturday', 'sunday']),
+        ]);
     }
 
     /**

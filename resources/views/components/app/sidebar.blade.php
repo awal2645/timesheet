@@ -219,12 +219,13 @@
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
                             <div class="flex items-center">
                                 <span class="sidebar-menu-icon">
-                                    <i class="fa-solid fa-person-walking-arrow-right"></i>                                </span>
-                                <span class="sidebar-menu-text">
+                                    <i class="fa-solid fa-person-walking-arrow-right" ></i>                                </span>
+                                <span class="sidebar-menu-text text-text-light dark:text-text-dark"
+                                    :class="sidebarExpanded ? 'block' : 'hidden'">
                                     {{ __('Leave Management') }}
                                 </span>
                             </div>
-                            <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
+                            <div x-show="sidebarExpanded" class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
                                 <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-white"
                                     :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
                                     <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
