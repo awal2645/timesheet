@@ -531,6 +531,25 @@
                             </a>
                         </li>
                     @endcanany
+
+                     <!-- Cms -->
+                     {{-- @canany('Cms') --}}
+                     <li>
+                         <a href="{{ route('salary') }}"
+                             class="sidebar-menu-item {{ request()->routeIs('salary') ? 'active' : '' }}  ">
+                             <div class="flex items-center justify-between">
+                                 <div class="flex items-center">
+                                     <span class="sidebar-menu-icon">
+                                         <i class="fa-solid fa-money-bill-wave"></i>                                        </span>
+                                     <span class="sidebar-menu-text">
+                                         {{ __('Employee Salary') }}
+                                     </span>
+                                 </div>
+                             </div>
+                         </a>
+                        </li>
+                    {{-- @endcanany --}}
+
                     <!-- upgrade -->
                     @canany('General Settings')
                         <li>

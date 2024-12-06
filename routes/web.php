@@ -29,6 +29,7 @@ use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmailTemplateController;
+use App\Http\Controllers\EmployeeSalryController;
 use App\Http\Controllers\WeeklyHolidayController;
 use App\Http\Controllers\Payment\PayPalController;
 use App\Http\Controllers\Payment\StripeController;
@@ -258,4 +259,8 @@ Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
 Route::put('/cms', [CmsController::class, 'update'])->name('cms.update');
 Route::post('/file/upload', [CmsController::class, 'uploadFile'])->name('file.upload');
 Route::post('/file/delete', [CmsController::class, 'deleteFile'])->name('file.delete');
+
+Route::get('/salary', [EmployeeSalryController::class, 'index'])->name('salary');
+Route::get('/salary/show', [EmployeeSalryController::class, 'show'])->name('salary.show');
+
 });
