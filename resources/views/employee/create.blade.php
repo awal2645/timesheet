@@ -11,51 +11,51 @@
         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark"> {{ __('Create Employee') }}</h2>
         <form method="POST" action="{{ route('employee.store') }}" class="card">
             @csrf
-            <!-- Employee Name -->
-            <div class="form-field">
-                <input type="text" id="employee_name" placeholder="" required name="employee_name"
-                    value="{{ old('employee_name') }}" />
-                <label for="employee_name">
-                    {{ __('Employee Name') }}
-                </label>
-                @error('employee_name')
-                <span class=" text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-            <!-- Employee Email -->
-            <div class="form-field">
-                <input type="email" id="email" placeholder="" name="email" required value="{{ old('email') }}" />
-                <label for="email" class="form-label">
-                    {{ __('Employee Email') }}</label>
-                @error('email')
-                <span class=" text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <!-- Employer Name -->
-            @if (auth('web')->user()->role != 'employer')
-
-            <div class="form-field">
-                <select name="employer_id" id="employer_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
-                    @foreach ($employers as $employer)
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
-                        {{ $employer->employer_name }}
-                    </option>
-                    @endforeach
-                </select>
-                <label for="employer_id" class="form-label">
-                    {{ __('Employer Name') }}
-                </label>
-                @error('employer_id')
-                <span class=" text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-            @endif
-            @if (auth('web')->user()->role == 'employer')
-            <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
-            @endif
             <div class="grid md:grid-cols-2 md:gap-6">
+                <!-- Employee Name -->
+                <div class="form-field">
+                    <input type="text" id="employee_name" placeholder="" required name="employee_name"
+                        value="{{ old('employee_name') }}" />
+                    <label for="employee_name">
+                        {{ __('Employee Name') }}
+                    </label>
+                    @error('employee_name')
+                    <span class=" text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                <!-- Employee Email -->
+                <div class="form-field">
+                    <input type="email" id="email" placeholder="" name="email" required value="{{ old('email') }}" />
+                    <label for="email" class="form-label">
+                        {{ __('Employee Email') }}</label>
+                    @error('email')
+                    <span class=" text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+    
+                <!-- Employer Name -->
+                @if (auth('web')->user()->role != 'employer')
+    
+                <div class="form-field">
+                    <select name="employer_id" id="employer_id" class="form-select">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
+                        @foreach ($employers as $employer)
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
+                            {{ $employer->employer_name }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <label for="employer_id" class="form-label">
+                        {{ __('Employer Name') }}
+                    </label>
+                    @error('employer_id')
+                    <span class=" text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                @endif
+                @if (auth('web')->user()->role == 'employer')
+                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
+                @endif
 
                 <!-- Phone -->
                 <div class="form-field">
@@ -73,8 +73,6 @@
                     <label for="total_leave" class="form-label">
                         {{ __('Total Leave') }}</label>
                 </div>
-            </div>
-            <div class="grid md:grid-cols-2 md:gap-6">
                 <!-- Client -->
                 <div class="form-field">
                     <select name="client_id" id="client_id" class="form-select">
