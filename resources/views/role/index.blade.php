@@ -23,13 +23,13 @@
                             <table class="w-full table-auto">
                                 <thead class="table-header">
                                     <tr>
-                                        <th scope="col" class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                             {{ __('Role Name') }}
                                         </th>
-                                        <th scope="col" class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3">
                                             {{ __('Permission') }}
                                         </th>
-                                        <th scope="col" class="px-6 py-3  ">
+                                        <th scope="col" class="px-6 py-3">
                                             {{ __('Action') }}
                                         </th>
                                     </tr>
@@ -41,13 +41,13 @@
                                                 @if ($role->name != 'superadmin' && $role->name != 'employer')
                                                     <tr
                                                         class="hover:bg-gray-100 bg-body-light hover:dark:bg-body-dark transition duration-200">
-                                                        <th scope="row"
+                                                        <td
                                                             class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                             <div class="">
                                                                 <div class="text-base font-semibold capitalize">
                                                                     {{ $role->name ?? '' }}</div>
                                                             </div>
-                                                        </th>
+                                                        </td>
                                                         <td
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                             @foreach ($role->permissions as $permission)

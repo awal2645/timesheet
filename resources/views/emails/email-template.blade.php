@@ -17,7 +17,27 @@
             const editorElements = document.querySelectorAll('.classic-editor');
             editorElements.forEach((editor) => {
                 if (!editor.classList.contains('ckeditor-initialized')) {
-                    CKEDITOR.replace(editor.id);
+                    CKEDITOR.replace(editor.id, {
+                        // Custom configuration for CKEditor
+                        skin: 'moono', // Change the skin to your preferred one
+                        // Custom styles for dark mode
+                        on: {
+                            instanceReady: function(evt) {
+                                this.document.on('change', function() {
+                                    this.dataProcessor.htmlFilter.addRules({
+                                        elements: {
+                                            $: {
+                                                styles: {
+                                                    'background-color': '#2E2E2E', // Set your desired background color
+                                                    'color': '#FFFFFF' // Set text color for better visibility
+                                                }
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
                     editor.classList.add('ckeditor-initialized');
                 }
             });

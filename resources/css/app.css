@@ -87,12 +87,17 @@
 }
 
 .form-field input:focus + label,
-.form-field textarea:focus + label,
-.form-field input:not(:placeholder-shown) + label,
-.form-field textarea:not(:placeholder-shown) + label {
+.form-field input:not(:placeholder-shown) + label {
     background-color: var(--primary-50);
     font-weight: 500; 
     transform: translateY(-2rem);
+    color: white; 
+}
+.form-field textarea:focus + label,
+.form-field textarea:not(:placeholder-shown) + label {
+    background-color: var(--primary-50);
+    font-weight: 500; 
+    transform: translateY(-2.75rem);
     color: white; 
 }
 

@@ -37,10 +37,10 @@
                                     <table class="w-full table-auto">
                                         <thead class="table-header">
                                             <tr>
-                                                <th class="min-w-[220px] px-4 py-4 font-medium">
+                                                <th class="min-w-[220px] px-4 py-4 font-medium text-start">
                                                     {{ __('Days of the Week') }}
                                                 </th>
-                                                <th class="min-w-[220px] px-4 py-4 font-medium">
+                                                <th class="min-w-[220px] px-4 py-4 font-medium text-end">
                                                     {{ __('Actions') }}
                                                 </th>
                                             </tr>
@@ -60,7 +60,7 @@
                                                         </td>
                                                         <td
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                            <div class="flex justify-end">
+                                                            <div class="flex gap-5 items-center justify-end">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
                                                                     class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
                                                                 <form
