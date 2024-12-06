@@ -36,7 +36,7 @@
 
                 <!-- Invoice Date -->
                 <div class="form-field">
-                    <input type="date" name="invoice_date" id="invoice_date" required
+                    <input type="date" name="invoice_date" id="invoice_date" required onclick="this.showPicker()"
                         value="{{ $invoice->invoice_date }}" />
                     <label for="invoice_date"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0">{{ __('Invoice Date') }}</label>

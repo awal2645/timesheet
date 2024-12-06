@@ -24,7 +24,7 @@
             </div>
             <!-- Holiday Date -->
             <div class="form-field">
-                <input type="date" name="date" id="date" placeholder=" " required
+                <input type="date" name="date" id="date" placeholder=" " required onclick="this.showPicker()"
                     value="{{ old('date') ?? $holiday->date }}" />
                 <label for="date"
                     class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Holiday Date') }}</label>

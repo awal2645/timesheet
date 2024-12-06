@@ -68,7 +68,7 @@
                 <label for="leave_type_id" class="form-label">{{ __('Leave Type') }}</label>
             </div>
             <div class="form-field">
-                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required />
+                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required onclick="this.showPicker()" />
                 <label for="start_date" class="form-label">{{ __('Start Date') }}</label>
                 @error('start_date')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
@@ -76,7 +76,7 @@
             </div>
 
             <div class="form-field">
-                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" required />
+                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" onclick="this.showPicker()" required />
                 <label for="end_date" class="form-label">{{ __('End Date') }}</label>
                 @error('end_date')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

@@ -98,7 +98,7 @@
 
             {{-- Due Date --}}
             <div class="form-field">
-                <input type="date" name="due_date" id="due_date" placeholder=" " required />
+                <input type="date" name="due_date" id="due_date" placeholder="" onclick="this.showPicker()" required />
                 <label for="due_date" class="form-label">{{ __('Due Date') }}</label>
                 @error('due_date')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

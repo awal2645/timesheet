@@ -143,3 +143,9 @@
     min-height: 40px;
 }
 
+.toast-success {
+    background-color: var(--primary-500) !important;
+}
+.toast-error {
+    background-color: red !important;
+}
