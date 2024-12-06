@@ -50,7 +50,7 @@
                 @endphp
 
                 @if ($hasMultipleLanguages)
-                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form" class="!mb-0">
                         <select name="language" id="language-switcher"
                             class="form-select text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark border-white/60"
                             onchange="document.getElementById('language-switcher-form').submit()">
