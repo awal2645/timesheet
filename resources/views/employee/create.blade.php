@@ -124,6 +124,10 @@
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="project"
                             {{ 'project' == old('payment_type') ? 'selected' : '' }}>
                             {{ __('Project Based') }}</option>
+                            
+                        @error('payment_type')
+                        <span class=" text-red-500">{{ $message }}</span>
+                        @enderror
                     </select>
                     <label for="payment_type" class="form-label">
                         {{ __('Payment Type') }}</label>

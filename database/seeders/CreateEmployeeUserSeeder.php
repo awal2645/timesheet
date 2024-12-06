@@ -30,32 +30,19 @@ class CreateEmployeeUserSeeder extends Seeder
 
         // Array of realistic employee details
         $employees = [
-            ['username' => 'employee', 'email' => 'employee@mail.com', 'phone' => '01712345678', 'name' => 'Employee', 'gender' => 'male'],
-            ['username' => 'jane_smith', 'email' => 'jane.smith@example.com', 'phone' => '01798765432', 'name' => 'Jane Smith', 'gender' => 'female'],
-            ['username' => 'michael_brown', 'email' => 'michael.brown@example.com', 'phone' => '01756789012', 'name' => 'Michael Brown', 'gender' => 'male'],
-            ['username' => 'emily_davis', 'email' => 'emily.davis@example.com', 'phone' => '01765432109', 'name' => 'Emily Davis', 'gender' => 'female'],
-            ['username' => 'david_jones', 'email' => 'david.jones@example.com', 'phone' => '01778901234', 'name' => 'David Jones', 'gender' => 'male'],
-            ['username' => 'lisa_wilson', 'email' => 'lisa.wilson@example.com', 'phone' => '01789012345', 'name' => 'Lisa Wilson', 'gender' => 'female'],
-            ['username' => 'robert_taylor', 'email' => 'robert.taylor@example.com', 'phone' => '01790123456', 'name' => 'Robert Taylor', 'gender' => 'male'],
-            ['username' => 'susan_clark', 'email' => 'susan.clark@example.com', 'phone' => '01723456789', 'name' => 'Susan Clark', 'gender' => 'female'],
-            ['username' => 'james_miller', 'email' => 'james.miller@example.com', 'phone' => '01734567890', 'name' => 'James Miller', 'gender' => 'male'],
-            ['username' => 'sarah_moore', 'email' => 'sarah.moore@example.com', 'phone' => '01745678901', 'name' => 'Sarah Moore', 'gender' => 'female'],
-            ['username' => 'daniel_white', 'email' => 'daniel.white@example.com', 'phone' => '01756789023', 'name' => 'Daniel White', 'gender' => 'male'],
-            ['username' => 'amanda_hall', 'email' => 'amanda.hall@example.com', 'phone' => '01767890123', 'name' => 'Amanda Hall', 'gender' => 'female'],
-            ['username' => 'steven_lee', 'email' => 'steven.lee@example.com', 'phone' => '01778901234', 'name' => 'Steven Lee', 'gender' => 'male'],
-            ['username' => 'patricia_king', 'email' => 'patricia.king@example.com', 'phone' => '01789012345', 'name' => 'Patricia King', 'gender' => 'female'],
-            ['username' => 'chris_wright', 'email' => 'chris.wright@example.com', 'phone' => '01790123456', 'name' => 'Chris Wright', 'gender' => 'male'],
-            ['username' => 'kimberly_green', 'email' => 'kimberly.green@example.com', 'phone' => '01701234567', 'name' => 'Kimberly Green', 'gender' => 'female'],
-            ['username' => 'ryan_adams', 'email' => 'ryan.adams@example.com', 'phone' => '01712345678', 'name' => 'Ryan Adams', 'gender' => 'male'],
-            ['username' => 'laura_turner', 'email' => 'laura.turner@example.com', 'phone' => '01723456789', 'name' => 'Laura Turner', 'gender' => 'female'],
-            ['username' => 'mark_harris', 'email' => 'mark.harris@example.com', 'phone' => '01734567890', 'name' => 'Mark Harris', 'gender' => 'male'],
-            ['username' => 'jessica_martin', 'email' => 'jessica.martin@example.com', 'phone' => '01745678901', 'name' => 'Jessica Martin', 'gender' => 'female'],
+            ['username' => 'employee1', 'email' => 'employee1@mail.com', 'phone' => '01712345678', 'name' => 'Employee One', 'gender' => 'male'],
+            ['username' => 'employee2', 'email' => 'employee2@mail.com', 'phone' => '01798765432', 'name' => 'Jane Smith', 'gender' => 'female'],
+            // Add more employees as needed
         ];
 
-        // Assign employees to random employers
-        foreach ($employees as $index => $data) {
-            $randomEmployerId = rand(1, 9); // Ensure this is at least 1
+        foreach ($employees as $data) {
+            $randomEmployerId = rand(1, 9); // Ensure this matches your employers table data
             $randomProjectId = rand(1, 5); // Assuming 5 projects
+            $randomClientId = rand(1, 10); // Assuming 10 clients
+            $billingRate = rand(100, 500) + rand(0, 99) / 100; // Random rate with 2 decimals
+            $monthlySalary = rand(2000, 5000) + rand(0, 99) / 100; // Random salary with 2 decimals
+            $paymentTypes = ['hourly', 'monthly', 'contract'];
+            $totalLeave = rand(12, 30); // Random total leave days
 
             // Create the employee user
             $user = User::create([
@@ -72,6 +59,12 @@ class CreateEmployeeUserSeeder extends Seeder
                 'employer_id' => $randomEmployerId,
                 'phone' => $data['phone'],
                 'project_id' => $randomProjectId,
+                'client_id' => $randomClientId,
+                'employee_share' => rand(5, 20), // Random percentage share
+                'billing_rate' => $billingRate,
+                'monthly_salary' => $monthlySalary,
+                'payment_type' => $paymentTypes[array_rand($paymentTypes)],
+                'total_leave' => $totalLeave,
                 'gender' => $data['gender'],
             ]);
 

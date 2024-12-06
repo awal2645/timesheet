@@ -40,6 +40,8 @@ class DatabaseSeeder extends Seeder
             TaskSeeder::class,
             EarningSeeder::class,
             UserPlanSeeder::class,
+            TimesheetsTableSeeder::class,
+            TimeReportsTableSeeder::class,
         ]);
     }
 }
