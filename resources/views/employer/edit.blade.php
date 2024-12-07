@@ -1,6 +1,10 @@
 @section('title')
     {{ __('Edit Employer') }}
 @endsection
+@error('any')
+    <span class="text-red-500">{{ $message }}</span>
+@enderror
+</div>
 <x-app-layout>
     <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Employer') }}</h2>
