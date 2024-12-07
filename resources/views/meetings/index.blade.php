@@ -80,7 +80,7 @@
                                                             </div>
                                                             <div class="font-normal text-gray-500 mt-5">
                                                                 <a target="__blank"
-                                                                    class="text-white bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900"
+                                                                    class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900"
                                                                     href=" {{ $meeting->meeting_join_url ?? '#' }}">
                                                                     {{ __('Join Zoom') }}
                                                                 </a>

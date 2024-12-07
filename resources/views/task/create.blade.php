@@ -12,16 +12,19 @@
     <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Create New Task') }}</h2>
 
-        <form method="POST" action="{{ route('task.store') }}">
+        <form method="POST" action="{{ route('task.store') }}" >
             @csrf
 
             {{-- Select Employer --}}
             <div class="form-field">
                 <select name="employer_id" id="employer_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  " value="" disabled>{{ __('Select Employer') }}</option>
                     @foreach ($employers as $employer)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">{{ $employer->employer_name }}</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  "
+                            value="{{ $employer->id }}">{{ $employer->employer_name }}
+                        </option>
                     @endforeach
+
                 </select>
                 <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
                 @error('employer_id')
@@ -34,10 +37,12 @@
                 <select name="employee_id" id="employee_id" class="form-select" required>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}">{{ $employee->employee_name }}</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}">{{ $employee->employee_name }}
+                        </option>
                     @endforeach
                 </select>
                 <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
+
                 @error('employee_id')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
@@ -48,7 +53,8 @@
                 <select name="project_id" id="project_id" class="form-select" required>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Project') }}</option>
                     @foreach ($projects as $project)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $project->id }}">{{ $project->project_name }}</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $project->id }}">{{ $project->project_name }}
+                        </option>
                     @endforeach
                 </select>
                 <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
@@ -67,10 +73,11 @@
             </div>
 
             {{-- Task Time --}}
+
             <div class="form-field">
-                <input type="text" id="time-input" placeholder="Enter time (e.g., 25:30)" name="time"
+                <input  type="text" id="time-picker" placeholder="" name="time"
                     class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
-                <label for="time-input" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 25:30)</span></label>
+                <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
@@ -121,20 +128,15 @@
         </form>
     </div>
 
-    <script>
-        document.getElementById('time-input').addEventListener('input', function() {
-            let timeStr = this.value;
-            let timeParts = timeStr.split(':');
-            
-            if (timeParts.length === 2) {
-                let hours = parseInt(timeParts[0], 10);
-                let minutes = parseInt(timeParts[1], 10);
 
-                // Custom validation logic
-                if (isNaN(hours) || isNaN(minutes) || minutes < 0 || minutes >= 60) {
-                    alert('Invalid time format! Please enter a valid time (e.g., 25:30).');
-                }
-            }
+    <script>
+        flatpickr("#time-picker", {
+            enableTime: true,
+            noCalendar: true,
+
+            time_24hr: true, // Ensures 24-hour format
+            dateFormat: "H:i" // Sets format as HH:MM
         });
     </script>
+    
 </x-app-layout>
