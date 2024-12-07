@@ -22,7 +22,7 @@
             </div>
             <!-- Description -->
             <div class="form-field">
-                <textarea name="description" id="description" placeholder=" ">{{ old('description') }}</textarea>
+                <textarea name="description" id="description" placeholder="">{{ old('description') }}</textarea>
                 <label for="description" class="">{{ __('Description') }}</label>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>

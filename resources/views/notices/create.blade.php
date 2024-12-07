@@ -17,7 +17,7 @@
             </div>
             <div class="form-field">
                 <textarea id="content" name="content" required></textarea>
-                <label for="content" class="form-label">{{ __('Content') }}</label>
+                <label for="content">{{ __('Content') }}</label>
             </div>
             <div class="form-field">
                 <select multiple id="role" name="role[]" class="form-select">

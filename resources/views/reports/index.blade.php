@@ -10,21 +10,25 @@
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
-                        <div class="flex gap-3 items-center form-field">
-                            <input type="text" id="search" name="search" value="{{ request('search') }}"
+                        <div class="flex gap-3 items-center">
+                            <div class="form-field !mb-0">
+                                <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 placeholder="{{ __('Search') }}" />
-                            <select name="status" class="form-select">
-                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Status') }}</option>
-                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
-                                    {{ __('Pending') }}
-                                </option>
-                                <option  class="dark:bg-slate-800 text-text-light dark:text-text-dark"value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>
-                                    {{ __('Approved') }}
-                                </option>
-                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>
-                                    {{ __('Declined') }}
-                                </option>
-                            </select>
+                            </div>
+                            <div class="form-field !mb-0">
+                                <select name="status" class="form-select">
+                                    <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Status') }}</option>
+                                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>
+                                        {{ __('Pending') }}
+                                    </option>
+                                    <option  class="dark:bg-slate-800 text-text-light dark:text-text-dark"value="approve" {{ request('status') == 'approve' ? 'selected' : '' }}>
+                                        {{ __('Approved') }}
+                                    </option>
+                                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="decline" {{ request('status') == 'decline' ? 'selected' : '' }}>
+                                        {{ __('Declined') }}
+                                    </option>
+                                </select>
+                            </div>
                             <button type="submit"
                                 class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}

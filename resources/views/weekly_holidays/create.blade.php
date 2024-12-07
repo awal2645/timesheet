@@ -6,10 +6,10 @@
 
         <form action="{{ route('weekly_holidays.store') }}" method="POST">
             @csrf
-            <div class="mb-4">
-                <label for="days_of_week" class="block mb-2">Days of the Week</label>
+            <div class="mb-4 relative">
+                <label for="days_of_week" class="absolute top-0 start-0 px-2 py-0.5 text-xs text-white inline-block bg-primary-50 rounded z-50">Days of the Week</label>
                 <select id="days_of_week" name="days_of_week[]"
-                    class="select2 bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" multiple required>
+                    class="select2 h-[60px]" multiple required>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
                     <option value="Wednesday">Wednesday</option>
