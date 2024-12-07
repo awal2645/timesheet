@@ -205,23 +205,23 @@
                                                                                 <div class="flex justify-between">
                                                                                     @if ($timeReport->status === 'approve')
                                                                                         <button type="submit" disabled name="status"
-                                                                                            value="approve" class="bg-gray-500 text-white px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
+                                                                                            value="approve" class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
                                                                                             Approved
                                                                                         </button>
                                                                                     @else
                                                                                         <button type="submit" name="status" value="approve"
-                                                                                            class="bg-green-500 text-white px-6 py-2 rounded-md shadow hover:bg-green-600 focus:outline-none transition duration-150">
+                                                                                            class="bg-green-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-green-600 focus:outline-none transition duration-150">
                                                                                             Approve
                                                                                         </button>
                                                                                     @endif
                                                                                     @if ($timeReport->status === 'decline')
                                                                                         <button type="submit" disabled name="status"
-                                                                                            value="decline" class="bg-gray-500 text-white px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
+                                                                                            value="decline" class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
                                                                                             Declined
                                                                                         </button>
                                                                                     @else
                                                                                         <button type="submit" name="status" value="decline"
-                                                                                            class="bg-red-500 text-white px-6 py-2 rounded-md shadow hover:bg-red-600 focus:outline-none transition duration-150">
+                                                                                            class="bg-red-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-red-600 focus:outline-none transition duration-150">
                                                                                             Decline
                                                                                         </button>
                                                                                     @endif

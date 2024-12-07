@@ -524,7 +524,7 @@
                                         <span class="sidebar-menu-icon">
                                             <i class="fa-solid fa-arrows-to-circle"></i>                                        </span>
                                         <span class="sidebar-menu-text">
-                                            {{ __('Cms') }}
+                                            {{ __('CMS') }}
                                         </span>
                                     </div>
                                 </div>

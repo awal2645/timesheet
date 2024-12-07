@@ -30,7 +30,7 @@
             <form method="POST" action="{{ route('upgrade.apply') }}" enctype="multipart/form-data">
                 @csrf
                 <button type="submit"
-                    class="w-full text-white bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                    class="w-full text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                     {{ __('Upgrade Now') }}
                 </button>
             </form>

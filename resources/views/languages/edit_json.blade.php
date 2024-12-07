@@ -25,7 +25,7 @@
                                 <input name="keyword" type="text" placeholder="{{ __('title') }}"
                                     value="{{ request('keyword') }}">
                             </div>
-                            <button type="submit" class="bg-primary-50 text-white rounded-md px-4 py-2">
+                            <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark rounded-md px-4 py-2">
                                 {{ __('search') }}
                             </button>
                         </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="flex justify-center mt-4">
                             <button type="submit"
-                                class="bg-green-500 text-white rounded-md px-4 py-2 flex items-center">
+                                class="bg-green-500 text-text-light dark:text-text-dark rounded-md px-4 py-2 flex items-center">
                                 <i class="fas fa-sync"></i>
                                 {{ __('update') }}
                             </button>

@@ -65,7 +65,7 @@
             </div>
 
             <button type="submit"
-                class="bg-primary-50 hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 text-white rounded-lg px-5 py-2.5">
+                class="bg-primary-50 hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 text-text-light dark:text-text-dark rounded-lg px-5 py-2.5">
                 {{ __('Update') }}
             </button>
         </form>

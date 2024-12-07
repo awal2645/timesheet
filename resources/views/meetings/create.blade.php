@@ -151,7 +151,7 @@
             <!-- Submit Button -->
             <div class="flex">
                 <button type="submit"
-                    class="bg-primary-50 text-white px-4 py-2 rounded shadow hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-50">
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded shadow hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-50">
                     {{ __('Save') }}
                 </button>
             </div>

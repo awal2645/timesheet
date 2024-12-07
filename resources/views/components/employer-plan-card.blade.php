@@ -59,7 +59,7 @@
 
                 <div class=" shadow-gray-base-1 p-[1.5rem] rounded-xl space-y-[1.12rem]">
                     <div class="flex items-center gap-3">
-                        <button type="submit" class=" text-white text-2xl bg-indigo-600 rounded-lg px-4 py-2">
+                        <button type="submit" class=" text-text-light dark:text-text-dark text-2xl bg-primary-50 rounded-lg px-4 py-2">
                             <i class="fa-brands fa-stripe"></i> </button>
                     </div>
                 </div>
