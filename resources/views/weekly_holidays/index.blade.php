@@ -40,7 +40,7 @@
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Days of the Week') }}
                                                 </th>
-                                                <th class="min-w-[220px] px-4 py-4 font-medium">
+                                                <th class="min-w-[220px] px-4 py-4 font-medium text-end">
                                                     {{ __('Actions') }}
                                                 </th>
                                             </tr>
@@ -59,7 +59,7 @@
                                                         </div>
                                                         </td>
                                                         <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                            <div class="flex space-x-4">
+                                                            <div class="flex space-x-4 justify-end">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-50 hover:underline"><x-svgs.edit /></a>
                                                                 <form
