@@ -55,7 +55,7 @@
                                                             @php
                                                                 $daysOfWeek = json_decode($holiday->days_of_week);
                                                             @endphp
-                                                            {{ is_array($daysOfWeek) ? implode(', ', $daysOfWeek) : $daysOfWeek }}
+                                                            {{ ucfirst(is_array($daysOfWeek) ?  ucfirst(implode(', ', $daysOfWeek)) : ucfirst($daysOfWeek)) }}
                                                         </div>
                                                         </td>
                                                         <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">

@@ -12,10 +12,10 @@
                 <div class="mb-4 flex justify-between">
 
                     <button id="previousWeek"
-                        class="text-white bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
+                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-30  0 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
                         Week</button>
                     <button id="nextWeek"
-                        class="text-white bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
+                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
                         Week</button>
                 </div>
             </div>
@@ -95,24 +95,24 @@
 
                 <!-- Submit Button -->
                 <button @if ($timeReport) disabled @endif type="button" id="saveButton"
-                    class="bg-primary-50 ml-3 text-white px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
+                    class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Save') }}
                 </button>
 
                 @if ($timeReport)
                     <button disabled type="button" id="submitButton"
-                        class="bg-primary-50 ml-3 text-white px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
+                        class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                         {{ __('Submitted') }}
                     </button>
                 @else
                     <button type="button" id="submitButton"
-                        class="bg-primary-50 ml-3 text-white px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
+                        class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                         {{ __('Submit') }}
                     </button>
                 @endif
 
                 <button @if ($timeReport) disabled @endif type="button" id="resetButton"
-                    class="bg-primary-50 ml-3 text-white px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
+                    class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Reset') }}
                 </button>
             </div>
