@@ -2,14 +2,13 @@
 
 <div class="card flex flex-col justify-between">
     <div class="grow">
-        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}</h2>
-
-        @if ($plan->recommended)
-            <div class="mt-2">
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}  @if ($plan->recommended)
+        
                 <span
-                    class="bg-green-200 text-text-light dark:bg-primary-50 dark:text-text-dark p-3 rounded-full text-xs">{{ __('Recommended') }}</span>
-            </div>
-        @endif
+                    class="bg-primary-50 text-text-light dark:bg-primary-50 dark:text-text-dark p-3 rounded text-xs">{{ __('Recommended') }}</span>
+        @endif</h2>
+
+       
 
         <div class="text-3xl font-bold my-4 text-gray-800 dark:text-gray-100">
             ${{ number_format($plan->price, 2) }} <!-- Formats price to two decimal places -->

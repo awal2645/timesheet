@@ -7,7 +7,7 @@
         <div class="">
             <div class="card flex justify-between items-center">
                 <form action="{{ route('holidays.index') }}" method="GET" class="w-full">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
@@ -43,7 +43,7 @@
                                                     {{ __('Holiday Name') }}</th>
                                                 <th class="min-w-[150px] px-4 py-4 font-medium">
                                                     {{ __('Holiday Date') }}</th>
-                                                <th class="px-4 py-4 font-medium"></th>
+                                                <th class="px-4 py-4 font-medium">{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -59,9 +59,9 @@
                                                             {{ $holiday->date }}</td>
                                                         <td
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                            <div class="flex justify-end">
+                                                            <div class="flex ">
                                                                 <a href="{{ route('holidays.edit', $holiday->id) }}"
-                                                                    class="text-primary-500 hover:text-primary-300">{{ __('Edit') }}</a>
+                                                                    class="text-primary-50 hover:text-primary-300"><x-svgs.edit /></a>
                                                                 <form
                                                                     action="{{ route('holidays.destroy', $holiday->id) }}"
                                                                     method="POST"
@@ -70,7 +70,7 @@
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"
-                                                                        class="text-red-500 hover:text-red-700">{{ __('Delete') }}</button>
+                                                                        class="text-red-500 hover:text-red-700"><x-svgs.delete /></button>
                                                                 </form>
                                                             </div>
                                                         </td>
@@ -78,7 +78,7 @@
                                                 @endforeach
                                             @else
                                                 <tr>
-                                                    <td colspan="3" class="text-center py-8  ">
+                                                    <td colspan="3" class="text-center py-8 ">
                                                         <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>

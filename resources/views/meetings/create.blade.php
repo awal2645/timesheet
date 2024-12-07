@@ -6,7 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/js/select2.min.js"></script>
 
 <x-app-layout>
-    <div class="flex justify-between m-6 card">
+    <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Meeting') }}</h2>
         <a href="{{ route('meeting.index') }}"
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Meeting List') }}</a>
@@ -16,7 +16,7 @@
         <form method="POST" action="{{ route('meeting.store') }}">
             @csrf
             <!-- Collapsible Section for Zoom Credentials -->
-            <div class="mb-5">
+            <div class="mb-3">
                 <label class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="toggleZoomCredentialsCheckbox" class="sr-only peer" />
                     <div
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Participants Role -->
-            <div class="mb-5">
+            <div class="mb-3">
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                     {{ __('Select Participants Role') }}
                 </label>
@@ -110,7 +110,7 @@
                                 class="text-primary-600 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600"
                                 {{ old('selected_role') == $role->name ? 'checked' : '' }} required>
                             <label for="role_{{ $role->id }}" class="ml-2 text-sm font-medium dark:text-gray-400">
-                                {{ $role->name }}
+                                {{ ucfirst($role->name) }}
                             </label>
 
                         </div>

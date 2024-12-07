@@ -15,7 +15,7 @@
                         <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Set Recommended Package') }}</label>
                         <div class="flex">
                             <select name="plan_id" id="recommended_package"
-                                class="bg-gray-50 px-10 dark:bg-card-dark dark:text-text-dark text-text-light text-sm rounded-lg p-2.5 mr-2">
+                                class="bg-gray-50 dark:bg-card-dark dark:text-text-dark text-text-light text-sm rounded-lg p-2.5 mr-2">
                                 <option value=""> Select Recommended package</option>
                                 @foreach ($pricePlans as $plan)
                                     <option {{ $plan->recommended ? 'selected' : '' }} value="{{ $plan->id }}">

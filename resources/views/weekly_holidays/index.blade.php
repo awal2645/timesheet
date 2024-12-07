@@ -5,7 +5,7 @@
         <div class="">
             <div class="card flex justify-between items-center">
                 <form action="{{ route('holidays.index') }}" method="GET" class="w-full">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
@@ -26,21 +26,21 @@
                 </a>
             </div>
 
-            <div class="flex flex-wrap mt-12">
+            <div class="mt-12 flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
-                                {{ __('Holiday List') }}</h2>
+                                {{ __('Weekly Holidays List') }}</h2>
                             <div>
                                 <div class="card">
                                     <table class="w-full table-auto">
                                         <thead class="table-header">
-                                            <tr>
-                                                <th class="min-w-[220px] px-4 py-4 font-medium text-start">
+                                            <tr class="rounded-2xl text-left">
+                                                <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Days of the Week') }}
                                                 </th>
-                                                <th class="min-w-[220px] px-4 py-4 font-medium text-end">
+                                                <th class="min-w-[220px] px-4 py-4 font-medium">
                                                     {{ __('Actions') }}
                                                 </th>
                                             </tr>
@@ -49,27 +49,26 @@
                                         <tbody>
                                             @if ($holidays->count() > 0)
                                                 @foreach ($holidays as $holiday)
-                                                    <tr
-                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="text-sm font-semibold">
                                                             @php
                                                                 $daysOfWeek = json_decode($holiday->days_of_week);
                                                             @endphp
                                                             {{ is_array($daysOfWeek) ? implode(', ', $daysOfWeek) : $daysOfWeek }}
+                                                        </div>
                                                         </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                            <div class="flex gap-5 items-center justify-end">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                            <div class="flex space-x-4">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
-                                                                    class="text-blue-600 hover:underline">{{ __('Edit') }}</a>
+                                                                    class="text-primary-50 hover:underline"><x-svgs.edit /></a>
                                                                 <form
                                                                     action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
                                                                     method="POST" style="display:inline;">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="submit"
-                                                                        class="text-red-600 hover:underline">{{ __('Delete') }}</button>
+                                                                        class="text-red-600 hover:underline"><x-svgs.delete /></button>
                                                                 </form>
                                                             </div>
                                                         </td>

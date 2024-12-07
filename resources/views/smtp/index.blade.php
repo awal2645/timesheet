@@ -108,7 +108,7 @@
             <!-- SAVE BUTTON -->
             <div class="relative col-span-full z-0 w-full group">
                 <button type="submit"
-                    class="px-3 py-2 text-white bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
+                    class="px-3 py-2 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
                     {{ __('Save') }}
                 </button>
             </div>

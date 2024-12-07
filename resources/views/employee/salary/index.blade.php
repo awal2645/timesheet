@@ -6,7 +6,7 @@
         <div>
             <div class="my-8 card">
                 <form action="{{ route('salary.show') }}" method="GET">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>

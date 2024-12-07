@@ -4,7 +4,7 @@
     <div class="m-6">
         <div class="card flex justify-between items-center mb-4">
             <form action="{{ route('languages.index') }}" method="GET" class="w-full">
-                <div class="mb-5">
+                <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
@@ -57,19 +57,19 @@
                                                 <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                     {{ __($language->direction) }}</td>
                                                 <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                    <div class="flex gap-5  ">
+                                                    <div class="flex gap-5">
                                                         <a href="{{ route('languages.json.edit', $language->code) }}"
-                                                            class="text-primary-500 hover:text-primary-300"><i class="fa-solid fa-globe"></i></a>
+                                                            class="text-primary-50 hover:text-primary-50"> <x-svgs.globe class="size-4" /></a>
                                                         <a href="{{ route('languages.edit', $language->id) }}"
-                                                            class="text-primary-500 hover:text-primary-300"><i class="fa-solid fa-pen-to-square"></i></a>
+                                                            class="text-primary-50 hover:text-primary-30"> <x-svgs.edit class="size-4" /></a>
                                                         <form action="{{ route('languages.destroy', $language->id) }}"
                                                             method="POST"
                                                             onsubmit="return confirm('Are you sure you want to delete this language?');"
-                                                            class="ml-2">
+                                                            class="">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                class="text-red-500 hover:text-red-700"><i class="fa-solid fa-trash"></i></button>
+                                                                class="text-red-500 hover:text-red-700"> <x-svgs.delete class="size-4" /></button>
                                                         </form>
                                                     </div>
                                                 </td>

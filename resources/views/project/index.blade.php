@@ -7,7 +7,7 @@
     <div class="relative m-6">
         <div class="card mb-12 flex flex-col md:flex-row justify-between items-center md:space-y-0">
             <form action="{{ route('project.index') }}" method="GET" class="w-full">
-                <div class="mb-5">
+                <div class="mb-3">
                     <label for="search"
                         class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
                     <div class="flex">

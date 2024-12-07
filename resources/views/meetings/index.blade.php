@@ -7,11 +7,12 @@
 
             <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
                 <form action="{{ route('meeting.index') }}" method="GET">
-                    <div class="mb-5">
-                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
+                    <div class="mb-3">
+                        <label for="search"  class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
                         <div class="flex form-field">
-                            <input type="text" id="search" name="search" value="{{ request('search') }}" />
+                            <input type="text" id="search" name="search" placeholder="{{ __('Search') }}"
+                                value="{{ request('search') }}" />
                             <button
                                 class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
                         </div>
@@ -131,7 +132,7 @@
                                                     <td class="px-6 py-4  ">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('project.edit', $meeting->id) }}"
-                                                                class="font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                                                                class="font-medium text-primary-50 dark:text-primary-50 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">

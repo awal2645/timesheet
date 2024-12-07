@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <x-app-layout>
-    <div class="flex justify-between m-6 card">
+    <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Edit Task') }}</h2>
         <a href="{{ route('task.index') }}"
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Task List') }}</a>
@@ -131,7 +131,7 @@
             {{-- Submit Button --}}
             <div class="col-span-full">
                 <button type="submit"
-                    class="px-4 py-2 text-white bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                     class="px-4 py-2 text-text-light dark:text-text-dark bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
                     {{ __('Update Task') }}
                 </button>
             </div>

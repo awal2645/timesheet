@@ -2,7 +2,7 @@
     {{ __('Create Holiday') }}
 @endsection
 <x-app-layout>
-    <div class="flex justify-between m-6 card">
+    <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Holiday') }}</h2>
         <a href="{{ route('holidays.index') }}"
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Holiday List') }}</a>

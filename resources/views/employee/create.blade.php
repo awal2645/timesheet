@@ -2,11 +2,12 @@
 {{ __('Create Employee') }}
 @endsection
 <x-app-layout>
-    <div class="flex justify-between m-6 card">
+    <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Employee') }}</h2>
         <a href="{{ route('employee.index') }}"
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Employee List') }}</a>
     </div>
+    
     <div class="card m-6">
         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark"> {{ __('Create Employee') }}</h2>
         <form method="POST" action="{{ route('employee.store') }}" class="card">

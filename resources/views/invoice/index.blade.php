@@ -6,7 +6,7 @@
         <div class="m-6">
             <div class="mb-12 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
                 <form action="{{ route('invoice.index') }}" method="GET">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
                         <div class="flex">
@@ -57,25 +57,30 @@
                                                         class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                         {{ $invoice->project->project_name }}</td>
                                                     {{-- <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">{{ $invoice->total_cost }}</td> --}}
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
-                                                        <a href="{{ route('invoice.edit', $invoice->id) }}"
-                                                            class="text-primary-500 hover:text-primary-300">
-                                                            <i class="fa-solid fa-pen-to-square"></i>
-                                                        </a>
-                                                        <form action="{{ route('invoice.destroy', $invoice->id) }}"
-                                                            method="POST" style="display:inline;">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit"
-                                                                    class="text-red-500 hover:text-red-300">
-                                                            <i class="fa-solid fa-trash"></i>
-                                                        </button>
-                                                        </form>
-                                                        <a href="{{ route('invoice.download', $invoice->id) }}"
-                                                            class="text-green-500 hover:text-green-300">
-                                                            <i class="fa-solid fa-file-pdf"></i>
-                                                        </a>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
+                                                        <div class="flex items-center gap-3">
+                                                            <!-- Edit -->
+                                                            <a href="{{ route('invoice.edit', $invoice->id) }}"
+                                                               class="text-primary-50 hover:text-primary-300 transition duration-200">
+                                                               <x-svgs.edit />
+                                                            </a>
+                                                            
+                                                            <!-- Delete -->
+                                                            <form action="{{ route('invoice.destroy', $invoice->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit"
+                                                                        class="text-red-500 hover:text-red-300 transition duration-200">
+                                                                    <x-svgs.delete />
+                                                                </button>
+                                                            </form>
+                                        
+                                                            <!-- Download -->
+                                                            <a href="{{ route('invoice.download', $invoice->id) }}"
+                                                               class="text-green-300 hover:text-green-500 transition duration-200">
+                                                               <x-svgs.download />
+                                                            </a>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

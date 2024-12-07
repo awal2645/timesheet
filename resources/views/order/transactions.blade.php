@@ -6,7 +6,7 @@
         <div>
             <div class="my-8 card flex justify-between items-center">
                 <form action="{{ route('order.index') }}" method="GET" class="w-full">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search"
                             class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
                         <div class="flex">
@@ -39,8 +39,8 @@
                                             <tr class="rounded-2xl text-left">
                                                 <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Date') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Plan') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Employer') }}</th>
+                                                <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
+                                                <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Amount') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
@@ -53,15 +53,17 @@
                                                     <td class="p-4">#{{ $transaction->order_id }}</td>
                                                     <td class="p-4">
                                                         {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                    <td class="p-4">
-                                                        @if ($transaction->payment_type == 'per_job_based')
-                                                            <span
-                                                                class="px-2 py-1 text-sm bg-gray-300 rounded">{{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}</span>
-                                                        @else
-                                                            <span
-                                                                class="px-2 py-1 text-sm bg-primary-50 text-white rounded">{{ $transaction->plan->label }}</span>
-                                                        @endif
-                                                    </td>
+                                                        <td class="p-4">
+                                                            @if ($transaction->payment_type == 'per_job_based')
+                                                                <span class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                                    {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
+                                                                </span>
+                                                            @else
+                                                                <span class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                                    {{ $transaction->plan->label }}
+                                                                </span>
+                                                            @endif
+                                                        </td>
                                                     <td class="p-4">
                                                         {{ ucfirst($transaction->employer->employer_name) ?? '' }}
                                                     </td>
@@ -71,7 +73,7 @@
                                                     </td>
                                                     <td class="p-4">
                                                         <span
-                                                            class="px-2 py-1 text-sm {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded-full">
+                                                            class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
                                                             {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
                                                         </span>
                                                     </td>

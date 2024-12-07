@@ -3,7 +3,7 @@
 @endsection
 
 <x-app-layout>
-    <div class="flex justify-between m-6 card">
+    <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Leave Application') }}</h2>
         <a href="{{ route('leave.index') }}"
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Leave List') }}</a>
@@ -74,7 +74,6 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-
             <div class="form-field">
                 <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" onclick="this.showPicker()" required />
                 <label for="end_date" class="form-label">{{ __('End Date') }}</label>
@@ -84,7 +83,7 @@
             </div>
 
             <div class="form-field">
-                <textarea name="reason" id="reason"  value="{{ old('reason') }}" required></textarea>
+                <input type="text" name="reason" id="reason" value="{{ old('reason') }}" required />
                 <label for="reason" class="form-label">{{ __('Reason for Leave') }}</label>
                 @error('reason')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
@@ -93,7 +92,7 @@
 
             <div class="col-span-full">
                 <button type="submit"
-                    class="px-4 py-2 text-white bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                    class="px-4 py-2 text-text-light dark:text-text-dark bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
                     {{ __('Create Leave Application') }}
                 </button>
             </div>

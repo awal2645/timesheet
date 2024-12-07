@@ -1,12 +1,12 @@
 @section('title')
-    {{ 'List Leave Applications' }}
+{{ 'List Leave Applications' }}
 @endsection
 
 <x-app-layout>
     <div class="relative m-6">
         <div class="card flex justify-between items-center">
             <form action="{{ route('leave.index') }}" method="GET" class="w-full">
-                <div class="mb-5">
+                <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
@@ -53,72 +53,96 @@
                                             <th class="min-w-[120px] px-4 py-4 font-medium">
                                                 {{ __('Status') }}
                                             </th>
-                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
-                                                <th class="px-4 py-4 font-medium"></th>
+                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role ===
+                                            'employer')
+                                            <th class="px-4 py-4 font-medium"> {{ __('Action') }} </th>
                                             @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($applications->count() > 0)
-                                            @foreach ($applications as $application)
-                                                <tr
-                                                    class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        <div class="text-sm font-semibold">
-                                                            {{ $application->employee->employee_name ?? '' }}
-                                                        </div>
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $application->start_date }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $application->end_date }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $application->reason }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        <div class="flex items-center space-x-2">
-                                                            <div class="h-2.5 w-2.5 rounded-full"
-                                                                style="background-color: {{ $application->status === 'approved' ? 'green' : ($application->status === 'denied' ? 'red' : 'yellow') }};">
-                                                            </div>
-                                                            {{ ucfirst($application->status) }}
-                                                        </div>
-                                                    </td>
-                                                    @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                            <div class="flex space-x-2">
-                                                                @if ($application->status === 'pending')
-                                                                    <form
-                                                                        action="{{ route('leave.approve', $application->id) }}"
-                                                                        method="POST" style="display:inline;">
-                                                                        @csrf
-                                                                        <button type="submit"
-                                                                            class="font-medium text-green-600 dark:text-green-500 hover:underline">{{ __('Approve') }}</button>
-                                                                    </form>
-                                                                    <form
-                                                                        action="{{ route('leave.deny', $application->id) }}"
-                                                                        method="POST" style="display:inline;">
-                                                                        @csrf
-                                                                        <button type="submit"
-                                                                            class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('Deny') }}</button>
-                                                                    </form>
-                                                                @else
-                                                                    <span
-                                                                        class="font-medium text-gray-600 dark:text-gray-500">{{ __('Action Taken') }}</span>
-                                                                @endif
-                                                            </div>
-                                                        </td>
+                                        @foreach ($applications as $application)
+                                        <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                <div class="text-sm font-semibold">
+                                                    {{ $application->employee->employee_name ?? '' }}
+                                                </div>
+                                            </td>
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                {{ $application->start_date }}
+                                            </td>
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                {{ $application->end_date }}
+                                            </td>
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                {{ $application->reason }}
+                                            </td>
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                <div class="flex items-center space-x-3">
+                                                    <!-- Status Indicator -->
+                                                    {{-- <div class="h-3 w-3 rounded-full" :class="{
+                                                                    'bg-green-500': '{{ $application->status }}' === 'approved',
+                                                                    'bg-red-500': '{{ $application->status }}' === 'denied',
+                                                                    'bg-yellow-500': '{{ $application->status }}' === 'pending'
+                                                                }">
+                                                    </div> --}}
+
+                                                    <!-- Status Badge -->
+                                                    <span
+                                                        class="px-2 flex items-center justify-center w-[100px] py-1 text-xs font-semibold rounded"
+                                                        :class="{
+                                                                    'bg-green-100 text-green-600': '{{ $application->status }}' === 'approved',
+                                                                    'bg-red-100 text-red-600': '{{ $application->status }}' === 'denied',
+                                                                    'bg-yellow-100 text-yellow-600': '{{ $application->status }}' === 'pending'
+                                                                }">
+                                                        {{ ucfirst($application->status) }}
+                                                    </span>
+                                                </div>
+                                            </td>
+
+                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role ===
+                                            'employer')
+                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                <div class="flex space-x-4">
+                                                    @if ($application->status === 'pending')
+                                                    <!-- Approve Button -->
+                                                    <form action="{{ route('leave.approve', $application->id) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="px-4 py-2 text-sm font-semibold text-white bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                            {{ __('Approve') }}
+                                                        </button>
+                                                    </form>
+
+                                                    <!-- Deny Button -->
+                                                    <form action="{{ route('leave.deny', $application->id) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="px-4 py-2 text-sm font-semibold text-white bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                            {{ __('Deny') }}
+                                                        </button>
+                                                    </form>
+                                                    @else
+                                                    <!-- Action Taken Message -->
+                                                    <span
+                                                        class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-700">
+                                                        {{ __('Action Taken') }}
+                                                    </span>
                                                     @endif
-                                                </tr>
-                                            @endforeach
+                                                </div>
+                                            </td>
+                                            @endif
+
+                                        </tr>
+                                        @endforeach
                                         @else
-                                            <tr>
-                                                <td colspan="6" class="text-center py-8  ">
-                                                    <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
-                                                </td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="6" class="text-center py-8  ">
+                                                <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                            </td>
+                                        </tr>
                                         @endif
                                     </tbody>
                                 </table>
@@ -129,11 +153,11 @@
             </div>
         </div>
         @if ($applications->total() > $applications->count())
-            <div class="mt-2">
-                <div class="d-flex justify-content-center">
-                    {{ $applications->links() }}
-                </div>
+        <div class="mt-2">
+            <div class="d-flex justify-content-center">
+                {{ $applications->links() }}
             </div>
+        </div>
         @endif
     </div>
 </x-app-layout>

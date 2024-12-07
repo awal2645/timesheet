@@ -4,7 +4,7 @@
     <div class="m-6">
         <div class="my-8 card flex justify-between items-center">
             <form action="{{ route('notices.index') }}" method="GET" class="w-full">
-                <div class="mb-5">
+                <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
@@ -67,13 +67,13 @@
                                                     <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                         <div class="flex">
                                                             <a href="{{ route('notices.edit', $notice->id) }}"
-                                                                class="text-primary-600 hover:underline mr-2"><i class="fa-solid fa-pen"></i></a>
+                                                                class="text-primary-50 hover:underline mr-2"><x-svgs.edit /></a>
                                                             <form action="{{ route('notices.destroy', $notice->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                    class="text-red-600 hover:underline"><i class="fa-solid fa-trash"></i></button>
+                                                                        class="text-red-600 hover:underline"><x-svgs.delete /></button>
                                                             </form>
                                                         </div>
                                                     </td>

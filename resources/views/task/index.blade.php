@@ -1,5 +1,5 @@
 @section('title')
-    {{ 'List Task' }}
+{{ 'List Task' }}
 @endsection
 <style>
     @keyframes rotateMinuteHand {
@@ -44,16 +44,17 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class=" mt-10 mb-5 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
+            <div class=" mt-10 mb-3 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
                 <form action="{{ route('task.index') }}" method="GET">
-                    <div class="mb-5">
+                    <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
                         <div class="flex form-field">
                             <input type="text" id="search" name="search" placeholder="{{ __('Search') }}"
                                 value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{
+                                __('Search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -88,7 +89,7 @@
                                                     {{ __('Employee Name') }}
                                                 </th>
                                                 <th scope="col" class="">
-                                                    {{ __('Time') }}
+                                                    {{ __('Time Spent') }}
                                                 </th>
                                                 <th scope="col" class="">
                                                     {{ __('Status') }}
@@ -101,124 +102,134 @@
 
                                         <tbody>
                                             @if ($tasks->count() > 0)
-                                                @foreach ($tasks as $key => $task)
-                                                    <tr
-                                                        class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                            @foreach ($tasks as $key => $task)
+                                            <tr
+                                                class="border-b dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 
-                                                        <th scope="row"
-                                                            class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                                                            <div class="">
-                                                                <div class="text-base font-semibold">
-                                                                    {{ $task->task_name ?? '' }}</div>
-                                                            </div>
-                                                        </th>
-                                                        <td class="px-6 py-4">
-                                                            <a rel="noopener noreferrer">
-                                                                {{ $task->project->client->client_name ?? '' }}
-                                                            </a>
-                                                        </td>
-                                                        <td class="px-6 py-4">
-                                                            <a rel="noopener noreferrer">
-                                                                {{ $task->employer->employer_name ?? '' }}
-                                                            </a>
-                                                        </td>
-                                                        <td class="px-6 py-4">
-                                                            <a rel="noopener noreferrer">
-                                                                {{ $task->employee->employee_name ?? '' }}
-                                                            </a>
-                                                        </td>
-                                                        <td class="px-6 py-4 flex gap-2 items-center">
-                                                            <div id="timer-{{ $task->id }}">
-                                                                {{ $task->time ?? '00:00' }}
-                                                            </div>
-                                                            <button onclick="startTimer({{ $task->id }})"
-                                                                id="start-btn-{{ $task->id }}"
-                                                                class="bg-green-500 text-white px-2 py-1 rounded-lg">
-                                                                Start
-                                                            </button>
-                                                            <button onclick="stopTimer({{ $task->id }})"
-                                                                id="stop-btn-{{ $task->id }}"
-                                                                class="bg-red-400 text-white px-2 py-1 rounded-lg hidden">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                                    height="20" viewBox="0 0 24 24" fill="none"
-                                                                    stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                                    aria-hidden="true">
-                                                                    <circle cx="12" cy="12" r="10">
-                                                                    </circle>
-                                                                    <!-- Minute hand -->
-                                                                    <polyline points="12 6 12 12"
-                                                                        class="clock-minute-hand">
-                                                                    </polyline>
-                                                                    <!-- Hour hand -->
-                                                                    <polyline points="12 12 16 14"
-                                                                        class="clock-hour-hand">
-                                                                    </polyline>
-                                                                </svg>
-                                                                Stop
-                                                            </button>
-                                                        </td>
-                                                        <td class="px-6 py-4">
-                                                            <div class="flex items-center gap-2">
-                                                                <div class="h-2.5 w-2.5 rounded-full"
-                                                                    id="statusIndicator"
-                                                                    style="background-color: {{ $task->status === 'completed' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">
-                                                                </div>
-                                                                <form id="statusForm{{ $task->id }}"
-                                                                    action="{{ route('task.updateStatus', $task->id) }}"
-                                                                    method="post" class="mb-0">
-                                                                    @csrf
-                                                                    <select name="status" id="status"
-                                                                        class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
-                                                                        onchange="document.getElementById('statusForm{{ $task->id }}').submit()">
-                                                                        <option
-                                                                            class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  "
-                                                                            value="pending"
-                                                                            {{ $task->status === 'pending' ? 'selected' : '' }}>
-                                                                            {{ __('Pending') }}
-                                                                        <option
-                                                                            class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  "
-                                                                            value="inprogress"
-                                                                            {{ $task->status === 'inprogress' ? 'selected' : '' }}>
-                                                                            {{ __('In Progress') }}
-                                                                        <option
-                                                                            class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  "
-                                                                            value="completed"
-                                                                            {{ $task->status === 'completed' ? 'selected' : '' }}>
-                                                                            {{ __('Complete') }}
-                                                                    </select>
-                                                                </form>
-                                                            </div>
-                                                        </td>
-                                                        <td class="px-6 py-4">
-                                                            <div class="flex space-x-2">
-                                                                <a href="{{ route('task.edit', $task->id) }}"
-                                                                    class="text-primary-500 hover:text-primary-300">
-                                                                    <i class="fa-solid fa-pen-to-square"></i> </a>
-                                                                <a onclick="showConfirmation({{ $task->id }})"
-                                                                    class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
-                                                                    <i class="fa-solid fa-trash"></i>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                <th scope="row"
+                                                    class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                    <div class="">
+                                                        <div class="text-base font-semibold">
+                                                            {{ $task->task_name ?? '' }}</div>
+                                                    </div>
+                                                </th>
+                                                <td class="px-6 py-4">
+                                                    <a rel="noopener noreferrer">
+                                                        {{ $task->project->client->client_name ?? '' }}
+                                                    </a>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <a rel="noopener noreferrer">
+                                                        {{ $task->employer->employer_name ?? '' }}
+                                                    </a>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <a rel="noopener noreferrer">
+                                                        {{ $task->employee->employee_name ?? '' }}
+                                                    </a>
+                                                </td>
+                                                <td class="px-6 py-4 flex items-center  gap-2">
+                                                    <!-- Centered alignment -->
+                                                    <div id="timer-{{ $task->id }}" class="text-center font-bold w-10">
+                                                        <!-- Added font-bold for emphasis -->
+                                                        {{ $task->time ?? '00:00' }}
+                                                    </div>
+                                                    <div class="flex gap-2">
+                                                        <button onclick="startTimer({{ $task->id }})"
+                                                            id="start-btn-{{ $task->id }}"
+                                                            class="bg-green-500 text-white px-3 py-2 rounded-lg flex items-center justify-center">
+                                                            <!-- Consistent padding -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                                fill="currentColor" class="size-4">
+                                                                <path
+                                                                    d="M1 4.804a1 1 0 0 1 1.53-.848l5.113 3.196a1 1 0 0 1 0 1.696L2.53 12.044A1 1 0 0 1 1 11.196V4.804ZM13.5 4.5A.5.5 0 0 1 14 4h.5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H14a.5.5 0 0 1-.5-.5v-7ZM10.5 4a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5v-7A.5.5 0 0 0 11 4h-.5Z" />
+                                                            </svg>
+
+                                                        </button>
+                                                        <button onclick="stopTimer({{ $task->id }})"
+                                                            id="stop-btn-{{ $task->id }}"
+                                                            class="bg-red-400 text-white px-3 py-2 rounded-lg hidden flex items-center justify-center gap-2">
+                                                            <!-- Added gap -->
+                                                            <!-- First SVG icon -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                height="20" viewBox="0 0 24 24" fill="none"
+                                                                stroke="currentColor" stroke-width="2"
+                                                                stroke-linecap="round" stroke-linejoin="round"
+                                                                aria-hidden="true">
+                                                                <circle cx="12" cy="12" r="10"></circle>
+                                                                <!-- Minute hand -->
+                                                                <polyline points="12 6 12 12" class="clock-minute-hand">
+                                                                </polyline>
+                                                                <!-- Hour hand -->
+                                                                <polyline points="12 12 16 14" class="clock-hour-hand">
+                                                                </polyline>
+                                                            </svg>
+                                                            <!-- Second SVG icon -->
+                                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                                                fill="currentColor" class="size-4">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M15 8A7 7 0 1 1 1 8a7 7 0 0 1 14 0ZM5.5 5.5A.5.5 0 0 1 6 5h.5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5H6a.5.5 0 0 1-.5-.5v-5Zm4-.5a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h.5a.5.5 0 0 0 .5-.5v-5A.5.5 0 0 0 10 5h-.5Z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                        </button>
+
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="flex items-center gap-2">
+                                                        <div class="h-2.5 w-2.5 rounded-full" id="statusIndicator"
+                                                            style="background-color: {{ $task->status === 'completed' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">
+                                                        </div>
+                                                        <form id="statusForm{{ $task->id }}"
+                                                            action="{{ route('task.updateStatus', $task->id) }}"
+                                                            method="post" class="mb-0">
+                                                            @csrf
+                                                            <select name="status" id="status"
+                                                                class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
+                                                                onchange="document.getElementById('statusForm{{ $task->id }}').submit()">
+                                                                <option class="dark:bg-slate-800   text-text-light dark:text-text-dark  " value="pending" {{ $task->status === 'pending' ? 'selected' : '' }}>
+                                                                    {{ __('Pending') }}
+                                                                </option>
+                                                                <option class="dark:bg-slate-800   text-text-light  dark:text-text-dark  " value="inprogress" {{ $task->status === 'inprogress' ? 'selected' : '' }}>
+                                                                    {{ __('In Progress') }}
+                                                                </option>
+                                                                <option class="dark:bg-slate-800   text-text-light  dark:text-text-dark  " value="completed" {{ $task->status === 'completed' ? 'selected' : '' }}>
+                                                                    {{ __('Complete') }}
+                                                                </option>
+                                                            </select>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="flex space-x-2">
+                                                        <a href="{{ route('task.edit', $task->id) }}"
+                                                            class="text-primary-50 hover:text-primary-300">
+                                                            <x-svgs.edit />
+                                                        </a>
+                                                        <a onclick="showConfirmation({{ $task->id }})"
+                                                            class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
+                                                            <x-svgs.delete />
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
                                             @else
-                                                <tr>
-                                                    <td colspan="8" class="text-center py-8">
-                                                        <x-svgs.no-data-found
-                                                            class="mx-auto md:size-[360px] size-[220px]" />
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-center py-8">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
+                                                </td>
+                                            </tr>
                                             @endif
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
-                            <div class="mt-6">
-                                {{ $tasks->links() }}
+                            <div class="mt-2">
+                                <div class="d-flex justify-content-center">
+                                    {{ $tasks->links() }}
+                                </div>
                             </div>
                         </div>
                     </div>

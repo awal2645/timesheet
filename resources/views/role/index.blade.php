@@ -59,7 +59,7 @@
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                             <div class="flex space-x-2">
                                                                 <a href="{{ route('role.edit', $role->id) }}"
-                                                                    class="font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                                                                    class="font-medium text-primary-50 dark:text-primary-50 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         fill="none" viewBox="0 0 24 24"
                                                                         stroke-width="1.5" stroke="currentColor"
@@ -86,7 +86,7 @@
                                                 @endif
                                             @else
                                                 <tr
-                                                    class="bg-body-light dark:bg-body-dark hover:bg-gray-50 dark:hover:bg-gray-600">
+                                                    class="bg-card-light dark:bg-card-dark hover:bg-gray-50 dark:hover:bg-gray-600">
                                                     <th scope="row"
                                                         class="flex items-center px-4 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                                         <div class="">
@@ -103,7 +103,7 @@
                                                     <td class="px-6 py-4  ">
                                                         <div class="flex space-x-2">
                                                             <a href="{{ route('role.edit', $role->id) }}"
-                                                                class="font-medium text-primary-600 dark:text-primary-500 hover:underline">
+                                                                class="font-medium text-primary-50 dark:text-primary-50 hover:underline">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6">

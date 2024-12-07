@@ -108,21 +108,21 @@
     width: 100%;
     font-size: 0.875rem; /* text-sm */
     background: transparent;
-    border: 1px solid rgb(75 85 99);/* border-gray-300 */
+    border-color: #d1d5db;
     appearance: none;
     cursor: pointer;
 }
 
 .form-field .form-select:focus {
     outline: none;
-    border-color: var(--primary-500); /* focus:border-primary-600 */
+    border-color: #d; /* focus:border-primary-600 */
     box-shadow: none; /* focus:ring-0 */
 }
 
 .form-field .form-label {
     position: absolute;
     font-size: 12px; /* text-sm */
-    color: #ffffff; /* text-gray-500 */
+    color: #d1d5db; /* text-gray-500 */
     padding: 0 1.25rem; /* px-5 */
     transition: all 0.3s ease;
     transform: translateY(-50%) scale(1);
@@ -156,9 +156,9 @@
     background-color: var(--card-dark) !important;
 }
 
-.toast-success {
+/* .toast-success {
     background-color: var(--primary-500) !important;
 }
 .toast-error {
     background-color: red !important;
-}
+} */
