@@ -25,7 +25,7 @@
                     {{ __('Forgot Password?') }}
                 </a>
             @endif
-            <button type="submit" class="btn bg-primary-500  text-text-light dark:text-text-dark">
+            <button type="submit" class="btn bg-primary-50  text-text-light dark:text-text-dark">
                 {{ __('Sign in') }}
             </button>
         </div>
@@ -39,18 +39,18 @@
 
         <div class="mt-6 grid grid-cols-2 gap-4">
             <button onclick="submitLoginForm('superadmin')"
-                class="w-full text-white bg-primary-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                class="w-full text-text-light dark:text-text-dark bg-primary-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Super Admin Login') }}</button>
             <button onclick="submitLoginForm('employer')"
-                class="w-full full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
+                class="w-full full text-text-light dark:text-text-dark bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-800">
                 {{ __('Employer Login') }}
             </button>
             <button onclick="submitLoginForm('employee')"
-                class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                class="w-full text-text-light dark:text-text-dark bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Employee Login') }}
             </button>
             <button onclick="submitLoginForm('client')"
-                class="w-full text-white bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-500 dark:hover:bg-amber-600 dark:focus:ring-amber-800">
+                class="w-full text-text-light dark:text-text-dark bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-500 dark:hover:bg-amber-600 dark:focus:ring-amber-800">
                 {{ __('Client Login') }}
 
             </button>

@@ -3,7 +3,7 @@
 @endsection
 <x-app-layout>
     <div class="m-6">
-        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">Application Settings</h2>
+        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Application Settings') }}</h2>
         <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data" class="card">
             @csrf
             @method('PUT')
@@ -18,7 +18,7 @@
                                 class="w-full h-[300px] rounded object-contain" x-show="logoPreview">
                         </div>
                         <div>
-                            <p class="max-w-3xl text-base mb-5">Upload a high-resolution logo in JPEG or PNG .</p>
+                            <p class="max-w-3xl text-base mb-5">{{ __('Upload a high-resolution logo in JPEG or PNG format.') }}</p>
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
@@ -30,13 +30,13 @@
                                             <path
                                                 d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                                         </svg>
-                                        Replace Logo
+                                        {{ __('Replace Logo') }}
                                         <input type="file" name="logo" @change="handleLogoUpload"
                                             accept="image/jpeg,image/png" style="display:none;">
                                     </label>
                                     <button @click="removeLogo" type="button"
                                         class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 dark:text-white">
-                                        <span>Remove Logo</span>
+                                        <span>{{ __('Remove Logo') }}</span>
                                     </button>
                                 </div>
                                 <p x-show="logoError" x-text="logoError" class="error-message"></p>
@@ -54,8 +54,7 @@
                                 class="w-full h-[300px] rounded object-contain" x-show="darkLogoPreview">
                         </div>
                         <div>
-                            <p class="max-w-3xl text-base mb-5">Upload a high-resolution dark logo in JPEG or PNG
-                                format.</p>
+                            <p class="max-w-3xl text-base mb-5">{{ __('Upload a high-resolution dark logo in JPEG or PNG format.') }}</p>
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
@@ -67,13 +66,13 @@
                                             <path
                                                 d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                                         </svg>
-                                        Replace Dark Logo
+                                        {{ __('Replace Dark Logo') }}
                                         <input type="file" name="dark_logo" @change="handleDarkLogoUpload"
                                             accept="image/jpeg,image/png" style="display:none;">
                                     </label>
                                     <button @click="removeDarkLogo" type="button"
                                         class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 dark:text-white">
-                                        <span>Remove Dark Logo</span>
+                                        <span>{{ __('Remove Dark Logo') }}</span>
                                     </button>
                                 </div>
                                 <p x-show="darkLogoError" x-text="darkLogoError" class="error-message"></p>
@@ -91,7 +90,7 @@
                                 class="w-full h-auto rounded object-contain" x-show="faviconPreview">
                         </div>
                         <div>
-                            <p class="max-w-3xl text-base mb-5">Upload a favicon in JPEG or PNG format.</p>
+                            <p class="max-w-3xl text-base mb-5">{{ __('Upload a favicon in JPEG or PNG format.') }}</p>
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
@@ -103,13 +102,13 @@
                                             <path
                                                 d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                                         </svg>
-                                        Replace Favicon
+                                        {{ __('Replace Favicon') }}
                                         <input name="favicon" type="file" @change="handleFaviconUpload"
                                             accept="image/jpeg,image/png" style="display:none;">
                                     </label>
                                     <button @click="removeFavicon" type="button"
                                         class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 text-text-light dark:text-text-dark ">
-                                        <span>Remove Favicon</span>
+                                        <span>{{ __('Remove Favicon') }}</span>
                                     </button>
                                 </div>
                                 <p x-show="faviconError" x-text="faviconError" class="error-message"></p>
@@ -226,7 +225,7 @@
             </div>
 
             <button type="submit"
-                class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Save Settings') }}
             </button>
         </form>

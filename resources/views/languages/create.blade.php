@@ -9,6 +9,15 @@
                 {{ __('Go to Language List') }}
             </a>
         </div>
+        @if ($errors->any())
+            <span class="text-red-500">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </span>
+        @endif
         <div class="card">
             <h2 class="text-2xl font-bold mb-6 text-gray-800 dark:text-gray-200">{{ __('Create New Language') }}</h2>
             <form method="POST" action="{{ route('languages.store') }}">
@@ -70,7 +79,7 @@
                 </div>
 
                 <button type="submit"
-                    class="bg-primary-50 hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 text-text-light dark:text-text-dark rounded-lg px-5 py-2.5">
+                    class="bg-primary-50 hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-300 text-text-light dark:text-text-dark rounded-lg px-5 py-2.5">
                     {{ __('Submit') }}
                 </button>
             </form>

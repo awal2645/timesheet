@@ -2,11 +2,15 @@
 
 <div class="card flex flex-col justify-between">
     <div class="grow">
-        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100">{{ $plan->label }}  @if ($plan->recommended)
+        <h2 class="text-lg font-bold text-gray-800 dark:text-gray-100 flex items-center space-x-2">
+            <span>{{ $plan->label }}</span>
+            @if ($plan->recommended)
+                <span class=" text-text-light px-2 py-1 text-sm rounded-lg bg-green-300 dark:bg-green-200 dark:text-green-800">
+                     {{ __('Recommended') }} 
+                </span>
+            @endif
+        </h2>
         
-                <span
-                    class="bg-primary-50 text-text-light dark:bg-primary-50 dark:text-text-dark p-3 rounded text-xs">{{ __('Recommended') }}</span>
-        @endif</h2>
 
        
 
@@ -63,7 +67,7 @@
 
     <div class="flex justify-between items-center">
         <a href="{{ route('plans.edit', $plan->id) }}"
-            class="text-white bg-primary-50 hover:bg-primary-50 rounded-lg px-4 py-2">
+            class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-50 rounded-lg px-4 py-2">
             <i class="fa-solid fa-pen-to-square"></i>
         </a>
         <form id="delete-form-{{ $plan->id }}" action="{{ route('plans.destroy', $plan->id) }}" method="POST"
@@ -73,7 +77,7 @@
         </form>
 
         <a href="javascript:void(0);" onclick="showConfirmation({{ $plan->id }})"
-            class="text-white bg-red-500 hover:bg-red-600 rounded-lg px-4 py-2">
+            class="text-text-light dark:text-text-dark bg-red-500 hover:bg-red-600 rounded-lg px-4 py-2">
             <i class="fa-solid fa-trash"></i>
         </a>
     </div>

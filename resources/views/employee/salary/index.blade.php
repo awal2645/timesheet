@@ -11,14 +11,16 @@
                             {{ __('Search') }}
                         </label>
                         <div class="flex gap-3 items-center form-field">
+                            @if (auth()->user()->role == 'admin')
                             <select name="employer" class="form-select">
                                 <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employer') }}</option>
                                 @foreach ($employer as $item)
                                 <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $item->id }}" {{ request('employer') == $item->id ? 'selected' : '' }}>
                                     {{ $item->employer_name }}
                                 </option>
-                                @endforeach
-                            </select>
+                                    @endforeach
+                                </select>
+                            @endif
                             <select name="employee" class="form-select">
                                 <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>
                                 @foreach ($employees as $item)

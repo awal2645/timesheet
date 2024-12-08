@@ -64,7 +64,7 @@ class LanguageController extends Controller
         // try {
 
             $request->validate([
-                'code' => 'required|unique:languages,name',
+                'name' => 'required|unique:languages,name',
                 'icon' => 'required',
                 'direction' => 'required',
             ], [

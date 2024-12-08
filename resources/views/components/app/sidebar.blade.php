@@ -234,7 +234,8 @@
                         </a>
                         <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
                             <ul class="mt-1" :class="sidebarExpanded ? 'pl-9' : 'pl-0'" x-show="open" x-collapse>
-                                <!-- Weekly Holidays -->
+                               @canany('Leave view')
+                                <!--  Leave -->
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave.index') }}"
                                         class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
@@ -249,7 +250,9 @@
                                         </div>
                                     </a>
                                 </li>
+                                @endcanany
                                 <!-- Weekly Holidays -->
+                                @canany('Weekly Holidays view')
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('weekly_holidays.index') }}"
                                         class="sidebar-menu-item {{ request()->routeIs('weekly_holidays.*') ? 'active' : '' }} ">
@@ -264,8 +267,9 @@
                                         </div>
                                     </a>
                                 </li>
-
+                                @endcanany
                                 <!-- Holidays -->
+                                @canany('Holidays view')
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('holidays.index') }}"
                                         class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
@@ -280,7 +284,9 @@
                                         </div>
                                     </a>
                                 </li>
+                                @endcanany
                                 <!-- Leave Types -->
+                                @canany('Leave Types view')
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('leave_types.index') }}"
                                         class="sidebar-menu-item {{ request()->routeIs('leave_types.*') ? 'active' : '' }} ">
@@ -296,11 +302,12 @@
                                         </div>
                                     </a>
                                 </li>
+                                @endcanany
                             </ul>
                         </div>
                     </li>
                     <!-- Notice -->
-                    {{-- @canany('Notice') --}}
+                    @canany('Notice view')
                     <li>
                         <a href="{{ route('notices.index') }}"
                             class="sidebar-menu-item {{ request()->routeIs('notices.*') ? 'active' : '' }} ">
@@ -316,9 +323,9 @@
                             </div>
                         </a>
                     </li>
-                    {{-- @endcanany           --}}
+                    @endcanany          
                     <!-- Zoom Meeting -->
-                    @canany('Zoom Meeting')
+                    @canany('Zoom Meeting view')
                         <li>
                             <a href="{{ route('meeting.index') }}"
                                 class="sidebar-menu-item {{ request()->routeIs('meeting.*') ? 'active' : '' }} ">
@@ -335,7 +342,7 @@
                         </li>
                     @endcanany
                     <!-- Invoice -->
-                    {{-- @canany('Invoice view') --}}
+                    @canany('Invoice view')
                     <li>
                         <a href="{{ route('invoice.index') }}"
                             class="sidebar-menu-item {{ request()->routeIs('invoice.*') ? 'active' : '' }} ">
@@ -350,7 +357,7 @@
                             </div>
                         </a>
                     </li>
-                    {{-- @endcanany --}}
+                    @endcanany
                     <!-- invite -->
                     @canany('Invite send')
                         <li>
@@ -460,7 +467,7 @@
                         </li>
                     @endcanany
                     <!-- Language -->
-                    {{-- @canany('Language') --}}
+                    @canany('Language')
                     <li>
                         <a href="{{ route('languages.index') }}"
                             class="sidebar-menu-item {{ request()->routeIs('languages.*') ? 'active' : '' }}  ">
@@ -476,7 +483,7 @@
                             </div>
                         </a>
                     </li>
-                    {{-- @endcanany --}}
+                    @endcanany
                     <!-- General -->
                     @canany('General Settings')
                         <li>
@@ -571,12 +578,12 @@
                     @if (auth()->user()->role === 'employer')
                         <li>
                             <a href="{{ route('employer.plan') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('employer.plan') ? 'active' : '' }} hover:text-primary-500 truncate transition duration-150"
+                                class="sidebar-menu-item {{ request()->routeIs('employer.plan') ? 'active' : '' }}"
                                 href="#0">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
                                         <span class="sidebar-menu-icon">
-                                            <i class="fa-solid fa-cart-shopping w-8"></i>
+                                            <i class="fa-solid fa-cart-shopping"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
                                             {{ __('Biling & Plan') }}

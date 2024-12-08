@@ -18,7 +18,7 @@
                                     </p>
                                     <div class="mt-6">
                                         <a href="{{ route('plans.index') }}"
-                                            class="btn bg-primary-50 text-white py-2 px-6 rounded-full hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-800 shadow-md transition">
+                                            class="btn bg-primary-50 text-text-light dark:text-text-dark py-2 px-6 rounded-full hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-300 shadow-md transition">
                                             {{ __('Upgrade plan') }}
                                         </a>
                                     </div>
@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <!-- Invoice Table Section -->
-                        <div class="invoices-table mt-10">
+                        {{-- <div class="invoices-table mt-10">
                             <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">{{ __('Latest Plan') }}</h2>
                             <div class="overflow-x-auto pb-1">
                                 <table class="min-w-full table-auto text-sm">
@@ -115,6 +115,80 @@
                                         @endforelse
                                     </tbody>
                                 </table>
+                            </div>
+                        </div> --}}
+                        <div class="flex flex-wrap">
+                            <div class="w-full">
+                                <div class="dashboard-right pl-0">
+                                    <div class="invoices-table">
+                                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                            {{ __('Recent Invoice') }}</h2>
+                                        <div>
+                                            <div class="card">
+                                                <table class="w-full table-auto">
+                                                    <thead class="table-header">
+                                                        <tr class="rounded-2xl text-left">
+                                                            <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Date') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Amount') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
+                                                            <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
+                                                            <th class="p-4 font-medium"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @forelse ($transactions as $transaction)
+                                                            <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                                                <td class="p-4">#{{ $transaction->order_id }}</td>
+                                                                <td class="p-4">
+                                                                    {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+                                                                    <td class="p-4">
+                                                                        @if ($transaction->payment_type == 'per_job_based')
+                                                                            <span class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                                                {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
+                                                                            </span>
+                                                                        @else
+                                                                            <span class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                                                {{ $transaction->plan->label }}
+                                                                            </span>
+                                                                        @endif
+                                                                    </td>
+                                                                <td class="p-4">
+                                                                    {{ ucfirst($transaction->employer->employer_name) ?? '' }}
+                                                                </td>
+                                                                <td class="p-4">${{ $transaction->usd_amount }}</td>
+                                                                <td class="p-4">
+                                                                    {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
+                                                                </td>
+                                                                <td class="p-4">
+                                                                    <span
+                                                                        class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
+                                                                        {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
+                                                                    </span>
+                                                                </td>
+                                                            </tr>
+                                                        @empty
+                                                            <tr>
+                                                                <td colspan="8" class="text-center py-8">
+                                                                    <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                                </td>
+                                                            </tr>
+                                                        @endforelse
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if ($transactions->total() > $transactions->count())
+                                        <div class="mt-2">
+                                            <div class="d-flex justify-content-center">
+                                                {{ $transactions->links() }}
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>

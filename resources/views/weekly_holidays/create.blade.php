@@ -1,25 +1,30 @@
 @section('title', 'Add Weekly Holiday')
 
 <x-app-layout>
-    <div class="m-6 bg-card-light dark:bg-card-dark p-6 rounded-lg border border-black/10 dark:border-white/10">
-        <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">Add Weekly Holiday</h2>
+    <div class="flex justify-between items-center m-6 card">
+        <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Add Weekly Holiday') }}</h2>
+        <a href="{{ route('weekly_holidays.index') }}"
+            class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Weekly Holiday List') }}</a>
+    </div>
+    <div class="m-6 card">
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Add Weekly Holiday') }}</h2>
 
         <form action="{{ route('weekly_holidays.store') }}" method="POST">
             @csrf
             <div class="mb-4">
-                <label for="days_of_week" class="block mb-2">Days of the Week</label>
+                <label for="days_of_week" class="block mb-2">{{ __('Days of the Week') }}</label>
                 <select id="days_of_week" name="days_of_week[]"
                     class="select2 bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5" multiple required>
-                    <option value="Monday">Monday</option>
-                    <option value="Tuesday">Tuesday</option>
-                    <option value="Wednesday">Wednesday</option>
-                    <option value="Thursday">Thursday</option>
-                    <option value="Friday">Friday</option>
-                    <option value="Saturday">Saturday</option>
-                    <option value="Sunday">Sunday</option>
+                    <option value="Monday">{{ __('Monday') }}</option>
+                    <option value="Tuesday">{{ __('Tuesday') }}</option>
+                    <option value="Wednesday">{{ __('Wednesday') }}</option>
+                    <option value="Thursday">{{ __('Thursday') }}</option>
+                    <option value="Friday">{{ __('Friday') }}</option>
+                    <option value="Saturday">{{ __('Saturday') }}</option>
+                    <option value="Sunday">{{ __('Sunday') }}</option>
                 </select>
             </div>
-            <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">Add Holiday</button>
+            <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">{{ __('Add Holiday') }}</button>
         </form>
     </div>
 

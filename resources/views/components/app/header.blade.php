@@ -16,7 +16,7 @@
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
                     <span class="sr-only">{{ __('Open sidebar') }}</span>
-                    <i class="fa-solid fa-bars text-2xl p-3 text-black dark:text-white"></i>
+                    <i class="fa-solid fa-bars text-2xl p-3 text-text-light dark:text-text-dark"></i>
                 </button>
                 <a x-show="!sidebarExpanded" class="hidden lg:block" href="{{ route('dashboard') }}">
                     <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">

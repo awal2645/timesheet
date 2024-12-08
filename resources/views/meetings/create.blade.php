@@ -17,7 +17,7 @@
             @csrf
             <!-- Collapsible Section for Zoom Credentials -->
             <div class="mb-3">
-                <label class="inline-flex items-center cursor-pointer">
+                <label class="inline-flex items-center cursor-pointer mb-3">
                     <input type="checkbox" id="toggleZoomCredentialsCheckbox" class="sr-only peer" />
                     <div
                         class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary-50">
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Participants Role -->
-            <div class="mb-3">
+            <div class="mb-5">
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                     {{ __('Select Participants Role') }}
                 </label>
@@ -126,13 +126,10 @@
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>
-                            {{ $user->username }}
+                        {{ ucfirst($user->username) }}
                         </option>
                     @endforeach
                 </select>
-                <label for="participants" class="form-label">
-                    {{ __('Participants') }}
-                </label>
                 @error('participants')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -140,13 +137,13 @@
 
             <!-- Meeting Description -->
             <div class="form-field">
-                <textarea name="description" id="description" rows="4" >{{ old('description') }}</textarea>
-                <label for="description">{{ __('Meeting Description') }}</label>
+                <textarea name="description" id="description" rows="2">{{ old('description') }}</textarea>
+                <label for="description" class="form-label">{{ __('Meeting Description') }}</label>
+
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-
 
             <!-- Submit Button -->
             <div class="flex">
@@ -158,12 +155,23 @@
         </form>
     </div>
     <script>
-        $(document).ready(function() {
-            $('#participants').select2({
-                allowClear: true,
-                width: '100%', // Full-width dropdown
-            });
-        });
+       $(document).ready(function () {
+    $('#participants').select2({
+        placeholder: "Select participants",
+        allowClear: true,
+    });
+
+    // Handle label positioning
+    $('#participants').on('select2:open select2:select select2:unselect', function () {
+        const $label = $(this).siblings('.form-label');
+        if ($(this).val() && $(this).val().length > 0) {
+            $label.addClass('active');
+        } else {
+            $label.removeClass('active');
+        }
+    });
+});
+
     </script>
 
 </x-app-layout>

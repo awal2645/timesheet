@@ -5,7 +5,7 @@
 <x-app-layout>
     <div class="m-6 p-6 bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-md">
         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('SMTP Config') }}</h2>
-        <form method="POST" action="{{ route('email.update') }}" class="card grid gris-cols-1 md:grid-cols-2 gap-8"
+        <form method="POST" action="{{ route('email.update') }}" class="grid gris-cols-1 md:grid-cols-2 gap-8"
             autocomplete="off">
             @method('PUT')
             @csrf
@@ -108,7 +108,7 @@
             <!-- SAVE BUTTON -->
             <div class="relative col-span-full z-0 w-full group">
                 <button type="submit"
-                    class="px-3 py-2 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
+                    class="px-3  text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none focus:ring-opacity-50">
                     {{ __('Save') }}
                 </button>
             </div>

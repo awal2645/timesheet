@@ -148,7 +148,7 @@
                                                         </button>
                                                         <button onclick="stopTimer({{ $task->id }})"
                                                             id="stop-btn-{{ $task->id }}"
-                                                            class="bg-red-400 text-white px-3 py-2 rounded-lg hidden flex items-center justify-center gap-2">
+                                                            class="bg-red-400 text-text-light dark:text-text-dark px-3 py-2 rounded-lg hidden flex items-center justify-center gap-2">
                                                             <!-- Added gap -->
                                                             <!-- First SVG icon -->
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="20"
