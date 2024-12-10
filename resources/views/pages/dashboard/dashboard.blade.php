@@ -2,6 +2,11 @@
     {{ 'Dashboard' }}
 @endsection
 <x-app-layout>
+    <head>
+        <!-- Add Slick Carousel CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    </head>
     <div class="m-6">
 
         <!-- Welcome banner -->
@@ -151,10 +156,10 @@
                     <!-- News Ticker/Scroller -->
                     <div class="relative overflow-hidden group">
                         <!-- Scrolling Content -->
-                        <div class="animate-scroll inline-flex gap-4" id="scrollContent">
+                        <div class="notice-carosel">
                             @forelse (notice() as $notice)
                                 <div
-                                    class="w-[300px] sm:w-[450px] p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
+                                    class="mx-3 p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
                                     <div class="flex justify-between items-start">
                                         <h4 class="font-semibold text-gray-900 dark:text-white">
                                             {{ $notice->title }}
@@ -193,81 +198,84 @@
 
         </div>
         @if (auth()->user()->role != 'employee')
-        <div class="mt-5">
-            <div class="flex flex-wrap">
-                <div class="w-full">
-                    <div class="dashboard-right pl-0">
-                        <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
-                                {{ __('Recent Invoice') }}</h2>
-                            <div>
-                                <div class="card">
-                                    <table class="w-full table-auto">
-                                        <thead class="table-header">
-                                            <tr class="rounded-2xl text-left">
-                                                <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Date') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Amount') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
-                                                <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
-                                                <th class="p-4 font-medium"></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @forelse ($transactions as $transaction)
-                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                    <td class="p-4">#{{ $transaction->order_id }}</td>
-                                                    <td class="p-4">
-                                                        {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+            <div class="mt-5">
+                <div class="flex flex-wrap">
+                    <div class="w-full">
+                        <div class="dashboard-right pl-0">
+                            <div class="invoices-table">
+                                <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                                    {{ __('Recent Invoice') }}</h2>
+                                <div>
+                                    <div class="card">
+                                        <table class="w-full table-auto">
+                                            <thead class="table-header">
+                                                <tr class="rounded-2xl text-left">
+                                                    <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Date') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Amount') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
+                                                    <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
+                                                    <th class="p-4 font-medium"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ($transactions as $transaction)
+                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                                        <td class="p-4">#{{ $transaction->order_id }}</td>
+                                                        <td class="p-4">
+                                                            {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
                                                         <td class="p-4">
                                                             @if ($transaction->payment_type == 'per_job_based')
-                                                                <span class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                                <span
+                                                                    class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
                                                                     {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
                                                                 </span>
                                                             @else
-                                                                <span class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                                <span
+                                                                    class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
                                                                     {{ $transaction->plan->label }}
                                                                 </span>
                                                             @endif
                                                         </td>
-                                                    <td class="p-4">
-                                                        {{ ucfirst($transaction->employer->employer_name) ?? '' }}
-                                                    </td>
-                                                    <td class="p-4">${{ $transaction->usd_amount }}</td>
-                                                    <td class="p-4">
-                                                        {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
-                                                    </td>
-                                                    <td class="p-4">
-                                                        <span
-                                                            class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
-                                                            {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            @empty
-                                                <tr>
-                                                    <td colspan="8" class="text-center py-8">
-                                                        <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
-                                                    </td>
-                                                </tr>
-                                            @endforelse
-                                        </tbody>
-                                    </table>
+                                                        <td class="p-4">
+                                                            {{ ucfirst($transaction->employer->employer_name) ?? '' }}
+                                                        </td>
+                                                        <td class="p-4">${{ $transaction->usd_amount }}</td>
+                                                        <td class="p-4">
+                                                            {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
+                                                        </td>
+                                                        <td class="p-4">
+                                                            <span
+                                                                class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
+                                                                {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                @empty
+                                                    <tr>
+                                                        <td colspan="8" class="text-center py-8">
+                                                            <x-svgs.no-data-found
+                                                                class="mx-auto md:size-[360px] size-[220px]" />
+                                                        </td>
+                                                    </tr>
+                                                @endforelse
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
+                            @if ($transactions->total() > $transactions->count())
+                                <div class="mt-2">
+                                    <div class="d-flex justify-content-center">
+                                        {{ $transactions->links() }}
+                                    </div>
+                                </div>
+                            @endif
                         </div>
-                        @if ($transactions->total() > $transactions->count())
-                            <div class="mt-2">
-                                <div class="d-flex justify-content-center">
-                                    {{ $transactions->links() }}
-                                </div>
-                            </div>
-                        @endif
                     </div>
                 </div>
-            </div>
             </div>
         @endif
 
@@ -277,6 +285,8 @@
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
     // Wait for DOM to be fully loaded
     document.addEventListener('DOMContentLoaded', function() {
@@ -389,44 +399,15 @@
     });
 </script>
 
-<style>
-    @keyframes scroll {
-        0% {
-            transform: translateX(100%);
-            /* Start from the right */
-        }
 
-        100% {
-            transform: translateX(-100%);
-            /* Move to the left */
-        }
-    }
-
-    .animate-scroll {
-        animation: scroll 30s linear infinite;
-        white-space: nowrap;
-        /* Prevent line breaks */
-    }
-
-    .notice-scroller:hover .animate-scroll {
-        animation-play-state: paused;
-        /* Pause on hover */
-    }
-</style>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const scrollContent = document.getElementById('scrollContent');
-        const originalContent = scrollContent.innerHTML;
-
-        // Duplicate the content for seamless scrolling
-        scrollContent.innerHTML = originalContent;
-
-        // Set the width of the scrollContent to accommodate both sets of content
-        scrollContent.style.width = `${scrollContent.scrollWidth}px`;
-
-        // Optional: Adjust animation duration based on content width
-        const contentWidth = scrollContent.scrollWidth / 2; // Only need half for seamless effect
-        scrollContent.style.animationDuration = (contentWidth / 10) + 's';
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.notice-carosel').slick({
+            infinite: true,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 2000,
+        });
     });
 </script>

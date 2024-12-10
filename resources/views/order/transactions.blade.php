@@ -44,7 +44,6 @@
                                                 <th class="p-4 font-medium">{{ __('Amount') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
-                                                <th class="p-4 font-medium"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
