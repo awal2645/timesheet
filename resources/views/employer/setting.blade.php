@@ -14,7 +14,7 @@
 @endif
 
     <div class="py-12 px-8">
-        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">Application Settings</h2>
+        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Application Settings') }}</h2>
         <form action="{{ route('employer.info.update', $employer->id) }}" method="Post" enctype="multipart/form-data"
             class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl">
             @csrf
@@ -28,8 +28,7 @@
                                 class="w-full h-[300px] rounded object-contain" x-show="logoPreview">
                         </div>
                         <div>
-                            <p class="max-w-3xl text-base mb-5">Upload a high-resolution company logo in JPEG or PNG
-                                format.</p>
+                            <p class="max-w-3xl text-base mb-5">{{ __('Upload a high-resolution company logo in JPEG or PNG format.') }}</p>
                             <div>
                                 <div class="flex gap-3 items-center flex-wrap">
                                     <label
@@ -41,13 +40,13 @@
                                             <path
                                                 d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
                                         </svg>
-                                        Replace Logo
+                                        {{ __('Replace Logo') }}
                                         <input type="file" name="logo" @change="handleLogoUpload"
                                             accept="image/jpeg,image/png" style="display:none;">
                                     </label>
                                     <button @click="removeLogo" type="button"
                                         class="flex gap-3 items-center px-6 py-3 rounded-md border shadow-md border-primary-500 dark:text-white">
-                                        <span>Remove Logo</span>
+                                        <span>{{ __('Remove Logo') }}</span>
                                     </button>
                                 </div>
                                 <p x-show="logoError" x-text="logoError" class="error-message"></p>
@@ -222,7 +221,7 @@
             </div>
 
             <button type="submit"
-                class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                 {{ __('Save Settings') }}
             </button>
         </form>

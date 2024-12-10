@@ -15,7 +15,7 @@
 @endif
 
     <div class="py-12 px-8">
-        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Update CMS') }}</h2>
+        <h2 class="text-2xl mb-6 text-text-light dark:text-text-dark">{{ __('Update CMS') }}</h2>
         <form action="{{ route('cms.update') }}" method="POST" enctype="multipart/form-data"
             class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl" x-data="imageUpload()">
             @csrf
@@ -36,7 +36,7 @@
                                 class="w-full h-[200px] rounded object-contain" x-show="imagePreviews['{{ $image }}']" x-cloak>
                         @endif
                     </div>
-                    <label class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-50 shadow-md text-white dark:text-black">
+                    <label class="flex gap-3 items-center px-6 py-3 rounded-md bg-primary-50 shadow-md text-text-light dark:text-text-dark">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
                             <path d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
@@ -51,7 +51,7 @@
 
             <div class="col-span-full mt-6">
                 <button type="submit"
-                    class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                    class="mt-6 text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                     {{ __('Update') }}
                 </button>
             </div>

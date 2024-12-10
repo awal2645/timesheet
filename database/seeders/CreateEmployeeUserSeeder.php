@@ -18,7 +18,7 @@ class CreateEmployeeUserSeeder extends Seeder
         $employeeRole = Role::find(3);
 
         // Define specific permissions for employees
-        $employeePermissions = [7, 8, 17, 18, 19, 30];
+        $employeePermissions = [7, 8, 17, 18, 19, 30,40,56];
 
         foreach ($employeePermissions as $permissionId) {
             $permission = Permission::find($permissionId);
@@ -30,7 +30,7 @@ class CreateEmployeeUserSeeder extends Seeder
 
         // Array of realistic employee details
         $employees = [
-            ['username' => 'employee1', 'email' => 'employee1@mail.com', 'phone' => '01712345678', 'name' => 'Employee One', 'gender' => 'male'],
+            ['username' => 'employee', 'email' => 'employee@mail.com', 'phone' => '01712345678', 'name' => 'Employee One', 'gender' => 'male'],
             ['username' => 'employee2', 'email' => 'employee2@mail.com', 'phone' => '01798765432', 'name' => 'Jane Smith', 'gender' => 'female'],
             // Add more employees as needed
         ];

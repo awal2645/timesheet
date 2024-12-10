@@ -2,7 +2,10 @@
     {{ __('Create Task') }}
 @endsection
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+{{-- <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css"> --}}
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <x-app-layout>
     <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Task') }}</h2>
@@ -75,8 +78,8 @@
             {{-- Task Time --}}
 
             <div class="form-field">
-                <input  type="text" id="time-picker" placeholder="" name="time"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
+                <input  type="text" id="time-picker" placeholder="" name="time" value="00:00"
+                    class="block py-2.5 px-0 w-full text-sm text-text-light dark:text-text-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
@@ -133,7 +136,7 @@
         flatpickr("#time-picker", {
             enableTime: true,
             noCalendar: true,
-
+            value: "00:00",
             time_24hr: true, // Ensures 24-hour format
             dateFormat: "D:H:i" // Sets format as HH:MM
         });

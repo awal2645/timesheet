@@ -12,7 +12,15 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
-        $tasks = Task::latest()->paginate(10);
+        if(auth()->user()->role == 'employee'){
+            $tasks = Task::where('employee_id', auth()->user()->employee->id)->latest()->paginate(10);
+        }elseif(auth()->user()->role == 'employer'){
+            $tasks = Task::whereHas('employee', function ($query) {
+                $query->where('employer_id', auth()->user()->employer->id);
+            })->latest()->paginate(10);
+        }else{
+            $tasks = Task::latest()->paginate(10);
+        }
         $projects = Project::all();
         return view('task.index', compact('tasks', 'projects'));
     }

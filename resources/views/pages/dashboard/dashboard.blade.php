@@ -192,6 +192,7 @@
             </div>
 
         </div>
+        @if (auth()->user()->role != 'employee')
         <div class="mt-5">
             <div class="flex flex-wrap">
                 <div class="w-full">
@@ -267,7 +268,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+            </div>
+        @endif
 
     </div>
 

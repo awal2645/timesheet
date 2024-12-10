@@ -44,7 +44,7 @@ class OrderController extends Controller
                         });
                 })
                 ->latest()
-                ->paginate(50);
+                ->paginate(10);
 
             return view('order.transactions', compact('transactions'));
         } catch (\Exception $e) {

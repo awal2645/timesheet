@@ -8,21 +8,21 @@
             <div class="border-t border-gray-300 p-6">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="flex items-center">
-                        <i class="fas fa-user-circle text-blue-600 mr-2"></i>
+                        <i class="fas fa-user-circle text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Employee Name:</p>
                             <p class="text-gray-700">{{ $employee->name }}</p>
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-envelope text-blue-600 mr-2"></i>
+                        <i class="fas fa-envelope text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Employee Email:</p>
                             <p class="text-gray-700">{{ $employee->email }}</p>
                         </div>
                     </div>
                     <div class="flex items-center">
-                        <i class="fas fa-clock text-blue-600 mr-2"></i>
+                        <i class="fas fa-clock text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Total Hours Worked:</p>
                             <p class="text-gray-700">{{ $employee_total_hours }}</p>
@@ -30,7 +30,7 @@
                     </div>
                     @if ($employee->payment_type == 'hourly')   
                     <div class="flex items-center">
-                        <i class="fas fa-dollar-sign text-blue-600 mr-2"></i>
+                        <i class="fas fa-dollar-sign text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Total Salary:</p>
                             <p class="text-gray-700">{{ $employee_total_salary }}</p>
@@ -38,7 +38,7 @@
                     </div>
                     @endif
                     <div class="flex items-center">
-                        <i class="fas fa-credit-card text-blue-600 mr-2"></i>
+                        <i class="fas fa-credit-card text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Payment Type:</p>
                             <p class="text-gray-700">{{ $employee->payment_type }}</p>
@@ -46,7 +46,7 @@
                     </div>
                     @if ($employee->payment_type == 'hourly')
                     <div class="flex items-center">
-                        <i class="fas fa-money-bill-wave text-blue-600 mr-2"></i>
+                        <i class="fas fa-money-bill-wave text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Billing Rate:</p>
                             <p class="text-gray-700">{{ $employee->billing_rate }}</p>
@@ -55,7 +55,7 @@
                     @endif
                     @if ($employee->payment_type == 'monthly')
                     <div class="flex items-center">
-                        <i class="fas fa-calendar-alt text-blue-600 mr-2"></i>
+                        <i class="fas fa-calendar-alt text-primary-50 mr-2"></i>
                         <div>
                             <p class="font-semibold">Monthly Salary:</p>
                                 <p class="text-gray-700">{{ $employee->monthly_salary }}</p>
@@ -65,7 +65,7 @@
                 </div>
             </div>
             <div class="text-center p-6">
-                <button id="download-pdf" class="bg-blue-600 text-white py-3 px-8 rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">Download PDF</button>
+                <button id="download-pdf" class="bg-primary-50 text-text-light dark:text-text-dark py-3 px-8 rounded-lg shadow-lg hover:bg-primary-600 transition duration-300">Download PDF</button>
             </div>
         </div>
     </div>

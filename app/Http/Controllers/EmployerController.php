@@ -182,16 +182,10 @@ class EmployerController extends Controller
             'state' => 'required|string|max:255',
             'country' => 'required|string|max:255',
             'zip' => 'required|string|max:255',
-            'role_name' => 'required',
             'account_details' => 'nullable|string',
         ]);
 
         try {
-
-            if ($request->role_name) {
-                DB::table('model_has_roles')->where('model_id', $employer->user->id)->delete();
-                $user->assignRole([$request->role_name]);
-            }
 
             if ($request->hasFile('image')) {
                 $user = User::findOrFail(auth('web')->user()->id);

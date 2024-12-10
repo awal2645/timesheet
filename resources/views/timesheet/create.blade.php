@@ -15,7 +15,7 @@
                         class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-30  0 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
                         Week</button>
                     <button id="nextWeek"
-                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
+                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
                         Week</button>
                 </div>
             </div>
@@ -27,18 +27,18 @@
                     @csrf
                     @foreach ($days as $day)
                         <div
-                            class="mb-4 p-4 sm:p-2 bg-white rounded-md shadow-md text-center dark:bg-gray-800 dark:text-white">
+                            class="mb-4 p-4 sm:p-2 bg-card-light dark:bg-card-dark   rounded-md shadow-md text-center dark:text-text-dark">
                             <label for="{{ $day }}"
-                                class="block text-sm font-medium text-gray-700 dark:text-white">{{ $day }}</label>
+                                class="block text-sm font-medium text-text-light dark:text-text-dark">{{ $day }}</label>
                             <div class="flex mt-2 form-field">
                                 <input type="number" min="1" name="hours[{{ $day }}]"
                                     value="{{ $hours[$day] }}"
-                                    class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
+                                    class="input-field hours text-center	 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-text-dark dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                                     placeholder="Enter hours">
 
                             </div>
                             <label
-                                class=" block text-sm font-medium text-gray-700 dark:text-white">{{ $dates[$day] }}</label>
+                                class=" block text-sm font-medium text-text-light dark:text-text-dark">{{ $dates[$day] }}</label>
                             @error('hours.*')
                                 <span class=" text-red-500">{{ $message }}</span>
                             @enderror

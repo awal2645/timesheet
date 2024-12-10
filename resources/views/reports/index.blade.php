@@ -76,7 +76,7 @@
                                                                 {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
                                                             </div>
                                                         </td>
-                                                            <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-700">
+                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                                 <div class="flex items-center space-x-2">
                                                                 <span
                                                                 class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $timeReport->status == 'approve' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">

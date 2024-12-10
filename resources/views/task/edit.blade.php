@@ -70,7 +70,7 @@
             {{-- Task Name --}}
             <div class="form-field">
                 <input  type="text" id="task_name" placeholder="" name="task_name" value="{{ $task->task_name }}"
-                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
+                    class="block py-2.5 px-0 w-full text-sm text-text-light dark:text-text-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
                 <label for="task_name" class="form-label">{{ __('Task Name') }}</label>
                 @error('task_name')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

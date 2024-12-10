@@ -16,7 +16,7 @@
             <ul class="list-disc ml-4">
                 <li>{{ __('Application current version') }} <strong>{{ config('app.version') }}</strong>
                     <a href="https://zenxservices.com/knowledge-base/upgrade-guide/"
-                        class="underline text-white">{{ __('Check here How to Update Your Application') }}</a>
+                        class="underline text-text-light dark:text-text-dark">{{ __('Check here How to Update Your Application') }}</a>
                 </li>
                 <li>{{ __('Extract downloaded zip file and find app.zip file.') }}</li>
                 <li>{{ __('Put that app.zip file in the server\'s application root directory.') }}</li>
@@ -30,7 +30,7 @@
             <form method="POST" action="{{ route('upgrade.apply') }}" enctype="multipart/form-data">
                 @csrf
                 <button type="submit"
-                    class="w-full text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                    class="w-full text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
                     {{ __('Upgrade Now') }}
                 </button>
             </form>

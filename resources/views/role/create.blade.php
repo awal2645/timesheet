@@ -54,8 +54,12 @@
             </div>
 
             <!-- Submit Button -->
-            <button type="submit"
-                class="block w-full text-lg font-semibold text-white bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:focus:ring-primary-800 py-3 rounded-lg shadow-md transition-colors duration-300">{{ __('Submit') }}</button>
+                <div class="col-span-full">
+                    <button type="submit"
+                         class="px-4 py-2 text-text-light dark:text-text-dark bg-primary-50 rounded-lg hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-50 dark:hover:bg-primary-400 dark:focus:ring-primary-600 font-medium text-sm">
+                        {{ __('Create Role') }}
+                    </button>
+                </div>
         </form>
     </div>
 </x-app-layout>
