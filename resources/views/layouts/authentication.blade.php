@@ -123,9 +123,41 @@
                     </svg>
                 </button>
             </div>
-            <a href="#" class="block py-2 text-white">About Us</a>
-            <a href="#" class="block py-2 text-white">Terms and Conditions</a>
-            <a href="#" class="block py-2 text-white">Privacy Policy</a>
+            <nav class="flex flex-col gap-4">
+                <a href="#"
+                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">About
+                    Us</a>
+                <a href="#"
+                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Terms
+                    and
+                    Conditions</a>
+                <a href="#"
+                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Privacy
+                    Policy</a>
+                @php
+                    $languages = loadLanguage();
+                    $hasMultipleLanguages = count($languages) > 1;
+                    $current_language = currentLanguage() ?: loadDefaultLanguage();
+                    // dd($current_language);
+                @endphp
+
+                @if ($hasMultipleLanguages)
+                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form">
+                        <select name="language" id="language-switcher"
+                            class="form-select text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark border-white/60"
+                            onchange="document.getElementById('language-switcher-form').submit()">
+                            @foreach ($languages as $lang)
+                                <option value="{{ $lang->code }}"
+                                    {{ $lang->code === $current_language ? 'selected' : '' }}>
+                                    {{ $lang->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </form>
+
+
+                @endif
+            </nav>
             {{-- Add more links as needed --}}
         </nav>
     </div>
