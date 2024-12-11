@@ -426,7 +426,7 @@
         scrollContent.style.width = `${scrollContent.scrollWidth}px`;
 
         // Optional: Adjust animation duration based on content width
-        const contentWidth = scrollContent.scrollWidth / 2; // Only need half for seamless effect
+        const contentWidth = scrollContent.scrollWidth / 5; // Only need half for seamless effect
         scrollContent.style.animationDuration = (contentWidth / 10) + 's';
     });
 </script>

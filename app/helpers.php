@@ -11,6 +11,7 @@ use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Language;
 use App\Models\TimeReport;
+use App\Models\Testimonial;
 use App\Models\Notificattion;
 use App\Models\SearchCountry;
 use Illuminate\Support\Carbon;
@@ -324,5 +325,12 @@ if (! function_exists('cms')) {
     function cms()
     {
         return Cms::first();
+    }
+}
+
+if (! function_exists('testimonials')) {
+    function testimonials()
+    {
+        return Testimonial::all();
     }
 }

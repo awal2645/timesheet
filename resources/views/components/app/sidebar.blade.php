@@ -269,7 +269,7 @@
                                 </li>
                                 @endcanany
                                 <!-- Holidays -->
-                                @canany('Holidays view')
+                                @canany('Holiday view')
                                 <li class="mb-1 last:mb-0">
                                     <a href="{{ route('holidays.index') }}"
                                         class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
@@ -484,6 +484,24 @@
                         </a>
                     </li>
                     @endcanany
+                    <!-- Contact -->
+                    @canany('Contact view')
+                    <li>
+                        <a href="{{ route('contact.index') }}"
+                            class="sidebar-menu-item {{ request()->routeIs('contact.*') ? 'active' : '' }}  ">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="sidebar-menu-icon">
+                                        <i class="fa-solid fa-phone text-base"></i>
+                                    </span>
+                                    <span class="sidebar-menu-text">
+                                        {{ __('Contact') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    @endcanany
                     <!-- General -->
                     @canany('General Settings')
                         <li>
@@ -539,7 +557,23 @@
                         </li>
                     @endcanany
 
-                     <!-- Cms -->
+                     <!-- testimonial -->
+                     <li>
+                        <a href="{{ route('testimonial.index') }}"
+                            class="sidebar-menu-item {{ request()->routeIs('testimonial.*') ? 'active' : '' }}  ">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="sidebar-menu-icon">
+                                        <i class="fa-solid fa-user-tie"></i>        
+                                    </span>
+                                    <span class="sidebar-menu-text">
+                                        {{ __('Testimonial') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                     <!-- Employee Salary -->
                      {{-- @canany('Cms') --}}
                      <li>
                          <a href="{{ route('salary') }}"

@@ -119,6 +119,7 @@ class PermissionTableSeeder extends Seeder
             'Zoom Meeting view',
             'Zoom Meeting create',
             'Weekly Holidays view',
+            "Contact view"
         ];
 
         foreach ($permissions as $permission) {

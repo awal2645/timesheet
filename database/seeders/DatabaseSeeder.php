@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
             UserPlanSeeder::class,
             TimesheetsTableSeeder::class,
             TimeReportsTableSeeder::class,
+            ContactSeeder::class,
+            TestimonialsTableSeeder::class,
         ]);
     }
 }

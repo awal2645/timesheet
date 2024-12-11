@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Client;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\AuthController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MeetingController;
@@ -27,6 +30,7 @@ use App\Http\Controllers\PricePlanController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\TimeReportController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\EmployeeSalryController;
@@ -263,4 +267,21 @@ Route::post('/file/delete', [CmsController::class, 'deleteFile'])->name('file.de
 Route::get('/salary', [EmployeeSalryController::class, 'index'])->name('salary');
 Route::get('/salary/show', [EmployeeSalryController::class, 'show'])->name('salary.show');
 
+// Contact Routes
+Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+Route::get('/contact/destroy/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
+
+// Testimonial Routes
+Route::resource('testimonial', TestimonialController::class);
+
+Route::get('/get/employee/{employer}', function ($employer) {
+    $employees = Employee::where('employer_id', $employer)->get(['id', 'employee_name']);
+    return response()->json($employees);
+});
+
+Route::get('/get/client/{employer}', function ($employer) {
+    $clients = Client::where('employer_id', $employer)->get(['id', 'client_name']);
+    return response()->json($clients);
+});
 });

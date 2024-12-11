@@ -36,7 +36,7 @@ class CreateEmployeeUserSeeder extends Seeder
         ];
 
         foreach ($employees as $data) {
-            $randomEmployerId = rand(1, 9); // Ensure this matches your employers table data
+            $randomEmployerId = 1; // Ensure this matches your employers table data
             $randomProjectId = rand(1, 5); // Assuming 5 projects
             $randomClientId = rand(1, 10); // Assuming 10 clients
             $billingRate = rand(100, 500) + rand(0, 99) / 100; // Random rate with 2 decimals

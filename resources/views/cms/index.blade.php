@@ -3,27 +3,17 @@
 @endsection
 
 <x-app-layout>
-    @if ($errors->any())
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">{{ __('Oops! Something went wrong.') }}</strong>
-        <ul class="mt-2 list-disc list-inside text-sm">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
-    <div class="py-12 px-8">
-        <h2 class="text-2xl mb-6 text-text-light dark:text-text-dark">{{ __('Update CMS') }}</h2>
+    <div class="card m-6">
+        <h2 class="text-2xl text-text-light dark:text-text-dark font-bold mb-4">{{ __('Update CMS') }}</h2>
         <form action="{{ route('cms.update') }}" method="POST" enctype="multipart/form-data"
-            class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl" x-data="imageUpload()">
+            class="bg-card-light dark:bg-card-dark p-8  border-black/10 dark:border-white/10 " x-data="imageUpload()">
             @csrf
             @method('PUT')
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Upload Images -->
-                @foreach (['banner_image', 'approach_image', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5'] as $image)
+                @foreach (['banner_image', 'approach_image','features_image1', 'features_image2', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5', 'client_image6', 'client_image7'] as $image)
                 <div class="flex flex-col border border-gray-300 dark:border-gray-600 p-6 rounded-lg">
                     <h3 class="text-xl mb-4">{{ ucfirst(str_replace('_', ' ', $image)) }}</h3>
                     <div class="preview-container mb-4">
