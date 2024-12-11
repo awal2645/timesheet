@@ -23,7 +23,7 @@
         <ul>
             @foreach (notification() as $notification)
             <li class="border-b border-card-light dark:border-card-dark last:border-0">
-                <a class="block py-2 px-4 hover:bg-primary-50 dark:hover:bg-primary-50" href="#0" @click="open = false"
+                <a class="block py-2 px-4 hover:bg-primary-50 dark:hover:bg-primary-50" href="{{ $notification->page_url ?? '#' }}" @click="open = false"
                     @focus="open = true" @focusout="open = false">
                     <span class="block text-sm mb-2">📣
                         <span class="font-medium text-text-light dark:text-text-dark">
@@ -31,14 +31,14 @@
                         </span>
                     </span>
                     <span
-                        class="block text-xs font-medium text-text-light dark:text-text-dark">{{$notification->created_at->format('Y-m-d')}}</span>
+                        class="block text-xs font-medium text-text-light dark:text-text-dark">{{ $notification->created_at->diffForHumans() }}</span>
                 </a>
             </li>
             @endforeach
         </ul>
         <div class="flex justify-center">
             <a href="{{ route('notification.del') }}"
-                class="text-text-light dark:text-text-dark cursor-pointer hover:text-text-dark">
+                class="text-text-light dark:text-text-dark cursor-pointer hover:text-primary-00">
                 {{ __('Mark as Read') }}
             </a>
         </div>

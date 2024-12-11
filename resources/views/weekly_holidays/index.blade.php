@@ -55,7 +55,30 @@
                                                             @php
                                                                 $daysOfWeek = json_decode($holiday->days_of_week);
                                                             @endphp
-                                                            {{ ucfirst(is_array($daysOfWeek) ?  ucfirst(implode(', ', $daysOfWeek)) : ucfirst($daysOfWeek)) }}
+                                                            @php
+                                                            $daysOfWeekFormatted = is_array($daysOfWeek) 
+                                                                ? implode(', ', array_map(function($day) {
+                                                                    return ucfirst($day);
+                                                                }, $daysOfWeek))
+                                                                : ucfirst($daysOfWeek);
+                                                            
+                                                            $daysOfWeekFormatted = str_replace(
+                                                                ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                                                                [
+                                                                    '<span class="text-red-50 bg-red-500 rounded  p-2">Saturday</span>',
+                                                                    '<span class="text-blue-50 bg-blue-500 rounded p-2">Sunday</span>',
+                                                                    '<span class="text-green-50 bg-green-500 rounded p-2">Monday</span>',
+                                                                    '<span class="text-yellow-50 bg-yellow-500 rounded p-2">Tuesday</span>',
+                                                                    '<span class="text-purple-50 bg-purple-500 rounded p-2">Wednesday</span>',
+                                                                    '<span class="text-pink-50 bg-pink-500 rounded p-2">Thursday</span>',
+                                                                    '<span class="text-orange-50 bg-orange-500 rounded p-2">Friday</span>',
+                                                                ],
+                                                                $daysOfWeekFormatted
+                                                            );
+                                                            @endphp
+                                                            
+                                                            {!! $daysOfWeekFormatted !!}
+                                                            
                                                         </div>
                                                         </td>
                                                         <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">

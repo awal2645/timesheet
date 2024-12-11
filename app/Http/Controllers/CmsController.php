@@ -104,7 +104,7 @@ class CmsController extends Controller
         $cms = Cms::first();
 
         // Define the fields to process
-        $fields = ['banner_image', 'approach_image', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5'];
+        $fields = ['banner_image', 'approach_image', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5', 'client_image6', 'client_image7', 'features_image1', 'features_image2'];
 
         foreach ($fields as $field) {
             if ($request->hasFile($field)) {

@@ -389,7 +389,6 @@
     "Twitter URL": "Twitter URL",
     "Linkedin URL": "Linkedin URL",
     "Copyright": "Copyright",
-    "Add Weekly Holiday": "Add Weekly Holiday",
     "Go to Holiday List": "Go to Holiday List",
     "Leave Type": "Leave Type",
     "Description": "Description",
@@ -398,9 +397,19 @@
     "Leave Type List": "Leave Type List",
     "Create Client": "Create Client",
     "Create Role": "Create Role",
-    "Total Time": "Total Time"
-    
-
-
+    "Total Time": "Total Time",
+    "FEATURES": "FEATURES",
+    "Timesheet - Time Tracking Tool": "Timesheet - Time Tracking Tool",
+    "Integration": "Integration",
+    "Use these awesome forms to login or create new account in your project for free.": "Use these awesome forms to login or create new account in your project for free.",
+    "All In One Place CRM System": "All In One Place CRM System",
+    "Buy Now": "Buy Now",
+    "Live Demo": "Live Demo",
+    "Trusted by 1000+ Customer": "Trusted by 1000+ Customer",
+    "Support": "Support",
+    "100% Free": "100% Free",
+    "Feature": "Feature",
+    "Special Offer": "10% Special Offer",
+    "Our Pricing": "Our Pricing"
 
 }

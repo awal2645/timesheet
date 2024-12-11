@@ -399,7 +399,6 @@
     });
 </script>
 
-
 <script type="text/javascript">
     $(document).ready(function() {
         $('.notice-carosel').slick({

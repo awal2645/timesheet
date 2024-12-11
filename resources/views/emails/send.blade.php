@@ -27,7 +27,7 @@
                     <label for="emails" class="block text-sm font-medium">{{ __('Select User Role') }}</label>
                     <select name="role[]" id="role" class="select2 !w-full" multiple="multiple">
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            <option value="{{ $role->id }}">{{ ucfirst($role->name) }}</option>
                         @endforeach
                     </select>
                 </div>

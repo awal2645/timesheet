@@ -25,7 +25,7 @@
 
         <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Earnig(s)') }}</h2>
         <div class="flex items-start">
-            <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{earningCount()}}</div>
+            <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">${{earningCount()}}</div>
         </div>
         @endif
         

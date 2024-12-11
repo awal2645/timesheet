@@ -84,14 +84,5 @@
         </form>
     </div>
 </x-app-layout>
-<style>
-    .filepond--panel-root {
-        background-color: transparent;
-        border: 1px solid rgb(209, 213, 219, 1);
-    }
 
-    .dark .filepond--panel-root {
-        border: 1px solid rgba(75, 85, 99, 1)
-    }
-</style>
 

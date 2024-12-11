@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Employee;
 use App\Models\Employer;
 use Illuminate\Http\Request;
+use App\Models\Notificattion;
 
 class TaskController extends Controller
 {
@@ -53,6 +54,14 @@ class TaskController extends Controller
             'time' => $request->time,
             'status' => $request->status,
             'due_date' => $request->due_date,
+        ]);
+
+        // notification
+        Notificattion::create([
+            'message' => auth('web')->user()->username.' Task created',
+            'from' => auth('web')->user()->id,
+            'to' => $request->employee_id,
+            'page_url' => '/task',
         ]);
 
         return redirect()->route('task.index')->with('success', 'Task created successfully!');

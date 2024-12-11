@@ -22,11 +22,12 @@
             <div class="form-field">
                 <select multiple id="role" name="role[]" class="form-select">
                     @foreach ($roles as $role)
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $role->id }}">{{
-                        $role->name }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $role->id }}">
+                        {{ ucfirst($role->name) }}
+                    </option>
                     @endforeach
                 </select>
-                <label for="role" class="form-label">{{ __('Role') }}</label>
+                {{-- <label for="role" class="form-label">{{ __('Role') }}</label> --}}
             </div>
             <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
                 {{ __('Create Notice') }}

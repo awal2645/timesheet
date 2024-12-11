@@ -16,11 +16,15 @@ return new class extends Migration
             $table->id();
             $table->string('banner_image')->nullable();
             $table->string('approach_image')->nullable();
+            $table->string('features_image1')->nullable();
+            $table->string('features_image2')->nullable();
             $table->string('client_image1')->nullable();
             $table->string('client_image2')->nullable();
             $table->string('client_image3')->nullable();
             $table->string('client_image4')->nullable();
             $table->string('client_image5')->nullable();
+            $table->string('client_image6')->nullable();
+            $table->string('client_image7')->nullable();
             $table->timestamps();
         });
         Cms::insert([
@@ -31,6 +35,10 @@ return new class extends Migration
             'client_image3' => 'images/client3.png',
             'client_image4' => 'images/client4.png',
             'client_image5' => 'images/client5.png',
+            'client_image6' => 'images/client6.png',
+            'client_image7' => 'images/client7.png',
+            'features_image1' => 'images/features1.png',
+            'features_image2' => 'images/features2.png',
         ]); 
     }
 
