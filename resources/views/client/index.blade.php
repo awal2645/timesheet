@@ -4,7 +4,7 @@
 <x-app-layout>
     <div class="relative m-6">
         <div>
-            <div class="my-8 card flex justify-between items-center">
+            <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
                 <form action="{{ route('client.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -36,7 +36,7 @@
                                 {{ __('Client List') }}
                             </h2>
                             <div>
-                                <div class="card">
+                                <div class="card overflow-x-auto">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">
@@ -173,7 +173,8 @@
                                                 @else
                                                     <tr>
                                                         <td colspan="5" class="text-center py-8  ">
-                                                            <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                            <x-svgs.no-data-found
+                                                                class="mx-auto md:size-[360px] size-[220px]" />
                                                         </td>
                                                     </tr>
                                                 @endif

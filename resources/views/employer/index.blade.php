@@ -5,7 +5,7 @@
 <x-app-layout>
     <div class="relative m-6">
         <div>
-            <div class="my-8 card flex justify-between items-center">
+            <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
                 <form action="{{ route('employer.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -35,7 +35,7 @@
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Employer List') }}</h2>
                             <div>
-                                <div class="card">
+                                <div class="card overflow-x-auto">
                                     <table class="w-full table-auto">
                                         <thead class="table-header">
                                             <tr class="rounded-2xl text-left">

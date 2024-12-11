@@ -4,7 +4,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class="mb-12 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="card flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
                 <form action="{{ route('invoice.index') }}" method="GET">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -28,7 +28,7 @@
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Invoice List') }}</h2>
-                            <div class="card">
+                            <div class="card overflow-x-auto">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
                                         <tr class="rounded-2xl text-left">

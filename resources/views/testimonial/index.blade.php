@@ -4,7 +4,7 @@
 <x-app-layout>
     <div class="relative m-6">
         <div>
-            <div class="my-8 card flex justify-between items-center">
+            <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
                 <form action="{{ route('testimonial.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -35,7 +35,7 @@
                                 {{ __('Testimonials List') }}
                             </h2>
                             <div>
-                                <div class="card">
+                                <div class="card overflow-x-auto">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">
@@ -61,21 +61,31 @@
                                             <tbody>
                                                 @if ($testimonials->count() > 0)
                                                     @foreach ($testimonials as $testimonial)
-                                                        <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
+                                                        <tr
+                                                            class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                            <td
+                                                                class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                                 {{ $testimonial->name }}
                                                             </td>
-                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
+                                                            <td
+                                                                class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                                 {{ $testimonial->designation }}
                                                             </td>
-                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
+                                                            <td
+                                                                class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                                 {{ $testimonial->company }}
                                                             </td>
-                                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
+                                                            <td
+                                                                class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                                 <div class="flex items-center gap-3">
 
-                                                                <a href="{{ route('testimonial.edit', $testimonial->id) }}" class="text-blue-500 hover:underline"><x-svgs.edit class="size-[20px]" /></a>
-                                                                <button onclick="showConfirmation({{ $testimonial->id }})" class="text-red-500 hover:underline"><x-svgs.delete class="size-[20px]" /></button>
+                                                                    <a href="{{ route('testimonial.edit', $testimonial->id) }}"
+                                                                        class="text-blue-500 hover:underline"><x-svgs.edit
+                                                                            class="size-[20px]" /></a>
+                                                                    <button
+                                                                        onclick="showConfirmation({{ $testimonial->id }})"
+                                                                        class="text-red-500 hover:underline"><x-svgs.delete
+                                                                            class="size-[20px]" /></button>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -83,7 +93,8 @@
                                                 @else
                                                     <tr>
                                                         <td colspan="4" class="text-center py-8">
-                                                            <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                            <x-svgs.no-data-found
+                                                                class="mx-auto md:size-[360px] size-[220px]" />
                                                         </td>
                                                     </tr>
                                                 @endif

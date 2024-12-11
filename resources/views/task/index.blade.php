@@ -44,7 +44,7 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class=" mt-10 mb-3 flex flex-col md:flex-row justify-between items-center md:space-y-0 card">
+            <div class=" mt-10 mb-3 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0 card">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -70,7 +70,7 @@
                             <h2
                                 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">
                                 {{ __('Latest Tasks') }}</h2>
-                            <div class="card">
+                            <div class="card overflow-x-auto">
                                 <div class="max-w-full">
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

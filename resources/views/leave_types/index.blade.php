@@ -5,7 +5,7 @@
 <x-app-layout>
     <div class="relative m-6">
         <div class="">
-            <div class="card flex justify-between items-center">
+            <div class="card flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
                 <form action="{{ route('leave_types.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -35,7 +35,7 @@
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Leave Type List') }}</h2>
                             <div>
-                                <div class="card">
+                                <div class="card overflow-x-auto">
                                     <table class="w-full table-auto">
                                         <thead class="table-header">
                                             <tr class="rounded-2xl text-left">

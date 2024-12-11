@@ -5,7 +5,7 @@
 
 <x-app-layout>
     <div class="relative m-6">
-        <div class="card mb-12 flex flex-col md:flex-row justify-between items-center md:space-y-0">
+        <div class="card mb-12 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0">
             <form action="{{ route('project.index') }}" method="GET" class="w-full">
                 <div class="mb-3">
                     <label for="search"
@@ -32,7 +32,7 @@
                     <div class="invoices-table ">
                         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                             {{ __('Latest Project') }}</h2>
-                        <div class="card">
+                        <div class="card overflow-x-auto">
                             <div class="max-w-full">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">

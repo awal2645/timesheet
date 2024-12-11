@@ -8,7 +8,7 @@
     <div class="m-6">
         <!-- Set Recommended and Default Package -->
         @canany('Plan create')
-            <div class="my-8 card flex flex-col md:flex-row justify-between items-center md:space-y-0 ">
+            <div class="my-8 card flex flex-col md:flex-row gap-4 justify-between items-start md:items-center md:space-y-0 ">
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>

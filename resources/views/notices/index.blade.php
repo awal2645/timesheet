@@ -2,7 +2,7 @@
 
 <x-app-layout>
     <div class="m-6">
-        <div class="my-8 card flex justify-between items-center">
+        <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
             <form action="{{ route('notices.index') }}" method="GET" class="w-full">
                 <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
@@ -29,9 +29,10 @@
             <div class="w-full">
                 <div class="dashboard-right pl-0">
                     <div class="invoices-table">
-                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">{{ __('Notices') }}</h2>
+                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">{{ __('Notices') }}
+                        </h2>
                         <div>
-                            <div class="card">
+                            <div class="card overflow-x-auto">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
                                         <tr class="rounded-2xl text-left">
@@ -73,7 +74,7 @@
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
-                                                                        class="text-red-600 hover:underline"><x-svgs.delete /></button>
+                                                                    class="text-red-600 hover:underline"><x-svgs.delete /></button>
                                                             </form>
                                                         </div>
                                                     </td>
@@ -82,7 +83,8 @@
                                         @else
                                             <tr>
                                                 <td colspan="3" class="text-center py-8  ">
-                                                    <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
                                                 </td>
                                             </tr>
                                         @endif
