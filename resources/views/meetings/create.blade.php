@@ -122,7 +122,7 @@
             </div>
             <!-- Participants -->
             <div class="form-field">
-                <select name="participants[]" id="participants" multiple class="form-select">
+                <select name="participants[]" id="participants" multiple class="select2">
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>

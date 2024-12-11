@@ -24,9 +24,8 @@
             </div>
             <!-- Description -->
             <div class="form-field">
-                <textarea name="description" id="description" placeholder=" ">{{ old('description') ?? $leaveType->description }}</textarea>
-                <label for="description"
-                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-primary-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">{{ __('Description') }}</label>
+                <textarea name="description" id="description" placeholder="">{{ old('description') ?? $leaveType->description }}</textarea>
+                <label for="description">{{ __('Description') }}</label>
                 @error('description')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror

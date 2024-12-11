@@ -41,12 +41,9 @@
                     </div>
 
                     <!-- Message Textarea -->
-                    <div class="mb-4">
-                        <label
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ __('Message') }}</label>
-                        <textarea name="message" id="message"
-                            class="mt-1 block w-full border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300 classic-editor"
-                            cols="30" rows="10">{{ $message ?? '' }}</textarea>
+                    <div class="form-field">
+                        <textarea name="message" id="message" cols="30" rows="10">{{ $message ?? '' }}</textarea>
+                        <label for="message">{{ __('Message') }}</label>
                         <x-forms.error name="message" />
                     </div>
 

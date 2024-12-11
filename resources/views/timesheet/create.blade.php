@@ -86,7 +86,7 @@
                 <!-- Textarea -->
                 <div class="form-field">
                     <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="2">{{ $timeReport->comment ?? '' }}</textarea>
-                    <label for="message" class="form-label">{{ __('Your Message:') }}</label>
+                    <label for="message">{{ __('Your Message:') }}</label>
 
                 </div>
 

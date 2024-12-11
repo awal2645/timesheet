@@ -97,7 +97,7 @@
 .form-field textarea:not(:placeholder-shown) + label {
     background-color: var(--primary-50);
     font-weight: 500; 
-    transform: translateY(-2.75rem);
+    transform: translateY(-2rem);
     color: white; 
 }
 
@@ -108,7 +108,6 @@
     width: 100%;
     font-size: 0.875rem; /* text-sm */
     background: transparent;
-    border-color: #d1d5db;
     appearance: none;
     cursor: pointer;
     height: 46px;

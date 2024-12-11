@@ -138,7 +138,7 @@
             noCalendar: true,
             value: "00:00",
             time_24hr: true, // Ensures 24-hour format
-            dateFormat: "H:i" // Sets format as HH:MM
+            dateFormat: "D:H:i" // Sets format as HH:MM
         });
     </script>
     
