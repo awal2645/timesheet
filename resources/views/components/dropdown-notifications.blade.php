@@ -11,7 +11,7 @@
             class="absolute top-0 right-0 w-2.5 h-2.5 bg-rose-500 border-2 border-white dark:border-[#182235] rounded-full">
         </div>
     </button>
-    <div class="origin-top-right z-10 absolute top-full -mr-48 sm:mr-0 min-w-80 bg-white dark:bg-slate-800   text-text-light  
+    <div class="origin-top-right z-10 absolute top-full -mr-48 sm:mr-0 min-w-[220px] md:min-w-80 bg-white dark:bg-slate-800   text-text-light  
  dark:text-text-dark   border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 {{ $align === 'right' ? 'right-0' : 'left-0' }}"
         @click.outside="open = false" @keydown.escape.window="open = false" x-show="open"
         x-transition:enter="transition ease-out duration-200 transform"

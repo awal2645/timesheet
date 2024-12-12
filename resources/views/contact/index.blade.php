@@ -1,6 +1,6 @@
 {{-- resources/views/contact/index.blade.php --}}
 @section('title')
-{{ 'List Contacts' }}
+    {{ 'List Contacts' }}
 @endsection
 
 <x-app-layout>
@@ -11,7 +11,7 @@
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
-                    <div class="flex">
+                    <div class="flex flex-wrap">
                         <input type="text" id="search" name="search" value="{{ request('search') }}"
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
@@ -58,38 +58,40 @@
                                     </thead>
                                     <tbody>
                                         @if ($contacts->count() > 0)
-                                        @foreach ($contacts as $contact)
-                                        <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                <div class="text-sm font-semibold">
-                                                    {{ $contact->name }}
-                                                </div>
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $contact->email }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $contact->phone }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $contact->company }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                <div class="flex space-x-4">
-                                                        <button onclick="showConfirmation({{ $contact->id }})"
-                                                            class="px-4 py-2 text-sm font-semibold text-red-500 ">
-                                                           <x-svgs.delete class="size-4" />
-                                                        </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
+                                            @foreach ($contacts as $contact)
+                                                <tr
+                                                    class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="text-sm font-semibold">
+                                                            {{ $contact->name }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $contact->email }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $contact->phone }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $contact->company }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="flex space-x-4">
+                                                            <button onclick="showConfirmation({{ $contact->id }})"
+                                                                class="px-4 py-2 text-sm font-semibold text-red-500 ">
+                                                                <x-svgs.delete class="size-4" />
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         @else
-                                        <tr>
-                                            <td colspan="5" class="text-center py-8">
-                                                <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="5" class="text-center py-8">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
+                                                </td>
+                                            </tr>
                                         @endif
                                     </tbody>
                                 </table>
@@ -100,11 +102,11 @@
             </div>
         </div>
         @if ($contacts->total() > $contacts->count())
-        <div class="mt-2">
-            <div class="d-flex justify-content-center">
-                {{ $contacts->links() }}
+            <div class="mt-2">
+                <div class="d-flex justify-content-center">
+                    {{ $contacts->links() }}
+                </div>
             </div>
-        </div>
         @endif
     </div>
     <script>

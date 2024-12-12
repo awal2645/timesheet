@@ -8,7 +8,7 @@
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
-                    <div class="flex">
+                    <div class="flex flex-wrap">
                         <input type="text" id="search" name="search" value="{{ request('search') }}"
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
@@ -59,9 +59,11 @@
                                                 <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5">
                                                     <div class="flex gap-5">
                                                         <a href="{{ route('languages.json.edit', $language->code) }}"
-                                                            class="text-primary-50 hover:text-primary-50"> <x-svgs.globe class="size-4" /></a>
+                                                            class="text-primary-50 hover:text-primary-50"> <x-svgs.globe
+                                                                class="size-4" /></a>
                                                         <a href="{{ route('languages.edit', $language->id) }}"
-                                                            class="text-primary-50 hover:text-primary-30"> <x-svgs.edit class="size-4" /></a>
+                                                            class="text-primary-50 hover:text-primary-30"> <x-svgs.edit
+                                                                class="size-4" /></a>
                                                         <form action="{{ route('languages.destroy', $language->id) }}"
                                                             method="POST"
                                                             onsubmit="return confirm('Are you sure you want to delete this language?');"
@@ -69,7 +71,8 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit"
-                                                                class="text-red-500 hover:text-red-700"> <x-svgs.delete class="size-4" /></button>
+                                                                class="text-red-500 hover:text-red-700"> <x-svgs.delete
+                                                                    class="size-4" /></button>
                                                         </form>
                                                     </div>
                                                 </td>

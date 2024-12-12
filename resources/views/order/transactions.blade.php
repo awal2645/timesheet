@@ -9,7 +9,7 @@
                     <div class="mb-3">
                         <label for="search"
                             class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
-                        <div class="flex">
+                        <div class="flex flex-wrap">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
@@ -52,17 +52,19 @@
                                                     <td class="p-4">#{{ $transaction->order_id }}</td>
                                                     <td class="p-4">
                                                         {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                        <td class="p-4">
-                                                            @if ($transaction->payment_type == 'per_job_based')
-                                                                <span class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
-                                                                    {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
-                                                                </span>
-                                                            @else
-                                                                <span class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
-                                                                    {{ $transaction->plan->label }}
-                                                                </span>
-                                                            @endif
-                                                        </td>
+                                                    <td class="p-4">
+                                                        @if ($transaction->payment_type == 'per_job_based')
+                                                            <span
+                                                                class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                                {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
+                                                            </span>
+                                                        @else
+                                                            <span
+                                                                class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                                {{ $transaction->plan->label }}
+                                                            </span>
+                                                        @endif
+                                                    </td>
                                                     <td class="p-4">
                                                         {{ ucfirst($transaction->employer->employer_name) ?? '' }}
                                                     </td>
@@ -80,7 +82,8 @@
                                             @empty
                                                 <tr>
                                                     <td colspan="8" class="text-center py-8">
-                                                        <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                        <x-svgs.no-data-found
+                                                            class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>
                                             @endforelse

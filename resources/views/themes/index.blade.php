@@ -17,13 +17,13 @@
         <!-- Main Content -->
         <div
             class="bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 p-8">
                 <!-- Form Section -->
                 <div class="space-y-6">
                     <form method="POST" action="{{ route('themes.update') }}" class="space-y-6">
                         @csrf
                         @method('PUT')
-                        <div class="grid grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                             <!-- Primary Color -->
                             <div class="space-y-2">
                                 <label for="primary_color"

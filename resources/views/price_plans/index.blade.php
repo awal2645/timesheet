@@ -12,8 +12,9 @@
                 <form action="{{ route('plans.recommended') }}" method="POST">
                     @csrf
                     <div>
-                        <label for="recommended_package" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Set Recommended Package') }}</label>
-                        <div class="flex">
+                        <label for="recommended_package"
+                            class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Set Recommended Package') }}</label>
+                        <div class="flex flex-wrap">
                             <select name="plan_id" id="recommended_package"
                                 class="bg-gray-50 dark:bg-card-dark dark:text-text-dark text-text-light text-sm rounded-lg p-2.5 mr-2">
                                 <option value=""> Select Recommended package</option>
@@ -23,11 +24,13 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <button class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Update') }}</button>
+                            <button
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Update') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('plans.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                <a href="{{ route('plans.create') }}"
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Plan') }}</a>
             </div>
         @endcanany

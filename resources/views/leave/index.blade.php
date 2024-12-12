@@ -1,5 +1,5 @@
 @section('title')
-{{ 'List Leave Applications' }}
+    {{ 'List Leave Applications' }}
 @endsection
 
 <x-app-layout>
@@ -10,7 +10,7 @@
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
-                    <div class="flex">
+                    <div class="flex flex-wrap">
                         <input type="text" id="search" name="search" value="{{ request('search') }}"
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
@@ -53,96 +53,102 @@
                                             <th class="min-w-[120px] px-4 py-4 font-medium">
                                                 {{ __('Status') }}
                                             </th>
-                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role ===
-                                            'employer')
-                                            <th class="px-4 py-4 font-medium"> {{ __('Action') }} </th>
+                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
+                                                <th class="px-4 py-4 font-medium"> {{ __('Action') }} </th>
                                             @endif
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @if ($applications->count() > 0)
-                                        @foreach ($applications as $application)
-                                        <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                <div class="text-sm font-semibold">
-                                                    {{ $application->employee->employee_name ?? '' }}
-                                                </div>
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $application->start_date }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $application->end_date }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                {{ $application->reason }}
-                                            </td>
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                <div class="flex items-center space-x-3">
-                                                    <!-- Status Indicator -->
-                                                    {{-- <div class="h-3 w-3 rounded-full" :class="{
+                                            @foreach ($applications as $application)
+                                                <tr
+                                                    class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="text-sm font-semibold">
+                                                            {{ $application->employee->employee_name ?? '' }}
+                                                        </div>
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $application->start_date }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $application->end_date }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        {{ $application->reason }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="flex items-center space-x-3">
+                                                            <!-- Status Indicator -->
+                                                            {{-- <div class="h-3 w-3 rounded-full" :class="{
                                                                     'bg-green-500': '{{ $application->status }}' === 'approved',
                                                                     'bg-red-500': '{{ $application->status }}' === 'denied',
                                                                     'bg-yellow-500': '{{ $application->status }}' === 'pending'
                                                                 }">
                                                     </div> --}}
 
-                                                    <!-- Status Badge -->
-                                                    <span
-                                                        class="px-2 flex items-center justify-center w-[100px] py-1 text-xs font-semibold rounded"
-                                                        :class="{
-                                                                    'bg-green-100 text-green-600': '{{ $application->status }}' === 'approved',
-                                                                    'bg-red-100 text-red-600': '{{ $application->status }}' === 'denied',
-                                                                    'bg-yellow-100 text-yellow-600': '{{ $application->status }}' === 'pending'
+                                                            <!-- Status Badge -->
+                                                            <span
+                                                                class="px-2 flex items-center justify-center w-[100px] py-1 text-xs font-semibold rounded"
+                                                                :class="{
+                                                                    'bg-green-100 text-green-600': '{{ $application->status }}'
+                                                                    === 'approved',
+                                                                    'bg-red-100 text-red-600': '{{ $application->status }}'
+                                                                    === 'denied',
+                                                                    'bg-yellow-100 text-yellow-600': '{{ $application->status }}'
+                                                                    === 'pending'
                                                                 }">
-                                                        {{ ucfirst($application->status) }}
-                                                    </span>
-                                                </div>
-                                            </td>
+                                                                {{ ucfirst($application->status) }}
+                                                            </span>
+                                                        </div>
+                                                    </td>
 
-                                            @if (auth()->user()->role === 'superadmin' || auth()->user()->role ===
-                                            'employer')
-                                            <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                <div class="flex space-x-4">
-                                                    @if ($application->status === 'pending')
-                                                    <!-- Approve Button -->
-                                                    <form action="{{ route('leave.approve', $application->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit"
-                                                            class="px-4 py-2 text-sm font-semibold text-text-light dark:text-text-dark bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                                            {{ __('Approve') }}
-                                                        </button>
-                                                    </form>
+                                                    @if (auth()->user()->role === 'superadmin' || auth()->user()->role === 'employer')
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                            <div class="flex space-x-4">
+                                                                @if ($application->status === 'pending')
+                                                                    <!-- Approve Button -->
+                                                                    <form
+                                                                        action="{{ route('leave.approve', $application->id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="px-4 py-2 text-sm font-semibold text-text-light dark:text-text-dark bg-green-500 rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                                            {{ __('Approve') }}
+                                                                        </button>
+                                                                    </form>
 
-                                                    <!-- Deny Button -->
-                                                    <form action="{{ route('leave.deny', $application->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        <button type="submit"
-                                                            class="px-4 py-2 text-sm font-semibold text-text-light dark:text-text-dark bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                                                            {{ __('Deny') }}
-                                                        </button>
-                                                    </form>
-                                                    @else
-                                                    <!-- Action Taken Message -->
-                                                    <span
-                                                        class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-700">
-                                                        {{ __('Action Taken') }}
-                                                    </span>
+                                                                    <!-- Deny Button -->
+                                                                    <form
+                                                                        action="{{ route('leave.deny', $application->id) }}"
+                                                                        method="POST" style="display:inline;">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="px-4 py-2 text-sm font-semibold text-text-light dark:text-text-dark bg-red-500 rounded-lg shadow-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                                                                            {{ __('Deny') }}
+                                                                        </button>
+                                                                    </form>
+                                                                @else
+                                                                    <!-- Action Taken Message -->
+                                                                    <span
+                                                                        class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-200 rounded-lg dark:text-gray-400 dark:bg-gray-700">
+                                                                        {{ __('Action Taken') }}
+                                                                    </span>
+                                                                @endif
+                                                            </div>
+                                                        </td>
                                                     @endif
-                                                </div>
-                                            </td>
-                                            @endif
 
-                                        </tr>
-                                        @endforeach
+                                                </tr>
+                                            @endforeach
                                         @else
-                                        <tr>
-                                            <td colspan="6" class="text-center py-8  ">
-                                                <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td colspan="6" class="text-center py-8  ">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
+                                                </td>
+                                            </tr>
                                         @endif
                                     </tbody>
                                 </table>
@@ -153,11 +159,11 @@
             </div>
         </div>
         @if ($applications->total() > $applications->count())
-        <div class="mt-2">
-            <div class="d-flex justify-content-center">
-                {{ $applications->links() }}
+            <div class="mt-2">
+                <div class="d-flex justify-content-center">
+                    {{ $applications->links() }}
+                </div>
             </div>
-        </div>
         @endif
     </div>
 </x-app-layout>

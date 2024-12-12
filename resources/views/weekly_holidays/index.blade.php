@@ -9,7 +9,7 @@
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
-                        <div class="flex">
+                        <div class="flex flex-wrap">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="border border-gray-300 text-text-light  text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
@@ -49,39 +49,53 @@
                                         <tbody>
                                             @if ($holidays->count() > 0)
                                                 @foreach ($holidays as $holiday)
-                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        <div class="text-sm font-semibold">
-                                                            @php
-                                                                $daysOfWeek = json_decode($holiday->days_of_week);
-                                                            @endphp
-                                                            @php
-                                                            $daysOfWeekFormatted = is_array($daysOfWeek) 
-                                                                ? implode(', ', array_map(function($day) {
-                                                                    return ucfirst($day);
-                                                                }, $daysOfWeek))
-                                                                : ucfirst($daysOfWeek);
-                                                            
-                                                            $daysOfWeekFormatted = str_replace(
-                                                                ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-                                                                [
-                                                                    '<span class="text-red-50 bg-red-500 rounded  p-2">Saturday</span>',
-                                                                    '<span class="text-blue-50 bg-blue-500 rounded p-2">Sunday</span>',
-                                                                    '<span class="text-green-50 bg-green-500 rounded p-2">Monday</span>',
-                                                                    '<span class="text-yellow-50 bg-yellow-500 rounded p-2">Tuesday</span>',
-                                                                    '<span class="text-purple-50 bg-purple-500 rounded p-2">Wednesday</span>',
-                                                                    '<span class="text-pink-50 bg-pink-500 rounded p-2">Thursday</span>',
-                                                                    '<span class="text-orange-50 bg-orange-500 rounded p-2">Friday</span>',
-                                                                ],
-                                                                $daysOfWeekFormatted
-                                                            );
-                                                            @endphp
-                                                            
-                                                            {!! $daysOfWeekFormatted !!}
-                                                            
-                                                        </div>
+                                                    <tr
+                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                            <div class="text-sm font-semibold">
+                                                                @php
+                                                                    $daysOfWeek = json_decode($holiday->days_of_week);
+                                                                @endphp
+                                                                @php
+                                                                    $daysOfWeekFormatted = is_array($daysOfWeek)
+                                                                        ? implode(
+                                                                            ', ',
+                                                                            array_map(function ($day) {
+                                                                                return ucfirst($day);
+                                                                            }, $daysOfWeek),
+                                                                        )
+                                                                        : ucfirst($daysOfWeek);
+
+                                                                    $daysOfWeekFormatted = str_replace(
+                                                                        [
+                                                                            'Saturday',
+                                                                            'Sunday',
+                                                                            'Monday',
+                                                                            'Tuesday',
+                                                                            'Wednesday',
+                                                                            'Thursday',
+                                                                            'Friday',
+                                                                        ],
+                                                                        [
+                                                                            '<span class="text-red-50 bg-red-500 rounded  p-2">Saturday</span>',
+                                                                            '<span class="text-blue-50 bg-blue-500 rounded p-2">Sunday</span>',
+                                                                            '<span class="text-green-50 bg-green-500 rounded p-2">Monday</span>',
+                                                                            '<span class="text-yellow-50 bg-yellow-500 rounded p-2">Tuesday</span>',
+                                                                            '<span class="text-purple-50 bg-purple-500 rounded p-2">Wednesday</span>',
+                                                                            '<span class="text-pink-50 bg-pink-500 rounded p-2">Thursday</span>',
+                                                                            '<span class="text-orange-50 bg-orange-500 rounded p-2">Friday</span>',
+                                                                        ],
+                                                                        $daysOfWeekFormatted,
+                                                                    );
+                                                                @endphp
+
+                                                                {!! $daysOfWeekFormatted !!}
+
+                                                            </div>
                                                         </td>
-                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td
+                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="flex space-x-4 justify-end">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-50 hover:underline"><x-svgs.edit /></a>
@@ -100,7 +114,8 @@
                                             @else
                                                 <tr>
                                                     <td colspan="2" class="text-center py-8  ">
-                                                        <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                                        <x-svgs.no-data-found
+                                                            class="mx-auto md:size-[360px] size-[220px]" />
                                                     </td>
                                                 </tr>
                                             @endif

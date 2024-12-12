@@ -9,7 +9,7 @@
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
-                        <div class="flex">
+                        <div class="flex flex-wrap">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="bg-card-light dark:bg-card-dark border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
@@ -22,7 +22,7 @@
                         class="fa-solid fa-plus"></i> {{ __('Create Invoice') }}</a>
             </div>
 
-            <div class="flex flex-wrap">
+            <div class="flex flex-wrap mt-4">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">

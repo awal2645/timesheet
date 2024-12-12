@@ -10,7 +10,7 @@
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}
                         </label>
-                        <div class="flex">
+                        <div class="flex flex-wrap">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />

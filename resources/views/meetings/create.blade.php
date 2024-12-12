@@ -29,7 +29,7 @@
                     <!-- Zoom Account ID -->
                     <div class="form-field mt-6">
                         <input type="text" name="zoom_account_id" id="zoom_account_id"
-                        value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
+                            value="{{ old('zoom_account_id', auth()->user()->zoom_account_id) }}" required>
                         <label for="zoom_account_id">{{ __('Zoom Account ID') }}</label>
                         @error('zoom_account_id')
                             <span class="text-red-500">{{ $message }}</span>
@@ -39,7 +39,7 @@
                     <!-- Zoom Client ID -->
                     <div class="form-field">
                         <input type="text" name="zoom_client_id" id="zoom_client_id"
-                        value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
+                            value="{{ old('zoom_client_id', auth()->user()->zoom_client_id) }}" required>
                         <label for="zoom_client_id">{{ __('Zoom Client ID') }}</label>
                         @error('zoom_client_id')
                             <span class="text-red-500">{{ $message }}</span>
@@ -49,7 +49,7 @@
                     <!-- Zoom Client Secret -->
                     <div class="form-field">
                         <input type="password" name="zoom_client_secret" id="zoom_client_secret"
-                        value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
+                            value="{{ old('zoom_client_secret', auth()->user()->zoom_client_secret) }}" required>
                         <label for="zoom_client_secret">{{ __('Zoom Client Secret') }}</label>
                         @error('zoom_client_secret')
                             <span class="text-red-500">{{ $message }}</span>
@@ -67,8 +67,7 @@
             </script>
             <!-- Topic -->
             <div class="form-field">
-                <input type="text" name="topic" id="topic"
-                value="{{ old('topic') }}" required>
+                <input type="text" name="topic" id="topic" value="{{ old('topic') }}" required>
                 <label for="topic">{{ __('Topic') }}</label>
                 @error('topic')
                     <span class="text-red-500">{{ $message }}</span>
@@ -77,10 +76,9 @@
 
             <!-- Start Date -->
             <div class="form-field">
-                <input type="datetime-local" name="start_date" id="start_date" onclick="this.showPicker()" value="{{ old('start_date') }}"
-                required>
-                <label
-                    for="start_date">{{ __('Start  Date') }}</label>
+                <input type="datetime-local" name="start_date" id="start_date" onclick="this.showPicker()"
+                    value="{{ old('start_date') }}" required>
+                <label for="start_date">{{ __('Start  Date') }}</label>
                 @error('start_date')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -88,10 +86,8 @@
 
             <!-- Meeting Password -->
             <div class="form-field">
-                <input type="password" name="password" id="password" 
-                value="{{ old('password') }}" required>
-                <label
-                    for="password">{{ __('Meeting Password') }}</label>
+                <input type="password" name="password" id="password" value="{{ old('password') }}" required>
+                <label for="password">{{ __('Meeting Password') }}</label>
                 @error('password')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -102,7 +98,7 @@
                 <label for="role" class="block text-sm font-medium text-gray-700 dark:text-gray-400">
                     {{ __('Select Participants Role') }}
                 </label>
-                <div class="flex items-center space-x-4">
+                <div class="flex flex-wrap items-center gap-4">
                     @foreach ($roles as $role)
                         <div>
                             <input type="radio" id="role_{{ $role->id }}" name="selected_role"
@@ -126,7 +122,7 @@
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>
-                        {{ ucfirst($user->username) }}
+                            {{ ucfirst($user->username) }}
                         </option>
                     @endforeach
                 </select>
@@ -146,7 +142,7 @@
             </div>
 
             <!-- Submit Button -->
-            <div class="flex">
+            <div class="flex flex-wrap">
                 <button type="submit"
                     class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded shadow hover:bg-primary-50 dark:bg-primary-50 dark:hover:bg-primary-50">
                     {{ __('Save') }}
@@ -155,23 +151,22 @@
         </form>
     </div>
     <script>
-       $(document).ready(function () {
-    $('#participants').select2({
-        placeholder: "Select participants",
-        allowClear: true,
-    });
+        $(document).ready(function() {
+            $('#participants').select2({
+                placeholder: "Select participants",
+                allowClear: true,
+            });
 
-    // Handle label positioning
-    $('#participants').on('select2:open select2:select select2:unselect', function () {
-        const $label = $(this).siblings('.form-label');
-        if ($(this).val() && $(this).val().length > 0) {
-            $label.addClass('active');
-        } else {
-            $label.removeClass('active');
-        }
-    });
-});
-
+            // Handle label positioning
+            $('#participants').on('select2:open select2:select select2:unselect', function() {
+                const $label = $(this).siblings('.form-label');
+                if ($(this).val() && $(this).val().length > 0) {
+                    $label.addClass('active');
+                } else {
+                    $label.removeClass('active');
+                }
+            });
+        });
     </script>
 
 </x-app-layout>

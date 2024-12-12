@@ -18,7 +18,7 @@
         <form action="{{ route('employer.info.update', $employer->id) }}" method="Post" enctype="multipart/form-data"
             class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl">
             @csrf
-            <div class="flex gap-6">
+            <div class="flex flex-wrap gap-6">
                 <!-- Upload Logo -->
                 <div class="flex-1 border border-gray-300 dark:border-gray-600 p-6 rounded-lg" x-data="logoUpload()">
                     <h3 class="text-xl mb-4 text-text-light dark:text-text-dark">{{ __('Upload Logo') }}</h3>
