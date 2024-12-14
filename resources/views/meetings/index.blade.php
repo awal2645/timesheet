@@ -5,7 +5,7 @@
     <div class="relative overflow-x-auto">
         <div class="m-6">
 
-            <div class="card flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
+            <div class="card mb-4 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
                 <form action="{{ route('meeting.index') }}" method="GET">
                     <div class="mb-3">
                         <label for="search"  class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">

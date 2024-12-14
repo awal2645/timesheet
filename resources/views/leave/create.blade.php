@@ -83,7 +83,7 @@
             </div>
 
             <div class="form-field">
-                <input type="text" name="reason" id="reason" value="{{ old('reason') }}" required />
+                <input type="text" name="reason" id="reason" value="{{ old('reason') }}"  />
                 <label for="reason" class="form-label">{{ __('Reason for Leave') }}</label>
                 @error('reason')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

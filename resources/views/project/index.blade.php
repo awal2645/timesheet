@@ -5,7 +5,7 @@
 
 <x-app-layout>
     <div class="relative m-6">
-        <div class="card mb-12 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0">
+        <div class="card mb-4 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0">
             <form action="{{ route('project.index') }}" method="GET" class="w-full">
                 <div class="mb-3">
                     <label for="search"

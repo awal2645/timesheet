@@ -77,7 +77,7 @@
                 <!-- Client -->
                 <div class="form-field">
                     <select name="client_id" id="client_id" class="form-select">
-
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" >{{ __('Select Client') }}</option>
                         @foreach ($clients as $client)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}">
                             {{ $client->client_name }}

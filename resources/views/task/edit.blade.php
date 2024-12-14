@@ -16,7 +16,9 @@
             @csrf
             @method('PUT')
 
+
             {{-- Select Employer --}}
+            @if (auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'employee')
             <div class="form-field">
                 <select name="employer_id" id="employer_id" required class="form-select">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
@@ -32,6 +34,7 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+            @endif
 
             {{-- Select Employee --}}
             <div class="form-field">
@@ -78,7 +81,7 @@
             </div>
             {{-- Task Time --}}
             <div class="form-field">
-                <input type="text" placeholder=""  name="time" id="time-picker" value="{{ $task->time }}" />
+                <input type="text" placeholder=""  name="time" id="time-picker" value="{{ $task->time }}" required  />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>

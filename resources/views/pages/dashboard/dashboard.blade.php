@@ -127,7 +127,7 @@
             <x-dashboard.dashboard-card-03 />
 
             <!-- New Chart Cards -->
-            @if (auth()->user()->role != 'client')
+            @if (auth()->user()->role != 'client' && auth()->user()->role != 'employee')
             <div class="col-span-12 xl:col-span-6">
                 <div
                     class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">

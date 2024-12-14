@@ -36,10 +36,9 @@ class LeaveApplicationController extends Controller
             'leave_type_id' => 'required',
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
-            'reason' => 'required|string|max:255',
         ]);
 
-        if (!Auth::user()->is_employee) {
+        if (auth()->user()->role != 'employee') {
             $employeeId = $request->employee_id;
         } else {
             $employeeId = auth()->user()->employee->id;

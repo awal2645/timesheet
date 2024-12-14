@@ -76,10 +76,11 @@
             </div>
 
             {{-- Task Time --}}
-
+           {{-- Task Time --}}
             <div class="form-field">
-                <input  type="text" id="time-picker" placeholder="" name="time" value="00:00"
-                    class="block py-2.5 px-0 w-full text-sm text-text-light dark:text-text-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" />
+                <input type="text" name="time" value="00:00"
+                    class="block py-2.5 px-0 w-full text-sm text-text-light dark:text-text-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value.length > 2) this.value = this.value.slice(0, 2) + ':' + this.value.slice(2, 4);" required />
                 <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
@@ -131,15 +132,5 @@
         </form>
     </div>
 
-
-    <script>
-        flatpickr("#time-picker", {
-            enableTime: true,
-            noCalendar: true,
-            value: "00:00",
-            time_24hr: true, // Ensures 24-hour format
-            dateFormat: "D:H:i" // Sets format as HH:MM
-        });
-    </script>
     
 </x-app-layout>

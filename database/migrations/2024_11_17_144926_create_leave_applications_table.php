@@ -17,7 +17,7 @@ class CreateLeaveApplicationsTable extends Migration
             $table->foreignId('leave_type_id')->constrained('leave_types')->cascadeOnDelete();
             $table->date('start_date');
             $table->date('end_date');
-            $table->text('reason');
+            $table->text('reason')->nullable();
             $table->enum('status', ['pending', 'approved', 'denied'])->default('pending');
             $table->timestamps();
         });

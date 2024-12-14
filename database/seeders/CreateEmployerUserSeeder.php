@@ -19,7 +19,7 @@ class CreateEmployerUserSeeder extends Seeder
 
         // Define specific permissions for employers
         $employerPermissions = [
-            3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 20, 21, 27, 29, 31, 37, 40,41,42,43, 44, 45, 51,52,53,54,55,57
+            3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 17, 20, 21, 27, 29, 31, 37, 40,41,42,43, 44, 45, 51,52,53,54,55,56,57,62
         ];
 
         foreach ($employerPermissions as $permissionId) {

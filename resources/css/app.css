@@ -125,7 +125,7 @@
 .form-field .form-label {
     position: absolute;
     font-size: 12px; /* text-sm */
-    color: #ffffff; /* text-gray-500 */
+    color: #000000; /* text-gray-500 */
     padding: 0 1.25rem; /* px-5 */
     transition: all 0.3s ease;
     transform: translateY(-50%) scale(1);
@@ -134,6 +134,10 @@
     pointer-events: none;
     border-radius: 4px;
 }
+.dark .form-field .form-label {
+    color: white;
+}
+
 
 .form-select:focus + .form-label,
 .form-select:not(:placeholder-shown) + .form-label {

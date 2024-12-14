@@ -53,7 +53,11 @@ class EmployeeController extends Controller
     {
         $employers = Employer::all();
         $clients = Client::all();
+        if (auth('web')->user()->role == 'employer') {
+            $clients = Client::where('employer_id', auth('web')->user()->employer->id)->get();
+            return view('employee.create', compact('employers', 'clients'));
 
+        }
         return view('employee.create', compact('employers', 'clients'));
     }
 

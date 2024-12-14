@@ -122,6 +122,7 @@ class PermissionTableSeeder extends Seeder
             "Testimonial view",
             "Employee Salary view",
             "Newsletter view",
+            "Project create",
         ];
 
         foreach ($permissions as $permission) {

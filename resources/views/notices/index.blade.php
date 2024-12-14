@@ -1,8 +1,10 @@
-@section('title', 'Notices List')
+@section('title')
+    {{ 'List Notice' }}
+@endsection
 
 <x-app-layout>
     <div class="m-6">
-        <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
+        <div class="my-4 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
             <form action="{{ route('notices.index') }}" method="GET" class="w-full">
                 <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
