@@ -13,6 +13,8 @@ class PricePlan extends Model
         'label',
         'description',
         'price',
+        'old_price',
+        'discount_percentage',
         'employee_limit',
         'client_limit',
         'project_limit',

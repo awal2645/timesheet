@@ -319,7 +319,7 @@
                 <div class="company-logo">
                     @php
 
-                    $dark_logo = $invoice->project->employer->logo ??  public_path('images/dark_logo.png');
+                    $dark_logo = $invoice->project->employer->image ??  public_path('images/dark_logo.png');
                     if ($dark_logo && file_exists($dark_logo)) {
 
                         $base64_image = base64_encode(file_get_contents($dark_logo));

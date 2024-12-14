@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Client;
 use App\Models\Employer;
 use Illuminate\Http\Request;
@@ -109,8 +110,21 @@ class ClientController extends Controller
         ]);
 
         try {
-            $client = Client::create($request->all());
-
+            $user = User::create([
+                'name' => $request->client_name,
+                'email' => $request->client_email,
+                'password' => bcrypt('password'),
+                'role' => 'client',
+            ]);
+            $client = Client::create([
+                'user_id' => $user->id,
+                'employer_id' => $request->employer_id,
+                'client_name' => $request->client_name,
+                'client_email' => $request->client_email,
+                'contact_name' => $request->contact_name,
+                'client_phone' => $request->client_phone,
+            ]);
+            
             // Redirect to the client's details page or any other appropriate route
             return redirect()->route('client.index')->with('success', 'Client created successfully');
         } catch (\Exception $e) {
@@ -148,7 +162,18 @@ class ClientController extends Controller
         ]);
         try {
             $client = Client::findOrFail($id);
-            $client->update($request->all());
+            $user = User::findOrFail($client->user_id);
+            $user->update([
+                'name' => $request->client_name,
+                'email' => $request->client_email,
+            ]);
+            $client->update([
+                'employer_id' => $request->employer_id,
+                'client_name' => $request->client_name,
+                'client_email' => $request->client_email,
+                'contact_name' => $request->contact_name,
+                'client_phone' => $request->client_phone,
+            ]);
 
             return redirect()->route('client.index')->with('success', 'Client updated successfully');
         } catch (\Exception $e) {

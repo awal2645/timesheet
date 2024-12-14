@@ -11,6 +11,11 @@
             <div class="flex items-start">
                 <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ reportCount('pending') }}</div>
             </div>
+        @elseif (auth('web')->user()->role == 'client')
+            <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">{{ __('Pending') }} Task(s)</h2>
+            <div class="flex items-start">
+                <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ taskCount('pending') }}</div>
+            </div>
         @else
             <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-100 mb-2">{{ __('Employee(s)') }}</h2>
             <div class="flex items-start">

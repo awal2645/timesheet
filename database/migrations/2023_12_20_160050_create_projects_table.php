@@ -23,9 +23,9 @@ return new class extends Migration
             $table->string('fixed_budget')->nullable();
             $table->string('hr_budget')->nullable();
             $table->string('total_cost')->nullable();
+            $table->string('total_paid_client')->nullable();
             $table->boolean('status')->default(true);
             $table->string('project_name');
-            $table->string('total_paid')->nullable();
             $table->timestamps();
         });
     }

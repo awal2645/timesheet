@@ -4,22 +4,24 @@
 <x-app-layout>
     <div class="relative overflow-x-auto">
         <div class="m-6">
-            <div class="card flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
-                <form action="{{ route('invoice.index') }}" method="GET">
+            <div class="card mb-12 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0">
+                <form action="{{ route('invoice.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
-                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-                            {{ __('Search') }}</label>
+                        <label for="search"
+                            class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
                         <div class="flex flex-wrap">
                             <input type="text" id="search" name="search" value="{{ request('search') }}"
-                                class="bg-card-light dark:bg-card-dark border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('invoice.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> {{ __('Create Invoice') }}</a>
+                <a href="{{ route('invoice.create') }}"
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                        <i class="fa-solid fa-plus"></i> {{ __('Create Invoice') }}
+                    </a>
             </div>
 
             <div class="flex flex-wrap mt-4">
@@ -97,13 +99,13 @@
                         </div>
                     </div>
                 </div>
+            </div>
                 @if ($invoices->total() > $invoices->count())
-                    <div class="mt-2">
-                        <div class="d-flex justify-content-center">
+                <div class="mt-2">
+                    <div class="d-flex justify-content-center">
                             {{ $invoices->links() }}
                         </div>
                     </div>
                 @endif
-            </div>
         </div>
 </x-app-layout>

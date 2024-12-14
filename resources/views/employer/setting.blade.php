@@ -14,7 +14,7 @@
 @endif
 
     <div class="py-12 px-8">
-        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Application Settings') }}</h2>
+        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Employer Settings') }}</h2>
         <form action="{{ route('employer.info.update', $employer->id) }}" method="Post" enctype="multipart/form-data"
             class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl">
             @csrf
@@ -63,7 +63,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " required value="{{ old('employer_name', $employer->employer_name) }}" />
                     <label for="employer_name"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Employer Name') }}
                     </label>
                     @error('employer_name')
@@ -76,7 +76,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " required value="{{ old('phone', $employer->phone) }}" />
                     <label for="phone"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Employer Phone') }}
                     </label>
                     @error('employer_name')
@@ -90,7 +90,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('fein_number', $employer->fein_number) }}" />
                     <label for="fein_number"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('FEIN Number') }}
                     </label>
                     @error('fein_number')
@@ -104,7 +104,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('contact_person_name', $employer->contact_person_name) }}" />
                     <label for="contact_person_name"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Contact Person Name') }}
                     </label>
                     @error('contact_person_name')
@@ -118,7 +118,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('website', $employer->website) }}" />
                     <label for="website"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Website') }}
                     </label>
                     @error('website')
@@ -132,7 +132,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('address', $employer->address) }}" />
                     <label for="address"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Address') }}
                     </label>
                     @error('address')
@@ -146,7 +146,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('address1', $employer->address1) }}" />
                     <label for="address1"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Address 1') }}
                     </label>
                     @error('address1')
@@ -162,7 +162,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('city', $employer->city) }}" />
                     <label for="city"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('City') }}
                     </label>
                     @error('city')
@@ -176,7 +176,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('state', $employer->state) }}" />
                     <label for="state"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('State') }}
                     </label>
                     @error('state')
@@ -190,7 +190,7 @@
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('country', $employer->country) }}" />
                     <label for="country"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Country') }}
                     </label>
                     @error('country')
@@ -199,12 +199,12 @@
                 </div>
 
                 <!-- Zip -->
-                <div class="relative z-0 w-full mb-5 group">
+                <div class="relative z-0 w-full mb-5 group ">
                     <input type="text" name="zip" id="zip"
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
                         placeholder=" " value="{{ old('zip', $employer->zip) }}" />
                     <label for="zip"
-                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-primary-600 peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-primary-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Zip') }}
                     </label>
                     @error('zip')

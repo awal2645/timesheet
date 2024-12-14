@@ -110,8 +110,13 @@
             </div>
 
             <div class="form-field">
-                <input type="text" name="total_paid" id="total_paid" value="{{ old('total_paid') }}" />
-                <label for="total_paid">{{ __('Total Paid ($)') }}</label>
+                <input type="text" name="total_cost" id="total_cost" value="{{ old('total_cost') }}" />
+                <label for="total_cost">{{ __('Total Cost ($)') }}</label>
+            </div>
+
+            <div class="form-field">
+                <input type="text" name="total_paid_client" id="total_paid_client" value="{{ old('total_paid_client') }}" />
+                <label for="total_paid_client">{{ __('Total Paid Client ($)') }}</label>
             </div>
 
             <div class="col-span-full">

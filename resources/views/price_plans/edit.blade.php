@@ -37,6 +37,26 @@
                 @enderror
             </div>
 
+            <!-- Old Price -->
+            <div class="form-field">
+                <input type="number" step="0.01" name="old_price" id="old_price" placeholder=" " required
+                    value="{{ old('old_price', $plan->old_price) }}" />
+                <label for="old_price">{{ __('Old Price') }}</label>
+                @error('old_price')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+
+            <!-- Discount Percentage -->
+            <div class="form-field">
+                <input type="number" step="0.01" name="discount_percentage" id="discount_percentage" placeholder=" "
+                    value="{{ old('discount_percentage', $plan->discount_percentage) }}" />
+                <label for="discount_percentage">{{ __('Discount Percentage') }}</label>
+                @error('discount_percentage')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
+            </div>
+
             <!-- Plan Price -->
             <div class="form-field">
                 <input type="number" step="0.01" name="price" id="price" placeholder=" " required

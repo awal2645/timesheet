@@ -35,47 +35,31 @@
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
                                         <tr class="rounded-2xl text-left">
-                                            <th class="min-w-[220px] px-4 py-4 font-medium">
-                                                {{ __('Name') }}
-                                            </th>
                                             <th class="min-w-[150px] px-4 py-4 font-medium">
                                                 {{ __('Email') }}
                                             </th>
-                                            <th class="min-w-[150px] px-4 py-4 font-medium">
-                                                {{ __('Phone') }}
-                                            </th>
-                                            <th class="min-w-[150px] px-4 py-4 font-medium">
-                                                {{ __('Company') }}
-                                            </th>
-                                            <th class="min-w-[120px] px-4 py-4 font-medium">
+                                         
+                                            <th class="min-w-[120px] px-4 py-4 font-medium text-end">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @if ($contacts->count() > 0)
-                                            @foreach ($contacts as $contact)
+                                        @if ($newsLatters->count() > 0)
+                                            @foreach ($newsLatters as $newsLatter)
                                                 <tr
                                                     class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
                                                     <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                         <div class="text-sm font-semibold">
-                                                            {{ $contact->name }}
+                                                            {{ $newsLatter->email }}
                                                         </div>
                                                     </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $contact->email }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $contact->phone }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        {{ $contact->company }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                        <div class="flex space-x-4">
-                                                            <button onclick="showConfirmation({{ $contact->id }})"
-                                                                class="px-4 py-2 text-sm font-semibold text-red-500 ">
-                                                                <x-svgs.delete class="size-4" />
+                                                    <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <div class="flex space-x-4 justify-end">
+                                                            <button onclick="showConfirmation({{ $newsLatter->id }})"
+                                                                class="text-red-500 hover:underline">
+                                                                <x-svgs.delete class="size-[20px]" />
                                                             </button>
                                                         </div>
                                                     </td>
@@ -97,10 +81,10 @@
                 </div>
             </div>
         </div>
-        @if ($contacts->total() > $contacts->count())
+        @if ($newsLatters->total() > $newsLatters->count())
             <div class="mt-2">
                 <div class="d-flex justify-content-center">
-                    {{ $contacts->links() }}
+                    {{ $newsLatters->links() }}
                 </div>
             </div>
         @endif
@@ -108,7 +92,7 @@
     <script>
         function showConfirmation(id) {
             Swal.fire({
-                title: 'Want to delete this Contact!',
+                title: 'Want to delete this Newsletter!',
                 text: "{{ __('If you are ready?') }}",
                 icon: 'warning',
                 showCancelButton: true,
@@ -116,7 +100,7 @@
                 cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/contact/destroy/" + id;
+                    window.location.href = "/newsletter/destroy/" + id;
                 }
             });
         }

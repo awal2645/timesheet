@@ -212,6 +212,8 @@
                     @endcanany
 
                     <!-- Leave Management Dropdown -->
+                    @canany('Leave view')
+
                     <li x-data="{
                         open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
                     }" x-effect="if (!sidebarExpanded) open = true">
@@ -306,6 +308,7 @@
                             </ul>
                         </div>
                     </li>
+                    @endcanany
                     <!-- Notice -->
                     @canany('Notice view')
                         <li>
@@ -502,6 +505,24 @@
                             </a>
                         </li>
                     @endcanany
+                    <!-- Newsletter -->
+                    @canany('Newsletter view')
+                        <li>
+                            <a href="{{ route('newsletter.index') }}"
+                                class="sidebar-menu-item {{ request()->routeIs('newsletter.*') ? 'active' : '' }}  ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-envelope text-base"></i>
+                                        </span>
+                                        <span class="sidebar-menu-text">
+                                            {{ __('Newsletter') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endcanany
                     <!-- General -->
                     @canany('General Settings')
                         <li>
@@ -558,6 +579,7 @@
                     @endcanany
 
                     <!-- testimonial -->
+                    @canany('Testimonial view')
                     <li>
                         <a href="{{ route('testimonial.index') }}"
                             class="sidebar-menu-item {{ request()->routeIs('testimonial.*') ? 'active' : '' }}  ">
@@ -571,10 +593,11 @@
                                     </span>
                                 </div>
                             </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
+                    @endcanany
                     <!-- Employee Salary -->
-                    {{-- @canany('Cms') --}}
+                    @canany('Employee Salary view')
                     <li>
                         <a href="{{ route('salary') }}"
                             class="sidebar-menu-item {{ request()->routeIs('salary') ? 'active' : '' }}  ">
@@ -589,8 +612,7 @@
                             </div>
                         </a>
                     </li>
-                    {{-- @endcanany --}}
-
+                    @endcanany
                     <!-- upgrade -->
                     @canany('General Settings')
                         <li>

@@ -21,13 +21,19 @@
         </div>
         @endif
 
-        @if (auth('web')->user()->role != 'employee' &  auth('web')->user()->role != 'employer')
+        @if (auth('web')->user()->role != 'employee' && auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'client')
 
         <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Earnig(s)') }}</h2>
         <div class="flex items-start">
             <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">${{earningCount()}}</div>
         </div>
         @endif
-        
+
+        @if (auth('web')->user()->role == 'client')
+        <h2 class="text-lg font-semibold text-slate-800 dark:text-slate-300 mb-2">{{ __('Completed') }} Task(s)</h2>
+        <div class="flex items-start">
+            <div class="text-3xl font-bold text-slate-800 dark:text-slate-300 mr-2">{{ taskCount('completed') }}</div>
+        </div>
+        @endif
     </div>
 </div>

@@ -79,6 +79,8 @@ class ProjectController extends Controller
             'payment_type' => 'required',
             'fixed_budget' => 'sometimes',
             'hr_budget' => 'sometimes',
+            'total_cost' => 'sometimes',
+            'total_paid_client' => 'sometimes',
         ]);
         try {
             Project::create($request->all());
@@ -120,6 +122,8 @@ class ProjectController extends Controller
             'payment_type' => 'required',
             'fixed_budget' => 'sometimes',
             'hr_budget' => 'sometimes',
+            'total_cost' => 'sometimes',
+            'total_paid_client' => 'sometimes',
         ]);
         try {
             $project = Project::findOrFail($id);

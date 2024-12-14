@@ -55,6 +55,8 @@ class PricePlanController extends Controller
             'employee_limit' => 'required|integer|min:0',
             'client_limit' => 'required|integer|min:0',
             'project_limit' => 'required|integer|min:0',
+            'old_price' => 'nullable|numeric|min:0',
+            'discount_percentage' => 'nullable|numeric|min:0',
         ]);
 
         // Handle checkboxes, default to 0 if not checked
@@ -71,6 +73,8 @@ class PricePlanController extends Controller
             'project_limit' => $request->project_limit,
             'recommended' => $recommended,
             'frontend_show' => $frontend_show,
+            'old_price' => $request->old_price,
+            'discount_percentage' => $request->discount_percentage,
         ]);
 
         return redirect()->route('plans.index')->with('success', 'Plan created successfully');
@@ -94,6 +98,8 @@ class PricePlanController extends Controller
             'employee_limit' => 'required|integer|min:0',
             'client_limit' => 'required|integer|min:0',
             'project_limit' => 'required|integer|min:0',
+            'old_price' => 'nullable|numeric|min:0',
+            'discount_percentage' => 'nullable|numeric|min:0',
         ]);
 
         // Handle checkboxes, default to 0 if not checked
@@ -110,6 +116,8 @@ class PricePlanController extends Controller
             'project_limit' => $request->project_limit,
             'recommended' => $recommended,
             'frontend_show' => $frontend_show,
+            'old_price' => $request->old_price,
+            'discount_percentage' => $request->discount_percentage,
         ]);
 
         return redirect()->route('plans.index')->with('success', 'Plan updated successfully');

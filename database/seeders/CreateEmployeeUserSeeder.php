@@ -30,7 +30,7 @@ class CreateEmployeeUserSeeder extends Seeder
 
         // Array of realistic employee details
         $employees = [
-            ['username' => 'employee', 'email' => 'employee@mail.com', 'phone' => '01712345678', 'name' => 'Employee One', 'gender' => 'male'],
+            ['username' => 'employee', 'email' => 'employee@mail.com', 'phone' => '01712345678', 'name' => 'Employee', 'gender' => 'male'],
             ['username' => 'employee2', 'email' => 'employee2@mail.com', 'phone' => '01798765432', 'name' => 'Jane Smith', 'gender' => 'female'],
             // Add more employees as needed
         ];

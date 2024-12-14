@@ -2,12 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Client;
-use App\Models\Employer;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use App\Models\Client;
+use App\Models\User;
+use App\Models\Employer;
 
 class CreateClientUserSeeder extends Seeder
 {
@@ -16,88 +14,31 @@ class CreateClientUserSeeder extends Seeder
      */
     public function run(): void
     {
-        // Get the client role
-        $clientRole = Role::find(4);
+        // Create 3 users with real data
+        $users = [
+            User::create(['name' => 'Client', 'username' => 'client', 'role' => 'client', 'email' => 'client@example.com', 'password' => bcrypt('password')]),
+            User::create(['name' => 'Client2', 'username' => 'client2', 'role' => 'client', 'email' => 'client2@example.com', 'password' => bcrypt('password')]),
+            User::create(['name' => 'Client3', 'username' => 'client3', 'role' => 'client', 'email' => 'client3@example.com', 'password' => bcrypt('password')]),
+        ];
 
-        if ($clientRole) {
-            // Define specific permissions for clients
-            $clientPermissions = [13, 14, 16, 17];
+        // Fetch some employers to associate with clients
+        $employers = Employer::all();
 
-            // Assign permissions to the client role
-            foreach ($clientPermissions as $permissionId) {
-                $permission = Permission::find($permissionId);
-                if ($permission) {
-                    $clientRole->givePermissionTo($permission);
-                }
-            }
+        if ($employers->isEmpty()) {
+            $this->command->info('No employers found. Please seed the Employers table first.');
+            return;
+        }
 
-            // Check if employer with ID 1 exists
-            $employer = Employer::find(1);
-
-            if ($employer) {
-                // Define a list of clients with their associated user data
-                $clients = [
-                    [
-                        'user' => [
-                            'username' => 'client',
-                            'email' => 'client@mail.com',
-                            'password' => bcrypt('123456'),
-                            'role' => 'client',
-                        ],
-                        'client' => [
-                            'client_name' => 'Acme Corp',
-                            'contact_name' => 'John Doe',
-                            'client_phone' => '555-123-4567',
-                            'status' => true,
-                        ],
-                    ],
-                    [
-                        'user' => [
-                            'username' => 'client2',
-                            'email' => 'client2@gmail.com',
-                            'password' => bcrypt('123456'),
-                            'role' => 'client',
-                        ],
-                        'client' => [
-                            'client_name' => 'Tech Innovations',
-                            'contact_name' => 'Jane Smith',
-                            'client_phone' => '555-234-5678',
-                            'status' => true,
-                        ],
-                    ],
-                    [
-                        'user' => [
-                            'username' => 'client3',
-                            'email' => 'client3@gmail.com',
-                            'password' => bcrypt('123456'),
-                            'role' => 'client',
-                        ],
-                        'client' => [
-                            'client_name' => 'Global Enterprises',
-                            'contact_name' => 'Emily Johnson',
-                            'client_phone' => '555-345-6789',
-                            'status' => true,
-                        ],
-                    ],
-                ];
-
-                // Loop through each client and create both user and client records
-                foreach ($clients as $clientData) {
-                    // Create the user
-                    $clientUser = User::create($clientData['user']);
-
-                    if ($clientUser) {
-                        // Assign the client role to the user
-                        $clientUser->assignRole([$clientRole->name]);
-
-                        // Create the client record associated with the employer
-                        Client::create(array_merge(
-                            $clientData['client'],
-                            ['employer_id' => $employer->id, 'client_email' => $clientData['user']['email']]
-                        ));
-                    }
-                }
-            }
+        foreach (range(1, 10) as $index) {
+            Client::create([
+                'user_id' => $users[array_rand($users)]->id,
+                'employer_id' => $employers->random()->id,
+                'client_name' => "Client Name $index",
+                'client_email' => "client$index@example.com",
+                'contact_name' => "Contact Name $index",
+                'status' => (bool)random_int(0, 1),
+                'client_phone' => '+123456789' . $index,
+            ]);
         }
     }
 }

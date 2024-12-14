@@ -17,11 +17,22 @@ class InvoiceController extends Controller
      public function index(Request $request)
      {
          $search = $request->input('search');
-         $invoices = Invoice::with('employer')
-             ->when($search, function ($query) use ($search) {
-                 return $query->where('invoice_number', 'like', "%{$search}%");
-             })
+         if(auth()->user()->role == 'employer'){
+            $invoices = Invoice::with('employer')
+                ->where('employer_id', auth()->user()->employer->id)
+                ->when($search, function ($query) use ($search) {
+                    return $query->where('invoice_number', 'like', "%{$search}%");
+                })
+                ->latest()
              ->paginate(10);
+         }else{
+            $invoices = Invoice::with('employer')
+                ->when($search, function ($query) use ($search) {
+                    return $query->where('invoice_number', 'like', "%{$search}%");
+                })
+             ->paginate(10);
+         }
+
  
          return view('invoice.index', compact('invoices'));
      }
@@ -35,9 +46,9 @@ class InvoiceController extends Controller
      // Store a newly created invoice in storage
      public function store(Request $request)
      {
-         $request->validate([
-             'project_id' => 'required|exists:projects,id',
-             'invoice_number' => 'required|string|max:255',
+        $request->validate([
+            'project_id' => 'required|exists:projects,id',
+            'invoice_number' => 'required|string|max:255|unique:invoices,invoice_number',
          ]);
          $project = Project::find($request->project_id);
  

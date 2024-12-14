@@ -11,6 +11,11 @@ class Client extends Model
 
     protected $guarded = [];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function employee()
     {
         return $this->hasMany(Employee::class, 'employer_id');

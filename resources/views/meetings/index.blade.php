@@ -18,9 +18,11 @@
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('meeting.create') }}"
-                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> {{ __('Create Meeting') }}</a>
+                @can('Zoom Meeting create')
+                    <a href="{{ route('meeting.create') }}"
+                        class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                            class="fa-solid fa-plus"></i> {{ __('Create Meeting') }}</a>
+                @endcan
             </div>
             <!-- Start heading  here -->
             <div class="flex flex-wrap">

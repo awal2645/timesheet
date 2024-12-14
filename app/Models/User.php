@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->hasOne(Employee::class);
     }
 
+    public function client()
+    {
+        return $this->hasOne(Client::class);
+    }
+
     // Scope |  user filter as active
     public function scopeActive($query)
     {

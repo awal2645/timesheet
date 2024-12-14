@@ -7,9 +7,12 @@ use App\Models\Task;
 use App\Models\Client;
 use App\Models\Notice;
 use App\Models\Earning;
+use App\Models\Project;
+use App\Models\Setting;
 use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Language;
+use App\Models\PricePlan;
 use App\Models\TimeReport;
 use App\Models\Testimonial;
 use App\Models\Notificattion;
@@ -332,5 +335,39 @@ if (! function_exists('testimonials')) {
     function testimonials()
     {
         return Testimonial::all();
+    }
+}
+
+if (! function_exists('projectCount')) {
+    function projectCount()
+    {
+        return Project::where('client_id', auth()->user()->client->id)->count();
+    }
+}
+
+if (! function_exists('taskCount')) {
+    function taskCount($status = null)
+    {
+        $project = Project::where('client_id', auth()->user()->client->id)->get();
+        $totalTask = 0;
+        foreach ($project as $item) {
+            $task = Task::where('project_id', $item->id)->where('status', $status)->count();
+            $totalTask += $task;
+        }
+        return $totalTask;
+    }
+}
+
+if (! function_exists('getSocialLinks')) {
+    function getSocialLinks()
+    {
+        return Setting::select('facebook_url', 'instagram_url', 'linkedin_url', 'twitter_url', 'youtube_url')->first();
+    }
+}
+
+if (! function_exists('pricePlans')) {
+    function pricePlans()
+    {
+        return PricePlan::where('frontend_show', true)->get();
     }
 }

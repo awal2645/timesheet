@@ -29,6 +29,7 @@ use App\Http\Controllers\LeaveTypeController;
 use App\Http\Controllers\PricePlanController;
 use App\Http\Controllers\TimesheetController;
 use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\NewsLatterController;
 use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\NotificationController;
@@ -275,6 +276,9 @@ Route::get('/contact/destroy/{id}', [ContactController::class, 'destroy'])->name
 // Testimonial Routes
 Route::resource('testimonial', TestimonialController::class);
 
+// Newsletter Routes
+Route::resource('newsletter', NewsLatterController::class);
+Route::get('/newsletter/destroy/{id}', [NewsLatterController::class, 'destroy'])->name('newsletter.destroy');
 Route::get('/get/employee/{employer}', function ($employer) {
     $employees = Employee::where('employer_id', $employer)->get(['id', 'employee_name']);
     return response()->json($employees);

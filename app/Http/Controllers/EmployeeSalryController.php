@@ -13,7 +13,7 @@ class EmployeeSalryController extends Controller
     {
         if (auth()->user()->role === 'employer') {
             $employees = Employee::where('employer_id', auth()->user()->employer->id)->get();
-            return view('employee.salary.index', compact('employees'));
+            return view('employee.salary.employer.index', compact('employees'));
 
         }else{
             $employer = Employer::all();

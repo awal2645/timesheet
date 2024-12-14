@@ -1,4 +1,3 @@
-{{-- resources/views/your_view.blade.php --}}
 @section('title')
     {{ 'TimeSheet Report' }}
 @endsection

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('label')->unique();
             $table->text('description')->nullable();
+            $table->float('old_price')->nullable();
+            $table->float('discount_percentage')->nullable();
             $table->float('price');
             $table->integer('employee_limit');
             $table->integer('client_limit');

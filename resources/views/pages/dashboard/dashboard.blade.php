@@ -127,6 +127,7 @@
             <x-dashboard.dashboard-card-03 />
 
             <!-- New Chart Cards -->
+            @if (auth()->user()->role != 'client')
             <div class="col-span-12 xl:col-span-6">
                 <div
                     class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
@@ -136,7 +137,7 @@
                     </div>
                 </div>
             </div>
-
+            @endif
             <div class="col-span-12 xl:col-span-6">
                 <div
                     class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
@@ -148,6 +149,7 @@
             </div>
 
             <!-- Notice Board -->
+            @canany('Notice view')
             <div class="col-span-12">
                 <div
                     class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
@@ -195,9 +197,9 @@
                     </div>
                 </div>
             </div>
-
+            @endcanany
         </div>
-        @if (auth()->user()->role != 'employee')
+        @if (auth()->user()->role != 'employee' && auth()->user()->role != 'client')
             <div class="mt-5">
                 <div class="flex flex-wrap">
                     <div class="w-full">
@@ -369,9 +371,9 @@
                     labels: ['Completed', 'In Progress', 'Pending'],
                     datasets: [{
                         data: [
-                            {{ tasks()->where('status', 'completed')->count() }},
-                            {{ tasks()->where('status', 'inprogress')->count() }},
-                            {{ tasks()->where('status', 'pending')->count() }}
+                            {{ auth()->user()->role == 'client' ? taskCount('completed') : tasks()->where('status', 'completed')->count() }},
+                            {{ auth()->user()->role == 'client' ? taskCount('inprogress') : tasks()->where('status', 'inprogress')->count() }},
+                            {{ auth()->user()->role == 'client' ? taskCount('pending') : tasks()->where('status', 'pending')->count() }}
                         ],
                         backgroundColor: [
                             'rgb(75, 192, 192)',
@@ -396,6 +398,7 @@
                 }
             });
         }
+        
     });
 </script>
 

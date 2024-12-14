@@ -9,6 +9,9 @@
     <link href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo_symbol.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -56,7 +59,7 @@
                             data-aos="fade-up" data-aos-delay="200">
                             {{ __('Live Demo') }} <span class="ml-2">▶</span>
                         </a>
-                        <a href="#"
+                        <a href="#pricing"
                             class="px-6 py-3 bg-transparent text-gray-900 border border-black rounded-md hover:bg-gray-900/10"
                             data-aos="fade-up" data-aos-delay="300">
                             {{ __('Buy Now') }} <span class="ml-2">↓</span>
@@ -123,8 +126,8 @@
                     <p class="text-gray-700" data-aos="fade-up" data-aos-delay="100">
                         {{ __('Use these awesome forms to login or create new account in your project for free.') }}
                     </p>
-                    <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-green-600"
+                    <a href="#pricing"
+                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white  bg-primary-50 rounded-md hover:bg-green-600"
                         data-aos="fade-up" data-aos-delay="200">
                         {{ __('Buy Now') }} <span class="ml-2">↓</span>
                     </a>
@@ -189,13 +192,13 @@
             <!-- First Screenshot -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="space-y-6">
-                    <p class="text-sm font-semibold text-Timesheet-green">FEATURES</p>
+                    <p class="text-sm font-semibold ">FEATURES</p>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Timesheet - Time Tracking Tool</h2>
                     <p class="text-gray-600" data-aos="fade-up" data-aos-delay="100">
                         Use these awesome forms to login or create new account in your project for free.
                     </p>
-                    <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green text-white rounded-md hover:bg-green-600"
+                    <a href="#pricing"
+                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
                         {{ __('Buy Now') }} <span class="ml-2">↓</span>
                     </a>
@@ -220,8 +223,8 @@
                     <p class="text-gray-600">
                         {{ __('Use these awesome forms to login or create new account in your project for free.') }}
                     </p>
-                    <a href="#"
-                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green text-white rounded-md hover:bg-green-600"
+                    <a href="#pricing"
+                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green bg-primary-50 text-white rounded-md hover:bg-green-600"
                         data-aos="fade-up" data-aos-delay="200">
                         {{ __('Buy Now') }} <span class="ml-2">↓</span>
                     </a>
@@ -231,7 +234,7 @@
     </section>
 
     <!-- Pricing -->
-    <section class="bg-gray-50">
+    <section class="bg-gray-50" id="pricing">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <h2 class="text-4xl text-3xl md:text-4xl font-bold text-gray-900  mb-16 text-center" data-aos="fade-up">
                 {{ __('Our Pricing') }}
@@ -249,98 +252,62 @@
 
                 <div class="grid md:grid-cols-3 gap-6">
                     <!-- Pricing Plan -->
-                    <div class="bg-white rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-xl font-semibold text-text-white">Get a new hosting plan</h2>
-                        <p class="text-text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-text-white/90 line-through text-sm">$9.99</div>
+                    @foreach (pricePlans() as $plan)
+                        <div class="bg-white rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                            <h2 class="text-xl font-semibold text-text-white flex items-center justify-between">
+                                <span>{{ $plan->label }}</span>
+                                @if($plan->recommended)
+                                    <span class="bg-green-500 text-white text-xs font-bold rounded-full px-2 py-1 ml-2">RECOMMENDED</span>
+                                @endif
+                            </h2>
+                            <p class="text-text-white/90 mb-12">
+                                    {{ $plan->description }}
+                            </p>
+                            <div class="relative inline-block">
+                                <div class="text-text-white/90 line-through text-sm">
+                                    {{ $plan->old_price ? '$' . $plan->old_price : 'N/A' }}
+                                </div>
                             <div class="absolute start-full -top-2 rotate-60">
                                 <span
                                     class="inline-block whitespace-nowrap bg-rose-500 text-text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
+                                    {{ $plan->discount_percentage ? $plan->discount_percentage . '% OFF' : 'N/A' }}
                                 </span>
                             </div>
                         </div>
                         <div>
                             <div class="text-sm text-text-white/90 mt-6 mb-2">From</div>
                             <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-text-white font-bold">$1.99</span>
-                                <span class="text-text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-text-white/90 my-8">
-                                when getting a 4-year subscription
-                            </div>
-                        </div>
-                        <button
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
-                            data-aos="fade-up" data-aos-delay="300">
-                            Get deal
-                        </button>
-                    </div>
-                    <!-- Pricing Plan -->
-                    <div class="bg-white rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-xl font-semibold text-text-white">Get a new hosting plan</h2>
-                        <p class="text-text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-text-white/90 line-through text-sm">$9.99</div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
+                                <span class="text-3xl text-text-white font-bold">
+                                    {{ $plan->price ? '$' . $plan->price : 'N/A' }}
                                 </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-text-white font-bold">$1.99</span>
                                 <span class="text-text-white/90">/mo</span>
                             </div>
                             <div class="text-sm text-text-white/90 my-8">
-                                when getting a 4-year subscription
+                                <div class=" ">
+                                    <ul class="space-y-4">
+                                        <li class="flex items-center">
+                                            <x-svgs.check class="text-green-500 mr-3" />
+                                            <span class="text-text-white">{{ __('Employee can create') }} {{ $plan->employee_limit }} {{ __('projects') }}</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <x-svgs.check class="text-green-500 mr-2" />
+                                            <span class="text-text-white">{{ __('Client can create') }} {{ $plan->client_limit }} {{ __('projects') }}</span>
+                                        </li>
+                                        <li class="flex items-center">
+                                            <x-svgs.check class="text-green-500 mr-2" />
+                                            <span class="text-text-white">{{ __('Project can create') }} {{ $plan->project_limit }} {{ __('projects') }}</span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <button
+                        <a href="{{ route('plans.index')}}"
                             class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
                             data-aos="fade-up" data-aos-delay="300">
-                            Get deal
-                        </button>
+                            {{ __('Get deal') }}
+                        </a>
                     </div>
-                    <!-- Pricing Plan -->
-                    <div class="bg-white rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
-                        <h2 class="text-xl font-semibold text-text-white">Get a new hosting plan</h2>
-                        <p class="text-text-white/90 mb-12">
-                            Everything you need to create a website
-                        </p>
-                        <div class="relative inline-block">
-                            <div class="text-text-white/90 line-through text-sm">$9.99</div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-text-white text-sm px-3 py-1 rounded-full">
-                                    80% OFF
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-text-white font-bold">$1.99</span>
-                                <span class="text-text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-text-white/90 my-8">
-                                when getting a 4-year subscription
-                            </div>
-                        </div>
-                        <button
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
-                            data-aos="fade-up" data-aos-delay="300">
-                            Get deal
-                        </button>
-                    </div>
+                @endforeach
                 </div>
             </div>
         </div>
@@ -551,7 +518,7 @@
                             </h4>
 
                             <a class="mt-1 text-gray-800 text-sm" href="mailto:example@site.co" target="_blank">
-                                hello@example.so
+                                {{ __('hello@example.so') }}
                             </a>
                         </div>
                     </div>
@@ -605,8 +572,24 @@
                     <p class="text-text-light text-white">
                         {{ __('We build modern web tools to help you jump-start your daily business work.') }}
                     </p>
+                    <div class="flex space-x-4">
+                        <a href="{{ getSocialLinks()->facebook_url }}" target="_blank" class="text-white hover:text-primary-500">
+                            <i class="fa-brands fa-facebook" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="{{ getSocialLinks()->twitter_url }}" target="_blank" class="text-white hover:text-primary-500">
+                            <i class="fa-brands fa-twitter" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="{{ getSocialLinks()->linkedin_url }}" target="_blank" class="text-white hover:text-primary-500">
+                            <i class="fa-brands fa-linkedin" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="{{ getSocialLinks()->instagram_url }}" target="_blank" class="text-white hover:text-primary-500">
+                            <i class="fa-brands fa-instagram" style="font-size: 30px;"></i>
+                        </a>
+                        <a href="{{ getSocialLinks()->youtube_url }}" target="_blank" class="text-white hover:text-primary-500">
+                            <i class="fa-brands fa-youtube" style="font-size: 30px;"></i>
+                        </a>
+                    </div>
                 </div>
-
                 <!-- Links -->
                 <div data-aos="fade-up">
                     <ul class="space-y-3">
@@ -620,16 +603,19 @@
 
                 <!-- Newsletter -->
                 <div class="space-y-4" data-aos="fade-up">
-                    <h3 class="text-xl font-bold text-white">Join Our Community</h3>
+                    <h3 class="text-xl font-bold text-white">
+                        {{ __('Join Our Community') }}
+                    </h3>
                     <p class="text-white">
-                        We build modern web tools to help you jump-start your daily business work.
+                        {{ __('We build modern web tools to help you jump-start your daily business work.') }}
                     </p>
-                    <form class="flex gap-2">
-                        <input type="email" placeholder="Type your email address..."
+                    <form class="flex gap-2" action="{{ route('newsletter.store') }}" method="POST">
+                        @csrf
+                        <input type="email" name="email" placeholder="Type your email address..."
                             class="flex-1 px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500">
                         <button type="submit"
                             class="px-6 py-2 bg-primary-50 text-white rounded-md hover:bg-gray-800">
-                            Join Us!
+                            {{ __('Join Us!') }}
                         </button>
                     </form>
                 </div>
