@@ -4,61 +4,61 @@
 <x-app-layout>
     <div class="relative m-6">
         <div class="my-8 card shadow-lg rounded-lg overflow-hidden">
-            <h1 class="text-center font-bold text-4xl text-gray-800 bg-gray-200 p-6">Employee Salary Invoice</h1>
-            <div class="border-t border-gray-300 p-6">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div class="flex items-center">
-                        <i class="fas fa-user-circle text-primary-50 mr-2"></i>
+            <h1 class="text-center font-bold text-4xl text-text-light dark:text-text-dark bg-header-light dark:bg-header-dark rounded-xl p-6">Employee Salary Invoice</h1>
+            <div class="border-t border-gray-300 dark:border-gray-700 p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-text-light dark:text-text-dark  [&_.flex]:bg-gray-200 [&_.flex]:dark:bg-gray-900 [&_.flex]:p-6 ">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-user-circle text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Employee Name:</p>
-                            <p class="text-gray-700">{{ $employee->name }}</p>
+                            <p>{{ $employee->name }}</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-envelope text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-envelope text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Employee Email:</p>
-                            <p class="text-gray-700">{{ $employee->email }}</p>
+                            <p>{{ $employee->email }}</p>
                         </div>
                     </div>
-                    <div class="flex items-center">
-                        <i class="fas fa-clock text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-clock text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Total Hours Worked:</p>
-                            <p class="text-gray-700">{{ $employee_total_hours }}</p>
+                            <p>{{ $employee_total_hours }}</p>
                         </div>
                     </div>
                     @if ($employee->payment_type == 'hourly')   
-                    <div class="flex items-center">
-                        <i class="fas fa-dollar-sign text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-dollar-sign text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Total Salary:</p>
-                            <p class="text-gray-700">{{ $employee_total_salary }}</p>
+                            <p>{{ $employee_total_salary }}</p>
                         </div>
                     </div>
                     @endif
-                    <div class="flex items-center">
-                        <i class="fas fa-credit-card text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-credit-card text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Payment Type:</p>
-                            <p class="text-gray-700">{{ $employee->payment_type }}</p>
+                            <p>{{ $employee->payment_type }}</p>
                         </div>
                     </div>
                     @if ($employee->payment_type == 'hourly')
-                    <div class="flex items-center">
-                        <i class="fas fa-money-bill-wave text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-money-bill-wave text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Billing Rate:</p>
-                            <p class="text-gray-700">{{ $employee->billing_rate }}</p>
+                            <p>{{ $employee->billing_rate }}</p>
                         </div>
                     </div>
                     @endif
                     @if ($employee->payment_type == 'monthly')
-                    <div class="flex items-center">
-                        <i class="fas fa-calendar-alt text-primary-50 mr-2"></i>
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-calendar-alt text-2xl text-primary-50 p-4 rounded bg-header-light dark:bg-header-dark"></i>
                         <div>
                             <p class="font-semibold">Monthly Salary:</p>
-                                <p class="text-gray-700">{{ $employee->monthly_salary }}</p>
+                                <p>{{ $employee->monthly_salary }}</p>
                             </div>
                         </div>
                     @endif
