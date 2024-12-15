@@ -215,16 +215,15 @@
                                                     <th class="p-4 font-medium">{{ __('Amount') }}</th>
                                                     <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
                                                     <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
-                                                    <th class="p-4 font-medium"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @forelse ($transactions as $transaction)
                                                     <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                        <td class="p-4">#{{ $transaction->order_id }}</td>
-                                                        <td class="p-4">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">#{{ $transaction->order_id }}</td>
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                             {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                        <td class="p-4">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                             @if ($transaction->payment_type == 'per_job_based')
                                                                 <span
                                                                     class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
@@ -237,14 +236,14 @@
                                                                 </span>
                                                             @endif
                                                         </td>
-                                                        <td class="p-4">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                             {{ ucfirst($transaction->employer->employer_name) ?? '' }}
                                                         </td>
-                                                        <td class="p-4">${{ $transaction->usd_amount }}</td>
-                                                        <td class="p-4">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">${{ $transaction->usd_amount }}</td>
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                             {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
                                                         </td>
-                                                        <td class="p-4">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                             <span
                                                                 class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
                                                                 {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}

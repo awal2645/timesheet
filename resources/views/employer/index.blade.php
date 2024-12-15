@@ -65,7 +65,7 @@
                                         <tbody>
                                             @forelse ($employers as $employer)
                                             <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                <td class="p-4">
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                     <div class="flex items-center">
                                                         @if ($employer->user->image)
                                                         <img class="w-10 h-10 rounded-full"
@@ -83,17 +83,17 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td class="p-4">
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                     <span class="text-base font-semibold">Employee (
                                                         {{ $employer->employee->count() }} )</span>
                                                 </td>
-                                                <td class="p-4">
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                     <a href="{{ $employer->website }}" target="_blank"
                                                         class="hover:text-primary-500">
                                                         {{ $employer->website }}
                                                     </a>
                                                 </td>
-                                                <td class="p-4">
+                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
                                                     <div class="flex items-center">
                                                         <div class="h-2.5 w-2.5 rounded-full mr-2"
                                                             style="background-color: {{ $employer->status === 1 ? 'green' : 'red' }};">
