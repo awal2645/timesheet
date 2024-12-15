@@ -110,8 +110,6 @@
                 // Call the updateGreeting function when the page loads
                 updateGreeting();
             </script>
-
-
         </div>
 
         <!-- Cards -->
@@ -147,52 +145,50 @@
                     </div>
                 </div>
             </div>
-
             <!-- Notice Board -->
             @canany('Notice view')
             <div class="col-span-12">
                 <div
                     class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
                     <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Notice Board') }}</h3>
-
                     <!-- News Ticker/Scroller -->
                     <div class="relative overflow-hidden group">
                         <!-- Scrolling Content -->
                         <div class="notice-carosel">
                             @forelse (notice() as $notice)
-                                <div
-                                    class="mx-3 p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
-                                    <div class="flex justify-between items-start">
-                                        <h4 class="font-semibold text-gray-900 dark:text-white">
-                                            {{ $notice->title }}
-                                        </h4>
-                                        <span
-                                            class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans() }}</span>
-                                    </div>
-                                    <p class="mt-2 text-gray-600 dark:text-gray-300 !whitespace-normal">
-                                        {{ $notice->content }}
-                                    </p>
-                                    <div class="mt-2">
-                                        <span
-                                            class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
-                                            @php
-                                                // Split the role string into an array
-                                                $noticeRoles = explode(',', $notice->role);
-                                            @endphp
-
-                                            @foreach (roles() as $role)
-                                                @if (in_array($role->id, $noticeRoles))
-                                                    {{ ucfirst($role->name) }}{{ !$loop->last ? ',' : '' }}
-                                                @endif
-                                            @endforeach
-
-                                        </span>
-                                    </div>
+                            <div class="mx-3 p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">
+                                        {{ $notice->title }}
+                                    </h4>
+                                    <span class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans() }}</span>
                                 </div>
-                            @empty
-                                <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 !whitespace-normal">
+                                    {{ $notice->content }}
                                 </p>
-                            @endforelse
+                                <div class="mt-2">
+                                    <span class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                        @php
+                                            // Split the role string into an array
+                                            $noticeRoles = explode(',', $notice->role);
+                                            $rolesList = [];
+                                        @endphp
+                                        @foreach (roles() as $role)
+                                            @if (in_array($role->id, $noticeRoles))
+                                                @php
+                                                    $rolesList[] = ucfirst($role->name);
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        {{-- Output the roles with commas, but not after the last role --}}
+                                        {{ implode(', ', $rolesList) }}
+                                    </span>
+                                </div>
+                            </div>
+                        @empty
+                            <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}</p>
+                        @endforelse
+                        
                         </div>
                     </div>
                 </div>

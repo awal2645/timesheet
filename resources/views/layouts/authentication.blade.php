@@ -16,7 +16,6 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-
     <!-- Styles -->
     @livewireStyles
 
@@ -59,25 +58,24 @@
         <div
             class="bg-card-light dark:bg-card-dark bg-opacity-50 backdrop-blur p-4 rounded-md shadow-lg flex justify-between items-center mx-12 my-6">
             {{-- <img src="{{ asset('images/logo-inv.png') }}" alt="timesheet Logo" class="h-10"> --}}
-            <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
-            <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
+            <a href="/">
+                <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
+                <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
+            </a>
 
             <nav class="hidden lg:flex items-center gap-4">
-                <a href="#"
-                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">About
-                    Us</a>
-                <a href="#"
-                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Terms
-                    and
-                    Conditions</a>
-                <a href="#"
-                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">Privacy
-                    Policy</a>
+                <a href="{{ route('terms') }}"
+                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">
+                    {{ __('Terms and Conditions') }}
+                </a>
+                <a href="{{ route('privacy') }}"
+                    class="inline-flex font-semibold text-base text-text-light dark:text-text-dark hover:text-text-light/80 dark:hover:text-text-dark/80">
+                    {{ __('Privacy Policy') }}
+                </a>
                 @php
                     $languages = loadLanguage();
                     $hasMultipleLanguages = count($languages) > 1;
                     $current_language = currentLanguage() ?: loadDefaultLanguage();
-                    // dd($current_language);
                 @endphp
 
                 @if ($hasMultipleLanguages)
@@ -93,8 +91,6 @@
                             @endforeach
                         </select>
                     </form>
-
-
                 @endif
             </nav>
             <button class="lg:hidden" @click="openMenu = !openMenu">

@@ -62,34 +62,40 @@
     </header>
     <section class="py-8 px-4 bg-gray-100 text-gray-800">
         <div class="container mx-auto">
-            <h2 class="text-2xl font-bold mb-4">{{ __('Terms and Conditions') }}</h2>
-            <p>{{ __('Please read these terms and conditions carefully before using our service.') }}</p>
-            <p>{{ __('Your access to and use of the service is conditioned on your acceptance of and compliance with these terms.') }}</p>
+            <h2 class="text-2xl font-bold mb-4">{{ __('Privacy Policy') }}</h2>
+            <p>{{ __('Your privacy is important to us. This privacy policy explains how we collect, use, and protect your personal information.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Payment Methods') }}</h3>
-            <p>{{ __('We accept various payment methods including credit cards, debit cards, and PayPal. All transactions are processed securely using industry-standard encryption to protect your information.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Information We Collect') }}</h3>
+            <p>{{ __('We collect personal information you provide to us, such as your name, email address, phone number, and payment information. Additionally, we may collect data about how you use our services, including IP address, browser type, and usage patterns.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Refund Policy') }}</h3>
-            <p>{{ __('If you are not satisfied with your purchase, you may request a refund within 30 days of the transaction. To initiate a refund, please contact our support team with your order details. Refunds will be processed within 7-10 business days.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('How We Use Your Information') }}</h3>
+            <p>{{ __('We use the information we collect to provide and improve our services, process payments, communicate with you, and ensure the security of our platform. We may also use your information for marketing purposes, but you can opt out at any time.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('User Responsibilities') }}</h3>
-            <p>{{ __('Users are responsible for maintaining the confidentiality of their account information and for all activities that occur under their account. Please notify us immediately of any unauthorized use of your account. You agree to provide accurate and complete information during the registration process and to update such information to keep it accurate and complete.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Sharing of Information') }}</h3>
+            <p>{{ __('We do not sell your personal information to third parties. However, we may share your information with trusted partners and service providers to perform essential business operations, such as payment processing, hosting services, and customer support.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Service Usage') }}</h3>
-            <p>{{ __('You agree to use our services only for lawful purposes and in accordance with these terms. You must not use our services in any way that violates any applicable federal, state, local, or international law or regulation. You are prohibited from using our services in any manner that could disable, overburden, or impair the site or interfere with any other party’s use of the services.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Data Security') }}</h3>
+            <p>{{ __('We implement industry-standard security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. Despite our efforts, no security measure is completely secure, and we cannot guarantee the absolute security of your data.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Limitations of Liability') }}</h3>
-            <p>{{ __('In no event shall we, our affiliates, or our licensors be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation loss of profits, data, use, goodwill, or other intangible losses, resulting from your use of or inability to use our services.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Cookies and Tracking Technologies') }}</h3>
+            <p>{{ __('We use cookies and similar tracking technologies to enhance your experience, analyze usage, and provide personalized content. You can manage your cookie preferences in your browser settings.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Dispute Resolution') }}</h3>
-            <p>{{ __('Any disputes arising out of or related to these terms and conditions shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association. The arbitration shall take place in the state where our company is located, and the decision of the arbitrator shall be final and binding.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Your Rights') }}</h3>
+            <p>{{ __('You have the right to access, correct, or delete your personal information. You can also withdraw your consent for data processing or opt out of marketing communications by contacting us.') }}</p>
             
-            <h3 class="text-xl font-semibold mt-6">{{ __('Changes to Terms') }}</h3>
-            <p>{{ __('We reserve the right to modify these terms at any time. We will notify you of any changes by posting the new terms on this page. You are advised to review these terms periodically for any changes. Changes to these terms are effective when they are posted on this page.') }}</p>
+            <h3 class="text-xl font-semibold mt-6">{{ __('Children’s Privacy') }}</h3>
+            <p>{{ __('Our services are not intended for individuals under the age of 13. We do not knowingly collect personal information from children. If you believe that a child has provided us with personal information, please contact us to have it removed.') }}</p>
+            
+            <h3 class="text-xl font-semibold mt-6">{{ __('Changes to this Privacy Policy') }}</h3>
+            <p>{{ __('We may update this privacy policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We encourage you to review this page periodically for any updates.') }}</p>
+            
+            <h3 class="text-xl font-semibold mt-6">{{ __('Contact Us') }}</h3>
+            <p>{{ __('If you have any questions or concerns about this privacy policy or our data practices, please contact us at [email@example.com].') }}</p>
             
             <!-- Add more content as needed -->
         </div>
     </section>
+    
    
     <!-- Footer -->
     <footer class="bg-card-dark  border-t">

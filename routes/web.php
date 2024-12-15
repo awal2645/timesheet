@@ -53,6 +53,13 @@ use App\Http\Controllers\LeaveApplicationController;
 // landing page
 
 Route::view('/', 'welcome');
+Route::get('/terms', function () {
+    return view('terms');
+})->name('terms');
+
+Route::get('/privacy', function () {
+    return view('privacy');
+})->name('privacy');
 
 // Redirect the root URL to the login page
 // Route::redirect('/', 'login');
@@ -224,12 +231,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task/destroy/{id}', 'destroy')->name('task.destroy');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
-
-
     });
 
-     // Meeting Routes
-     Route::resource('meeting', MeetingController::class);
+    // Meeting Routes
+    Route::resource('meeting', MeetingController::class);
 
     // Invoice Routes
     Route::resource('invoice', InvoiceController::class);
@@ -259,33 +264,34 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/themes', [ThemeController::class, 'update'])->name('themes.update');
     Route::post('/themes/reset', [ThemeController::class, 'reset'])->name('themes.reset');
 
-   // In routes/web.php
-Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
-Route::put('/cms', [CmsController::class, 'update'])->name('cms.update');
-Route::post('/file/upload', [CmsController::class, 'uploadFile'])->name('file.upload');
-Route::post('/file/delete', [CmsController::class, 'deleteFile'])->name('file.delete');
+    // In routes/web.php
+    Route::get('/cms', [CmsController::class, 'index'])->name('cms.index');
+    Route::put('/cms', [CmsController::class, 'update'])->name('cms.update');
+    Route::post('/file/upload', [CmsController::class, 'uploadFile'])->name('file.upload');
+    Route::post('/file/delete', [CmsController::class, 'deleteFile'])->name('file.delete');
 
-Route::get('/salary', [EmployeeSalryController::class, 'index'])->name('salary');
-Route::get('/salary/show', [EmployeeSalryController::class, 'show'])->name('salary.show');
+    Route::get('/salary', [EmployeeSalryController::class, 'index'])->name('salary');
+    Route::get('/salary/show', [EmployeeSalryController::class, 'show'])->name('salary.show');
 
-// Contact Routes
-Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
-Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
-Route::get('/contact/destroy/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
+    // Contact Routes
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');
+    Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+    Route::get('/contact/destroy/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
-// Testimonial Routes
-Route::resource('testimonial', TestimonialController::class);
+    // Testimonial Routes
+    Route::resource('testimonial', TestimonialController::class);
 
-// Newsletter Routes
-Route::resource('newsletter', NewsLatterController::class);
-Route::get('/newsletter/destroy/{id}', [NewsLatterController::class, 'destroy'])->name('newsletter.destroy');
-Route::get('/get/employee/{employer}', function ($employer) {
-    $employees = Employee::where('employer_id', $employer)->get(['id', 'employee_name']);
-    return response()->json($employees);
-});
+    // Newsletter Routes
+    Route::resource('newsletter', NewsLatterController::class);
+    Route::get('/newsletter/destroy/{id}', [NewsLatterController::class, 'destroy'])->name('newsletter.destroy');
+    Route::get('/get/employee/{employer}', function ($employer) {
+        $employees = Employee::where('employer_id', $employer)->get(['id', 'employee_name']);
+        return response()->json($employees);
+    });
 
-Route::get('/get/client/{employer}', function ($employer) {
-    $clients = Client::where('employer_id', $employer)->get(['id', 'client_name']);
-    return response()->json($clients);
-});
+    Route::get('/get/client/{employer}', function ($employer) {
+        $clients = Client::where('employer_id', $employer)->get(['id', 'client_name']);
+        return response()->json($clients);
+    });
+   
 });

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-
 </head>
 
 <body>
@@ -127,7 +125,7 @@
                         {{ __('Use these awesome forms to login or create new account in your project for free.') }}
                     </p>
                     <a href="#pricing"
-                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white  bg-primary-50 rounded-md hover:bg-green-600"
+                        class="inline-flex items-center px-6 py-3 bg-primary-50 text-white  bg-primary-50 rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
                         {{ __('Buy Now') }} <span class="ml-2">↓</span>
                     </a>
@@ -195,7 +193,7 @@
                     <p class="text-sm font-semibold ">FEATURES</p>
                     <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Timesheet - Time Tracking Tool</h2>
                     <p class="text-gray-600" data-aos="fade-up" data-aos-delay="100">
-                        Use these awesome forms to login or create new account in your project for free.
+                        Use these awesome forms to login or create new account in your project for free. 
                     </p>
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-primary-300"
@@ -224,7 +222,7 @@
                         {{ __('Use these awesome forms to login or create new account in your project for free.') }}
                     </p>
                     <a href="#pricing"
-                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green bg-primary-50 text-white rounded-md hover:bg-green-600"
+                        class="inline-flex items-center px-6 py-3 bg-Timesheet-green bg-primary-50 text-white rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
                         {{ __('Buy Now') }} <span class="ml-2">↓</span>
                     </a>
