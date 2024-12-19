@@ -31,24 +31,20 @@
                         <p class="text-red-500 text-xs">{{ $message }}</p>
                     @enderror
                 </div>
-            @endif
 
-            @if (auth('web')->user()->role == 'employer')
-                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
-            @endif
+                <div class="form-field">
+                    <select name="client_id" id="client_id" class="form-select">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                            {{ __('Select Client') }}
+                        </option>
+                        <!-- Clients will be populated here based on employer selection -->
+                    </select>
+                    @error('client_id')
+                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
+                    <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
+                </div>
 
-            <div class="form-field">
-                <select name="client_id" id="client_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
-                        {{ __('Select Client') }}
-                    </option>
-                    <!-- Clients will be populated here based on employer selection -->
-                </select>
-                @error('client_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-                <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
-            </div>
 
             <div class="form-field">
                 <select name="employee_id" id="employee_id" class="form-select">
@@ -63,6 +59,53 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+
+                @elseif (auth('web')->user()->role == 'employer')
+
+                <div class="form-field">
+                    <select name="client_id" id="client_id" class="form-select">
+                        @foreach ($clients as $client)
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                            {{ __('Select Client') }}
+                        </option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}">
+                            {{ $client->client_name }}
+                        </option>
+                        @endforeach 
+                    </select>
+                    @error('client_id')
+                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                    @enderror
+                    <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
+                </div>
+
+
+            <div class="form-field">
+                <select name="employee_id" id="employee_id" class="form-select">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                        {{ __('Select Employee') }}
+                    </option>
+                    @foreach ($employees as $employee)
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}">
+                            {{ $employee->employee_name }}
+                        </option>
+                    @endforeach
+                </select>
+                <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
+
+                @error('employee_id')
+                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                @enderror
+            </div>
+
+
+            @endif
+
+            @if (auth('web')->user()->role == 'employer')
+                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
+            @endif
+
+          
 
             <div class="form-field">
                 <input type="text" name="project_name" id="project_name" placeholder=" " required />

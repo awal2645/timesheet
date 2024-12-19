@@ -404,7 +404,7 @@
             slidesToShow: 4,
             slidesToScroll: 1,
             autoplay: true,
-            autoplaySpeed: 300,
+            autoplaySpeed: 2000,
             hoverOnPause: true,
             responsive: [
                 {

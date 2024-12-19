@@ -217,12 +217,12 @@
                     <li x-data="{
                         open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
                     }" x-effect="if (!sidebarExpanded) open = true">
-                        <a href="#" @click.stop="sidebarExpanded && (open = !open)"
+                        <a href="#" @click.stop="sidebarExpanded && (open = !open)" 
                             class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
                             <div class="flex items-center">
                                 <span class="sidebar-menu-icon">
                                     <i class="fa-solid fa-person-walking-arrow-right"></i> </span>
-                                <span class="sidebar-menu-text text-text-light dark:text-text-dark">
+                                <span class="sidebar-menu-text text-text-light dark:text-text-dark" x-show="sidebarExpanded">
                                     {{ __('Leave Management') }}
                                 </span>
                             </div>

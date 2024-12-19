@@ -47,6 +47,9 @@
                                             <th class="min-w-[150px] px-4 py-4 font-medium">
                                                 {{ __('Company') }}
                                             </th>
+                                            <th class="min-w-[150px] px-4 py-4 font-medium">
+                                                {{ __('Message') }}
+                                            </th>
                                             <th class="min-w-[120px] px-4 py-4 font-medium">
                                                 {{ __('Action') }}
                                             </th>
@@ -70,6 +73,9 @@
                                                     </td>
                                                     <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                         {{ $contact->company }}
+                                                    </td>
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 cursor-pointer" onclick="showFullMessage('{{ addslashes($contact->message) }}')">
+                                                        {{ Str::limit($contact->message, 50) }}
                                                     </td>
                                                     <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                         <div class="flex space-x-4">
@@ -105,6 +111,13 @@
             </div>
         @endif
     </div>
+    <style>
+        .swal2-styled.swal2-confirm {
+            background-color: var(--primary-50) !important;
+            color:var(--text-light) !important;
+            border-color: var(--primary-50) !important;
+        }
+    </style>
     <script>
         function showConfirmation(id) {
             Swal.fire({
@@ -118,6 +131,15 @@
                 if (result.isConfirmed) {
                     window.location.href = "/contact/destroy/" + id;
                 }
+            });
+        }
+
+        function showFullMessage(message) {
+            Swal.fire({
+                text: message,
+                icon: 'info',
+                confirmButtonText: "{{ __('Close') }}",
+
             });
         }
     </script>

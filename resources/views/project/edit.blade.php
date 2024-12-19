@@ -17,13 +17,11 @@
             @if (auth('web')->user()->role != 'employer')
                 <div class="form-field">
                     <select name="employer_id" id="employer_id" class="form-select">
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="" selected>
-                            {{ __('Select Employer') }}</button>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                            {{ __('Select Employer') }}
                         </option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $employer->id }}"
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}"
                                 {{ $project->employer_id == $employer->id ? 'selected' : '' }}>
                                 {{ $employer->employer_name }}
                             </option>
@@ -34,6 +32,7 @@
                         <p class="text-red-500 text-xs">{{ $message }}</p>
                     @enderror
                 </div>
+                
             @endif
             @if (auth('web')->user()->role == 'employer')
                 <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
@@ -41,12 +40,10 @@
             <!--  Select Client -->
             <div class="form-field">
                 <select name="client_id" id="client_id" class="form-select">
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="" selected>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                         {{ __('Select Client') }} </option>
                     @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $client->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}"
                             {{ $project->client_id == $client->id ? 'selected' : '' }}>
                             {{ $client->client_name }}
                         </option>
@@ -61,13 +58,11 @@
             <!--  Select Employee -->
             <div class="form-field">
                 <select name="employee_id" id="employee_id" class="form-select">
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="" selected>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                         {{ __('Select Client') }}
                     </option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $employee->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}"
                             {{ $project->employee_id == $employee->id ? 'selected' : '' }}>
                             {{ $employee->employee_name }}
                         </option>
@@ -94,18 +89,15 @@
 
             <div class="form-field">
                 <select name="payment_type" id="payment_type" class="form-select">
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="hourly"
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="hourly"
                         {{ $project->payment_type == 'hourly' ? 'selected' : '' }}>
                         {{ __('Hourly Based') }}
                     </option>
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="fixed"
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="fixed"
                         {{ $project->payment_type == 'fixed' ? 'selected' : '' }}>
                         {{ __('Fixed Price') }}
                     </option>
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="non"
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="non"
                         {{ $project->payment_type == 'non' ? 'selected' : '' }}>
                         {{ __('Non Billable') }}
                     </option>

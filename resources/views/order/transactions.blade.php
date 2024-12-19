@@ -9,15 +9,15 @@
                     <div class="mb-3">
                         <label for="search"
                             class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
-                        <diborder-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark>
-                            <input type="text" id="search" name="search" value="{{ request('search') }}"
+                            <div class="flex flex-wrap">
+                                <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
                                 class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
-                        </diborder-b>
+                        </div>
                     </div>
                 </form>
                 <a href="{{ route('order.create') }}"

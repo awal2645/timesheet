@@ -272,6 +272,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/salary', [EmployeeSalryController::class, 'index'])->name('salary');
     Route::get('/salary/show', [EmployeeSalryController::class, 'show'])->name('salary.show');
+    Route::get('/salary/download/{id}', [EmployeeSalryController::class, 'download'])->name('salary.download');
 
     // Contact Routes
     Route::get('/contact', [ContactController::class, 'index'])->name('contact.index');

@@ -56,9 +56,15 @@ class ProjectController extends Controller
     public function create()
     {
         try {
-            $employers = Employer::all();
-            $employees = Employee::all();
-            $clients = Client::all();
+            if (auth('web')->user()->role == 'employer') {
+                $employers = Employer::all();
+                $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
+                $clients = Client::where('employer_id', auth('web')->user()->employer->id)->get();
+            } else {
+                $employers = Employer::all();
+                $employees = Employee::all();
+                $clients = Client::all();
+            }
 
             return view('project.create', compact('employers', 'employees', 'clients'));
         } catch (\Exception $e) {
@@ -100,8 +106,13 @@ class ProjectController extends Controller
         try {
             $project = Project::findOrFail($id);
             $employers = Employer::all();
-            $employees = Employee::all();
-            $clients = Client::all();
+            if (auth('web')->user()->role == 'employer') {
+                $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
+                $clients = Client::where('employer_id', auth('web')->user()->employer->id)->get();
+            } else {
+                $employees = Employee::all();
+                $clients = Client::all();
+            }
 
             return view('project.edit', compact('project', 'employers', 'employees', 'clients'));
         } catch (\Exception $e) {
