@@ -91,6 +91,10 @@
             display: table-cell;
         }
 
+        .info-block.right-align {
+            text-align: right;
+        }
+
         .info-block-title {
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -157,22 +161,24 @@
         }
 
         .total-row {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 0.75rem;
+            display: table;
+            width: 100%;
         }
 
         .total-label {
-            font-size: 0.95rem;
+            font-size: 1.25rem;
             color: var(--text-light);
-            font-weight: 500;
+            font-weight: 700;
+            display: table-cell;
+            text-align: left;
         }
 
         .total-amount {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--primary);
+            display: table-cell;
+            text-align: right;
         }
 
         .invoice-footer {
@@ -207,6 +213,13 @@
         .capitalize {
             text-transform: capitalize;
         }
+
+        .divider {
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            margin: 1rem 0;
+        }
     </style>
 </head>
 
@@ -231,7 +244,7 @@
                     <div>{{ $employee->user->email }}</div>
                 </div>
             </div>
-            <div class="info-block">
+            <div class="info-block right-align">
                 <div class="info-block-title">Payment Details</div>
                 <div class="info-block-content">
                     <div class="font-semibold capitalize">{{ $employee->payment_type }} Rate</div>
@@ -271,6 +284,8 @@
                 @endif
             </tbody>
         </table>
+
+        <div class="divider"></div>
 
         <div class="total-section">
             <div class="total-row">
