@@ -176,7 +176,7 @@
                                                     </div>
                                                     <!-- Modal Structure -->
                                                     <div id="timesheetModal{{ $timeReport->id }}"
-                                                        class="modal hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
+                                                        class="modal hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
                                                         <div
                                                             class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-2xl h-34 overflow-auto relative flex flex-col gap-6">
                                                             <div class="absolute top-4 right-4">
@@ -213,11 +213,11 @@
                                                                             @foreach ($timeReport->timesheets as $timesheet)
                                                                                 <div
                                                                                     class="grid grid-cols-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600">
-                                                                                    <div class="px-4 py-2 text-center">
+                                                                                    <div class="px-4 py-2">
                                                                                         {{ $timesheet->day }}</div>
-                                                                                    <div class="px-4 py-2 text-center">
+                                                                                    <div class="px-4 py-2">
                                                                                         {{ $timesheet->date }}</div>
-                                                                                    <div class="px-4 py-2 text-center">
+                                                                                    <div class="px-4 py-2">
                                                                                         {{ $timesheet->hours }}</div>
                                                                                 </div>
                                                                             @endforeach
