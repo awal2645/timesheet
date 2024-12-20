@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +49,9 @@
             border-bottom: 2px solid var(--primary);
         }
 
-        .invoice-title-section { flex: 1; }
+        .invoice-title-section {
+            flex: 1;
+        }
 
         .invoice-title {
             font-size: 1.75rem;
@@ -58,7 +61,7 @@
         }
 
         .invoice-number {
-            color: var(--text-light);
+            color: var(--primary);
             font-size: 0.875rem;
         }
 
@@ -74,46 +77,48 @@
         }
 
         .info-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin-bottom: 1rem;
+            display: table;
+            background: var(--primary);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 2px var(--shadow);
+            width: 100%;
+            color: white;
         }
 
         .info-block {
-            background: var(--background-alt);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 2px var(--shadow);
+            display: table-cell;
         }
 
         .info-block-title {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            color: var(--text-light);
+            color: white;
             margin-bottom: 0.5rem;
             font-weight: 600;
         }
 
         .info-block-content {
             font-size: 0.95rem;
+            color: white;
         }
 
         .details-table {
             width: 100%;
             margin: 0.75rem 0;
             border-collapse: collapse;
-            background: var(--background);
-            border-radius: 0.5rem;
+            border: 1px solid var(--border);
+            background: var(--background-alt);
+            border-radius: 0.2rem;
             overflow: hidden;
             box-shadow: 0 1px 2px var(--shadow);
         }
 
         .details-table th {
-            background: var(--primary);
-            color: var(--background);
+            background: var(--background-alt);
+            color: black;
             padding: 0.75rem;
             text-align: left;
             font-weight: 500;
@@ -125,8 +130,11 @@
         }
 
         .details-table td {
+            background: white;
+            color: black;
             padding: 0.75rem;
-            border-bottom: 1px solid var(--border);
+            text-align: left;
+            font-weight: 500;
             font-size: 0.875rem;
         }
 
@@ -144,6 +152,8 @@
             background: var(--background-alt);
             border-radius: 0.5rem;
             border: 1px solid var(--border);
+            max-width: 400px;
+            margin-left: auto;
         }
 
         .total-row {
@@ -174,14 +184,32 @@
             font-size: 0.75rem;
         }
 
-        .text-right { text-align: right; }
-        .font-semibold { font-weight: 600; }
-        .text-sm { font-size: 0.875rem; }
-        .text-primary { color: var(--primary); }
-        .text-light { color: var(--text-light); }
-        .capitalize { text-transform: capitalize; }
+        .text-right {
+            text-align: right;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-light {
+            color: var(--text-light);
+        }
+
+        .capitalize {
+            text-transform: capitalize;
+        }
     </style>
 </head>
+
 <body>
     <div class="invoice">
         <div class="invoice-header">
@@ -199,15 +227,15 @@
             <div class="info-block">
                 <div class="info-block-title">Employee Information</div>
                 <div class="info-block-content">
-                    <div class="font-semibold">{{ $employee->employee_name }}</div>
-                    <div class="text-sm text-light">{{ $employee->user->email }}</div>
+                    <div>{{ $employee->employee_name }}</div>
+                    <div>{{ $employee->user->email }}</div>
                 </div>
             </div>
             <div class="info-block">
                 <div class="info-block-title">Payment Details</div>
                 <div class="info-block-content">
                     <div class="font-semibold capitalize">{{ $employee->payment_type }} Rate</div>
-                    <div class="text-sm text-light">
+                    <div>
                         @if ($employee->payment_type == 'hourly')
                             {{ $employee->billing_rate }} per hour
                         @else
@@ -252,4 +280,5 @@
         </div>
     </div>
 </body>
+
 </html>
