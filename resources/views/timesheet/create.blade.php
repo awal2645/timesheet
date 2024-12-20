@@ -6,11 +6,8 @@
     <div>
 
         <div class="m-6 card">
-
             <div class="">
-
                 <div class="mb-4 flex justify-between">
-
                     <button id="previousWeek"
                         class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-30  0 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
                         Week</button>
@@ -54,8 +51,8 @@
                 @error('start_day')
                     <span class="text-red-500">{{ $message }}</span>
                 @enderror
-
-                <h2 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
+                <h2
+                    class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
                     {{ __('Upload Client/Vendor Approved Timesheet') }}</h2>
 
                 <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
@@ -72,22 +69,46 @@
                     </div>
                 </div>
 
-                <!-- File Upload Input -->
-                <div class="form-field">
-                    <input @if ($timeReport) disabled @endif type="file" id="file"
-                        name="image">
-                        <label for="file" class="form-label">{{ __('Choose a file:') }}</label>
+                <div class="flex flex-col md:flex-row gap-6 items-start mb-4">
+                    <!-- File Upload Input -->
+                    <label for="file"
+                        class="w-fullmd:w-1/2 cursor-pointer flex-1 border border-dashed border-gray-300 dark:border-gray-600 p-6 rounded-lg"
+                        x-data="fileUpload()">
+                        <div class="flex flex-col justify-center gap-6 items-center">
+                            <div class="preview-container">
+                                <img :src="filePreview" alt="File preview"
+                                    class="w-full h-[200px] rounded object-contain" x-show="filePreview">
+                            </div>
+                            <div class="flex flex-col justify-center gap-6 items-center" x-show="!filePreview">
+                                <p class="max-w-3xl text-base">
+                                    {{ __('Upload a high-resolution file in JPEG or PNG format.') }}</p>
+                                <div>
+                                    <div class="flex gap-3 items-center flex-wrap">
+                                        <div class="flex gap-3 items-center shadow-md">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-upload" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                                <path
+                                                    d="M7.646 1.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 2.707V11.5a.5.5 0 0 1-1 0V2.707L5.354 4.854a.5.5 0 1 1-.708-.708z" />
+                                            </svg>
+                                            {{ __('Upload File') }}
+                                            <input type="file" id="file" name="image"
+                                                @change="handleFileUpload" accept="image/jpeg,image/png"
+                                                style="display:none;">
+                                        </div>
+                                    </div>
+                                    <p x-show="fileError" x-text="fileError" class="error-message"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
 
-                    @error('image')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <!-- Textarea -->
-                <div class="form-field">
-                    <textarea @if ($timeReport) readonly @endif id="message" name="comment" rows="2">{{ $timeReport->comment ?? '' }}</textarea>
-                    <label for="message">{{ __('Your Message:') }}</label>
-
+                    <!-- Textarea -->
+                    <div class="w-full md:w-1/2 form-field">
+                        <textarea rows="5" @if ($timeReport) readonly @endif id="message" name="comment"
+                            placeholder="{{ __('Your Message:') }}">{{ $timeReport->comment ?? '' }}</textarea>
+                    </div>
                 </div>
 
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">
@@ -95,7 +116,7 @@
 
                 <!-- Submit Button -->
                 <button @if ($timeReport) disabled @endif type="button" id="saveButton"
-                    class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Save') }}
                 </button>
 
@@ -172,5 +193,32 @@
         document.getElementById('resetButton').addEventListener('click', function() {
             window.location.reload();
         });
+    </script>
+
+    <script>
+        function fileUpload() {
+            return {
+                filePreview: '', // Initialize file preview
+                fileError: '',
+                handleFileUpload(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    // Check file type
+                    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+                        this.fileError = 'Please upload a JPEG or PNG file.';
+                        return;
+                    }
+
+                    // Create preview URL
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        this.filePreview = reader.result;
+                        this.fileError = ''; // Clear any previous errors
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
     </script>
 </x-app-layout>

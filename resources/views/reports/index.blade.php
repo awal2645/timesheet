@@ -96,11 +96,11 @@
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="flex flex-wrap">
 
-                                                                <span class="flex flex-wrap">
+                                                                <span class="flex gap-3 items-center flex-wrap">
                                                                     <a href="#"
                                                                         id="openTimesheetModal{{ $timeReport->id }}"
                                                                         title="Check your employee's timesheet report"
-                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline mr-2">
+                                                                        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                                             fill="none" viewBox="0 0 24 24"
                                                                             stroke-width="1.5" stroke="currentColor"
@@ -178,7 +178,7 @@
                                                     <div id="timesheetModal{{ $timeReport->id }}"
                                                         class="modal hidden fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
                                                         <div
-                                                            class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-6xl h-34 overflow-auto relative flex flex-col gap-6">
+                                                            class="modal-content bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full max-w-2xl h-34 overflow-auto relative flex flex-col gap-6">
                                                             <div class="absolute top-4 right-4">
                                                                 <button
                                                                     class="close-btn text-gray-600 dark:text-gray-400 cursor-pointer"
@@ -193,7 +193,7 @@
                                                                     </svg>
                                                                 </button>
                                                             </div>
-                                                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                                            <div class="grid grid-cols-1 gap-8">
                                                                 <div class="flex justify-center mb-4">
                                                                     <img id="modalImage"
                                                                         src="{{ asset($timeReport->image) }}"
