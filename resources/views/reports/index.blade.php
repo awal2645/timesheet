@@ -2,7 +2,7 @@
     {{ 'TimeSheet Report' }}
 @endsection
 <x-app-layout>
-    <div class="relative m-6" x-data="{ openModal: false, openMessageModal: false }">
+    <div class="relative m-6" x-data="{ openModal: null, openMessageModal: null }">
         <div>
             <div class="my-8 card">
                 <form action="{{ route('reports.index') }}" method="GET">
@@ -51,51 +51,42 @@
                                 {{ __('Latest Report') }}</h2>
                             <div>
                                 <div class="card overflow-x-auto">
-                                    <table class="w-full table-auto">
+                                    <table class="w-full table-auto" >
                                         <thead class="table-header">
                                             <tr class="rounded-2xl text-left">
-                                                <th class="min-w-[220px] px-4 py-4 font-medium">{{ __('Name') }}
-                                                </th>
-                                                <th class="min-w-[150px] px-4 py-4 font-medium">{{ __('Date') }}
-                                                </th>
-                                                <th class="min-w-[120px] px-4 py-4 font-medium">{{ __('Status') }}
-                                                </th>
+                                                <th class="min-w-[220px] px-4 py-4 font-medium">{{ __('Name') }}</th>
+                                                <th class="min-w-[150px] px-4 py-4 font-medium">{{ __('Date') }}</th>
+                                                <th class="min-w-[120px] px-4 py-4 font-medium">{{ __('Status') }}</th>
                                                 <th class="px-4 py-4 font-medium">{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @if ($timeReports->count() > 0)
                                                 @foreach ($timeReports as $timeReport)
-                                                    <tr
-                                                        class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="text-sm font-semibold">
                                                                 <div class="text-base font-semibold">
                                                                     {{ $timeReport->user?->username }}</div>
                                                                 <div class="font-normal text-gray-500">
                                                                     {{ $timeReport->user?->email }}</div>
                                                             </div>
-                                                            </th>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        </td>
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="text-sm font-semibold">
                                                                 {{ $timeReport->start_day . ' to ' . $timeReport->end_day }}
                                                             </div>
                                                         </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="flex items-center space-x-2">
-                                                                <span
-                                                                    class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $timeReport->status == 'approve' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
+                                                                <span class="px-2 py-1 flex items-center justify-center text-sm w-[100px] truncate {{ $timeReport->status == 'approve' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
                                                                     {{ ucfirst($timeReport->status) }}
                                                                 </span>
                                                             </div>
                                                         </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                        <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                             <div class="flex flex-wrap gap-3 items-center">
-                                                                <span @click="openModal = !openModal"
+                                                                <span @click="openModal = 'modal-{{ $timeReport->id }}'"
                                                                     title="Check your employee's timesheet report"
                                                                     class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +101,7 @@
                                                                             d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                                     </svg>
                                                                 </span>
-                                                                <span @click="openMessageModal = !openMessageModal"
+                                                                <span @click="openMessageModal = 'message-modal-{{ $timeReport->id }}'"
                                                                     class="cursor-pointer font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                                         fill="none" viewBox="0 0 24 24"
@@ -137,6 +128,114 @@
                                                             </div>
                                                         </td>
                                                     </tr>
+
+                                                    <!-- Modal Structure -->
+                                                    <div x-show="openModal === 'modal-{{ $timeReport->id }}'"
+                                                        class="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
+                                                        <div @click.outside="openModal = null"
+                                                            class="modal-content bg-white dark:bg-gray-800 px-6 pt-12 pb-6 rounded-lg shadow-xl w-full max-w-3xl h-34 overflow-auto relative flex flex-col gap-6">
+                                                            <div class="absolute top-2 right-2">
+                                                                <button @click="openModal = null"
+                                                                    class="close-btn bg-gray-500 p-1 rounded-full text-gray-600 dark:text-gray-400 cursor-pointer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                            <div class="grid grid-cols-3 items-start gap-8">
+                                                                <div class="flex justify-center mb-4">
+                                                                    <img id="modalImage" src="{{ asset($timeReport->image) }}" alt="Modal Image"
+                                                                        class="w-full h-auto rounded-lg shadow-md">
+                                                                </div>
+                                                                <div class="col-span-2">
+                                                                    <div class="bg-gray-50 dark:bg-gray-700 border-b">
+                                                                        <div class="grid grid-cols-3 bg-gray-200 dark:bg-gray-600 text-left">
+                                                                            <div class="px-4 py-2 font-bold">Day</div>
+                                                                            <div class="px-4 py-2 font-bold">Date</div>
+                                                                            <div class="px-4 py-2 font-bold">Hours</div>
+                                                                        </div>
+                                                                        <div class="timesheet-list">
+                                                                            @foreach ($timeReport->timesheets as $timesheet)
+                                                                                <div class="grid grid-cols-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600">
+                                                                                    <div class="px-4 py-2">{{ $timesheet->day }}</div>
+                                                                                    <div class="px-4 py-2">{{ $timesheet->date }}</div>
+                                                                                    <div class="px-4 py-2">{{ $timesheet->hours }}</div>
+                                                                                </div>
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex flex-col col-span-full">
+                                                                    <span>Description:</span>
+                                                                    <p id="modalComment" class="text-gray-800 dark:text-gray-200 mb-4 text-lg">
+                                                                        {{ $timeReport->comment }}</p>
+                                                                    @if (auth()->user()->role != 'employee')
+                                                                        <form id="statusForm{{ $timeReport->id }}"
+                                                                            action="{{ route('timesheet.updateStatus', $timeReport->id) }}" method="POST">
+                                                                            @csrf
+                                                                            <input type="hidden" name="time_report_id" value="{{ $timeReport->id }}">
+                                                                            <div class="flex flex-col gap-4 mt-4">
+                                                                                <div class="flex justify-between">
+                                                                                    @if ($timeReport->status === 'approve')
+                                                                                        <button type="submit" disabled name="status" value="approve"
+                                                                                            class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
+                                                                                            Approved
+                                                                                        </button>
+                                                                                    @else
+                                                                                        <button type="submit" name="status" value="approve"
+                                                                                            class="bg-green-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-green-600 focus:outline-none transition duration-150">
+                                                                                            Approve
+                                                                                        </button>
+                                                                                    @endif
+                                                                                    @if ($timeReport->status === 'decline')
+                                                                                        <button type="submit" disabled name="status" value="decline"
+                                                                                            class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
+                                                                                            Declined
+                                                                                        </button>
+                                                                                    @else
+                                                                                        <button type="submit" name="status" value="decline"
+                                                                                            class="bg-red-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-red-600 focus:outline-none transition duration-150">
+                                                                                            Decline
+                                                                                        </button>
+                                                                                    @endif
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Message Modal Structure -->
+                                                    <div x-show="openMessageModal === 'message-modal-{{ $timeReport->id }}'" :class="{ 'z-60000': openMessageModal === 'message-modal-{{ $timeReport->id }}' }"
+                                                        class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
+                                                        <div
+                                                            class="modal-content max-w-3xl max-h-max bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full h-full overflow-auto relative flex flex-col gap-6 z-60">
+                                                            <div class="absolute top-2 right-2">
+                                                                <button @click="openMessageModal = null"
+                                                                    class="close-btn text-gray-600 dark:text-gray-400 cursor-pointer">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                            <h5 class="text-lg font-bold">{{ __('Send Message') }}</h5>
+                                                            <form id="messageForm" action="{{ route('timesheet.feedback', $timeReport->id) }}" method="POST">
+                                                                @csrf
+                                                                <div class="flex flex-col gap-2">
+                                                                    <label for="message"
+                                                                        class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Message') }}</label>
+                                                                    <textarea class="mb-2 bg-transparent border border-gray-300 dark:border-gray-700 rounded-md p-2" id="message" name="feedback" rows="6">{{ $timeReport->feedback }}</textarea>
+                                                                </div>
+                                                                <button type="submit"
+                                                                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg mt-4 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                                                    {{ __('Send') }}
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 @endforeach
                                             @else
                                                 <tr>
@@ -157,120 +256,6 @@
             </div>
         </div>
 
-        <!-- Modal Structure -->
-        <div x-show="openModal"
-            class="modal fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
-            <div @click.outside="openModal = false"
-                class="modal-content bg-white dark:bg-gray-800 px-6 pt-12 pb-6 rounded-lg shadow-xl w-full max-w-3xl h-34 overflow-auto relative flex flex-col gap-6">
-                <div class="absolute top-2 right-2">
-                    <button
-                        class="close-btn bg-gray-500 p-1 rounded-full text-gray-600 dark:text-gray-400 cursor-pointer"
-                        @click="openModal = false">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <div class="grid grid-cols-3 items-start gap-8">
-                    <div class="flex justify-center mb-4">
-                        <img id="modalImage" src="{{ asset($timeReport->image) }}" alt="Modal Image"
-                            class="w-full h-auto rounded-lg shadow-md">
-                    </div>
-                    <div class="col-span-2">
-                        <div class="bg-gray-50 dark:bg-gray-700 border-b">
-                            <div class="grid grid-cols-3 bg-gray-200 dark:bg-gray-600 text-left">
-                                <div class="px-4 py-2 font-bold">Day</div>
-                                <div class="px-4 py-2 font-bold">Date</div>
-                                <div class="px-4 py-2 font-bold">Hours
-                                </div>
-                            </div>
-                            <div class="timesheet-list">
-                                @foreach ($timeReport->timesheets as $timesheet)
-                                    <div class="grid grid-cols-3 border-b hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        <div class="px-4 py-2">
-                                            {{ $timesheet->day }}</div>
-                                        <div class="px-4 py-2">
-                                            {{ $timesheet->date }}</div>
-                                        <div class="px-4 py-2">
-                                            {{ $timesheet->hours }}</div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex flex-col col-span-full">
-                        <span>Description:</span>
-                        <p id="modalComment" class="text-gray-800 dark:text-gray-200 mb-4 text-lg">
-                            {{ $timeReport->comment }}</p>
-                        @if (auth()->user()->role != 'employee')
-                            <form id="statusForm{{ $timeReport->id }}"
-                                action="{{ route('timesheet.updateStatus', $timeReport->id) }}" method="POST">
-                                @csrf
-                                <input type="hidden" name="time_report_id" value="{{ $timeReport->id }}">
-                                <div class="flex flex-col gap-4 mt-4">
-                                    <div class="flex justify-between">
-                                        @if ($timeReport->status === 'approve')
-                                            <button type="submit" disabled name="status" value="approve"
-                                                class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
-                                                Approved
-                                            </button>
-                                        @else
-                                            <button type="submit" name="status" value="approve"
-                                                class="bg-green-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-green-600 focus:outline-none transition duration-150">
-                                                Approve
-                                            </button>
-                                        @endif
-                                        @if ($timeReport->status === 'decline')
-                                            <button type="submit" disabled name="status" value="decline"
-                                                class="bg-gray-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-gray-600 focus:outline-none transition duration-150">
-                                                Declined
-                                            </button>
-                                        @else
-                                            <button type="submit" name="status" value="decline"
-                                                class="bg-red-500 text-text-light dark:text-text-dark px-6 py-2 rounded-md shadow hover:bg-red-600 focus:outline-none transition duration-150">
-                                                Decline
-                                            </button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </form>
-                        @endif
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Message Modal Structure -->
-        <div x-show="openMessageModal"
-            class="modal fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 overflow-auto p-4">
-            <div
-                class="modal-content max-w-3xl max-h-max bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl w-full h-full overflow-auto relative flex flex-col gap-6">
-                <div class="absolute top-2 right-2">
-                    <button @click="openMessageModal = false"
-                        class="close-btn text-gray-600 dark:text-gray-400 cursor-pointer">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                            stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-                <h5 class="text-lg font-bold">Send Message</h5>
-                <form id="messageForm" action="#" method="POST">
-                    @csrf
-                    <div class="flex flex-col gap-2">
-                        <label for="message"
-                            class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">Message</label>
-                        <textarea class="mb-2 bg-transparent border border-gray-300 dark:border-gray-700 rounded-md p-2" id="message" name="message" rows="6"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg mt-4 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
-                        {{ __('Send') }}
-                    </button>
-                </form>
-            </div>
-        </div>
-
         @if ($timeReports->total() > $timeReports->count())
             <div class="mt-2">
                 <div class="d-flex justify-content-center">
@@ -278,6 +263,7 @@
                 </div>
             </div>
         @endif
+
         <script>
             function showConfirmation() {
                 Swal.fire({
