@@ -50,7 +50,7 @@
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
                                 {{ __('Latest Report') }}</h2>
                             <div>
-                                <div class="card overflow-x-auto">
+                                <div class="p-6 rounded-2xl dark:bg-card-dark bg-card-light shadow-xl border border-black/10 dark:border-white/10">
                                     <table class="w-full table-auto" >
                                         <thead class="table-header">
                                             <tr class="rounded-2xl text-left">
