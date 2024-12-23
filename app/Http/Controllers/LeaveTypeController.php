@@ -9,7 +9,13 @@ class LeaveTypeController extends Controller
 {
     public function index()
     {
-        $leaveTypes = LeaveType::paginate(10);
+        if (auth()->user()->role === 'employer') {
+            $leaveTypes = LeaveType::where('created_by', auth()->user()->id)->latest()->paginate(10);
+        }elseif(auth()->user()->role === 'employee'){
+            $leaveTypes = LeaveType::where('created_by', auth()->user()->employer->user->id)->latest()->paginate(10);
+        }else{
+            $leaveTypes = LeaveType::latest()->paginate(10);
+        }
         return view('leave_types.index', compact('leaveTypes'));
     }
 
@@ -24,8 +30,8 @@ class LeaveTypeController extends Controller
             'type' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
-
-        LeaveType::create($request->all());
+        $request->merge(['created_by' => auth()->user()->id]);
+        LeaveType::create($request->all('type', 'description', 'created_by'));
         return redirect()->route('leave_types.index')->with('success', 'Leave type created successfully.');
     }
 

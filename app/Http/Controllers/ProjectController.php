@@ -20,6 +20,11 @@ class ProjectController extends Controller
             // Check if the user is an employer and filter projects accordingly
             if (auth('web')->user()->role == 'employer') {
                 $projects = Project::where('employer_id', auth('web')->user()->employer->id);
+
+            } else if (auth('web')->user()->role == 'client') {
+                $projects = Project::where('client_id', auth('web')->user()->client->id);
+            } else if (auth('web')->user()->role == 'employee') {
+                $projects = Project::where('employee_id', auth('web')->user()->employee->id);
             } else {
                 $projects = Project::query();
             }
@@ -41,7 +46,7 @@ class ProjectController extends Controller
             }
 
             // Fetch the filtered projects
-            $projects = $projects->paginate(5);
+            $projects = $projects->latest()->paginate(5);
 
             // Return the view with the filtered projects
             return view('project.index', compact('projects'));

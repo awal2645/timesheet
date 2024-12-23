@@ -1,52 +1,91 @@
 <x-app-layout>
+    <div class="m-6">
     <div class="relative overflow-x-auto">
-        <div class="container mx-auto px-5">
             <div class="flex flex-wrap">
                 <div class="w-full ">
                     <div class="dashboard-right pl-0 ">
-                        <div class="flex flex-wrap my-5 justify-center lg:justify-start">
-                            <!-- Plan Card Section -->
-                            <div class="w-full lg:w-1/3 mb-6 mr-10">
-                                <div class="plan-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105">
-                                    <h2 class="text-2xl font-extrabold text-primary-600 dark:text-primary-400 mb-2 flex items-center justify-center">
-                                        <x-svgs.check class="text-green-500 mr-2" /> <!-- Icon added here -->
-                                        {{ $userplan->plan->label ?? 'No Have Plan' }}
-                                    </h2>
-                                    <p class="mt-2 text-gray-600 dark:text-gray-300 text-sm">
-                                        {!! optional($userplan->plan->descriptions[0] ?? null)->description !!}
-                                    </p>
-                                    <div class="mt-4">
-                                        <a href="{{ route('plans.index') }}"
-                                            class="btn bg-primary-50 text-text-light dark:text-text-dark py-2 px-6 rounded-full hover:bg-primary-100 dark:bg-primary-50 dark:hover:bg-primary-300 shadow-md transition">
-                                            {{ __('Upgrade plan') }}
-                                        </a>
+                        <div class=" mx-auto px-4 py-8">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6  mx-auto">
+                                <!-- Current Plan Card -->
+                                <div class="h-full">
+                                    <div class="relative h-full overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+                                        <!-- Decorative Background Pattern -->
+                                        <div class="absolute inset-0 opacity-5 dark:opacity-10">
+                                            <div class="absolute -right-10 -top-10 w-40 h-40 bg-primary-500 rounded-full"></div>
+                                            <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-primary-500 rounded-full"></div>
+                                        </div>
+                                        
+                                        <div class="relative p-8 h-full flex flex-col">
+                                            <!-- Plan Header -->
+                                            <div class="text-center flex-grow">
+                                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full  mb-4">
+                                                    <x-svgs.check class="w-8 h-8 text-primary-500 dark:text-primary-400" />
+                                                </div>
+                                                <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                                                    {{ $userplan->plan->label ?? 'No Active Plan' }}
+                                                </h2>
+                                                <p class="mt-3 text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                                                    {!! optional($userplan->plan->descriptions[0] ?? null)->description !!}
+                                                </p>
+                                            </div>
+                        
+                                            <!-- Upgrade Button -->
+                                            <div class="mt-8">
+                                                <a href="{{ route('plans.index') }}" 
+                                                   class="block w-full text-center py-3 px-6 rounded-xl bg-primary-50 hover:bg-primary-300 text-white font-semibold transition-all duration-200 transform hover:translate-y-[-2px] hover:shadow-lg">
+                                                    {{ __('Upgrade Plan') }}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <!-- Benefits Card -->
+                                <div class="h-full">
+                                    <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 h-full">
+                                        <div class="flex items-center justify-between mb-8">
+                                            <h4 class="text-xl font-bold text-gray-900 dark:text-white">
+                                                {{ __('Current Plan Benefits') }}
+                                            </h4>
+                                            <div class="w-12 h-12 rounded-full flex items-center justify-center">
+                                             <x-svgs.check class="w-6 h-6 text-primary-500 dark:text-primary-400" />
+                                            </div>
+                                        </div>
+                        
+                                        @if ($userplan && $userplan->plan)
+                                            <div class="space-y-4">
+                                                @foreach ([
+                                                    ['limit' => $userplan->plan->employee_limit, 'label' => __('Employee limit'), 'icon' => 'users'],
+                                                    ['limit' => $userplan->plan->client_limit, 'label' => __('Client limit'), 'icon' => 'briefcase'],
+                                                    ['limit' => $userplan->plan->project_limit, 'label' => __('Project limit'), 'icon' => 'folder']
+                                                ] as $benefit)
+                                                    <div class="flex items-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                        <div class="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center">
+                                                           <x-svgs.check class="w-5 h-5 text-primary-500 dark:text-primary-400" />
+                                                        </div>
+                                                        <div class="ml-4">
+                                                            <span class="block text-sm font-medium text-gray-900 dark:text-white">
+                                                                {{ $benefit['limit'] }} {{ $benefit['label'] }}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @else
+                                            <div class="text-center py-8">
+                                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 dark:bg-gray-700 mb-4">
+                                                    <svg class="w-8 h-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                    </svg>
+                                                </div>
+                                                <p class="text-gray-500 dark:text-gray-400">{{ __('No benefits found') }}</p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
-                            <!-- Benefits Section -->
-                            <div class="w-full lg:w-1/2 text-center">
-                                <div class="benefits-card bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-transform transform hover:scale-105">
-                                    <h4 class="text-xl font-semibold dark:text-gray-300">
-                                        {{ __('Your Current plan benefits') }}</h4>
-                                    @if ($userplan && $userplan->plan)
-                                        <div class="flex justify-center mt-4">
-                                            <ul class="space-y-2">
-                                                @foreach ([['limit' => $userplan->plan->employee_limit, 'label' => __('Employee limit')], ['limit' => $userplan->plan->client_limit, 'label' => __('Client limit')], ['limit' => $userplan->plan->project_limit, 'label' => __('Project limit')]] as $benefit)
-                                                    <li class="flex items-center">
-                                                        <x-svgs.check class="text-green-500 text-lg" />
-                                                        <span
-                                                            class="ml-3 text-sm dark:text-gray-300">{{ $benefit['limit'] }}
-                                                            {{ $benefit['label'] }}</span>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @else
-                                        <p class="text-center text-gray-500">{{ __('No benefits found') }}</p>
-                                    @endif
-                                </div>
-                            </div>
                         </div>
+                        
                         <div class="flex flex-wrap">
                             <div class="w-full">
                                 <div class="dashboard-right pl-0">
@@ -123,7 +162,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 </x-app-layout>

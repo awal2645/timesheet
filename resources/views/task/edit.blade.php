@@ -16,9 +16,8 @@
             @csrf
             @method('PUT')
 
-
             {{-- Select Employer --}}
-            @if (auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'employee')
+            @if (auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'employee' && auth('web')->user()->role != 'client')
             <div class="form-field">
                 <select name="employer_id" id="employer_id" required class="form-select">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
@@ -34,9 +33,12 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+            @else
+            <input type="hidden" name="employer_id" value="{{ auth()->user()->employer->id ?? auth()->user()->client->employer_id }}">
             @endif
 
             {{-- Select Employee --}}
+            @if(auth()->user()->role != 'employee')
             <div class="form-field">
                 <select name="employee_id" id="employee_id" required class="form-select">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
@@ -52,6 +54,9 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+            @else
+            <input type="hidden" name="employee_id" value="{{ auth()->user()->employee->id }}">
+            @endif
 
             {{-- Select Project --}}
             <div class="form-field">

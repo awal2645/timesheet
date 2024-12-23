@@ -15,11 +15,13 @@ return new class extends Migration
         Schema::create('weekly_holidays', function (Blueprint $table) {
             $table->id();
             $table->json('days_of_week')->nullable();
+            $table->string('created_by')->nullable();
             $table->timestamps();
         });
 
         DB::table('weekly_holidays')->insert([
             'days_of_week' => json_encode(['saturday', 'sunday']),
+            'created_by' => '2',
         ]);
     }
 

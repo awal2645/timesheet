@@ -252,6 +252,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('leave_types', LeaveTypeController::class);
     Route::resource('weekly_holidays', WeeklyHolidayController::class);
     Route::resource('notices', NoticeController::class);
+    Route::get('notice/destroy/{id}', [NoticeController::class, 'destroy'])->name('notices.destroy');
     Route::resource('languages', LanguageController::class);
     Route::get('languages/json/edit/{code}', [LanguageController::class, 'editJson'])->name('languages.json.edit');
     Route::post('languages/transUpdate', [LanguageController::class, 'transUpdate'])->name('languages.transUpdate');

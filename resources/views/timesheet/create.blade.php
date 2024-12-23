@@ -17,7 +17,6 @@
                 </div>
             </div>
 
-
             <div class="flex justify-center ">
                 <form id="timesheetForm" action="{{ route('timesheet.save') }}" method="POST"
                     class="grid lg:grid-cols-7 sm:grid-cols-7 gap-4 justify-center" enctype="multipart/form-data">
@@ -45,7 +44,6 @@
                         </div>
                     @endforeach
             </div>
-
 
             <div class="bg-white p-6 rounded-md shadow-md dark:bg-gray-800 ">
                 @error('start_day')
@@ -106,7 +104,7 @@
 
                     <!-- Textarea -->
                     <div class="w-full md:w-1/2 form-field">
-                        <textarea rows="5" @if ($timeReport) readonly @endif id="message" name="comment"
+                        <textarea rows="5" @if ($timeReport->status == 'approve' || $timeReport->status == 'decline') readonly @endif id="message" name="comment"
                             placeholder="{{ __('Your Message:') }}">{{ $timeReport->comment ?? '' }}</textarea>
                     </div>
                 </div>
@@ -115,15 +113,27 @@
                 <input type="hidden" name="end_day" value="{{ $dates['Saturday'] }}">
 
                 <!-- Submit Button -->
-                <button @if ($timeReport) disabled @endif type="button" id="saveButton"
+                <button @if ($timeReport->status == 'approve' || $timeReport->status == 'decline') disabled @endif type="button" id="saveButton" 
                     class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Save') }}
                 </button>
 
-                @if ($timeReport)
-                    <button disabled type="button" id="submitButton"
-                        class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
-                        {{ __('Submitted') }}
+                @if ($timeReport->status == 'pending')
+                    <button  disabled  type="button" id="submitButton"  @
+                        class="<?php echo e(
+                            $timeReport->status == 'approve' 
+                                ? 'bg-green-500' 
+                                : ($timeReport->status == 'decline' 
+                                    ? 'bg-red-500' 
+                                    : 'bg-yellow-500')
+                        ); ?> ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-primary-300">
+                        @if ($timeReport->status == 'approve')
+                            {{ __('Approved') }}
+                        @elseif ($timeReport->status == 'decline')
+                            {{ __('Declined') }}
+                        @else
+                            {{ __('Pending') }}
+                        @endif
                     </button>
                 @else
                     <button type="button" id="submitButton"
@@ -132,12 +142,11 @@
                     </button>
                 @endif
 
-                <button @if ($timeReport) disabled @endif type="button" id="resetButton"
+                <button @if ($timeReport->status == 'approve' || $timeReport->status == 'decline' || $timeReport->status == 'pending') style="display: none;" @endif type="button" id="resetButton"
                     class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Reset') }}
                 </button>
             </div>
-
 
         </div>
     </div>
@@ -174,7 +183,6 @@
         });
     </script>
 
-
     <script>
         document.getElementById('submitButton').addEventListener('click', function() {
             document.getElementById('file').setAttribute('required', 'required');
@@ -198,7 +206,7 @@
     <script>
         function fileUpload() {
             return {
-                filePreview: '', // Initialize file preview
+                filePreview: '{{ asset( $timeReport->image ?? 'reports_images/dummy_image.png') }}', // Initialize file preview
                 fileError: '',
                 handleFileUpload(event) {
                     const file = event.target.files[0];

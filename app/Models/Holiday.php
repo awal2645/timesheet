@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Holiday extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'date'];
+    protected $fillable = ['name', 'date', 'created_by'];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
 
 }

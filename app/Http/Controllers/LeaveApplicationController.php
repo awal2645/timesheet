@@ -132,7 +132,7 @@ class LeaveApplicationController extends Controller
         }
 
         // Get the paginated results
-        $applications = $query->paginate(10);
+        $applications = $query->latest()->paginate(10);
 
         return view('leave.index', compact('applications'));
     }

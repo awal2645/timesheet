@@ -16,13 +16,19 @@ class TaskController extends Controller
         if(auth()->user()->role == 'employee'){
             $tasks = Task::where('employee_id', auth()->user()->employee->id)->latest()->paginate(10);
         }elseif(auth()->user()->role == 'employer'){
-            $tasks = Task::whereHas('employee', function ($query) {
+            $tasks = Task::whereHas('employer', function ($query) {
                 $query->where('employer_id', auth()->user()->employer->id);
             })->latest()->paginate(10);
-        }else{
+        }
+        else if (auth()->user()->role == 'client') {
+            $tasks = Task::whereHas('project', function ($query) {
+                $query->where('client_id', auth()->user()->client->id);
+            })->latest()->paginate(10);
+        }
+        else{
             $tasks = Task::latest()->paginate(10);
         }
-        $projects = Project::all();
+        $projects = Project::orderBy('project_name', 'desc')->get();
         return view('task.index', compact('tasks', 'projects'));
     }
 
@@ -39,7 +45,14 @@ class TaskController extends Controller
             $employees = Employee::where('id', auth('web')->user()->employee->id)->get();
             $projects = Project::where('employer_id', auth('web')->user()->employee->employer_id)->get();
             return view('task.create', compact('projects', 'employers', 'employees'));
-        }else{
+        }
+        else if (auth('web')->user()->role == 'client') {
+            $employers = Employer::where('id', auth('web')->user()->client->employer_id)->get();
+            $employees = Employee::where('id', auth('web')->user()->client->employer_id)->get();
+            $projects = Project::where('client_id', auth('web')->user()->client->id)->get();
+            return view('task.create', compact('projects', 'employers', 'employees'));
+        }
+        else{
             $employers = Employer::all();
             $employees = Employee::all();
             $projects = Project::all();
@@ -102,7 +115,7 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        if(auth('web')->user()->role == 'employer' || auth('web')->user()->role == 'employee'){
+        if(auth('web')->user()->role == 'employer'){
             $employers = Employer::where('id', auth('web')->user()->employer->id)->get();
             $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
             $projects = Project::where('employer_id', auth('web')->user()->employer->id)->get();
@@ -111,6 +124,11 @@ class TaskController extends Controller
             $employers = Employer::where('id', auth('web')->user()->employee->employer_id)->get();
             $employees = Employee::where('id', auth('web')->user()->employee->id)->get();
             $projects = Project::where('employer_id', auth('web')->user()->employee->employer_id)->get();
+            return view('task.edit', compact('task', 'employers', 'employees', 'projects'));
+        }else if (auth('web')->user()->role == 'client') {
+            $employers = Employer::where('id', auth('web')->user()->client->employer_id)->get();
+            $employees = Employee::where('id', auth('web')->user()->client->employer_id)->get();
+            $projects = Project::where('client_id', auth('web')->user()->client->id)->get();
             return view('task.edit', compact('task', 'employers', 'employees', 'projects'));
         }else{
             $employers = Employer::all();

@@ -9,7 +9,13 @@ class HolidayController extends Controller
 {
     public function index()
     {
-        $holidays = Holiday::paginate(10);
+        if (auth()->user()->role === 'employer') {
+            $holidays = Holiday::where('created_by', auth()->user()->id)->latest()->paginate(10);
+        }elseif(auth()->user()->role === 'employee'){
+            $holidays = Holiday::where('created_by', auth()->user()->employer->user->id)->latest()->paginate(10);
+        }else{
+            $holidays = Holiday::latest()->paginate(10);
+        }
         return view('holidays.index', compact('holidays'));
     }
 
@@ -24,8 +30,9 @@ class HolidayController extends Controller
             'name' => 'required|string|max:255',
             'date' => 'required|date',
         ]);
+        $request->merge(['created_by' => auth()->user()->id]);
 
-        Holiday::create($request->all());
+        Holiday::create($request->all('name', 'date', 'created_by'));
         return redirect()->route('holidays.index')->with('success', 'Holiday created successfully.');
     }
 

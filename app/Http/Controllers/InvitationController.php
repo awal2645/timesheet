@@ -21,7 +21,11 @@ class InvitationController extends Controller
 
     public function employerInvitePageData()
     {
-        $roles = Role::whereNotIn('name', ['employee', 'superadmin'])->get();
+        if(auth()->user()->role == 'employer'){
+            $roles = Role::whereNotIn('name', ['employer', 'superadmin'])->get();
+        }else{
+            $roles = Role::whereNotIn('name', ['employee', 'client', 'superadmin'])->get();
+        }
 
         return view('invite.send_invite_employer', compact('roles'));
     }

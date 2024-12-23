@@ -122,10 +122,9 @@
                 <!-- Links -->
                 <div data-aos="fade-up">
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-white hover:text-primary-500">{{ __('About Us') }}</a></li>
-                        <li><a href="#"
+                        <li><a href="{{ route('terms') }}"
                                 class="text-white hover:text-primary-500">{{ __('Terms and Conditions') }}</a></li>
-                        <li><a href="#"
+                        <li><a href="{{ route('privacy') }}"
                                 class="text-white hover:text-primary-500">{{ __('Privacy Policy') }}</a></li>
                     </ul>
                 </div>

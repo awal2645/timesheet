@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Employer;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\ClientInviteMail;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class ClientController extends Controller
 {
@@ -47,7 +51,7 @@ class ClientController extends Controller
                 }
 
                 // Paginate the filtered clients
-                $clients = $clients->paginate(10);
+                $clients = $clients->latest()->paginate(10);
 
             } else {
                 // If user is not an employer, show all clients
@@ -69,7 +73,7 @@ class ClientController extends Controller
                 }
 
                 // Paginate the filtered clients
-                $clients = $clients->paginate(10);
+                $clients = $clients->latest()->paginate(10);
             }
 
             // Fetch all employers
@@ -110,12 +114,39 @@ class ClientController extends Controller
         ]);
 
         try {
-            $user = User::create([
-                'name' => $request->client_name,
+
+            // Create new user
+            $input['role'] = 'client';
+            $input['email'] = $request->client_email;
+            $user = User::create($input);
+            $user->assignRole(['client']);
+
+            $token = Str::random(64);
+            DB::table('password_reset_tokens')->insert([
                 'email' => $request->client_email,
-                'password' => bcrypt('password'),
-                'role' => 'client',
+                'token' => $token,
+                'created_at' => now(),
             ]);
+
+            if ($input['email']) {
+                $emailTemplate = DB::table('email_templates')
+                    ->where('type', 'client_invite')
+                    ->first();
+            }   
+
+            if ($emailTemplate && isset($emailTemplate->subject) && isset($emailTemplate->message)) {
+                $formattedBody = getFormattedTextByType('client_invite', [
+                    'app_name' => config('app.name'),
+                    'verify_link' => route('email.verify', $token),
+                    'year' => date('Y'),
+                ]);
+            }   
+
+            if (checkMailConfig()) {
+                Mail::to($input['email'])->send(new ClientInviteMail($emailTemplate->subject, $formattedBody));
+            }
+            
+
             $client = Client::create([
                 'user_id' => $user->id,
                 'employer_id' => $request->employer_id,

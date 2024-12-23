@@ -483,7 +483,7 @@
                     </tr>
                 </table>
                 <div class="terms-section" style="text-align: center;">
-                    <a href="">Terms & Conditions</a>
+                    <a href="{{ route('terms') }}">Terms & Conditions</a>
                 </div>
             </div>
         </div>

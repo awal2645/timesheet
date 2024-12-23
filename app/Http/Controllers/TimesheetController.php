@@ -80,7 +80,7 @@ class TimesheetController extends Controller
                 ->first();
 
             if ($timeReport) {
-                if ($timeReport) {
+                if ($timeReport->status == 'approve' || $timeReport->status == 'decline') {
                     return redirect()->back()->with('error', 'This week report already submitted');
                 }
             }
@@ -107,7 +107,6 @@ class TimesheetController extends Controller
                     ]);
                 }
             }
-
             if ($request->file('image')) {
                 // Handle image upload
                 $image = $request->file('image');
@@ -142,6 +141,9 @@ class TimesheetController extends Controller
                     'from' => auth('web')->user()->id,
                     'to' => $employer->user->id,
                 ]);
+            }else{
+                $timeReport->comment = $request->comment;
+                $timeReport->save();
             }
 
             return redirect()->back()->with('success', 'Report added successfully');

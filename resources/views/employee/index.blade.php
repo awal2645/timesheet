@@ -96,8 +96,7 @@
                                                         {{ $employee->approvedLeaveCount() ?? 0 }}
                                                     </td>
                                                     <!-- Total Leave -->
-                                                    <td
-                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5 dark:border-strokedark">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-2.5 dark:border-strokedark">
                                                         <div class="flex items-center">
                                                             <div class="h-2.5 w-2.5 rounded-full mr-2"
                                                                 style="background-color: {{ $employee->status === 1 ? 'green' : 'red' }};">

@@ -27,7 +27,7 @@
             </a>
         </div>
 
-        <div class="mt-12 flex flex-wrap">
+        <div class="mt-6 flex flex-wrap">
             <div class="w-full">
                 <div class="dashboard-right pl-0">
                     <div class="invoices-table">

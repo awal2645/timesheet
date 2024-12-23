@@ -10,7 +10,7 @@ class NoticeController extends Controller
 {
     public function index()
     {
-        $notices = Notice::paginate(10);
+        $notices = Notice::latest()->paginate(10);
         $roles = Role::all();
         return view('notices.index', compact('notices', 'roles'));
     }
@@ -57,8 +57,9 @@ class NoticeController extends Controller
         return redirect()->route('notices.index')->with('success', 'Notice updated successfully.');
     }
 
-    public function destroy(Notice $notice)
+    public function destroy($id)
     {
+        $notice = Notice::find($id);
         $notice->delete();
         return redirect()->route('notices.index')->with('success', 'Notice deleted successfully.');
     }

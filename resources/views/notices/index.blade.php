@@ -31,7 +31,7 @@
             <div class="w-full">
                 <div class="dashboard-right pl-0">
                     <div class="invoices-table">
-                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">{{ __('Notices') }}
+                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">{{ __('Notice List') }}
                         </h2>
                         <div>
                             <div class="card overflow-x-auto">
@@ -71,13 +71,8 @@
                                                         <div class="flex flex-wrap">
                                                             <a href="{{ route('notices.edit', $notice->id) }}"
                                                                 class="text-primary-50 hover:underline mr-2"><x-svgs.edit /></a>
-                                                            <form action="{{ route('notices.destroy', $notice->id) }}"
-                                                                method="POST" style="display:inline;">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="text-red-600 hover:underline"><x-svgs.delete /></button>
-                                                            </form>
+                                                                <a onclick="showConfirmation({{ $notice->id }})"
+                                                                    class="text-red-600 hover:underline"><x-svgs.delete /></a>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -107,4 +102,20 @@
             </div>
         @endif
     </div>
+    <script>
+        function showConfirmation(id) {
+            Swal.fire({
+                title: 'Want to delete this Notice!',
+                text: "{{ __('If you are ready?') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/notice/destroy/" + id;
+                }
+            });
+        }
+    </script>
 </x-app-layout>

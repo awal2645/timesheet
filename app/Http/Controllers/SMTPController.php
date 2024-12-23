@@ -21,7 +21,7 @@ class SMTPController extends Controller
 
     public function emailUpdate(Request $request)
     {
-        // try {
+        try {
 
             $request->validate([
                 'mail_host' => 'required',
@@ -44,26 +44,38 @@ class SMTPController extends Controller
                 replaceAppName('MAIL_FROM_NAME', $request->mail_from_name);
                 envUpdate('MAIL_FROM_ADDRESS', $request->mail_from_address);
             }else{
-                // dd($request->all());
-                Smtp::create([
-                    'host' => $request->mail_host,
-                    'port' => $request->mail_port,
-                    'username' => $request->mail_username,
-                    'password' => $request->mail_password,
-                    'encryption' => $request->mail_encryption,
-                    'mail_from_name' => $request->mail_from_name,
-                    'mail_from_address' => $request->mail_from_address,
-                    'created_by' => auth()->user()->id,
-                ]);
+                if(Smtp::where('created_by', auth()->user()->id)->exists()){
+                    Smtp::where('created_by', auth()->user()->id)->update([
+                        'host' => $request->mail_host,
+                        'port' => $request->mail_port,
+                        'username' => $request->mail_username,
+                        'password' => $request->mail_password,
+                        'encryption' => $request->mail_encryption,
+                        'mail_from_name' => $request->mail_from_name,
+                        'mail_from_address' => $request->mail_from_address,
+                    ]);
+                }else{
+                    Smtp::create([
+                        'host' => $request->mail_host,
+                        'port' => $request->mail_port,
+                        'username' => $request->mail_username,
+                        'password' => $request->mail_password,
+                        'encryption' => $request->mail_encryption,
+                        'mail_from_name' => $request->mail_from_name,
+                        'mail_from_address' => $request->mail_from_address,
+                        'created_by' => auth()->user()->id,
+                    ]);
+                }
             }
 
             return back()->with('success', 'Mail configuration update successfully');
-        // } catch (\Exception $e) {
-        //     // Handle the exception, you can log it or return an error response
-        //     return redirect()
-        //         ->back()
-        //         ->withInput($request->all())
-        //         ->with(['error' => 'Please try again later.']);
-        // }
+        } catch (\Exception $e) {
+            // Handle the exception, you can log it or return an error response
+            return redirect()
+                ->back()
+                ->withInput($request->all())
+                    ->with(['error' => 'Please try again later.']);
+            }
+        }
     }
-}
+

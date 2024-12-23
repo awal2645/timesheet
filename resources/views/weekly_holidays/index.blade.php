@@ -26,7 +26,7 @@
                 </a>
             </div>
 
-            <div class="mt-12 flex flex-wrap">
+            <div class="mt-6 flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right pl-0">
                         <div class="invoices-table">
@@ -53,45 +53,32 @@
                                                         class="hover:bg-gray-100 hover:dark:bg-gray-800 transition duration-200">
                                                         <td
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
-                                                            <div class="text-sm font-semibold">
-                                                                @php
-                                                                    $daysOfWeek = json_decode($holiday->days_of_week);
-                                                                @endphp
-                                                                @php
-                                                                    $daysOfWeekFormatted = is_array($daysOfWeek)
-                                                                        ? implode(
-                                                                            ', ',
-                                                                            array_map(function ($day) {
-                                                                                return ucfirst($day);
-                                                                            }, $daysOfWeek),
-                                                                        )
-                                                                        : ucfirst($daysOfWeek);
-
-                                                                    $daysOfWeekFormatted = str_replace(
-                                                                        [
-                                                                            'Saturday',
-                                                                            'Sunday',
-                                                                            'Monday',
-                                                                            'Tuesday',
-                                                                            'Wednesday',
-                                                                            'Thursday',
-                                                                            'Friday',
-                                                                        ],
-                                                                        [
-                                                                            '<span class="text-red-50 bg-red-500 rounded  p-2">Saturday</span>',
-                                                                            '<span class="text-blue-50 bg-blue-500 rounded p-2">Sunday</span>',
-                                                                            '<span class="text-green-50 bg-green-500 rounded p-2">Monday</span>',
-                                                                            '<span class="text-yellow-50 bg-yellow-500 rounded p-2">Tuesday</span>',
-                                                                            '<span class="text-purple-50 bg-purple-500 rounded p-2">Wednesday</span>',
-                                                                            '<span class="text-pink-50 bg-pink-500 rounded p-2">Thursday</span>',
-                                                                            '<span class="text-orange-50 bg-orange-500 rounded p-2">Friday</span>',
-                                                                        ],
-                                                                        $daysOfWeekFormatted,
-                                                                    );
-                                                                @endphp
-
-                                                                {!! $daysOfWeekFormatted !!}
-
+                                                            <div class="px-4 py-3 ">
+                                                                <div class="flex flex-col">
+                                                                    @php
+                                                                        $daysOfWeek = json_decode($holiday->days_of_week);
+                                                                        $daysOfWeekFormatted = is_array($daysOfWeek) 
+                                                                            ? collect($daysOfWeek)
+                                                                                ->map(fn($day) => ucfirst($day))
+                                                                                ->join(', ')
+                                                                            : ucfirst($daysOfWeek);
+                                                                    @endphp
+                                                                    
+                                                                    <div class="text-sm">
+                                                                        <span class="font-medium text-slate-700 dark:text-slate-300">
+                                                                            {{ $daysOfWeekFormatted }}
+                                                                        </span>
+                                                                    </div>
+                                                                    
+                                                                    {{-- Visual indicator for multiple days --}}
+                                                                    @if(is_array($daysOfWeek) && count($daysOfWeek) > 1)
+                                                                        <div class="mt-1">
+                                                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                                                {{ count($daysOfWeek) }} days
+                                                                            </span>
+                                                                        </div>
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         </td>
                                                         <td

@@ -17,8 +17,9 @@
 
         <form method="POST" action="{{ route('task.store') }}" >
             @csrf
-
+            
             {{-- Select Employer --}}
+            @if(auth()->user()->role != 'employee' && auth()->user()->role != 'client')
             <div class="form-field">
                 <select name="employer_id" id="employer_id" class="form-select">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  " value="" disabled>{{ __('Select Employer') }}</option>
@@ -34,8 +35,11 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-
+            @else
+            <input type="hidden" name="employer_id" value="{{ auth()->user()->employee->employer_id ?? auth()->user()->client->employer_id }}">
+            @endif
             {{-- Select Employee --}}
+            @if(auth()->user()->role != 'employee')
             <div class="form-field">
                 <select name="employee_id" id="employee_id" class="form-select" required>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
@@ -50,13 +54,16 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
+            @else
+            <input type="hidden" name="employee_id" value="{{ auth()->user()->id }}">
+            @endif
 
             {{-- Select Project --}}
             <div class="form-field">
                 <select name="project_id" id="project_id" class="form-select" required>
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Project') }}</option>
+                    <option class="dark:bg-card-light dark:text-text-dark" value="" >{{ __('Select Project') }}</option>
                     @foreach ($projects as $project)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $project->id }}">{{ $project->project_name }}
+                        <option class="dark:bg-card-light dark:text-text-dark" value="{{ $project->id }}">{{ $project->project_name }}
                         </option>
                     @endforeach
                 </select>

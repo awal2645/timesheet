@@ -2,14 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WeeklyHoliday;
+use App\Models\Employer;
 use Illuminate\Http\Request;
+use App\Models\WeeklyHoliday;
 
 class WeeklyHolidayController extends Controller
 {
     public function index()
     {
-        $holidays = WeeklyHoliday::paginate(10);
+        if (auth()->user()->role === 'employer') {
+            $holidays = WeeklyHoliday::where('created_by', auth()->user()->id)->latest()->paginate(10);
+        }elseif(auth()->user()->role === 'employee'){
+            $holidays = WeeklyHoliday::where('created_by', auth()->user()->employer->user->id)->latest()->paginate(10);
+        }else{
+            $holidays = WeeklyHoliday::latest()->paginate(10);
+        }
         return view('weekly_holidays.index', compact('holidays'));
     }
 
@@ -27,7 +34,7 @@ class WeeklyHolidayController extends Controller
         ]);
 
         // Store the selected days as a JSON string
-        WeeklyHoliday::create(['days_of_week' => json_encode($request->days_of_week)]);
+        WeeklyHoliday::create(['days_of_week' => json_encode($request->days_of_week), 'created_by' => auth()->user()->id]);
         return redirect()->route('weekly_holidays.index')->with('success', 'Weekly holiday added successfully.');
     }
 

@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Meeting;
 use App\Mail\NewMeetingAlertMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Notification;
 
 class CreateMeetingService
@@ -43,13 +44,35 @@ class CreateMeetingService
             $users = User::whereIn('id', $request->participants)->get();
 
         }
+        try{
 
         foreach ($users as $key => $user) {
             
             $meeting->participants()->create([
                 'user_id' => $user->id,
             ]);
-            Mail::to($user->email)->send(new NewMeetingAlertMail($user, $meeting));
+            if(auth()->user()->role == 'employer'){
+                $smtp = smtp();
+                Config::set('mail.mailers.smtp', [
+                    'transport' => 'smtp',
+                    'host' => $smtp->host,
+                    'port' => $smtp->port,
+                    'encryption' => $smtp->encryption,
+                    'username' => $smtp->username,
+                    'password' => $smtp->password,
+                    'from' => [
+                        'address' => $smtp->mail_from_address,
+                        'name' => $smtp->mail_from_name,
+                    ],
+                ]);
+                Config::set('mail.default', 'smtp');
+                Mail::to($user->email)->send(new NewMeetingAlertMail($user, $meeting));
+            }else{
+                Mail::to($user->email)->send(new NewMeetingAlertMail($user, $meeting));
+            }
+        }
+    } catch (\Exception $e) {
+            // return redirect()->back()->with('error', 'Please try again later.');
         }
     }
 }
