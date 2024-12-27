@@ -95,6 +95,7 @@ class EmployerController extends Controller
             }
 
             $token = Str::random(64);
+            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
             DB::table('password_reset_tokens')->insert([
                 'email' => $request->email,
                 'token' => $token,
@@ -147,6 +148,9 @@ class EmployerController extends Controller
             return redirect()->route('employer.index')->with('success', 'Employee created successfully');
         } catch (\Exception $e) {
             // Handle the exception, you can log it or return an error response
+            DB::table('password_reset_tokens')->where('email', $request->email)->delete();
+            $user->delete();
+            
             return redirect()->back()->withInput($request->all())->with(['error' => 'An error occurred while creating the employer. Please try again later.']);
         }
     }

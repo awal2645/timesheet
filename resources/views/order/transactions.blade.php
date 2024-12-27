@@ -1,5 +1,5 @@
 @section('title')
-    {{ 'Order List' }}
+{{ 'Order List' }}
 @endsection
 <x-app-layout>
     <div class="relative m-6">
@@ -8,9 +8,10 @@
                 <form action="{{ route('order.index') }}" method="GET" class="w-full">
                     <div class="mb-3">
                         <label for="search"
-                            class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search') }}</label>
-                            <div class="flex flex-wrap">
-                                <input type="text" id="search" name="search" value="{{ request('search') }}"
+                            class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{ __('Search')
+                            }}</label>
+                        <div class="flex flex-wrap">
+                            <input type="text" id="search" name="search" value="{{ request('search') }}"
                                 class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
@@ -44,48 +45,75 @@
                                                 <th class="p-4 font-medium">{{ __('Amount') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
                                                 <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
+                                                <th class="p-4 font-medium">{{ __('Action') }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @forelse ($transactions as $transaction)
-                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">#{{ $transaction->order_id }}</td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                        {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                        @if ($transaction->payment_type == 'per_job_based')
-                                                            <span
-                                                                class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
-                                                                {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
-                                                            </span>
-                                                        @else
-                                                            <span
-                                                                class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
-                                                                {{ $transaction->plan->label }}
-                                                            </span>
-                                                        @endif
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                        {{ ucfirst($transaction->employer->employer_name) ?? '' }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">${{ $transaction->usd_amount }}</td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                        {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
-                                                    </td>
-                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                        <span
-                                                            class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
-                                                            {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
-                                                        </span>
-                                                    </td>
-                                                </tr>
+                                            <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    #{{ $transaction->order_id }}</td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    @if ($transaction->payment_type == 'per_job_based')
+                                                    <span
+                                                        class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                        {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type))
+                                                        }}
+                                                    </span>
+                                                    @else
+                                                    <span
+                                                        class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                        {{ $transaction->plan->label }}
+                                                    </span>
+                                                    @endif
+                                                </td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    {{ ucfirst($transaction->employer->employer_name) ?? '' }}
+                                                </td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    ${{ $transaction->usd_amount }}</td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    {{ $transaction->payment_provider == 'offline' ? __('offline') .
+                                                    (optional($transaction->manualPayment)->name ? "
+                                                    (<b>{$transaction->manualPayment->name}</b>)" : '') :
+                                                    ucfirst($transaction->payment_provider) }}
+                                                </td>
+                                                <td
+                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                    <span
+                                                        class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
+                                                        {{ $transaction->payment_status == 'paid' ? __('paid') :
+                                                        __('unpaid') }}
+                                                    </span>
+                                                </td>
+                                                <td class="px-6 py-4">
+                                                    <div class="flex space-x-2">
+                                                        <a href="{{ route('order.edit', $transaction->id) }}"
+                                                            class="text-primary-50 hover:text-primary-300">
+                                                            <x.svgs.edit />
+                                                        </a>
+                                                        <a href="{{ route('order.destroy', $transaction->id) }}"
+                                                            class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
+                                                            <x.svgs.delete />
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
                                             @empty
-                                                <tr>
-                                                    <td colspan="8" class="text-center py-8">
-                                                        <x-svgs.no-data-found
-                                                            class="mx-auto md:size-[360px] size-[220px]" />
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-center py-8">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
+                                                </td>
+                                            </tr>
                                             @endforelse
                                         </tbody>
                                     </table>
@@ -93,11 +121,11 @@
                             </div>
                         </div>
                         @if ($transactions->total() > $transactions->count())
-                            <div class="mt-2">
-                                <div class="d-flex justify-content-center">
-                                    {{ $transactions->links() }}
-                                </div>
+                        <div class="mt-2">
+                            <div class="d-flex justify-content-center">
+                                {{ $transactions->links() }}
                             </div>
+                        </div>
                         @endif
                     </div>
                 </div>

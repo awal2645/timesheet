@@ -250,25 +250,29 @@
                                                             <label for="message"
                                                                 class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">{{
                                                                 __('Message') }}</label>
-                                                            <textarea
+                                                            <textarea   
+                                                                @if(auth()->user()->role != 'employee')
+                                                                readonly
+                                                                @endif
                                                                 class="mb-2 bg-transparent border border-gray-300 dark:border-gray-700 rounded-md p-2"
                                                                 id="message" name="feedback"
                                                                 rows="6">{{ $timeReport->feedback }}</textarea>
                                                         </div>
+                                                        @if(auth()->user()->role != 'employee')
                                                         <button type="submit"
                                                             class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg mt-4 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                                             {{ __('Send') }}
                                                         </button>
+                                                        @endif
                                                     </form>
                                                 </div>
                                             </div>
                                             @endforeach
                                             @else
                                             <tr>
-                                                <td colspan="4"
-                                                    class="text-center py-8 border border-gray-300 dark:border-gray-700">
-                                                    <img src="{{ asset('images/no-data-found.svg') }}"
-                                                        alt="No data found" class="mx-auto max-w-xs">
+                                                <td colspan="7" class="text-center py-8">
+                                                    <x-svgs.no-data-found
+                                                        class="mx-auto md:size-[360px] size-[220px]" />
                                                 </td>
                                             </tr>
                                             @endif

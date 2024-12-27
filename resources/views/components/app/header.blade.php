@@ -18,7 +18,7 @@
                     <span class="sr-only">{{ __('Open sidebar') }}</span>
                     <i class="fa-solid fa-bars text-2xl p-3 text-text-light dark:text-text-dark"></i>
                 </button>
-                <a x-show="!sidebarExpanded" class="hidden lg:block" href="{{ route('dashboard') }}">
+                <a x-show="!sidebarExpanded" class="hidden lg:block mt-5" href="{{ route('dashboard') }}">
                     <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
                     <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
                     

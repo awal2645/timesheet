@@ -49,7 +49,7 @@ class TimeReportController extends Controller
             }
     
             // Fetch the filtered time reports
-            $timeReports = $timeReports->paginate(10);
+            $timeReports = $timeReports->latest()->paginate(10);
     
             // Get the day reports as before
             $timedayReports = TimeReport::select('start_day', 'end_day')->get();

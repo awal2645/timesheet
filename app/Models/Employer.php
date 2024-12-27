@@ -47,4 +47,9 @@ class Employer extends Model
     {
         return $this->hasOne(UserPlan::class, 'employer_id');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
 }

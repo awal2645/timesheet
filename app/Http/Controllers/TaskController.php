@@ -28,6 +28,11 @@ class TaskController extends Controller
         else{
             $tasks = Task::latest()->paginate(10);
         }
+        
+        $search = $request->input('search');
+        if($search){
+            $tasks = $tasks->where('task_name', 'like', '%'.$search.'%')->orWhere('', 'like', '%'.$search.'%');
+        }
         $projects = Project::orderBy('project_name', 'desc')->get();
         return view('task.index', compact('tasks', 'projects'));
     }
@@ -36,26 +41,26 @@ class TaskController extends Controller
     {
         
         if (auth('web')->user()->role == 'employer') {
-            $employers = Employer::where('id', auth('web')->user()->employer->id)->get();
-            $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
-            $projects = Project::where('employer_id', auth('web')->user()->employer->id)->get();
+            $employers = Employer::where('id', auth('web')->user()->employer->id)->active()->get();
+            $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->active()->get();
+            $projects = Project::where('employer_id', auth('web')->user()->employer->id)->active()->get();
             return view('task.create', compact('projects', 'employers', 'employees'));
         }elseif(auth('web')->user()->role == 'employee'){
-            $employers = Employer::where('id', auth('web')->user()->employee->employer_id)->get();
-            $employees = Employee::where('id', auth('web')->user()->employee->id)->get();
-            $projects = Project::where('employer_id', auth('web')->user()->employee->employer_id)->get();
+            $employers = Employer::where('id', auth('web')->user()->employee->employer_id)->active()->get();
+            $employees = Employee::where('id', auth('web')->user()->employee->id)->active()->get();
+            $projects = Project::where('employer_id', auth('web')->user()->employee->employer_id)->active()->get();
             return view('task.create', compact('projects', 'employers', 'employees'));
         }
         else if (auth('web')->user()->role == 'client') {
             $employers = Employer::where('id', auth('web')->user()->client->employer_id)->get();
-            $employees = Employee::where('id', auth('web')->user()->client->employer_id)->get();
-            $projects = Project::where('client_id', auth('web')->user()->client->id)->get();
+            $employees = Employee::where('id', auth('web')->user()->client->employer_id)->active()->get();
+            $projects = Project::where('client_id', auth('web')->user()->client->id)->active()->get();
             return view('task.create', compact('projects', 'employers', 'employees'));
         }
         else{
-            $employers = Employer::all();
-            $employees = Employee::all();
-            $projects = Project::all();
+            $employers = Employer::active()->get();
+            $employees = Employee::active()->get();
+            $projects = Project::active()->get();
             return view('task.create', compact('projects', 'employers', 'employees'));
         }
         
@@ -64,7 +69,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        if(auth('web')->user()->role == 'employer' || auth('web')->user()->role == 'employee'){
+        if(auth('web')->user()->role == 'employer'){
         $request->validate([
             'employee_id' => 'required|exists:employees,id',
             'project_id' => 'required|exists:projects,id',
@@ -141,7 +146,7 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
-        if(auth('web')->user()->role == 'employer' || auth('web')->user()->role == 'employee'){
+        if(auth('web')->user()->role == 'employer'){
             $request->validate([
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',

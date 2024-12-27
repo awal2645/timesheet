@@ -7,6 +7,16 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <x-app-layout>
+    @if ($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">{{ __('Oops! Something went wrong.') }}</strong>
+        <ul class="mt-2 list-disc list-inside text-sm">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
     <div class="flex justify-between items-center m-6 card">
         <h2 class="text-xl font-medium text-text-light dark:text-text-dark">{{ __('Create Task') }}</h2>
         <a href="{{ route('task.index') }}"
@@ -22,7 +32,7 @@
             @if(auth()->user()->role != 'employee' && auth()->user()->role != 'client')
             <div class="form-field">
                 <select name="employer_id" id="employer_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  " value="" disabled>{{ __('Select Employer') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  " value="">{{ __('Select Employer') }}</option>
                     @foreach ($employers as $employer)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  "
                             value="{{ $employer->id }}">{{ $employer->employer_name }}
@@ -42,7 +52,7 @@
             @if(auth()->user()->role != 'employee')
             <div class="form-field">
                 <select name="employee_id" id="employee_id" class="form-select" required>
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employee') }}</option>
                     @foreach ($employees as $employee)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}">{{ $employee->employee_name }}
                         </option>
@@ -54,8 +64,6 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-            @else
-            <input type="hidden" name="employee_id" value="{{ auth()->user()->id }}">
             @endif
 
             {{-- Select Project --}}
@@ -88,7 +96,7 @@
                 <input type="text" name="time" value="00:00"
                     class="block py-2.5 px-0 w-full text-sm text-text-light dark:text-text-dark bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600" 
                     oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value.length > 2) this.value = this.value.slice(0, 2) + ':' + this.value.slice(2, 4);" required />
-                <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
+                <label for="time" class="form-label">{{ __('Task Time') }} </label> 
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror

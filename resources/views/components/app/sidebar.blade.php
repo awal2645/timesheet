@@ -14,14 +14,14 @@
 
             <div class="flex flex-wrap" :class="sidebarExpanded ? 'justify-between' : 'justify-center'">
                 <!-- Hamburger button -->
-                <button x-show="!sidebarExpanded" class="text-text-light hover:text-text-dark lg:block hidden"
+                <button x-show="!sidebarExpanded" class="text-text-light hover:text-text-dark lg:block hidden mt-5"
                     @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
                     @click="sidebarExpanded = !sidebarExpanded">
                     <span class="sr-only">{{ __('Open sidebar') }} {{ __() }}</span>
                     <i class="fa-solid fa-bars text-2xl text-text-light dark:text-text-dark w-6"></i>
                 </button>
                 <!-- Logo link (shown only when sidebarExpanded is true) -->
-                <a class="block" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
+                <a class="block mt-3" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
                     <img class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt=""
                         class="">
                     <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class="awal">

@@ -232,7 +232,7 @@
 <script>
     function logoUpload() {
         return {
-            logoPreview: '{{ asset($employer->image) }}', // Set default logo preview from existing data
+            logoPreview: '{{ asset($employer->image ?? 'reports_images/dummy_image.png') }}', // Set default logo preview from existing data
             logoError: '',
             handleLogoUpload(event) {
                 const file = event.target.files[0];

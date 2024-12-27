@@ -146,6 +146,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::controller(AccountController::class)->group(function () {
             Route::get('my/account', 'myAccount')->name('my.account');
             Route::post('employ er/info/update/{id}', 'employerInfoUpdate')->name('employer.info.update');
+            Route::post('employee/info/update/{id}', 'employeeInfoUpdate')->name('employee.info.update');
+            Route::post('client/info/update/{id}', 'clientInfoUpdate')->name('client.info.update');
         });
 
         // Notification routes
@@ -218,6 +220,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('order', 'order')->name('order.index');
         Route::get('order/create', 'orderCreate')->name('order.create');
         Route::post('order/store', 'orderStore')->name('order.store');
+        Route::get('order/edit/{id}', 'orderEdit')->name('order.edit');
+        Route::put('order/update/{id}', 'orderUpdate')->name('order.update');
+        Route::get('order/destroy/{id}', 'orderDestroy')->name('order.destroy');
     });
 
     // Task management routes

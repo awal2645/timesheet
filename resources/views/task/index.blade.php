@@ -203,12 +203,8 @@
                                                 <td class="px-6 py-4">
                                                     <div class="flex space-x-2">
                                                         <a href="{{ route('task.edit', $task->id) }}"
-                                                            class="text-primary-50 hover:text-primary-300">
+                                                            class="text-primary-50 hover:text-primary-300"> 
                                                             <x-svgs.edit />
-                                                        </a>
-                                                        <a onclick="showConfirmation({{ $task->id }})"
-                                                            class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
-                                                            <x-svgs.delete />
                                                         </a>
                                                     </div>
                                                 </td>

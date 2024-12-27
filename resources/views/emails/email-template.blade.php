@@ -12,7 +12,7 @@
         </div>
     </header>
     <div x-data="{
-        activeTab: '{{ __($email_templates->first()->type) ?? 'new' }}',
+        activeTab: '{{ __($email_templates->first()->type ?? 'new') }}',
         initEditor() {
             const editorElements = document.querySelectorAll('.classic-editor');
             editorElements.forEach((editor) => {

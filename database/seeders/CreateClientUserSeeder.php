@@ -16,9 +16,9 @@ class CreateClientUserSeeder extends Seeder
     {
         // Create 3 users with real data
         $users = [
-            User::create(['name' => 'Client', 'username' => 'client', 'role' => 'client', 'email' => 'client@example.com', 'password' => bcrypt('password')]),
-            User::create(['name' => 'Client2', 'username' => 'client2', 'role' => 'client', 'email' => 'client2@example.com', 'password' => bcrypt('password')]),
-            User::create(['name' => 'Client3', 'username' => 'client3', 'role' => 'client', 'email' => 'client3@example.com', 'password' => bcrypt('password')]),
+            User::create(['name' => 'Client', 'username' => 'client', 'role' => 'client', 'email' => 'client@example.com', 'password' => bcrypt('123456')]),
+            User::create(['name' => 'Client2', 'username' => 'client2', 'role' => 'client', 'email' => 'client2@example.com', 'password' => bcrypt('123456')]),
+            User::create(['name' => 'Client3', 'username' => 'client3', 'role' => 'client', 'email' => 'client3@example.com', 'password' => bcrypt('123456')]),
         ];
 
         // Fetch some employers to associate with clients

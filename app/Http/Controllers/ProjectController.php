@@ -16,6 +16,7 @@ class ProjectController extends Controller
             // Get search parameters
             $search = $request->input('search');
             $status = $request->input('status');
+            
 
             // Check if the user is an employer and filter projects accordingly
             if (auth('web')->user()->role == 'employer') {
@@ -36,7 +37,7 @@ class ProjectController extends Controller
                         ->orWhereHas('client', function ($q) use ($search) {
                             $q->where('client_name', 'like', "%{$search}%");
                         })
-                        ->orWhere('billing_rate', $search);
+                        ->orWhere('status', $search);
                 });
             }
 
@@ -62,13 +63,13 @@ class ProjectController extends Controller
     {
         try {
             if (auth('web')->user()->role == 'employer') {
-                $employers = Employer::all();
-                $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
-                $clients = Client::where('employer_id', auth('web')->user()->employer->id)->get();
+                $employers = Employer::active()->get();
+                $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->active()->get();
+                $clients = Client::where('employer_id', auth('web')->user()->employer->id)->active()->get();
             } else {
-                $employers = Employer::all();
-                $employees = Employee::all();
-                $clients = Client::all();
+                $employers = Employer::active()->get();
+                $employees = Employee::active()->get();
+                $clients = Client::active()->get();
             }
 
             return view('project.create', compact('employers', 'employees', 'clients'));

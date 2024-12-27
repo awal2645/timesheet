@@ -354,7 +354,7 @@
                         <th style="width: 5%">NO</th>
                         <th style="width: 45%">TASK DESCRIPTION</th>
                         <th class="price" style="width: 15%">PRICE</th>
-                        <th class="qty" style="width: 15%">HOURS</th>
+                        <th class="qty" style="width: 15%"> @if($invoice->project->payment_type == 'fixed') Already Paid @else HOURS @endif</th>
                         <th class="total" style="width: 20%">TOTAL</th>
                     </tr>
                 </thead>
@@ -386,6 +386,7 @@
                     // Calculate total cost based on hours
                     $totalCost = $totalHours * $hrBudget;
                     @endphp
+                    @if($invoice->project->payment_type == 'hourly')
                     @foreach ($invoice->project->tasks as $index => $item)
                     @if ($item->status === 'completed')
                     <!-- Only show completed tasks -->
@@ -396,7 +397,7 @@
                         </td>
                         <td>
                             ${{ $item->project->payment_type == 'fixed' ? 
-                                $item->project->total_paid : 
+                                $item->project->total_cost - $item->project->total_paid_client : 
                                 (number_format($invoice->project->hr_budget ?? 0, 2) . '/hr')
                             }}
                         </td>
@@ -424,6 +425,25 @@
                     </tr>
                     @endif
                     @endforeach
+                    @endif
+                    @if($invoice->project->payment_type == 'fixed')
+                      <!-- Only show completed tasks -->
+                      <tr class="[&_td]:text-start">
+                        <td>1</td>
+                        <td style="text-align:left;">
+                            {{ $invoice->project->project_name }}<br>
+                        </td>
+                        <td>
+                            ${{ $invoice->project->payment_type == 'fixed' ? 
+                                $invoice->project->total_cost  : 
+                                (number_format($invoice->project->hr_budget ?? 0, 2) . '/hr')
+                            }}
+                        </td>
+                        <td>${{ $invoice->project->total_paid_client ?? 0 }}</td>
+                       
+                        <td>${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_cost - $invoice->project->total_paid_client : number_format($invoice->project->total_cost, 2) }}</td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
             <!-- Totals -->
@@ -431,7 +451,7 @@
                 <table class="totals-table" >
                     <tr class="sub-total" style="background: #6b21a8;">
                         <td>Sub Total:</td>
-                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_paid : number_format($totalCost, 2) }}</td>
+                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_cost - $invoice->project->total_paid_client : number_format($totalCost, 2) }}</td>
                     </tr>
                     {{-- <tr class="tax" style="background: #6b21a8;">
                         <td>Tax ({{ $invoice->tax_rate }}%):</td>
@@ -440,7 +460,7 @@
                     </tr> --}}
                     <tr class="grand-total" style="background: #6b21a8;">
                         <td>GRAND TOTAL:</td>
-                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_paid : number_format($totalCost + $invoice->tax_amount, 2) }}</td>
+                        <td align="right">${{ $invoice->project->payment_type == 'fixed' ? $invoice->project->total_cost - $invoice->project->total_paid_client : number_format($totalCost + $invoice->tax_amount, 2) }}</td>
                         <!-- Ensure tax amount is added to total cost -->
                     </tr>
                 </table>

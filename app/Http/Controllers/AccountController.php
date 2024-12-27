@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use App\Models\Employer;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Employee;
+use App\Models\Employer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -31,6 +32,8 @@ class AccountController extends Controller
 
             return view('employee.profile', compact('employee'));
         } else {
+            $client = Client::where('user_id', auth('web')->user()->id)->first();
+            return view('client.profile', compact('client'));
         }
     }
 
@@ -86,9 +89,75 @@ class AccountController extends Controller
         return true;
     }
 
-    public function employeeInfoUpdate(Request $request)
+    private function saveImage($file, $user)
     {
-        $user = User::findOrFail(auth('web')->user()->id);
+        $logoPath = public_path('/images/employee/' . $user->username . '.png');
+
+        // Delete the old logo if it exists
+        if (File::exists($logoPath)) {
+            File::delete($logoPath);
+        }
+
+        // Save the new logo
+        $file->move(public_path('/images/employee'), $user->username . '.png');
+        return true;
+    }
+
+
+    private function saveClientImage($file, $user)
+    {
+        $logoPath = public_path('/images/client/' . $user->username . '.png');
+
+        // Delete the old logo if it exists
+        if (File::exists($logoPath)) {
+            File::delete($logoPath);
+        }
+
+        // Save the new logo
+        $file->move(public_path('/images/client'), $user->username . '.png');
+        return true;
+    }
+
+
+    public function clientInfoUpdate(Request $request, $id)
+    {
+        $client = Client::findOrFail($id);
+        $user = User::findOrFail($client->user_id);
+        // Validate input
+        $request->validate([
+            'email' => "required|email|unique:users,email,$user->id",
+            'client_name' => 'required|string',
+            'client_phone' => 'required',
+        ]);
+
+        try {
+
+            if ($request->hasFile('image')) {
+                $this->saveClientImage($request->file('image'), $user);
+                $user->image = 'images/client/' . $user->username . '.png';
+                $user->save();
+            }
+
+            $user->email = $request->email;
+            $user->username = $request->username;
+            $user->save();
+
+            // Update employee
+            $user->client->update($request->except('image', 'email', 'username'));
+
+            return redirect()->back()->with('success', 'Account info updated successfully');
+        } catch (\Exception $e) {
+            // Log the exception or handle it accordingly
+            return redirect()
+                ->back()
+                ->with('error', 'An error occurred while updating employee: ' . $e->getMessage());
+        }
+    }
+
+    public function employeeInfoUpdate(Request $request, $id)
+    {
+        $employee = Employee::findOrFail($id);
+        $user = User::findOrFail($employee->user_id);
         // Validate input
         $request->validate([
             'email' => "required|email|unique:users,email,$user->id",
@@ -101,11 +170,8 @@ class AccountController extends Controller
         try {
 
             if ($request->hasFile('image')) {
-                $user = $user;
-                $image = $request->file('image');
-                $imageName = time() . '.' . $image->extension();
-                $image->move(public_path('user'), $imageName);
-                $user->image = 'user/' . $imageName;
+                $this->saveImage($request->file('image'), $user);
+                $user->image = 'images/employee/' . $user->username . '.png';
                 $user->save();
             }
 

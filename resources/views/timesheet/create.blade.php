@@ -104,48 +104,83 @@
 
                     <!-- Textarea -->
                     <div class="w-full md:w-1/2 form-field">
-                        <textarea rows="5" @if ($timeReport->status == 'approve' || $timeReport->status == 'decline') readonly @endif id="message" name="comment"
+                        <textarea rows="5" 
+                            @if (isset($timeReport) && ($timeReport->status == 'approve' || $timeReport->status == 'decline')) 
+                                readonly 
+                            @endif 
+                            id="message" name="comment"
                             placeholder="{{ __('Your Message:') }}">{{ $timeReport->comment ?? '' }}</textarea>
                     </div>
                 </div>
 
                 <input type="hidden" name="start_day" value="{{ $dates['Sunday'] }}">
                 <input type="hidden" name="end_day" value="{{ $dates['Saturday'] }}">
-
                 <!-- Submit Button -->
-                <button @if ($timeReport->status == 'approve' || $timeReport->status == 'decline') disabled @endif type="button" id="saveButton" 
+                <button 
+                    @if (isset($timeReport) && ($timeReport->status == 'approve' || $timeReport->status == 'decline')) 
+                        style="display: none;"
+                    @endif 
+                    type="button" id="saveButton" 
                     class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Save') }}
                 </button>
 
-                @if ($timeReport->status == 'pending')
-                    <button  disabled  type="button" id="submitButton"  @
-                        class="<?php echo e(
-                            $timeReport->status == 'approve' 
-                                ? 'bg-green-500' 
-                                : ($timeReport->status == 'decline' 
-                                    ? 'bg-red-500' 
-                                    : 'bg-yellow-500')
-                        ); ?> ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-primary-300">
-                        @if ($timeReport->status == 'approve')
+                @if (isset($timeReport) )
+                    <div  style="display: ruby;"
+                        class=" ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md focus:outline-none focus:ring focus:border-primary-300">
+                        Status : 
+                        @php
+                        $styles = [
+                            'approve' => 'bg-green-100 text-green-800 border border-green-200 dark:bg-green-900/30 dark:text-green-300 dark:border-green-800',
+                            'decline' => 'bg-red-100 text-red-800 border border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-800',
+                            'pending' => 'bg-yellow-100 text-yellow-800 border border-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-300 dark:border-yellow-800'
+                        ];
+                    
+                        $baseClasses = 'inline-flex items-center px-2.5 py-1.5 rounded-full text-sm font-medium transition-colors';
+                    @endphp
+                    
+                    @if ($timeReport->status == 'approve')
+                        <span class="{{ $baseClasses }} {{ $styles['approve'] }}">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
                             {{ __('Approved') }}
-                        @elseif ($timeReport->status == 'decline')
+                        </span>
+                    @elseif ($timeReport->status == 'decline')
+                        <span class="{{ $baseClasses }} {{ $styles['decline'] }}">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                            </svg>
                             {{ __('Declined') }}
-                        @else
+                        </span>
+                    @else
+                        <span class="{{ $baseClasses }} {{ $styles['pending'] }}">
+                            <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
                             {{ __('Pending') }}
-                        @endif
-                    </button>
+                        </span>
+                    @endif
+                    
+                    </div>
                 @else
-                    <button type="button" id="submitButton"
+                    <button type="button" id="submitButton"     @if (isset($timeReport) && ($timeReport->status == 'approve' || $timeReport->status == 'decline')) 
+                        disabled
+                    @endif 
                         class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                         {{ __('Submit') }}
                     </button>
                 @endif
 
-                <button @if ($timeReport->status == 'approve' || $timeReport->status == 'decline' || $timeReport->status == 'pending') style="display: none;" @endif type="button" id="resetButton"
+                <button 
+                    @if (isset($timeReport) && ($timeReport->status == 'approve' || $timeReport->status == 'decline' || $timeReport->status == 'pending')) 
+                        style="display: none;" 
+                    @endif 
+                    type="button" id="resetButton"
                     class="bg-primary-50 ml-3 text-text-light dark:text-text-dark px-4 py-2 rounded-md hover:bg-primary-50 focus:outline-none focus:ring focus:border-primary-300">
                     {{ __('Reset') }}
                 </button>
+                
             </div>
 
         </div>

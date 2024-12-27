@@ -39,7 +39,7 @@
     
                 <div class="form-field">
                     <select name="employer_id" id="employer_id" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" >{{ __('Select Employer') }}</option>
                         @foreach ($employers as $employer)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
                             {{ $employer->employer_name }}

@@ -39,8 +39,13 @@ class Client extends Model
     }
 
     public function totalTask()
-{
-    return Task::whereIn('project_id', $this->projects()->pluck('id'))->count();
-}
+    {
+        return Task::whereIn('project_id', $this->projects()->pluck('id'))->count();
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
 
 }

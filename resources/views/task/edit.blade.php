@@ -20,7 +20,7 @@
             @if (auth('web')->user()->role != 'employer' && auth('web')->user()->role != 'employee' && auth('web')->user()->role != 'client')
             <div class="form-field">
                 <select name="employer_id" id="employer_id" required class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employer') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employer') }}</option>
                     @foreach ($employers as $employer)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}"
                             {{ $task->employer_id == $employer->id ? 'selected' : '' }}>
@@ -34,14 +34,14 @@
                 @enderror
             </div>
             @else
-            <input type="hidden" name="employer_id" value="{{ auth()->user()->employer->id ?? auth()->user()->client->employer_id }}">
+            <input type="hidden" name="employer_id" value="{{ auth()->user()->employer->id ?? auth()->user()->client->employer_id ?? auth()->user()->employee->employer_id }}">
             @endif
 
             {{-- Select Employee --}}
             @if(auth()->user()->role != 'employee')
             <div class="form-field">
                 <select name="employee_id" id="employee_id" required class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Employee') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employee') }}</option>
                     @foreach ($employees as $employee)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}"
                             {{ $task->employee_id == $employee->id ? 'selected' : '' }}>
@@ -54,14 +54,12 @@
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror
             </div>
-            @else
-            <input type="hidden" name="employee_id" value="{{ auth()->user()->employee->id }}">
             @endif
 
             {{-- Select Project --}}
             <div class="form-field">
                 <select name="project_id" id="project_id" required class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled>{{ __('Select Project') }}</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Project') }}</option>
                     @foreach ($projects as $project)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $project->id }}"
                             {{ $task->project_id == $project->id ? 'selected' : '' }}>
@@ -87,7 +85,7 @@
             {{-- Task Time --}}
             <div class="form-field">
                 <input type="text" placeholder=""  name="time" id="time-picker" value="{{ $task->time }}" required  />
-                <label for="time" class="form-label">{{ __('Task Time') }} <span class="text-red-500">( {{ __('Example:') }} 0:00)</span></label>
+                <label for="time" class="form-label">{{ __('Task Time') }} </label>
                 @error('time')
                     <p class="text-red-500 text-xs">{{ $message }}</p>
                 @enderror

@@ -142,8 +142,10 @@ class TimesheetController extends Controller
                     'to' => $employer->user->id,
                 ]);
             }else{
-                $timeReport->comment = $request->comment;
-                $timeReport->save();
+                if($request->comment){
+                    $timeReport->comment = $request->comment;
+                    $timeReport->save();
+                }
             }
 
             return redirect()->back()->with('success', 'Report added successfully');

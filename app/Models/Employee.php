@@ -48,4 +48,9 @@ class Employee extends Model
     {
         return $this->hasMany(LeaveApplication::class)->where('status', 'approved')->count();
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'active');
+    }
 }

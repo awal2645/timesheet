@@ -3,8 +3,8 @@
 @endsection
 <x-app-layout>
     <div class="py-12 px-8">
-        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Employee Settings') }}</h2>
-        <form action="{{ route('employee.info.update', $employee->id) }}" method="Post" enctype="multipart/form-data"
+        <h2 class="text-2xl mb-6 text-black/90 dark:text-white/90">{{ __('Client Settings') }}</h2>
+        <form action="{{ route('client.info.update', $client->id) }}" method="Post" enctype="multipart/form-data"
             class="bg-card-light dark:bg-card-dark p-8 border border-black/10 dark:border-white/10 rounded-xl">
             @csrf
             <div class="flex flex-wrap gap-6">
@@ -48,54 +48,57 @@
             <div class="grid grid-cols-2 gap-6 mt-8">
                 <!-- Employer Name -->
                 <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="employee_name" id="employee_name"
+                    <input type="text" name="client_name" id="client_name"
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('employee_name', $employee->employee_name) }}" />
-                    <label for="employer_name"
+                        placeholder=" " required value="{{ old('client_name', $client->client_name) }}" />
+                    <label for="client_name"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
-                        {{ __('Employer Name') }}
+                        {{ __('Client Name') }}
                     </label>
-                    @error('employer_name')
+                    @error('client_name')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                  <!-- Employer Phone -->
                     <div class="relative z-0 w-full mb-5 group">
-                    <input type="text" name="phone" id="phone"
+                    <input type="text" name="client_phone" id="client_phone"
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('phone', $employee->phone) }}" />
-                    <label for="phone"
+                        placeholder=" " required value="{{ old('phone', $client->client_phone) }}" />
+                    <label for="client_phone"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
-                        {{ __('Employer Phone') }}
+                        {{ __('Client Phone') }}
                     </label>
-                    @error('employer_name')
+                    @error('client_phone')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
             </div>
 
             <div class="grid grid-cols-2 gap-6 mt-8">
-                <!-- Employer Name -->
+                <!-- Employer Email -->
                 <div class="relative z-0 w-full mb-5 group">
                     <input type="text" name="email" id="email"
                         class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
-                        placeholder=" " required value="{{ old('email', $employee->user->email) }}" />
+                        placeholder=" " required value="{{ old('email', $client->user->email) }}" />
                     <label for="email"
                         class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
                         {{ __('Email') }}
                     </label>
-                    @error('employer_name')
+                    @error('email')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
-                 <!-- Employer Phone -->
-                    <div class="relative z-0 w-full mb-5 group">
-                   <select name="gender" id="gender" class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer">
-                    <option value="male"  class="dark:bg-slate-800 text-text-light dark:text-text-dark" {{ old('gender', $employee->gender) == 'male' ? 'selected' : '' }}>{{ __('Male') }}</option>
-                    <option value="female" class="dark:bg-slate-800 text-text-light dark:text-text-dark" {{ old('gender', $employee->gender) == 'female' ? 'selected' : '' }}>{{ __('Female') }}</option>
-                    <option value="other" class="dark:bg-slate-800 text-text-light dark:text-text-dark" {{ old('gender', $employee->gender) == 'other' ? 'selected' : '' }}>{{ __('Other') }}</option>
-                   </select>
-                    @error('gender')
+
+                 <!-- Employer username -->
+                 <div class="relative z-0 w-full mb-5 group">
+                    <input type="text" name="username" id="username"
+                        class="block py-2.5 px-5 rounded-md w-full text-sm text-gray-900 bg-transparent border-1 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-primary-500 focus:outline-none focus:ring-0 focus:border-primary-600 peer"
+                        placeholder=" " required value="{{ old('username', $client->user->username) }}" />
+                    <label for="username"
+                        class="peer-focus:font-medium absolute text-sm text-gray-500 px-5 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-text-dark peer-focus:bg-primary-50 peer-focus:dark:bg-primary-50 peer-focus:rounded peer-focus:border peer-focus:border-primary-600 peer-focus:dark:text-text-dark  peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:z-50 peer-focus:px-3 peer-focus:-translate-y-6">
+                        {{ __('Username') }}
+                    </label>
+                    @error('username')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
@@ -113,7 +116,7 @@
 <script>
     function logoUpload() {
         return {
-            logoPreview: '{{ asset($employee->user->image ?? 'reports_images/dummy_image.png') }}', // Set default logo preview from existing data
+            logoPreview: '{{ asset($client->user->image ?? 'reports_images/dummy_image.png') }}', // Set default logo preview from existing data
             logoError: '',
             handleLogoUpload(event) {
                 const file = event.target.files[0];
@@ -145,7 +148,7 @@
                 img.src = URL.createObjectURL(file);
             },
             removeLogo() {
-                this.logoPreview = '{{ $employee->user->image }}'; // Reset to existing logo
+                this.logoPreview = '{{ $client->user->image }}'; // Reset to existing logo
                 this.logoError = '';
             }
         };
