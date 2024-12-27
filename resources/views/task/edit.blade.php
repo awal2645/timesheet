@@ -109,7 +109,7 @@
 
             {{-- Due Date --}}
             <div class="form-field">
-                <input type="text" name="due_date" id="due_date" 
+                <input type="date" name="due_date" id="due_date"  onclick="this.showPicker()"
                     value="{{ $task->due_date }}" 
                     placeholder=" " required />
                 <label for="due_date" class="form-label">{{ __('Due Date') }}</label>
@@ -152,10 +152,10 @@
             dateFormat: "H:i" // Sets format as HH:MM
         });
 
-        flatpickr("#due_date", {
-            dateFormat: "Y-m-d", // Sets format as YYYY-MM-DD
-            allowInput: true // Allows manual input
-        });
+        // flatpickr("#due_date", {
+        //     dateFormat: "Y-m-d", 
+        //     allowInput: true 
+        // });
     </script>
     
 </x-app-layout>
