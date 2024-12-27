@@ -10,7 +10,7 @@
     <div class="m-6 card">
         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Edit Project') }}</h2>
         <form method="POST" action="{{ route('project.update', $project->id) }}"
-            class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            class="grid grid-cols-1 md:grid-cols-2 gap-x-8 items-start">
             @csrf
             @method('PUT')
             <!-- {{ __('Select Employer') }}</button>  -->
@@ -21,7 +21,8 @@
                             {{ __('Select Employer') }}
                         </option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}"
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ $employer->id }}"
                                 {{ $project->employer_id == $employer->id ? 'selected' : '' }}>
                                 {{ $employer->employer_name }}
                             </option>
@@ -29,10 +30,10 @@
                     </select>
                     <label for="employer_id" class="form-label">{{ __('Select Employer') }} </label>
                     @error('employer_id')
-                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
                 </div>
-                
+
             @endif
             @if (auth('web')->user()->role == 'employer')
                 <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
@@ -43,8 +44,8 @@
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                         {{ __('Select Client') }} </option>
                     @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}"
-                            {{ $project->client_id == $client->id ? 'selected' : '' }}>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                            value="{{ $client->id }}" {{ $project->client_id == $client->id ? 'selected' : '' }}>
                             {{ $client->client_name }}
                         </option>
                     @endforeach
@@ -52,7 +53,7 @@
                 <label for="client_id" class="form-label">
                     {{ __('Select Client') }}</label>
                 @error('client_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
             <!--  Select Employee -->
@@ -62,7 +63,8 @@
                         {{ __('Select Client') }}
                     </option>
                     @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                            value="{{ $employee->id }}"
                             {{ $project->employee_id == $employee->id ? 'selected' : '' }}>
                             {{ $employee->employee_name }}
                         </option>
@@ -72,7 +74,7 @@
                     {{ __('Select Employee') }}
                 </label>
                 @error('employee_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
             <!-- {{ __('Project Name') }} -->
@@ -83,7 +85,7 @@
                 <label for="project_name">
                     {{ __('Project Name') }}</label>
                 @error('project_name')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 

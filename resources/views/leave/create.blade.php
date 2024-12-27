@@ -9,7 +9,8 @@
             class="btn bg-primary-50 dark:bg-primary-50 text-text-light dark:text-text-dark">{{ __('Go to Leave List') }}</a>
     </div>
     <div class="m-6 card">
-        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Create New Leave Application') }}</h2>
+        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">{{ __('Create New Leave Application') }}
+        </h2>
 
         <form method="POST" action="{{ route('leave.store') }}" class="grid grid-cols-1 md:grid-cols-2 gap-8">
             @csrf
@@ -17,7 +18,8 @@
                 <div role="group" class="form-field">
                     <select name="employee_id" id="employee_id" class="form-select" required>
                         @foreach ($employees as $employee)
-                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ old('employee_id', $employee->id) }}">{{ $employee->user->name }}</option>
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ old('employee_id', $employee->id) }}">{{ $employee->user->name }}</option>
                         @endforeach
                     </select>
                     <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
@@ -26,9 +28,11 @@
             @if (auth()->user()->role != 'employer' && auth()->user()->role != 'employee')
                 <div class="form-field">
                     <select name="employer_id" id="employer_id" class="form-select" required>
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select Employer</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select
+                            Employer</option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ old('employer_id', $employer->id) }}">
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ old('employer_id', $employer->id) }}">
                                 {{ $employer->employer_name }}
                             </option>
                         @endforeach
@@ -37,7 +41,8 @@
                 </div>
                 <div class="form-field">
                     <select name="employee_id" id="employee_select" class="form-select" required>
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employee') }}</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">
+                            {{ __('Select Employee') }}</option>
                     </select>
                     <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                 </div>
@@ -45,7 +50,8 @@
             @if (auth()->user()->role == 'employer')
                 <div class="form-field">
                     <select name="employee_id" id="employee_select" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select Employee</option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select
+                            Employee</option>
                         @foreach ($employees as $employee)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                                 value="{{ old('employee_id', $employee->id) }}">
@@ -58,9 +64,11 @@
             @endif
             <div class="form-field">
                 <select name="leave_type_id" id="leave_type_id" class="form-select" required>
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select Leave Type</option>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select Leave
+                        Type</option>
                     @foreach ($leaveTypes as $leaveType)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ old('leave_type_id', $leaveType->id) }}">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                            value="{{ old('leave_type_id', $leaveType->id) }}">
                             {{ $leaveType->type }}
                         </option>
                     @endforeach
@@ -68,25 +76,27 @@
                 <label for="leave_type_id" class="form-label">{{ __('Leave Type') }}</label>
             </div>
             <div class="form-field">
-                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required onclick="this.showPicker()" />
+                <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required
+                    onclick="this.showPicker()" />
                 <label for="start_date" class="form-label">{{ __('Start Date') }}</label>
                 @error('start_date')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
             <div class="form-field">
-                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}" onclick="this.showPicker()" required />
+                <input type="date" name="end_date" id="end_date" value="{{ old('end_date') }}"
+                    onclick="this.showPicker()" required />
                 <label for="end_date" class="form-label">{{ __('End Date') }}</label>
                 @error('end_date')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="form-field">
-                <input type="text" name="reason" id="reason" value="{{ old('reason') }}"  />
+                <input type="text" name="reason" id="reason" value="{{ old('reason') }}" />
                 <label for="reason" class="form-label">{{ __('Reason for Leave') }}</label>
                 @error('reason')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -105,7 +115,8 @@
             const employeeSelect = document.getElementById('employee_select');
 
             // Clear previous options
-            employeeSelect.innerHTML = '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employee') }}</option>';
+            employeeSelect.innerHTML =
+                '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">{{ __('Select Employee') }}</option>';
 
             if (employerId) {
                 fetch(`/employees/${employerId}`)

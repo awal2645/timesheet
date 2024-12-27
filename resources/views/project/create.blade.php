@@ -20,7 +20,8 @@
                             {{ __('Select Employer') }}
                         </option>
                         @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ $employer->id }}">
                                 {{ $employer->employer_name }}
                             </option>
                         @endforeach
@@ -28,7 +29,7 @@
                     <label for="employer_id" class="form-label">{{ __('Select Employer') }}</label>
 
                     @error('employer_id')
-                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
                 </div>
 
@@ -40,63 +41,64 @@
                         <!-- Clients will be populated here based on employer selection -->
                     </select>
                     @error('client_id')
-                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
                     <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
                 </div>
 
 
-            <div class="form-field">
-                <select name="employee_id" id="employee_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
-                        {{ __('Select Employee') }}
-                    </option>
-                    <!-- Employees will be populated here based on employer selection -->
-                </select>
-                <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
+                <div class="form-field">
+                    <select name="employee_id" id="employee_id" class="form-select">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                            {{ __('Select Employee') }}
+                        </option>
+                        <!-- Employees will be populated here based on employer selection -->
+                    </select>
+                    <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
 
-                @error('employee_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
-
-                @elseif (auth('web')->user()->role == 'employer')
-
+                    @error('employee_id')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
+            @elseif (auth('web')->user()->role == 'employer')
                 <div class="form-field">
                     <select name="client_id" id="client_id" class="form-select">
                         @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
-                            {{ __('Select Client') }}
-                        </option>
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}">
-                            {{ $client->client_name }}
-                        </option>
-                        @endforeach 
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value=""
+                                selected>
+                                {{ __('Select Client') }}
+                            </option>
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ $client->id }}">
+                                {{ $client->client_name }}
+                            </option>
+                        @endforeach
                     </select>
                     @error('client_id')
-                        <p class="text-red-500 text-xs">{{ $message }}</p>
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
                     <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
                 </div>
 
 
-            <div class="form-field">
-                <select name="employee_id" id="employee_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
-                        {{ __('Select Employee') }}
-                    </option>
-                    @foreach ($employees as $employee)
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}">
-                            {{ $employee->employee_name }}
+                <div class="form-field">
+                    <select name="employee_id" id="employee_id" class="form-select">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                            {{ __('Select Employee') }}
                         </option>
-                    @endforeach
-                </select>
-                <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
+                        @foreach ($employees as $employee)
+                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                value="{{ $employee->id }}">
+                                {{ $employee->employee_name }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
 
-                @error('employee_id')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
-                @enderror
-            </div>
+                    @error('employee_id')
+                        <span class="text-red-500 text-xs">{{ $message }}</span>
+                    @enderror
+                </div>
 
 
             @endif
@@ -105,14 +107,14 @@
                 <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
 
-          
+
 
             <div class="form-field">
                 <input type="text" name="project_name" id="project_name" placeholder=" " required />
                 <label for="project_name">{{ __('Project Name') }}</label>
 
                 @error('project_name')
-                    <p class="text-red-500 text-xs">{{ $message }}</p>
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
             </div>
 
@@ -158,7 +160,8 @@
             </div>
 
             <div class="form-field">
-                <input type="text" name="total_paid_client" id="total_paid_client" value="{{ old('total_paid_client') }}" />
+                <input type="text" name="total_paid_client" id="total_paid_client"
+                    value="{{ old('total_paid_client') }}" />
                 <label for="total_paid_client">{{ __('Total Paid Client ($)') }}</label>
             </div>
 
@@ -185,8 +188,10 @@
             const employerId = this.value;
 
             // Clear previous options
-            clientSelect.innerHTML = '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Client') }}</option>';
-            employeeSelect.innerHTML = '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Employee') }}</option>';
+            clientSelect.innerHTML =
+                '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Client') }}</option>';
+            employeeSelect.innerHTML =
+                '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Employee') }}</option>';
 
             if (employerId) {
                 // Fetch clients
@@ -197,7 +202,8 @@
                             const option = document.createElement('option');
                             option.value = client.id;
                             option.textContent = client.client_name;
-                            option.className = 'dark:bg-slate-800 text-text-light dark:text-text-dark';
+                            option.className =
+                                'dark:bg-slate-800 text-text-light dark:text-text-dark';
                             clientSelect.appendChild(option);
                         });
                     });
@@ -210,7 +216,8 @@
                             const option = document.createElement('option');
                             option.value = employee.id;
                             option.textContent = employee.employee_name;
-                            option.className = 'dark:bg-slate-800 text-text-light dark:text-text-dark';
+                            option.className =
+                                'dark:bg-slate-800 text-text-light dark:text-text-dark';
                             employeeSelect.appendChild(option);
                         });
                     });
