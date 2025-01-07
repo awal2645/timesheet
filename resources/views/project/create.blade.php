@@ -128,10 +128,6 @@
                         {{ old('payment_type') == 'fixed' ? 'selected' : '' }}>
                         {{ __('Fixed Price') }}
                     </option>
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="non"
-                        {{ old('payment_type') == 'non' ? 'selected' : '' }}>
-                        {{ __('Non Billable') }}
-                    </option>
                 </select>
                 <label for="payment_type" class="form-label">{{ __('Billing Type') }}</label>
             </div>
@@ -145,20 +141,13 @@
                 @enderror
             </div>
 
-            <!-- Fixed Budget -->
-            <div id="fixed" class="relative z-0 w-full mb-5 group hidden">
-                <input type="text" name="fixed_budget" id="fixed_budget" value="{{ old('fixed_budget') }}" />
-                <label for="fixed_budget">{{ __('Total Project Budget ($)') }}</label>
-                @error('fixed_budget')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
-                @enderror
-            </div>
-
-            <div class="form-field">
+            <!-- Total Cost -->
+            <div id="total_cost" class="form-field">
                 <input type="text" name="total_cost" id="total_cost" value="{{ old('total_cost') }}" />
                 <label for="total_cost">{{ __('Total Cost ($)') }}</label>
             </div>
 
+            <!-- Total Paid Client -->
             <div class="form-field">
                 <input type="text" name="total_paid_client" id="total_paid_client"
                     value="{{ old('total_paid_client') }}" />
@@ -175,6 +164,7 @@
     </div>
 </x-app-layout>
 
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         let employerSelect = document.getElementById('employer_id');
@@ -183,6 +173,13 @@
         let paymentTypeSelect = document.getElementById('payment_type');
         let hourlyBudgetDiv = document.getElementById('hourly');
         let fixedBudgetDiv = document.getElementById('fixed');
+        let totalCostDiv = document.getElementById('total_cost');
+        console.log(totalCostDiv);
+
+        if (!totalCostDiv) {
+            console.error('Element with id "total_cost" not found.');
+            return;
+        }
 
         employerSelect.addEventListener('change', function() {
             const employerId = this.value;
@@ -233,14 +230,11 @@
 
         function togglePaymentFields(paymentType) {
             if (paymentType === 'hourly') {
-                hourlyBudgetDiv.classList.remove('hidden');
-                fixedBudgetDiv.classList.add('hidden');
-            } else if (paymentType === 'fixed') {
-                hourlyBudgetDiv.classList.add('hidden');
-                fixedBudgetDiv.classList.remove('hidden');
+                hourlyBudgetDiv.style.display = 'block';
+                totalCostDiv.style.display = 'none';
             } else {
-                hourlyBudgetDiv.classList.add('hidden');
-                fixedBudgetDiv.classList.add('hidden');
+                hourlyBudgetDiv.style.display = 'none';
+                totalCostDiv.style.display = 'block';
             }
         }
     });

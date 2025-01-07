@@ -47,10 +47,10 @@
                         </span>
                     </div>
                     <h1 class="text-4xl md:text-5xl font-bold text-gray-900" data-aos="fade-up">
-                        {{ __('Timesheet - Time Tracking Tool') }}
+                        {{ __('Welcome to Zenxserv Timesheet') }}
                     </h1>
                     <p class="text-lg text-gray-900/90" data-aos="fade-up" data-aos-delay="100">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('Your ultimate time tracking and management tool for businesses, freelancers, and agencies. Manage projects, monitor employee productivity, and streamline invoicing—all in one place.') }}
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="#" class="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-900"
@@ -119,10 +119,10 @@
                 <div class="space-y-6">
                     <p class="text-sm font-semibold text-primary-50">{{ __('FEATURES') }}</p>
                     <h2 class="text-3xl md:text-4xl text-gray-900 font-bold" data-aos="fade-up">
-                        {{ __('All In One Place CRM System') }}
+                        {{ __('All-in-One CRM System') }}
                     </h2>
                     <p class="text-gray-700" data-aos="fade-up" data-aos-delay="100">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('Zenxserv Timesheet isn\'t just about tracking time—it\'s a complete solution to manage employees, projects, leaves, and payments effortlessly. Simplify your operations today!') }}
                     </p>
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-primary-50 text-white  bg-primary-50 rounded-md hover:bg-primary-300"
@@ -138,7 +138,7 @@
                     <div class="text-4xl mb-4">⚡</div>
                     <h3 class="text-xl font-semibold mb-4">{{ __('Feature') }}</h3>
                     <p class="text-text-light dark:text-text-dark">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('From task distribution to leave management, we cover it all.') }}
                     </p>
                 </div>
 
@@ -150,7 +150,7 @@
                             class="text-white">{{ __('100%
                                                         Free') }}</span></h3>
                     <p class="text-text-light dark:text-text-dark">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('Our team is here to assist you anytime you need help.') }}
                     </p>
                 </div>
 
@@ -160,7 +160,7 @@
                     <div class="text-4xl mb-4">⚡</div>
                     <h3 class="text-xl font-semibold mb-4">{{ __('Integration') }}</h3>
                     <p class="text-text-light dark:text-text-dark">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('Your information is encrypted and stored securely.') }}
                     </p>
                 </div>
             </div>
@@ -172,9 +172,9 @@
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="text-center space-y-4 mb-12">
                 <p class="text-sm font-semibold text-primary-50">{{ __('FEATURES') }}</p>
-                <h2 class="text-3xl md:text-4xl font-bold">{{ __('Timesheet - Time Tracking Tool') }}</h2>
+                <h2 class="text-3xl md:text-4xl font-bold">{{ __('Theme Customization') }}</h2>
                 <p class="text-gray-800 max-w-2xl mx-auto">
-                    {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                    {{ __('Personalize your dashboard to suit your brand and preferences.') }}
                 </p>
             </div>
 
@@ -190,10 +190,10 @@
             <!-- First Screenshot -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="space-y-6">
-                    <p class="text-sm font-semibold ">FEATURES</p>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">Timesheet - Time Tracking Tool</h2>
+                    <p class="text-sm font-semibold text-Timesheet-green">{{ __('FEATURES') }}</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ __('Time Tracking Made Easy') }}</h2>
                     <p class="text-gray-600" data-aos="fade-up" data-aos-delay="100">
-                        Use these awesome forms to login or create new account in your project for free. 
+                        {{ __('Stay on top of your team\'s progress with real-time tracking.') }}
                     </p>
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-primary-300"
@@ -216,10 +216,9 @@
                 </div>
                 <div class="space-y-6 order-1 lg:order-2" data-aos="fade-up" data-aos-delay="100">
                     <p class="text-sm font-semibold text-Timesheet-green">{{ __('FEATURES') }}</p>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ __('Timesheet') }} -
-                        {{ __('Time Tracking Tool') }}</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ __('Leave Managements') }}</h2>
                     <p class="text-gray-600">
-                        {{ __('Use these awesome forms to login or create new account in your project for free.') }}
+                        {{ __('Manage your employees\' leave requests and approvals with ease.') }}
                     </p>
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-Timesheet-green bg-primary-50 text-white rounded-md hover:bg-primary-300"
@@ -315,10 +314,10 @@
     <section class="bg-white py-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="space-y-4 max-w-3xl mb-12">
-                <p class="text-sm font-semibold text-gray-900">TESTIMONIALS</p>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">From our Clients</h2>
+                <p class="text-sm font-semibold text-gray-900">{{ __('TESTIMONIALS') }}</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900">{{ __('From our Clients') }}</h2>
                 <p class="text-gray-900">
-                    Use these awesome forms to login or create new account in your project for free.
+                    {{ __('What our clients say about us') }}
                 </p>
             </div>
 
@@ -633,7 +632,7 @@
     <!-- SweetAlert JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
 
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
