@@ -46,7 +46,8 @@
         .cookie-consent {
             position: fixed;
             bottom: 20px;
-            right: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background-color: white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
             padding: 20px;
