@@ -62,16 +62,8 @@
                                                             <div class="flex ">
                                                                 <a href="{{ route('holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-50 hover:text-primary-300"><x-svgs.edit /></a>
-                                                                <form
-                                                                    action="{{ route('holidays.destroy', $holiday->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this holiday?');"
-                                                                    class="ml-2">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="text-red-500 hover:text-red-700"><x-svgs.delete /></button>
-                                                                </form>
+                                                                    <a href="#"
+                                                                        class="text-red-500 hover:text-red-700" onclick="showConfirmation({{ $holiday->id }})"><x-svgs.delete /></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -101,4 +93,20 @@
             @endif
         </div>
     </div>
+    <script>
+        function showConfirmation(id) {
+            Swal.fire({
+                title: 'Want to delete this Holiday!',
+                text: "{{ __('If you are ready?') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/holiday/destroy/" + id;
+                }
+            });
+        }
+    </script>
 </x-app-layout>

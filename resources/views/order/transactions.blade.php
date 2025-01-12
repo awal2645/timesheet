@@ -101,8 +101,8 @@
                                                                 class="text-primary-50 hover:text-primary-300">
                                                                 <x-svgs.edit />
                                                             </a>
-                                                            <a href="{{ route('order.destroy', $transaction->id) }}"
-                                                                class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline">
+                                                            <a href="#"
+                                                                class=" cursor-pointer text-red-600 dark:text-red-500 hover:underline" onclick="showConfirmation({{ $transaction->id }})">
                                                                 <x-svgs.delete />
                                                             </a>
                                                         </div>
@@ -133,4 +133,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function showConfirmation(id) {
+            Swal.fire({
+                title: 'Want to delete this Invoice!',
+                text: "{{ __('If you are ready?') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/order/destroy/" + id;
+                }
+            });
+        }
+    </script>
 </x-app-layout>

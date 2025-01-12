@@ -371,3 +371,12 @@ if (! function_exists('pricePlans')) {
         return PricePlan::where('frontend_show', true)->get();
     }
 }
+
+
+if (! function_exists('langDirection')) {
+
+    function langDirection()
+    {
+        return  Language::where('code', app()->getLocale())->value('direction');
+    }
+}

@@ -86,14 +86,8 @@
                                                             <div class="flex space-x-4 justify-end">
                                                                 <a href="{{ route('weekly_holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-50 hover:underline"><x-svgs.edit /></a>
-                                                                <form
-                                                                    action="{{ route('weekly_holidays.destroy', $holiday->id) }}"
-                                                                    method="POST" style="display:inline;">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="text-red-600 hover:underline"><x-svgs.delete /></button>
-                                                                </form>
+                                                                <a href="#"
+                                                                    class="text-red-600 hover:underline" onclick="showConfirmation({{ $holiday->id }})"><x-svgs.delete /></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -135,7 +129,7 @@
                 cancelButtonText: "{{ __('Cancel') }}",
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/weekly_holidays/destroy/" + id;
+                    window.location.href = "/weekly_holiday/destroy/" + id;
                 }
             });
         }

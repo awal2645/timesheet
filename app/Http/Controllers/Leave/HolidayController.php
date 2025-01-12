@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Leave;
 
+use App\Http\Controllers\Controller;
 use App\Models\Holiday;
 use Illuminate\Http\Request;
 

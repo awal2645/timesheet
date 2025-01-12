@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ langDirection() }}" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,7 +53,7 @@
                         {{ __('Your ultimate time tracking and management tool for businesses, freelancers, and agencies. Manage projects, monitor employee productivity, and streamline invoicing—all in one place.') }}
                     </p>
                     <div class="flex flex-wrap gap-4">
-                        <a href="#" class="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-900"
+                        <a href="/login" class="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-900"
                             data-aos="fade-up" data-aos-delay="200">
                             {{ __('Live Demo') }} <span class="ml-2">▶</span>
                         </a>

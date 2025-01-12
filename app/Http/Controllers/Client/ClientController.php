@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
 use App\Models\User;
 use App\Models\Client;
@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Mail\ClientInviteMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Controller;
 
 class ClientController extends Controller
 {
