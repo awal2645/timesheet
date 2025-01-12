@@ -1,10 +1,5 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en">
-
-=======
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ langDirection() }}" >
->>>>>>> 7356ef625c3909438e7c69edf07cba068389145b
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

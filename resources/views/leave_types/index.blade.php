@@ -62,21 +62,8 @@
                                                             <div class="flex ">
                                                                 <a href="{{ route('leave_types.edit', $leaveType->id) }}"
                                                                     class="text-primary-50 hover:text-primary-300"><x-svgs.edit /></a>
-<<<<<<< HEAD
-                                                                <form
-                                                                    action="{{ route('leave_types.destroy', $leaveType->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this leave type?');"
-                                                                    class="ms-2">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit"
-                                                                        class="text-red-500 hover:text-red-700"><x-svgs.delete /></button>
-                                                                </form>
-=======
                                                                     <a href="#"
                                                                         class="text-red-500 hover:text-red-700" onclick="showConfirmation({{ $leaveType->id }})"><x-svgs.delete /></a>
->>>>>>> 7356ef625c3909438e7c69edf07cba068389145b
                                                             </div>
                                                         </td>
                                                     </tr>
