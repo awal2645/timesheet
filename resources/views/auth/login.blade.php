@@ -46,7 +46,7 @@
                 {{ __('Employer Login') }}
             </button>
             <button onclick="submitLoginForm('employee')"
-                class="w-full text-text-light dark:text-text-dark bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-800">
+                class="w-full text-text-light dark:text-text-dark bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-50 dark:hover:bg-purple-50 dark:focus:ring-purple-800">
                 {{ __('Employee Login') }}
             </button>
             <button onclick="submitLoginForm('client')"

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ langDirection() }}" >
 
 <head>
     <meta charset="utf-8">
@@ -40,6 +40,65 @@
 
     <!-- Theme CSS -->
     <link href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}" rel="stylesheet">
+
+    <!-- Add this CSS near your other style tags -->
+    <style>
+        .cookie-consent {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            z-index: 999;
+            display: none;
+        }
+
+        .dark .cookie-consent {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+
+        .cookie-consent-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .cookie-btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .cookie-btn-accept {
+            background-color: var(--primary-50);
+            color: white;
+            border: none;
+        }
+
+        .cookie-btn-accept:hover {
+            background-color: var(--primary-300);
+        }
+
+        .cookie-btn-decline {
+            background-color: transparent;
+            border: 1px solid #e2e8f0;
+            color: inherit;
+        }
+
+        .cookie-btn-decline:hover {
+            background-color: #f1f5f9;
+        }
+
+        .dark .cookie-btn-decline:hover {
+            background-color: #334155;
+        }
+    </style>
 </head>
 
 <body class="antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
@@ -149,6 +208,35 @@
             /* Adjust the width as needed */
         }
     </style>
+
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <h4 class="text-lg font-semibold mb-2">🍪 We use cookies</h4>
+            <p class="text-sm">We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies.</p>
+            <div class="cookie-consent-buttons">
+                <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
+                <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookieConsent')) {
+                document.getElementById('cookieConsent').style.display = 'block';
+            }
+        });
+
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+
+        function declineCookies() {
+            localStorage.setItem('cookieConsent', 'declined');
+            document.getElementById('cookieConsent').style.display = 'none';
+        }
+    </script>
 </body>
 
 </html>

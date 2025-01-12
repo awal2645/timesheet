@@ -62,6 +62,7 @@
                                                             <div class="flex ">
                                                                 <a href="{{ route('holidays.edit', $holiday->id) }}"
                                                                     class="text-primary-50 hover:text-primary-300"><x-svgs.edit /></a>
+<<<<<<< HEAD
                                                                 <form
                                                                     action="{{ route('holidays.destroy', $holiday->id) }}"
                                                                     method="POST"
@@ -72,6 +73,10 @@
                                                                     <button type="submit"
                                                                         class="text-red-500 hover:text-red-700"><x-svgs.delete /></button>
                                                                 </form>
+=======
+                                                                    <a href="#"
+                                                                        class="text-red-500 hover:text-red-700" onclick="showConfirmation({{ $holiday->id }})"><x-svgs.delete /></a>
+>>>>>>> 7356ef625c3909438e7c69edf07cba068389145b
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -101,4 +106,20 @@
             @endif
         </div>
     </div>
+    <script>
+        function showConfirmation(id) {
+            Swal.fire({
+                title: 'Want to delete this Holiday!',
+                text: "{{ __('If you are ready?') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: "{{ __('Yes') }}",
+                cancelButtonText: "{{ __('Cancel') }}",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/holiday/destroy/" + id;
+                }
+            });
+        }
+    </script>
 </x-app-layout>
