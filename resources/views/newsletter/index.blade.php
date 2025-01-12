@@ -16,7 +16,7 @@
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
                         <button
-                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                             {{ __('Search') }}
                         </button>
                     </div>
@@ -26,9 +26,9 @@
 
         <div class="mt-6 flex flex-wrap">
             <div class="w-full">
-                <div class="dashboard-right pl-0">
+                <div class="dashboard-right ps-0">
                     <div class="invoices-table">
-                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                             {{ __('Latest Contacts') }}</h2>
                         <div>
                             <div class="card overflow-x-auto">
@@ -38,7 +38,7 @@
                                             <th class="min-w-[150px] px-4 py-4 font-medium">
                                                 {{ __('Email') }}
                                             </th>
-                                         
+
                                             <th class="min-w-[120px] px-4 py-4 font-medium text-end">
                                                 {{ __('Action') }}
                                             </th>
@@ -54,8 +54,7 @@
                                                             {{ $newsLatter->email }}
                                                         </div>
                                                     </td>
-                                                    <td
-                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
+                                                    <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3">
                                                         <div class="flex space-x-4 justify-end">
                                                             <button onclick="showConfirmation({{ $newsLatter->id }})"
                                                                 class="text-red-500 hover:underline">

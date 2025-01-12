@@ -214,100 +214,102 @@
                     <!-- Leave Management Dropdown -->
                     @canany('Leave view')
 
-                    <li x-data="{
-                        open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
-                    }" x-effect="if (!sidebarExpanded) open = true">
-                        <a href="#" @click.stop="sidebarExpanded && (open = !open)" 
-                            class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
-                            <div class="flex items-center">
-                                <span class="sidebar-menu-icon">
-                                    <i class="fa-solid fa-person-walking-arrow-right"></i> </span>
-                                <span class="sidebar-menu-text text-text-light dark:text-text-dark" x-show="sidebarExpanded">
-                                    {{ __('Leave Management') }}
-                                </span>
+                        <li x-data="{
+                            open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
+                        }" x-effect="if (!sidebarExpanded) open = true">
+                            <a href="#" @click.stop="sidebarExpanded && (open = !open)"
+                                class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
+                                <div class="flex items-center">
+                                    <span class="sidebar-menu-icon">
+                                        <i class="fa-solid fa-person-walking-arrow-right"></i> </span>
+                                    <span class="sidebar-menu-text text-text-light dark:text-text-dark"
+                                        x-show="sidebarExpanded">
+                                        {{ __('Leave Management') }}
+                                    </span>
+                                </div>
+                                <div x-show="sidebarExpanded"
+                                    class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
+                                    <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-gray-white"
+                                        :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
+                                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                    </svg>
+                                </div>
+                            </a>
+                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
+                                <ul class="mt-1" :class="sidebarExpanded ? 'ps-9' : 'ps-0'" x-show="open" x-collapse>
+                                    @canany('Leave view')
+                                        <!--  Leave -->
+                                        <li class="mb-1 last:mb-0">
+                                            <a href="{{ route('leave.index') }}"
+                                                class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                        <span class="sidebar-menu-icon">
+                                                            <i class="fa-solid fa-person-through-window"></i> </span>
+                                                        <span class="sidebar-menu-text">
+                                                            {{ __('Leave') }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endcanany
+                                    <!-- Weekly Holidays -->
+                                    @canany('Weekly Holidays view')
+                                        <li class="mb-1 last:mb-0">
+                                            <a href="{{ route('weekly_holidays.index') }}"
+                                                class="sidebar-menu-item {{ request()->routeIs('weekly_holidays.*') ? 'active' : '' }} ">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                        <span class="sidebar-menu-icon">
+                                                            <i class="fa-solid fa-retweet"></i> </span>
+                                                        <span class="sidebar-menu-text">
+                                                            {{ __('Weekly Holidays') }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endcanany
+                                    <!-- Holidays -->
+                                    @canany('Holiday view')
+                                        <li class="mb-1 last:mb-0">
+                                            <a href="{{ route('holidays.index') }}"
+                                                class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                        <span class="sidebar-menu-icon">
+                                                            <i class="fa-solid fa-mug-hot"></i>
+                                                        </span>
+                                                        <span class="sidebar-menu-text">
+                                                            {{ __('Holidays') }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endcanany
+                                    <!-- Leave Types -->
+                                    @canany('Leave Types view')
+                                        <li class="mb-1 last:mb-0">
+                                            <a href="{{ route('leave_types.index') }}"
+                                                class="sidebar-menu-item {{ request()->routeIs('leave_types.*') ? 'active' : '' }} ">
+                                                <div class="flex items-center justify-between">
+                                                    <div class="flex items-center">
+                                                        <span class="sidebar-menu-icon">
+                                                            <i class="fa-solid fa-calendar-alt text-base"></i>
+                                                        </span>
+                                                        <span class="sidebar-menu-text">
+                                                            {{ __('Leave Types') }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    @endcanany
+                                </ul>
                             </div>
-                            <div x-show="sidebarExpanded"
-                                class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
-                                <svg class="w-3 h-3 shrink-0 ml-1 fill-current text-gray-white"
-                                    :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
-                                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                </svg>
-                            </div>
-                        </a>
-                        <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
-                            <ul class="mt-1" :class="sidebarExpanded ? 'pl-9' : 'pl-0'" x-show="open" x-collapse>
-                                @canany('Leave view')
-                                    <!--  Leave -->
-                                    <li class="mb-1 last:mb-0">
-                                        <a href="{{ route('leave.index') }}"
-                                            class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center">
-                                                    <span class="sidebar-menu-icon">
-                                                        <i class="fa-solid fa-person-through-window"></i> </span>
-                                                    <span class="sidebar-menu-text">
-                                                        {{ __('Leave') }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endcanany
-                                <!-- Weekly Holidays -->
-                                @canany('Weekly Holidays view')
-                                    <li class="mb-1 last:mb-0">
-                                        <a href="{{ route('weekly_holidays.index') }}"
-                                            class="sidebar-menu-item {{ request()->routeIs('weekly_holidays.*') ? 'active' : '' }} ">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center">
-                                                    <span class="sidebar-menu-icon">
-                                                        <i class="fa-solid fa-retweet"></i> </span>
-                                                    <span class="sidebar-menu-text">
-                                                        {{ __('Weekly Holidays') }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endcanany
-                                <!-- Holidays -->
-                                @canany('Holiday view')
-                                    <li class="mb-1 last:mb-0">
-                                        <a href="{{ route('holidays.index') }}"
-                                            class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center">
-                                                    <span class="sidebar-menu-icon">
-                                                        <i class="fa-solid fa-mug-hot"></i> </span>
-                                                    <span class="sidebar-menu-text">
-                                                        {{ __('Holidays') }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endcanany
-                                <!-- Leave Types -->
-                                @canany('Leave Types view')
-                                    <li class="mb-1 last:mb-0">
-                                        <a href="{{ route('leave_types.index') }}"
-                                            class="sidebar-menu-item {{ request()->routeIs('leave_types.*') ? 'active' : '' }} ">
-                                            <div class="flex items-center justify-between">
-                                                <div class="flex items-center">
-                                                    <span class="sidebar-menu-icon">
-                                                        <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                    </span>
-                                                    <span class="sidebar-menu-text">
-                                                        {{ __('Leave Types') }}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                @endcanany
-                            </ul>
-                        </div>
-                    </li>
+                        </li>
                     @endcanany
                     <!-- Notice -->
                     @canany('Notice view')
@@ -580,38 +582,38 @@
 
                     <!-- testimonial -->
                     @canany('Testimonial view')
-                    <li>
-                        <a href="{{ route('testimonial.index') }}"
-                            class="sidebar-menu-item {{ request()->routeIs('testimonial.*') ? 'active' : '' }}  ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-user-tie"></i>
-                                    </span>
-                                    <span class="sidebar-menu-text">
-                                        {{ __('Testimonial') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('testimonial.index') }}"
+                                class="sidebar-menu-item {{ request()->routeIs('testimonial.*') ? 'active' : '' }}  ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-user-tie"></i>
+                                        </span>
+                                        <span class="sidebar-menu-text">
+                                            {{ __('Testimonial') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
                             </a>
                         </li>
                     @endcanany
                     <!-- Employee Salary -->
                     @canany('Employee Salary view')
-                    <li>
-                        <a href="{{ route('salary') }}"
-                            class="sidebar-menu-item {{ request()->routeIs('salary') ? 'active' : '' }}  ">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center">
-                                    <span class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-money-bill-wave"></i> </span>
-                                    <span class="sidebar-menu-text">
-                                        {{ __('Employee Salary') }}
-                                    </span>
+                        <li>
+                            <a href="{{ route('salary') }}"
+                                class="sidebar-menu-item {{ request()->routeIs('salary') ? 'active' : '' }}  ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-money-bill-wave"></i> </span>
+                                        <span class="sidebar-menu-text">
+                                            {{ __('Employee Salary') }}
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </li>
+                            </a>
+                        </li>
                     @endcanany
                     <!-- upgrade -->
                     @canany('General Settings')

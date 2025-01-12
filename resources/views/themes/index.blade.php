@@ -28,7 +28,7 @@
                             <div class="space-y-2">
                                 <label for="primary_color"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
                                         </path>
@@ -38,7 +38,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="primary_color" name="primary_color" value="{{ $theme->primary_color ?? '#ffffff' }}">
+                                        id="primary_color" name="primary_color"
+                                        value="{{ $theme->primary_color ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->primary_color ?? '#ffffff' }}
                                     </span>
@@ -49,7 +50,7 @@
                             <div class="space-y-2">
                                 <label for="card_dark"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
                                         </path>
@@ -59,8 +60,7 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="card_dark" name="card_dark"
-                                        value="{{ $theme->card_dark ?? '#000000' }}">
+                                        id="card_dark" name="card_dark" value="{{ $theme->card_dark ?? '#000000' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->card_dark ?? '#000000' }}
                                     </span>
@@ -71,7 +71,7 @@
                             <div class="space-y-2">
                                 <label for="card_light"
                                     class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z">
                                         </path>
@@ -81,8 +81,7 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="card_light" name="card_light"
-                                        value="{{ $theme->card_light ?? '#ffffff' }}">
+                                        id="card_light" name="card_light" value="{{ $theme->card_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->card_light ?? '#ffffff' }}
                                     </span>
@@ -98,7 +97,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="sidebar_dark" name="sidebar_dark" value="{{ $theme->sidebar_dark ?? '#ffffff' }}">
+                                        id="sidebar_dark" name="sidebar_dark"
+                                        value="{{ $theme->sidebar_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->sidebar_dark ?? '#ffffff' }}
                                     </span>
@@ -114,7 +114,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="sidebar_light" name="sidebar_light" value="{{ $theme->sidebar_light ?? '#ffffff' }}">
+                                        id="sidebar_light" name="sidebar_light"
+                                        value="{{ $theme->sidebar_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->sidebar_light ?? '#ffffff' }}
                                     </span>
@@ -130,7 +131,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="header_dark" name="header_dark" value="{{ $theme->header_dark ?? '#ffffff' }}">
+                                        id="header_dark" name="header_dark"
+                                        value="{{ $theme->header_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->header_dark ?? '#ffffff' }}
                                     </span>
@@ -146,7 +148,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="header_light" name="header_light" value="{{ $theme->header_light ?? '#ffffff' }}">
+                                        id="header_light" name="header_light"
+                                        value="{{ $theme->header_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->header_light ?? '#ffffff' }}
                                     </span>
@@ -162,7 +165,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="body_dark" name="body_dark" value="{{ $theme->body_dark ?? '#ffffff' }}">
+                                        id="body_dark" name="body_dark"
+                                        value="{{ $theme->body_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->body_dark ?? '#ffffff' }}
                                     </span>
@@ -178,7 +182,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="body_light" name="body_light" value="{{ $theme->body_light ?? '#ffffff' }}">
+                                        id="body_light" name="body_light"
+                                        value="{{ $theme->body_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->body_light ?? '#ffffff' }}
                                     </span>
@@ -194,7 +199,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="text_light" name="text_light" value="{{ $theme->text_light ?? '#ffffff' }}">
+                                        id="text_light" name="text_light"
+                                        value="{{ $theme->text_light ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->text_light ?? '#ffffff' }}
                                     </span>
@@ -210,7 +216,8 @@
                                 <div class="flex gap-3 items-center">
                                     <input type="color"
                                         class="h-10 w-14 rounded-lg border border-gray-300 shadow-sm cursor-pointer"
-                                        id="text_dark" name="text_dark" value="{{ $theme->text_dark ?? '#ffffff' }}">
+                                        id="text_dark" name="text_dark"
+                                        value="{{ $theme->text_dark ?? '#ffffff' }}">
                                     <span class="text-sm font-mono text-gray-600 dark:text-white/60">
                                         {{ $theme->text_dark ?? '#ffffff' }}
                                     </span>
@@ -222,7 +229,7 @@
                         <div class="space-y-2">
                             <label for="font_family"
                                 class="flex items-center text-sm font-medium text-text-light dark:text-text-dark">
-                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <svg class="w-5 h-5 me-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                                     </path>
@@ -243,60 +250,60 @@
 
                         <div class="grid grid-cols-2 gap-5 mt-6">
                             <button type="submit"
-                                class="flex-1 mr-2 justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
-                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
+                                class="flex-1 me-2 justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all duration-200">
+                                <svg class="w-5 h-5 me-2 inline" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M5 13l4 4L19 7"></path>
                                 </svg>
                                 {{ __('Update Theme') }}
                             </button>
-                        </form>
+                    </form>
 
-                        <form action="{{ route('themes.reset') }}" method="POST" class="flex-1 ml-2">
-                            @csrf
-                            <button type="submit"
-                                class="w-full justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-all duration-200">
-                                <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
-                                    </path>
-                                </svg>
-                                {{ __('Reset to Default') }}
-                            </button>
-                        </form>
-                    </div>
+                    <form action="{{ route('themes.reset') }}" method="POST" class="flex-1 ms-2">
+                        @csrf
+                        <button type="submit"
+                            class="w-full justify-center text-text-light dark:text-text-dark py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium bg-primary-50 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-secondary-500 transition-all duration-200">
+                            <svg class="w-5 h-5 me-2 inline" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                                </path>
+                            </svg>
+                            {{ __('Reset to Default') }}
+                        </button>
+                    </form>
                 </div>
+            </div>
 
-                <!-- Preview Section -->
-                <div class="lg:sticky lg:top-8">
-                    <div class="space-y-4">
-                        <h3 class="text-lg font-medium text-text-light dark:text-text-dark">
-                            {{ __('Live Preview') }}
-                        </h3>
-                        <div id="preview" class="p-6 rounded-xl border shadow-sm transition-all duration-200">
-                            <h4 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
-                                {{ __('Primary text') }}
-                            </h4>
-                            <p class="mb-6">
-                                {{ __('This is secondary text. Try changing the colors and fonts to see it update in real-time!') }}
-                            </p>
-                            <div class="flex flex-wrap gap-4">
-                                <button
-                                    class="preview-button bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
-                                    {{ __('Primary button') }}
-                                </button>
-                                <button
-                                    class="preview-button bg-secondary-500 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
-                                    {{ __('Secondary button') }}
-                                </button>
-                            </div>
+            <!-- Preview Section -->
+            <div class="lg:sticky lg:top-8">
+                <div class="space-y-4">
+                    <h3 class="text-lg font-medium text-text-light dark:text-text-dark">
+                        {{ __('Live Preview') }}
+                    </h3>
+                    <div id="preview" class="p-6 rounded-xl border shadow-sm transition-all duration-200">
+                        <h4 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark">
+                            {{ __('Primary text') }}
+                        </h4>
+                        <p class="mb-6">
+                            {{ __('This is secondary text. Try changing the colors and fonts to see it update in real-time!') }}
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <button
+                                class="preview-button bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
+                                {{ __('Primary button') }}
+                            </button>
+                            <button
+                                class="preview-button bg-secondary-500 text-text-light dark:text-text-dark px-4 py-2 rounded-lg transition-all duration-200 transform hover:-translate-y-0.5">
+                                {{ __('Secondary button') }}
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <script>

@@ -1,5 +1,5 @@
 @section('title')
-{{ 'List Employer' }}
+    {{ 'List Employer' }}
 @endsection
 
 <x-app-layout>
@@ -16,7 +16,7 @@
                                 class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -30,9 +30,9 @@
 
             <div class="flex flex-wrap">
                 <div class="w-full">
-                    <div class="dashboard-right pl-0">
+                    <div class="dashboard-right ps-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                 {{ __('Employer List') }}</h2>
                             <div>
                                 <div class="card overflow-x-auto">
@@ -64,78 +64,83 @@
                                         </thead>
                                         <tbody>
                                             @forelse ($employers as $employer)
-                                            <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                    <div class="flex items-center">
-                                                        @if ($employer->user->image)
-                                                        <img class="w-10 h-10 rounded-full"
-                                                            src="{{ asset($employer->user->image) }}" alt="image">
-                                                        @else
-                                                        <img class="w-10 h-10 rounded-full"
-                                                            src="https://img.freepik.com/premium-vector/company-icon-simple-element-illustration-company-concept-symbol-design-can-be-used-web-mobile_159242-7784.jpg"
-                                                            alt="image">
-                                                        @endif
-                                                        <div class="ml-3">
-                                                            <div class="text-base font-semibold">
-                                                                {{ $employer->employer_name }}</div>
-                                                            <div class="text-sm text-gray-500">
-                                                                {{ $employer->user->email }}</div>
+                                                <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                                    <td
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        <div class="flex items-center">
+                                                            @if ($employer->user->image)
+                                                                <img class="w-10 h-10 rounded-full"
+                                                                    src="{{ asset($employer->user->image) }}"
+                                                                    alt="image">
+                                                            @else
+                                                                <img class="w-10 h-10 rounded-full"
+                                                                    src="https://img.freepik.com/premium-vector/company-icon-simple-element-illustration-company-concept-symbol-design-can-be-used-web-mobile_159242-7784.jpg"
+                                                                    alt="image">
+                                                            @endif
+                                                            <div class="ms-3">
+                                                                <div class="text-base font-semibold">
+                                                                    {{ $employer->employer_name }}</div>
+                                                                <div class="text-sm text-gray-500">
+                                                                    {{ $employer->user->email }}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                    <span class="text-base font-semibold">Employee (
-                                                        {{ $employer->employee->count() }} )</span>
-                                                </td>
-                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                    <a href="{{ $employer->website }}" target="_blank"
-                                                        class="hover:text-primary-500">
-                                                        {{ $employer->website }}
-                                                    </a>
-                                                </td>
-                                                <td class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                    <div class="flex items-center">
-                                                        <div class="h-2.5 w-2.5 rounded-full mr-2"
-                                                            style="background-color: {{ $employer->status === 1 ? 'green' : 'red' }};">
-                                                        </div>
-                                                        <form id="statusForm{{ $employer->id }}"
-                                                            action="{{ route('employer.updateStatus', $employer->id) }}"
-                                                            method="post">
-                                                            @csrf
-                                                            <select name="status"
-                                                                class="border-none bg-transparent focus:outline-none"
-                                                                onchange="document.getElementById('statusForm{{ $employer->id }}').submit()">
-                                                                <option value="1" {{ $employer->status === 1 ?
-                                                                    'selected' : '' }}>
-                                                                    {{ __('Active') }}</option>
-                                                                <option value="0" {{ $employer->status === 0 ?
-                                                                    'selected' : '' }}>
-                                                                    {{ __('Inactive') }}</option>
-                                                            </select>
-                                                        </form>
-                                                    </div>
-                                                </td>
-                                                <td
-                                                    class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
-                                                    <div class="flex items-center gap-3">
-                                                        <a href="{{ route('employer.edit', $employer->id) }}"
-                                                            class="text-blue-500 hover:underline">
-                                                            <x-svgs.edit class="size-[20px]" />
+                                                    </td>
+                                                    <td
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        <span class="text-base font-semibold">Employee (
+                                                            {{ $employer->employee->count() }} )</span>
+                                                    </td>
+                                                    <td
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        <a href="{{ $employer->website }}" target="_blank"
+                                                            class="hover:text-primary-500">
+                                                            {{ $employer->website }}
                                                         </a>
-                                                        <button onclick="showConfirmation({{ $employer->id }})"
-                                                            class="text-red-500 hover:underline">
-                                                            <x-svgs.delete class="size-[20px]" />
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                    <td
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                                        <div class="flex items-center">
+                                                            <div class="h-2.5 w-2.5 rounded-full me-2"
+                                                                style="background-color: {{ $employer->status === 1 ? 'green' : 'red' }};">
+                                                            </div>
+                                                            <form id="statusForm{{ $employer->id }}"
+                                                                action="{{ route('employer.updateStatus', $employer->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                <select name="status"
+                                                                    class="border-none bg-transparent focus:outline-none"
+                                                                    onchange="document.getElementById('statusForm{{ $employer->id }}').submit()">
+                                                                    <option value="1"
+                                                                        {{ $employer->status === 1 ? 'selected' : '' }}>
+                                                                        {{ __('Active') }}</option>
+                                                                    <option value="0"
+                                                                        {{ $employer->status === 0 ? 'selected' : '' }}>
+                                                                        {{ __('Inactive') }}</option>
+                                                                </select>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                    <td
+                                                        class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
+                                                        <div class="flex items-center gap-3">
+                                                            <a href="{{ route('employer.edit', $employer->id) }}"
+                                                                class="text-blue-500 hover:underline">
+                                                                <x-svgs.edit class="size-[20px]" />
+                                                            </a>
+                                                            <button onclick="showConfirmation({{ $employer->id }})"
+                                                                class="text-red-500 hover:underline">
+                                                                <x-svgs.delete class="size-[20px]" />
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             @empty
-                                            <tr>
-                                                <td colspan="5" class="text-center py-8">
-                                                    <x-svgs.no-data-found
-                                                        class="mx-auto md:size-[360px] size-[220px]" />
-                                                </td>
-                                            </tr>
+                                                <tr>
+                                                    <td colspan="5" class="text-center py-8">
+                                                        <x-svgs.no-data-found
+                                                            class="mx-auto md:size-[360px] size-[220px]" />
+                                                    </td>
+                                                </tr>
                                             @endforelse
                                         </tbody>
                                     </table>
@@ -147,11 +152,11 @@
             </div>
 
             @if ($employers->total() > $employers->count())
-            <div class="mt-2">
-                <div class="d-flex justify-content-center">
-                    {{ $employers->links() }}
+                <div class="mt-2">
+                    <div class="d-flex justify-content-center">
+                        {{ $employers->links() }}
+                    </div>
                 </div>
-            </div>
             @endif
         </div>
     </div>

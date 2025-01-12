@@ -25,7 +25,7 @@
                     <span
                         class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Toggle Zoom Credentials') }}</span>
                 </label> --}}
-                <div id="zoomCredentials" >
+                <div id="zoomCredentials">
                     <!-- Zoom Account ID -->
                     <div class="form-field mt-6">
                         <input type="text" name="zoom_account_id" id="zoom_account_id"
@@ -105,7 +105,7 @@
                                 value="{{ $role->name }}"
                                 class="text-primary-600 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600"
                                 {{ old('selected_role') == $role->name ? 'checked' : '' }} required>
-                            <label for="role_{{ $role->id }}" class="ml-2 text-sm font-medium dark:text-gray-400">
+                            <label for="role_{{ $role->id }}" class="ms-2 text-sm font-medium dark:text-gray-400">
                                 {{ ucfirst($role->name) }}
                             </label>
 

@@ -14,7 +14,7 @@
                                 class="border border-gray-300 text-text-light  text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder="{{ __('Search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -28,9 +28,9 @@
 
             <div class="mt-6 flex flex-wrap">
                 <div class="w-full">
-                    <div class="dashboard-right pl-0">
+                    <div class="dashboard-right ps-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                 {{ __('Weekly Holidays List') }}</h2>
                             <div>
                                 <div class="card overflow-x-auto">
@@ -56,24 +56,28 @@
                                                             <div class="px-4 py-3 ">
                                                                 <div class="flex flex-col">
                                                                     @php
-                                                                        $daysOfWeek = json_decode($holiday->days_of_week);
-                                                                        $daysOfWeekFormatted = is_array($daysOfWeek) 
+                                                                        $daysOfWeek = json_decode(
+                                                                            $holiday->days_of_week,
+                                                                        );
+                                                                        $daysOfWeekFormatted = is_array($daysOfWeek)
                                                                             ? collect($daysOfWeek)
                                                                                 ->map(fn($day) => ucfirst($day))
                                                                                 ->join(', ')
                                                                             : ucfirst($daysOfWeek);
                                                                     @endphp
-                                                                    
+
                                                                     <div class="text-sm">
-                                                                        <span class="font-medium text-slate-700 dark:text-slate-300">
+                                                                        <span
+                                                                            class="font-medium text-slate-700 dark:text-slate-300">
                                                                             {{ $daysOfWeekFormatted }}
                                                                         </span>
                                                                     </div>
-                                                                    
+
                                                                     {{-- Visual indicator for multiple days --}}
-                                                                    @if(is_array($daysOfWeek) && count($daysOfWeek) > 1)
+                                                                    @if (is_array($daysOfWeek) && count($daysOfWeek) > 1)
                                                                         <div class="mt-1">
-                                                                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                                            <span
+                                                                                class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                                                                                 {{ count($daysOfWeek) }} days
                                                                             </span>
                                                                         </div>

@@ -12,15 +12,18 @@
                         </label>
                         <div class="flex gap-3 items-center form-field">
                             <select name="employee" id="employee" class="form-select">
-                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>
+                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
+                                    {{ __('Select Employee') }}</option>
                                 @foreach ($employees as $employee)
-                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employee->id }}" {{ request('employee') == $employee->id ? 'selected' : '' }}>
-                                    {{ $employee->employee_name }}
-                                </option>
+                                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                        value="{{ $employee->id }}"
+                                        {{ request('employee') == $employee->id ? 'selected' : '' }}>
+                                        {{ $employee->employee_name }}
+                                    </option>
                                 @endforeach
                             </select>
                             <button type="submit"
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -36,4 +39,3 @@
         display: block;
     }
 </style>
-

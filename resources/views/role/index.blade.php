@@ -13,7 +13,7 @@
         <!-- Start heading here -->
         <div class="card">
             <div class="w-full ">
-                <div class="dashboard-right pl-0 ">
+                <div class="dashboard-right ps-0 ">
                     <div class="invoices-table ">
                         <h2
                             class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
@@ -52,7 +52,7 @@
                                                             class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-stroke">
                                                             @foreach ($role->permissions as $permission)
                                                                 <span
-                                                                    class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
+                                                                    class="inline-flex items-center justify-center px-2 py-1 me-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
                                                             @endforeach
                                                         </td>
                                                         <td
@@ -97,7 +97,7 @@
                                                     <td class="px-6 py-4  ">
                                                         @foreach ($role->permissions as $permission)
                                                             <span
-                                                                class="inline-flex items-center justify-center px-2 py-1 mr-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
+                                                                class="inline-flex items-center justify-center px-2 py-1 me-2 mb-2 text-xs font-bold leading-none text-white bg-primary-50 rounded-full">{{ $permission->name }}</span>
                                                         @endforeach
                                                     </td>
                                                     <td class="px-6 py-4  ">

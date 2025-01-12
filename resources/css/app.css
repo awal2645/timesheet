@@ -19,7 +19,7 @@
     @apply w-8 h-8 rounded bg-primary-50 text-white inline-flex justify-center items-center;
 }
 .sidebar-menu-text {
-    @apply text-sm font-semibold ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
+    @apply text-sm font-semibold ms-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
 }
 .sidebar-menu-item.active {
     @apply text-white bg-primary-500 dark:bg-primary-50 hover:text-primary-900 dark:hover:text-primary-500;

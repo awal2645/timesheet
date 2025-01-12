@@ -13,7 +13,7 @@
 
         <!-- Upgrade Instructions Section -->
         <div class="bg-card-light dark:bg-card-dark text-text-light dark:text-text-dark p-6 mt-4 rounded-md">
-            <ul class="list-disc ml-4">
+            <ul class="list-disc ms-4">
                 <li>{{ __('Application current version') }} <strong>{{ config('app.version') }}</strong>
                     <a href="https://zenxservices.com/knowledge-base/upgrade-guide/"
                         class="underline text-text-light dark:text-text-dark">{{ __('Check here How to Update Your Application') }}</a>

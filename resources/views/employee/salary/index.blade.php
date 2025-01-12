@@ -12,20 +12,25 @@
                         </label>
                         <div class="flex gap-3 items-center form-field">
                             @if (auth()->user()->role == 'superadmin')
-                            <select name="employer" id="employer" class="form-select">
-                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employer') }}</option>
-                                @foreach ($employer as $item)
-                                <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $item->id }}" {{ request('employer') == $item->id ? 'selected' : '' }}>
-                                    {{ $item->employer_name }}
-                                </option>
-                                @endforeach
-                            </select>
+                                <select name="employer" id="employer" class="form-select">
+                                    <option value=""
+                                        class="dark:bg-slate-800 text-text-light dark:text-text-dark">
+                                        {{ __('Select Employer') }}</option>
+                                    @foreach ($employer as $item)
+                                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
+                                            value="{{ $item->id }}"
+                                            {{ request('employer') == $item->id ? 'selected' : '' }}>
+                                            {{ $item->employer_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             @endif
                             <select name="employee" id="employee" class="form-select">
-                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>
+                                <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
+                                    {{ __('Select Employee') }}</option>
                             </select>
                             <button type="submit"
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ml-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -46,9 +51,10 @@
     document.getElementById('employer').addEventListener('change', function() {
         const employerId = this.value;
         const employeeSelect = document.getElementById('employee');
-        
+
         // Clear previous employee options
-        employeeSelect.innerHTML = '<option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>';
+        employeeSelect.innerHTML =
+            '<option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>';
 
         if (employerId) {
             fetch(`/get/employee/${employerId}`)

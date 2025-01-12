@@ -8,13 +8,13 @@
             <div class="card mb-4 flex flex-col md:flex-row gap-3 justify-between items-start md:items-center">
                 <form action="{{ route('meeting.index') }}" method="GET">
                     <div class="mb-3">
-                        <label for="search"  class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
+                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
                         <div class="flex form-field">
                             <input type="text" id="search" name="search" placeholder="{{ __('Search') }}"
                                 value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ml-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ms-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
@@ -27,9 +27,9 @@
             <!-- Start heading  here -->
             <div class="flex flex-wrap">
                 <div class="w-full">
-                    <div class="dashboard-right pl-0">
+                    <div class="dashboard-right ps-0">
                         <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ml-1">
+                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                 {{ __('Latest Meeting') }}</h2>
                             <div class="card overflow-x-auto">
                                 <table class="w-full table-auto">

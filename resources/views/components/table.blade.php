@@ -4,7 +4,7 @@
         <table class="w-full table-auto">
             <thead>
                 <tr class="bg-gray-2 text-left dark:bg-meta-4">
-                    <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:pl-11">
+                    <th class="min-w-[220px] px-4 py-4 font-medium text-black dark:text-white xl:ps-11">
                         Package
                     </th>
                     <th class="min-w-[150px] px-4 py-4 font-medium text-black dark:text-white">
@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                    <td class="border-b border-[#eee] px-4 py-5 ps-9 dark:border-strokedark xl:ps-11">
                         <h5 class="font-medium text-black dark:text-white">Free Package</h5>
                         <p class="text-sm">$0.00</p>
                     </td>
@@ -78,7 +78,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                    <td class="border-b border-[#eee] px-4 py-5 ps-9 dark:border-strokedark xl:ps-11">
                         <h5 class="font-medium text-black dark:text-white">
                             Standard Package
                         </h5>
@@ -138,7 +138,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="border-b border-[#eee] px-4 py-5 pl-9 dark:border-strokedark xl:pl-11">
+                    <td class="border-b border-[#eee] px-4 py-5 ps-9 dark:border-strokedark xl:ps-11">
                         <h5 class="font-medium text-black dark:text-white">
                             Business Package
                         </h5>
@@ -198,7 +198,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="px-4 py-5 pl-9 xl:pl-11">
+                    <td class="px-4 py-5 ps-9 xl:ps-11">
                         <h5 class="font-medium text-black dark:text-white">
                             Standard Package
                         </h5>

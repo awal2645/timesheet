@@ -22,11 +22,11 @@
 
         <form method="POST" action="{{ route('logout') }}">
             @csrf
-            <div class="ml-1">
+            <div class="ms-1">
                 <button type="submit" class="text-sm underline hover:no-underline">
                     {{ __('Log Out') }}
                 </button>
             </div>
-        </form>   
+        </form>
     </div>
 </x-authentication-layout>

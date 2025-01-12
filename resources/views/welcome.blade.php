@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,8 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="icon" type="image/x-icon" href="{{ asset('images/logo_symbol.png') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -55,12 +56,12 @@
                     <div class="flex flex-wrap gap-4">
                         <a href="#" class="px-6 py-3 bg-gray-900 text-white rounded-md hover:bg-gray-900"
                             data-aos="fade-up" data-aos-delay="200">
-                            {{ __('Live Demo') }} <span class="ml-2">▶</span>
+                            {{ __('Live Demo') }} <span class="ms-2">▶</span>
                         </a>
                         <a href="#pricing"
                             class="px-6 py-3 bg-transparent text-gray-900 border border-black rounded-md hover:bg-gray-900/10"
                             data-aos="fade-up" data-aos-delay="300">
-                            {{ __('Buy Now') }} <span class="ml-2">↓</span>
+                            {{ __('Buy Now') }} <span class="ms-2">↓</span>
                         </a>
                     </div>
                 </div>
@@ -127,7 +128,7 @@
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-primary-50 text-white  bg-primary-50 rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
-                        {{ __('Buy Now') }} <span class="ml-2">↓</span>
+                        {{ __('Buy Now') }} <span class="ms-2">↓</span>
                     </a>
                 </div>
             </div>
@@ -148,7 +149,8 @@
                     <div class="text-4xl mb-4">⭕</div>
                     <h3 class="text-xl font-semibold mb-4">{{ __('Support') }} <span
                             class="text-white">{{ __('100%
-                                                        Free') }}</span></h3>
+                                                                                                                Free') }}</span>
+                    </h3>
                     <p class="text-text-light dark:text-text-dark">
                         {{ __('Our team is here to assist you anytime you need help.') }}
                     </p>
@@ -198,7 +200,7 @@
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-primary-50 text-white rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
-                        {{ __('Buy Now') }} <span class="ml-2">↓</span>
+                        {{ __('Buy Now') }} <span class="ms-2">↓</span>
                     </a>
                 </div>
                 <div class="rounded-xl overflow-hidden shadow-2xl border border-gray-200" data-aos="fade-up"
@@ -223,7 +225,7 @@
                     <a href="#pricing"
                         class="inline-flex items-center px-6 py-3 bg-Timesheet-green bg-primary-50 text-white rounded-md hover:bg-primary-300"
                         data-aos="fade-up" data-aos-delay="200">
-                        {{ __('Buy Now') }} <span class="ml-2">↓</span>
+                        {{ __('Buy Now') }} <span class="ms-2">↓</span>
                     </a>
                 </div>
             </div>
@@ -253,58 +255,62 @@
                         <div class="bg-white rounded-lg p-6" data-aos="fade-up" data-aos-delay="200">
                             <h2 class="text-xl font-semibold text-text-white flex items-center justify-between">
                                 <span>{{ $plan->label }}</span>
-                                @if($plan->recommended)
-                                    <span class="bg-green-500 text-white text-xs font-bold rounded-full px-2 py-1 ml-2">RECOMMENDED</span>
+                                @if ($plan->recommended)
+                                    <span
+                                        class="bg-green-500 text-white text-xs font-bold rounded-full px-2 py-1 ms-2">RECOMMENDED</span>
                                 @endif
                             </h2>
                             <p class="text-text-white/90 mb-12">
-                                    {{ $plan->description }}
+                                {{ $plan->description }}
                             </p>
                             <div class="relative inline-block">
                                 <div class="text-text-white/90 line-through text-sm">
                                     {{ $plan->old_price ? '$' . $plan->old_price : 'N/A' }}
                                 </div>
-                            <div class="absolute start-full -top-2 rotate-60">
-                                <span
-                                    class="inline-block whitespace-nowrap bg-rose-500 text-text-white text-sm px-3 py-1 rounded-full">
-                                    {{ $plan->discount_percentage ? $plan->discount_percentage . '% OFF' : 'N/A' }}
-                                </span>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="text-sm text-text-white/90 mt-6 mb-2">From</div>
-                            <div class="flex items-baseline gap-1">
-                                <span class="text-3xl text-text-white font-bold">
-                                    {{ $plan->price ? '$' . $plan->price : 'N/A' }}
-                                </span>
-                                <span class="text-text-white/90">/mo</span>
-                            </div>
-                            <div class="text-sm text-text-white/90 my-8">
-                                <div class=" ">
-                                    <ul class="space-y-4">
-                                        <li class="flex items-center">
-                                            <x-svgs.check class="text-green-500 mr-3" />
-                                            <span class="text-text-white">{{ __('Employee can create') }} {{ $plan->employee_limit }} {{ __('projects') }}</span>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <x-svgs.check class="text-green-500 mr-2" />
-                                            <span class="text-text-white">{{ __('Client can create') }} {{ $plan->client_limit }} {{ __('projects') }}</span>
-                                        </li>
-                                        <li class="flex items-center">
-                                            <x-svgs.check class="text-green-500 mr-2" />
-                                            <span class="text-text-white">{{ __('Project can create') }} {{ $plan->project_limit }} {{ __('projects') }}</span>
-                                        </li>
-                                    </ul>
+                                <div class="absolute start-full -top-2 rotate-60">
+                                    <span
+                                        class="inline-block whitespace-nowrap bg-rose-500 text-text-white text-sm px-3 py-1 rounded-full">
+                                        {{ $plan->discount_percentage ? $plan->discount_percentage . '% OFF' : 'N/A' }}
+                                    </span>
                                 </div>
                             </div>
+                            <div>
+                                <div class="text-sm text-text-white/90 mt-6 mb-2">From</div>
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-3xl text-text-white font-bold">
+                                        {{ $plan->price ? '$' . $plan->price : 'N/A' }}
+                                    </span>
+                                    <span class="text-text-white/90">/mo</span>
+                                </div>
+                                <div class="text-sm text-text-white/90 my-8">
+                                    <div class=" ">
+                                        <ul class="space-y-4">
+                                            <li class="flex items-center">
+                                                <x-svgs.check class="text-green-500 me-3" />
+                                                <span class="text-text-white">{{ __('Employee can create') }}
+                                                    {{ $plan->employee_limit }} {{ __('projects') }}</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <x-svgs.check class="text-green-500 me-2" />
+                                                <span class="text-text-white">{{ __('Client can create') }}
+                                                    {{ $plan->client_limit }} {{ __('projects') }}</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <x-svgs.check class="text-green-500 me-2" />
+                                                <span class="text-text-white">{{ __('Project can create') }}
+                                                    {{ $plan->project_limit }} {{ __('projects') }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="{{ route('plans.index') }}"
+                                class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
+                                data-aos="fade-up" data-aos-delay="300">
+                                {{ __('Get deal') }}
+                            </a>
                         </div>
-                        <a href="{{ route('plans.index')}}"
-                            class="w-full py-2 px-4 bg-primary-50 bg-opacity-10 rounded-md hover:bg-opacity-20 transition-colors"
-                            data-aos="fade-up" data-aos-delay="300">
-                            {{ __('Get deal') }}
-                        </a>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -570,19 +576,24 @@
                         {{ __('We build modern web tools to help you jump-start your daily business work.') }}
                     </p>
                     <div class="flex space-x-4">
-                        <a href="{{ getSocialLinks()->facebook_url }}" target="_blank" class="text-white hover:text-primary-500">
+                        <a href="{{ getSocialLinks()->facebook_url }}" target="_blank"
+                            class="text-white hover:text-primary-500">
                             <i class="fa-brands fa-facebook" style="font-size: 30px;"></i>
                         </a>
-                        <a href="{{ getSocialLinks()->twitter_url }}" target="_blank" class="text-white hover:text-primary-500">
+                        <a href="{{ getSocialLinks()->twitter_url }}" target="_blank"
+                            class="text-white hover:text-primary-500">
                             <i class="fa-brands fa-twitter" style="font-size: 30px;"></i>
                         </a>
-                        <a href="{{ getSocialLinks()->linkedin_url }}" target="_blank" class="text-white hover:text-primary-500">
+                        <a href="{{ getSocialLinks()->linkedin_url }}" target="_blank"
+                            class="text-white hover:text-primary-500">
                             <i class="fa-brands fa-linkedin" style="font-size: 30px;"></i>
                         </a>
-                        <a href="{{ getSocialLinks()->instagram_url }}" target="_blank" class="text-white hover:text-primary-500">
+                        <a href="{{ getSocialLinks()->instagram_url }}" target="_blank"
+                            class="text-white hover:text-primary-500">
                             <i class="fa-brands fa-instagram" style="font-size: 30px;"></i>
                         </a>
-                        <a href="{{ getSocialLinks()->youtube_url }}" target="_blank" class="text-white hover:text-primary-500">
+                        <a href="{{ getSocialLinks()->youtube_url }}" target="_blank"
+                            class="text-white hover:text-primary-500">
                             <i class="fa-brands fa-youtube" style="font-size: 30px;"></i>
                         </a>
                     </div>
