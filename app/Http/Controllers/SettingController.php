@@ -8,24 +8,45 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Log; // For logging errors
 
+/**
+ * Controller for managing application settings
+ * Handles system configuration, logos, and payment settings
+ */
 class SettingController extends Controller
 {
-
+    /**
+     * Set up middleware for access control
+     * Restricts access to settings updates in demo mode
+     */
     public function __construct()
     {
-        // Apply the access_limitation middleware if the app is in demo mode
+        // Apply access limitation middleware for update methods
         $this->middleware('access_limitation', ['only' => ['update']]);
         $this->middleware('access_limitation', ['only' => ['paymentupdate']]);
     }
 
+    /**
+     * Display settings page with current configuration
+     * 
+     * @return \Illuminate\View\View
+     */
     public function setting()
     {
+        // Get current settings from database
         $settings = Setting::first();
-            return view('setting.index', compact('settings'));
-        }
+        return view('setting.index', compact('settings'));
+    }
 
+    /**
+     * Update application settings
+     * Handles general settings and file uploads
+     * 
+     * @param Request $request Contains settings data and files
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
+        // Validate settings data
         $request->validate([
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
@@ -41,22 +62,20 @@ class SettingController extends Controller
             'youtube_url' => 'nullable|url|max:255',
         ]);
 
-        // Handle logo upload
+        // Handle file uploads
         if ($request->hasFile('logo')) {
             $this->saveLogo($request->file('logo'));
         }
 
-        // Handle dark logo upload
         if ($request->hasFile('dark_logo')) {
             $this->saveDarkLogo($request->file('dark_logo'));
         }
 
-        // Handle favicon upload
         if ($request->hasFile('favicon')) {
             $this->saveFavicon($request->file('favicon'));
         }
 
-        // Save new settings to the database or config
+        // Update settings in database
         Setting::updateOrCreate(
             ['id' => 1], // Assuming a single settings record
             $request->only([
@@ -75,6 +94,11 @@ class SettingController extends Controller
         return redirect()->route('setting')->with('success', 'Settings updated successfully!');
     }
 
+    /**
+     * Save main logo file
+     * 
+     * @param \Illuminate\Http\UploadedFile $file Logo file
+     */
     private function saveLogo($file)
     {
         $logoPath = public_path('/images/logo-inv.png');
@@ -88,6 +112,11 @@ class SettingController extends Controller
         $file->move(public_path('/images'), 'logo-inv.png');
     }
     
+    /**
+     * Save dark mode logo file
+     * 
+     * @param \Illuminate\Http\UploadedFile $file Dark logo file
+     */
     private function saveDarkLogo($file)
     {
         $darkLogoPath = public_path('/images/dark_logo.png');
@@ -101,6 +130,11 @@ class SettingController extends Controller
         $file->move(public_path('/images'), 'dark_logo.png');
     }
 
+    /**
+     * Save favicon file
+     * 
+     * @param \Illuminate\Http\UploadedFile $file Favicon file
+     */
     private function saveFavicon($file)
     {
         $faviconPath = public_path('/images/logo_symbol.png');
@@ -114,31 +148,47 @@ class SettingController extends Controller
         $file->move(public_path('/images'), 'logo_symbol.png');
     }
 
+    /**
+     * Change application language
+     * 
+     * @param string $lang Language code
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeLanguage($lang)
     {
-        dd($lang);
-
         try {
+            // Set session and app locale
             session()->put('set_lang', $lang);
             app()->setLocale($lang);
-            return back()->with('success', 'language updated successfully! ');
+            
+            return back()->with('success', 'Language updated successfully!');
         } catch (\Exception $e) {
-            // Log the exception for debugging purposes
+            // Log error and return error message
             Log::error('Error changing language: ' . $e->getMessage());
-
             return back()->with('error', 'Unable to change the language.');
         }
     }
 
+    /**
+     * Display payment gateway settings
+     * 
+     * @return \Illuminate\View\View
+     */
     public function paymentGateway()
     {
         return view('payment.index');
     }
 
-
+    /**
+     * Update payment gateway settings
+     * 
+     * @param Request $request Contains payment settings
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function paymentupdate(Request $request)
     {
         try {
+            // Update settings based on payment type
             switch ($request->type) {
                 case 'paypal':
                     $this->paypalUpdate($request);
@@ -147,24 +197,32 @@ class SettingController extends Controller
                     $this->stripeUpdate($request);
                     break;
             }
+            
             return redirect()
                 ->route('payment')
                 ->with('success', 'Payment info updated successfully');
         } catch (\Exception $e) {
             flashError('An error occurred: ' . $e->getMessage());
-
             return back();
         }
     }
 
+    /**
+     * Update PayPal settings
+     * 
+     * @param Request $request Contains PayPal settings
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function paypalUpdate(Request $request)
     {
+        // Validate PayPal credentials
         $request->validate([
             'paypal_client_id' => 'required',
             'paypal_client_secret' => 'required',
         ]);
 
         try {
+            // Update PayPal configuration based on mode
             if ($request->paypal_live_mode) {
                 checkSetConfig('zenxserv.paypal_live_client_id', $request->paypal_client_id);
                 checkSetConfig('zenxserv.paypal_live_secret', $request->paypal_client_secret);
@@ -172,57 +230,69 @@ class SettingController extends Controller
                 checkSetConfig('zenxserv.paypal_sandbox_client_id', $request->paypal_client_id);
                 checkSetConfig('zenxserv.paypal_sandbox_secret', $request->paypal_client_secret);
             }
+
+            // Set PayPal mode and active status
             setConfig('zenxserv.paypal_mode', $request->paypal_live_mode ? 'live' : 'sandbox');
-
             checkSetConfig('zenxserv.paypal_active', $request->paypal ? true : false);
-
 
             return redirect()
                 ->route('payment')
                 ->with('success', 'Payment info updated successfully');
         } catch (\Exception $e) {
             flashError('An error occurred: ' . $e->getMessage());
-
             return back();
         }
     }
 
+    /**
+     * Update Stripe settings
+     * 
+     * @param Request $request Contains Stripe settings
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function stripeUpdate(Request $request)
     {
+        // Validate Stripe credentials
         $request->validate([
             'stripe_key' => 'required',
             'stripe_secret' => 'required',
         ]);
 
         try {
+            // Update Stripe configuration
             checkSetConfig('zenxserv.stripe_key', $request->stripe_key);
             checkSetConfig('zenxserv.stripe_secret', $request->stripe_secret);
-
             checkSetConfig('zenxserv.stripe_active', $request->stripe ? true : false);
+
             return redirect()
                 ->route('payment')
                 ->with('success', 'Payment info updated successfully');
         } catch (\Exception $e) {
             flashError('An error occurred: ' . $e->getMessage());
-
             return back();
         }
     }
 
-
+    /**
+     * Display upgrade page
+     * 
+     * @return \Illuminate\View\View
+     */
     public function upgrade()
     {
         return view('upgrade.index');
     }
 
     /**
-     * Upgrade applying
-     *
-     * @return Response
+     * Apply system upgrade
+     * Runs database migrations
+     * 
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function upgradeApply()
     {
         try {
+            // Run database migrations
             Artisan::call('migrate');
 
             return redirect()
@@ -230,7 +300,6 @@ class SettingController extends Controller
                 ->with('success', 'Application updated successfully');
         } catch (\Exception $e) {
             flashError('An error occurred: ' . $e->getMessage());
-
             return back();
         }
     }

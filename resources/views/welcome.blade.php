@@ -13,9 +13,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body >
     <header
-        class="py-4 bg-card-dark dark:bg-card-dark inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
+        class="p-10 bg-card-dark dark:bg-card-dark inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full">
         <nav class="relative container px-4 xl:px-0 mx-auto w-full md:flex md:items-center md:justify-between"
             aria-label="Global">
             <div class="w-full flex items-center justify-between">
@@ -36,7 +36,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="bg-primary-50">
+    <section class="p-10 bg-primary-50">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
@@ -113,7 +113,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="bg-white text-white py-20">
+    <section class="p-10 bg-white text-white py-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
                 <div class="space-y-6">
@@ -169,7 +169,7 @@
     </section>
 
     <!-- Time Tracking Tool Section -->
-    <section class="bg-primary-50 text-white pb-20">
+    <section class="p-10 bg-primary-50 text-white pb-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="text-center space-y-4 mb-12">
                 <p class="text-sm font-semibold text-primary-50">{{ __('FEATURES') }}</p>
@@ -186,7 +186,7 @@
     </section>
 
     <!-- Product Screenshots Section -->
-    <section class="bg-white py-20">
+    <section class="p-10 bg-white py-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <!-- First Screenshot -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
@@ -232,7 +232,7 @@
     </section>
 
     <!-- Pricing -->
-    <section class="bg-gray-50" id="pricing">
+    <section class="p-10 bg-gray-50" id="pricing">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <h2 class="text-4xl text-3xl md:text-4xl font-bold text-gray-900  mb-16 text-center" data-aos="fade-up">
                 {{ __('Our Pricing') }}
@@ -316,7 +316,7 @@
     </section>
 
     <!-- Testimonial -->
-    <section class="bg-white py-20">
+    <section class="p-10 bg-white py-20">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="space-y-4 max-w-3xl mb-12">
                 <p class="text-sm font-semibold text-gray-900">{{ __('TESTIMONIALS') }}</p>
@@ -360,7 +360,7 @@
     </section>
 
     <!-- Contact -->
-    <section class="bg-primary-50">
+    <section class="p-10 bg-primary-50">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <!-- Title -->
             <div class="max-w-3xl mb-10 lg:mb-14">
@@ -565,7 +565,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-card-dark  border-t">
+    <footer class="p-10 bg-card-dark  border-t">
         <div class="container px-4 xl:px-0 py-10 lg:py-20 mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Logo and Description -->

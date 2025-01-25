@@ -12,28 +12,46 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
+/**
+ * Controller for handling user invitations
+ * Manages both employer and employee invitation processes
+ */
 class InvitationController extends Controller
 {
+    /**
+     * Set up middleware for invitation permissions
+     */
     public function __construct()
     {
         $this->middleware('role_or_permission:Invite send', ['only' => ['employerInvitePageData']]);
     }
 
+    /**
+     * Get data for employer invite page based on user role
+     * @return \Illuminate\View\View
+     */
     public function employerInvitePageData()
     {
+        // Filter available roles based on current user's role
         if(auth()->user()->role == 'employer'){
+            // Employers can't invite employers or superadmins
             $roles = Role::whereNotIn('name', ['employer', 'superadmin'])->get();
         }else{
+            // Others can't invite employees, clients, or superadmins
             $roles = Role::whereNotIn('name', ['employee', 'client', 'superadmin'])->get();
         }
 
         return view('invite.send_invite_employer', compact('roles'));
     }
 
+    /**
+     * Process employer invitation
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function employerInviteSend(Request $request)
     {
-
-        // Delete existing tokens and user entries for the email
+        // Clean up any existing data for this email
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
         DB::table('users')->where('email', $request->email)->delete();
 
@@ -50,7 +68,7 @@ class InvitationController extends Controller
         );
 
         try {
-            // Generate a new token and store it
+            // Generate and store password reset token
             $token = Str::random(64);
             DB::table('password_reset_tokens')->insert([
                 'email' => $request->email,
@@ -58,58 +76,63 @@ class InvitationController extends Controller
                 'created_at' => now(),
             ]);
 
-            // Create the new user
+            // Create new user with specified role
             $input = $request->all();
             $input['role'] = $request->role_name;
             $user = User::create($input);
 
-            // Assign the appropriate role
+            // Assign role to user
             if ($request->role_name) {
                 $user->assignRole([$request->role_name]);
             } else {
                 $user->assignRole(['employee']);
             }
 
+            // Create employer record if applicable
             if ($request->role_name == 'employer') {
-                // Insert into employers table
                 DB::table('employers')->insert([
                     'user_id' => $user->id,
                 ]);
             }
 
-            // Send the invite email
+            // Send invitation email if email is provided
             if ($input['email']) {
-                // Fetch the email template from the database
+                // Get email template
                 $emailTemplate = DB::table('email_templates')
                     ->where('type', 'employer_invite')
                     ->first();
 
                 if ($emailTemplate && isset($emailTemplate->subject) && isset($emailTemplate->message)) {
-                    // Replace placeholders with dynamic content
+                    // Format email content with dynamic data
                     $formattedBody = getFormattedTextByType('employer_invite', [
                         'app_name' => config('app.name'),
                         'verify_link' => url('/verify', $token),
                         'year' => date('Y'),
                     ]);
 
-                    // Send email using Mailable class
+                    // Send invitation email
                     Mail::to($input['email'])->send(new EmployerInviteMail($emailTemplate->subject, $formattedBody));
                 } else {
                     return redirect()->back()->with('error', 'Email template not found or is missing required fields.');
                 }
             }
 
-            // Generate the success token
+            // Generate API token for user
             $success['token'] = $user->createToken('timesheet')->plainTextToken;
             $success['name'] = $user->name;
 
-            return redirect()->back()->with('success', 'nvite sent successfully.');
+            return redirect()->back()->with('success', 'Invite sent successfully.');
         } catch (\Exception $e) {
-            // Handle any exception that might occur
-            return redirect()->back()->withInput($request->all())->with(['error' => 'An error occurred while sending the invitation. Please try again later.']);
+            return redirect()->back()->withInput($request->all())
+                ->with(['error' => 'An error occurred while sending the invitation. Please try again later.']);
         }
     }
 
+    /**
+     * Process employee invitation
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function employeeInviteSend(Request $request)
     {
         // Validate request

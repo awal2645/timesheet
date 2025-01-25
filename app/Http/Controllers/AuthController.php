@@ -10,18 +10,24 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    /**
+     * Verify user's email using the token from the verification link
+     * @param Request $request
+     * @param string $token
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function verify(Request $request, $token)
     {
         try {
-            // Use first() to retrieve the first result from the query
+            // Check if token exists in password_reset_tokens table
             $data = DB::table('password_reset_tokens')->where('token', $token)->first();
 
             if ($data) {
-                // Update the user's email_verified_at column to mark the email as verified
+                // Find user by email and update verification timestamp
                 $user = User::where('email', $data->email)->first();
                 if ($user) {
                     $user->update(['email_verified_at' => now()]);
-
+                    // Redirect to set username and password page
                     return redirect()->route('username.password', $data->token);
                 }
             } else {
@@ -35,17 +41,28 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Display the username and password setup form
+     * @param string $token
+     * @return \Illuminate\View\View
+     */
     public function usernamePassword($token)
     {
         return view('auth.usernamePassword');
     }
 
+    /**
+     * Update user's username and password after email verification
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateUserInfo(Request $request)
     {
-        // Validate the form data
+        // Validate username and password with custom error messages
         $request->validate(
             [
                 'username' => 'required|string|max:255',
+                // Password must contain uppercase, lowercase, and number
                 'password' => 'nullable|string|min:8|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             ],
             [
@@ -53,44 +70,37 @@ class AuthController extends Controller
                 'password.min' => 'The password must be at least 8 characters long.',
                 'password.confirmed' => 'The password confirmation does not match.',
                 'password.regex' => 'The password must contain at least one uppercase letter, one lowercase letter, and one number.',
-            ],
+            ]
         );
+
         try {
-            // Get the currently authenticated user
+            // Find user by token from password_reset_tokens table
             $data = DB::table('password_reset_tokens')
                 ->where('token', $request->token)
                 ->first();
 
             $user = User::where('email', $data->email)->first();
 
-            // Update the user information
+            // Update username and password if provided
             $user->username = $request->username;
-
-            // Check if a new password is provided and update it
             if ($request->filled('password')) {
                 $user->password = bcrypt($request->password);
             }
-
-            // Save the changes
             $user->save();
 
             if ($user) {
-                // Use the credentials to attempt to authenticate the user
+                // Attempt to login user with new credentials
                 $credentials = [
                     'email' => $user->email,
-                    'password' => $request->password, // Assuming the password field is filled
+                    'password' => $request->password,
                 ];
 
-                // Attempt to log in the user
                 if (Auth::attempt($credentials)) {
-                    // Authentication successful
-                    return redirect('/dashboard'); // Redirect to the dashboard or any other desired page
+                    return redirect('/dashboard');
                 } else {
-                    // Authentication failed
                     return redirect('/login')->with('error', 'Invalid credentials');
                 }
             } else {
-                // Handle the case where the user update was not successful
                 return redirect('/login')->with('error', 'Failed to update user information');
             }
         } catch (\Exception $e) {
@@ -102,16 +112,19 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Change the application's language
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function changeLanguage(Request $request)
     {
-
         try {
+            // Store language preference in session and update application locale
             session()->put('current_lang', $request->language);
             app()->setLocale($request->language);
             App::setLocale($request->language);
             $locale = App::currentLocale();
-
-            // dd($locale);
 
             return back()->with('success', 'language updated successfully! ');
         } catch (\Exception $e) {

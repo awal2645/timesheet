@@ -11,6 +11,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
+/**
+ * Controller for handling user account-related operations
+ */
 class AccountController extends Controller
 {
     // public function __construct()
@@ -18,6 +21,11 @@ class AccountController extends Controller
     //     $this->middleware('access_limitation', ['only' => ['employeeInfoUpdate', 'employerInfoUpdate']]);
     // }
 
+    /**
+     * Display the appropriate account settings page based on user role
+     * 
+     * @return \Illuminate\View\View
+     */
     public function myAccount()
     {
         if (auth('web')->user()->role == 'employer') {
@@ -37,6 +45,13 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Update employer information
+     * 
+     * @param Request $request
+     * @param int $id Employer ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function employerInfoUpdate(Request $request, $id)
     {
         $employer = Employer::findOrFail($id);
@@ -75,6 +90,13 @@ class AccountController extends Controller
         return redirect()->back()->with('success', 'Employer info updated successfully');
     }
 
+    /**
+     * Save employer logo to public directory
+     * 
+     * @param \Illuminate\Http\UploadedFile $file
+     * @param User $user
+     * @return bool
+     */
     private function saveLogo($file, $user)
     {
         $logoPath = public_path('/images/employer/' . $user->username . '.png');
@@ -89,6 +111,13 @@ class AccountController extends Controller
         return true;
     }
 
+    /**
+     * Save employee image to public directory
+     * 
+     * @param \Illuminate\Http\UploadedFile $file
+     * @param User $user
+     * @return bool
+     */
     private function saveImage($file, $user)
     {
         $logoPath = public_path('/images/employee/' . $user->username . '.png');
@@ -103,7 +132,13 @@ class AccountController extends Controller
         return true;
     }
 
-
+    /**
+     * Save client image to public directory
+     * 
+     * @param \Illuminate\Http\UploadedFile $file
+     * @param User $user
+     * @return bool
+     */
     private function saveClientImage($file, $user)
     {
         $logoPath = public_path('/images/client/' . $user->username . '.png');
@@ -118,7 +153,13 @@ class AccountController extends Controller
         return true;
     }
 
-
+    /**
+     * Update client information
+     * 
+     * @param Request $request
+     * @param int $id Client ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function clientInfoUpdate(Request $request, $id)
     {
         $client = Client::findOrFail($id);
@@ -154,6 +195,13 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Update employee information
+     * 
+     * @param Request $request
+     * @param int $id Employee ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function employeeInfoUpdate(Request $request, $id)
     {
         $employee = Employee::findOrFail($id);

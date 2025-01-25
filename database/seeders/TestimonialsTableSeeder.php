@@ -22,7 +22,7 @@ class TestimonialsTableSeeder extends Seeder
                 'company' => 'Tech Solutions',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'rating' => '5',
-                'image' => 'https://via.placeholder.com/150', // Dummy image URL
+                'image' => '/images/default-user.png', // Dummy image URL
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -32,7 +32,7 @@ class TestimonialsTableSeeder extends Seeder
                 'company' => 'Business Corp',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'rating' => '4',
-                'image' => 'https://via.placeholder.com/150', // Dummy image URL
+                'image' => '/images/default-user.png', // Dummy image URL
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -42,7 +42,7 @@ class TestimonialsTableSeeder extends Seeder
                 'company' => 'Creative Agency',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                 'rating' => '5',
-                'image' => 'https://via.placeholder.com/150', // Dummy image URL
+                'image' => '/images/default-user.png', // Dummy image URL
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

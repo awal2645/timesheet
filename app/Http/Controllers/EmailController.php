@@ -11,34 +11,52 @@ use App\Mail\EmployeeInviteMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Config;
 
+/**
+ * Controller for handling email operations and history
+ */
 class EmailController extends Controller
 {
-
+    /**
+     * Display email history with search functionality
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         $query = EmailHistory::query();
 
-        // Search functionality
+        // Search functionality for recipient email and subject
         if ($request->filled('search')) {
             $query->where('recipient_email', 'like', '%' . $request->search . '%')
                 ->orWhere('subject', 'like', '%' . $request->search . '%');
         }
 
-        $emailHistories = $query->paginate(10); // Adjust pagination as needed
+        // Paginate results with 10 items per page
+        $emailHistories = $query->paginate(10);
 
         return view('email_histories.index', compact('emailHistories'));
     }
 
+    /**
+     * Show email composition form with available users and roles
+     * @return \Illuminate\View\View
+     */
     public function showForm()
     {
-        // Fetch users to send emails to
-        $users = User::all(); // Adjust this to your user model
+        // Fetch all users and roles for email targeting
+        $users = User::all();
         $roles = Role::all();
         return view('emails.send', compact('users', 'roles'));
     }
+
+    /**
+     * Send emails to selected recipients and store in history
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function send(Request $request)
     {
-        // Validate the request
+        // Validate the request data
         $request->validate([
             'role' => 'sometimes|array',
             'emails' => 'sometimes|array',
@@ -46,10 +64,11 @@ class EmailController extends Controller
             'body' => 'required|string',
         ]);
     
-        // Configure SMTP for 'employer' role
+        // Configure SMTP settings for employer role
         if (auth('web')->user()->role == 'employer') {
             $smtp = smtp();
     
+            // Set up custom SMTP configuration
             Config::set('mail.mailers.smtp', [
                 'transport' => 'smtp',
                 'host' => $smtp->host,
@@ -66,21 +85,22 @@ class EmailController extends Controller
             Config::set('mail.default', 'smtp');
         }
     
-        // Fetch roles and users
-        $roles = Role::whereIn('id', $request->role)->pluck('name')->toArray(); // Extract role names
+        // Get users by selected roles
+        $roles = Role::whereIn('id', $request->role)->pluck('name')->toArray();
         $users = User::whereIn('role', $roles)->get();
     
-        // Create an email list from request emails and user emails
-        $emailList = $request->emails ?? []; // Use request emails if provided
+        // Combine directly entered emails with users from selected roles
+        $emailList = $request->emails ?? [];
         foreach ($users as $user) {
             $emailList[] = $user->email;
         }
     
-        // Send emails
+        // Send emails to all recipients and log to history
         foreach ($emailList as $email) {
+            // Send the email
             Mail::to($email)->send(new NotificationMail($request->subject, $request->body));
     
-            // Save email to history
+            // Create history record
             EmailHistory::create([
                 'recipient_email' => $email,
                 'subject' => $request->subject,
@@ -90,6 +110,4 @@ class EmailController extends Controller
     
         return redirect()->back()->with('success', 'Emails sent successfully!');
     }
-    
-    
 }

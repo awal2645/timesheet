@@ -11,12 +11,21 @@ use Illuminate\Support\Facades\Storage;
 
 class CmsController extends Controller
 {
+    /**
+     * Display the CMS management page
+     * @return \Illuminate\View\View
+     */
     public function index()
     {
         $cms = Cms::first() ?? new Cms();
         return view('cms.index', compact('cms'));
     }
    
+    /**
+     * Handle file uploads from FilePond
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function uploadFile(Request $request)
     {
         try {
@@ -48,20 +57,20 @@ class CmsController extends Controller
                 return response()->json(['error' => 'File upload failed'], 400);
             }
 
-            // Generate a unique file name
+            // Generate a unique file name using uniqid() to prevent naming conflicts
             $fileName = uniqid('upload_') . '.' . $file->getClientOriginalExtension();
 
-            // Save the file to the public/images directory
+            // Save the file to the public/images directory for web accessibility
             $file->move(public_path('images'), $fileName);
 
-            // Return the file path for FilePond
+            // Return the file path for FilePond to use
             $fullPath = 'images/' . $fileName;
             
             Log::info('File uploaded successfully', ['path' => $fullPath]);
 
             return response()->json($fullPath);
         } catch (\Exception $e) {
-            // Log any unexpected errors
+            // Log any unexpected errors for debugging
             Log::error('File upload exception', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
@@ -71,13 +80,18 @@ class CmsController extends Controller
         }
     }
 
+    /**
+     * Handle file deletion requests from FilePond
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function deleteFile(Request $request)
     {
         try {
             // FilePond sends the full path as the request body
             $filePath = $request->getContent();
 
-            // Ensure the path is relative to public
+            // Ensure the path is relative to public directory for security
             $publicPath = public_path($filePath);
 
             // Delete the file if it exists
@@ -97,29 +111,45 @@ class CmsController extends Controller
         }
     }
 
-
+    /**
+     * Update CMS content including multiple image fields
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request)
     {
-        // Fetch the first CMS record
+        // Fetch the first CMS record or create if none exists
         $cms = Cms::first();
 
-        // Define the fields to process
-        $fields = ['banner_image', 'approach_image', 'client_image1', 'client_image2', 'client_image3', 'client_image4', 'client_image5', 'client_image6', 'client_image7', 'features_image1', 'features_image2'];
+        // Define all image fields that can be updated
+        $fields = [
+            'banner_image', 
+            'approach_image', 
+            'client_image1', 
+            'client_image2', 
+            'client_image3', 
+            'client_image4', 
+            'client_image5', 
+            'client_image6', 
+            'client_image7', 
+            'features_image1', 
+            'features_image2'
+        ];
 
         foreach ($fields as $field) {
             if ($request->hasFile($field)) {
-                // Delete the old file if it exists
+                // Remove old image if it exists to prevent storage buildup
                 if ($cms->$field && file_exists(public_path($cms->$field))) {
                     unlink(public_path($cms->$field));
                 }
 
-                // Save the new logo
+                // Save the new image with a standardized name
                 $request->file($field)->move(public_path('/images'), 'images/'.$field.'.png');
                 $cms->$field = 'images/'.$field.'.png';
             }
         }
 
-        // Save the updated CMS record
+        // Persist changes to database
         $cms->save();
 
         return redirect()->back()->with('success', __('CMS updated successfully.'));

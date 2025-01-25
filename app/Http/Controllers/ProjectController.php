@@ -8,8 +8,18 @@ use App\Models\Employer;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
+/**
+ * Controller for managing projects
+ * Handles CRUD operations for projects with role-based access
+ */
 class ProjectController extends Controller
 {
+    /**
+     * Display a listing of projects with search and filter functionality
+     * 
+     * @param Request $request Contains search and filter parameters
+     * @return \Illuminate\View\View
+     */
     public function index(Request $request)
     {
         try {
@@ -17,20 +27,22 @@ class ProjectController extends Controller
             $search = $request->input('search');
             $status = $request->input('status');
             
-
-            // Check if the user is an employer and filter projects accordingly
+            // Filter projects based on user role
             if (auth('web')->user()->role == 'employer') {
+                // Employers see only their projects
                 $projects = Project::where('employer_id', auth('web')->user()->employer->id);
-
             } else if (auth('web')->user()->role == 'client') {
+                // Clients see only their projects
                 $projects = Project::where('client_id', auth('web')->user()->client->id);
             } else if (auth('web')->user()->role == 'employee') {
+                // Employees see only their assigned projects
                 $projects = Project::where('employee_id', auth('web')->user()->employee->id);
             } else {
+                // Admins see all projects
                 $projects = Project::query();
             }
 
-            // Apply search filter if a search term is present
+            // Apply search filter if present
             if ($search) {
                 $projects = $projects->where(function ($query) use ($search) {
                     $query->where('project_name', 'like', "%{$search}%")
@@ -41,15 +53,14 @@ class ProjectController extends Controller
                 });
             }
 
-            // Apply status filter if it's present
+            // Apply status filter if present
             if ($status !== null) {
                 $projects = $projects->where('status', $status);
             }
 
-            // Fetch the filtered projects
+            // Get paginated results
             $projects = $projects->latest()->paginate(5);
 
-            // Return the view with the filtered projects
             return view('project.index', compact('projects'));
         } catch (\Exception $e) {
             // Handle the exception and redirect back with an error message
@@ -59,14 +70,22 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Show form for creating a new project
+     * 
+     * @return \Illuminate\View\View
+     */
     public function create()
     {
         try {
+            // Get available employers, employees, and clients based on user role
             if (auth('web')->user()->role == 'employer') {
+                // Employers see only their related records
                 $employers = Employer::active()->get();
                 $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->active()->get();
                 $clients = Client::where('employer_id', auth('web')->user()->employer->id)->active()->get();
             } else {
+                // Admins see all records
                 $employers = Employer::active()->get();
                 $employees = Employee::active()->get();
                 $clients = Client::active()->get();
@@ -81,8 +100,15 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Store a newly created project
+     * 
+     * @param Request $request Contains project details
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
+        // Validate project data
         $request->validate([
             'client_id' => 'required|exists:clients,id',
             'employer_id' => 'required|exists:employers,id',
@@ -94,7 +120,9 @@ class ProjectController extends Controller
             'total_cost' => 'sometimes',
             'total_paid_client' => 'sometimes',
         ]);
+
         try {
+            // Create new project
             Project::create($request->all());
 
             return redirect()->route('project.index')->with('success', 'Project created successfully.');
@@ -107,11 +135,20 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Show form for editing a project
+     * 
+     * @param int $id Project ID
+     * @return \Illuminate\View\View
+     */
     public function edit($id)
     {
         try {
+            // Get project and related data
             $project = Project::findOrFail($id);
             $employers = Employer::all();
+            
+            // Filter employees and clients based on user role
             if (auth('web')->user()->role == 'employer') {
                 $employees = Employee::where('employer_id', auth('web')->user()->employer->id)->get();
                 $clients = Client::where('employer_id', auth('web')->user()->employer->id)->get();
@@ -129,8 +166,16 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Update an existing project
+     * 
+     * @param Request $request Contains updated project details
+     * @param int $id Project ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, $id)
     {
+        // Validate updated project data
         $request->validate([
             'client_id' => 'required|exists:clients,id',
             'employer_id' => 'required|exists:employers,id',
@@ -142,7 +187,9 @@ class ProjectController extends Controller
             'total_cost' => 'sometimes',
             'total_paid_client' => 'sometimes',
         ]);
+
         try {
+            // Update project
             $project = Project::findOrFail($id);
             $project->update($request->all());
 
@@ -156,6 +203,12 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Remove a project
+     * 
+     * @param string $id Project ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(string $id)
     {
         try {
@@ -171,14 +224,19 @@ class ProjectController extends Controller
         }
     }
 
+    /**
+     * Update project status
+     * 
+     * @param Request $request Contains status update
+     * @param int $id Project ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function updateStatus(Request $request, $id)
     {
         try {
-            // Your logic to update status goes here
             $project = Project::findOrFail($id);
-            // Update employee
+            // Toggle project status between 1 and 0
             $project->update(['status' => $project->status == '1' ? '0' : '1']);
-            // Determine color based on the updated status
 
             return redirect()->back()->with('success', 'Status updated successfully');
         } catch (\Exception $e) {

@@ -1,5 +1,5 @@
 :root {
-  --font-family: "Inter";
+  --font-family: "Roboto";
   --primary-50: rgba(4, 169, 245, 0.95);
   --primary-100: rgba(4, 169, 245, 0.9);
   --primary-200: rgba(4, 169, 245, 0.8);
@@ -10,16 +10,16 @@
   --primary-700: rgba(4, 169, 245, 0.3);
   --primary-800: rgba(4, 169, 245, 0.2);
   --primary-900: rgba(4, 169, 245, 0.1);
-  --card-dark: #1b232d;
+  --card-dark: #080a0c;
   --card-light: #ffffff;
-  --sidebar-dark: #1d2630;
+  --sidebar-dark: #080a0c;
   --sidebar-light: #ffffff;
-  --header-dark: #0f1215;
+  --header-dark: #070809;
   --header-light: #f8f9fa;
-  --body-dark: #131920;
+  --body-dark: #080a0c;
   --body-light: #f4f7fa;
   --text-light: #090606;
-  --text-dark: #cfd3d0;
+  --text-dark: #ffffff;
 }
 
 body {
