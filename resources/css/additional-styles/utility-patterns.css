@@ -58,14 +58,7 @@ input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }
 
-.form-input,
-.form-textarea,
-.form-multiselect,
-.form-select,
-.form-checkbox,
-.form-radio {
-    @apply bg-white dark:bg-slate-900/30 border focus:ring-0 focus:ring-offset-0 dark:disabled:bg-slate-700/30 dark:disabled:border-slate-700 dark:disabled:hover:border-slate-700;
-}
+
 
 .form-input,
 .form-textarea,
@@ -79,7 +72,7 @@ input[type="search"]::-webkit-search-results-decoration {
 .form-textarea,
 .form-multiselect,
 .form-select {
-    @apply text-sm text-slate-800 dark:text-slate-100 leading-5 py-2 px-3 border-slate-200 hover:border-slate-300 focus:border-slate-300 dark:border-slate-700 dark:hover:border-slate-600 dark:focus:border-slate-600 shadow-sm;
+    @apply text-sm text-slate-800 dark:text-slate-100 leading-5 py-2 px-3;
 }
 
 .form-input,

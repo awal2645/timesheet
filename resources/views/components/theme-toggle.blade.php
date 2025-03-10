@@ -1,6 +1,6 @@
 <div>
     <input type="checkbox" name="light-switch" id="light-switch" class="light-switch sr-only" />
-    <label class="flex items-center justify-center cursor-pointer w-8 h-8 bg-card-light dark:bg-card-dark hover:bg-primary-50 dark:hover:bg-primary-50 rounded-full" for="light-switch">
+    <label class="flex items-center justify-center cursor-pointer w-8 h-8  hover:bg-primary-50 dark:hover:bg-primary-50 rounded-full" for="light-switch">
         <svg class="w-4 h-4 dark:hidden" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <path class="fill-current text-text-light dark:text-text-dark" d="M7 0h2v2H7V0Zm5.88 1.637 1.414 1.415-1.415 1.413-1.414-1.414 1.415-1.414ZM14 7h2v2h-2V7Zm-1.05 7.433-1.415-1.414 1.414-1.414 1.415 1.413-1.414 1.415ZM7 14h2v2H7v-2Zm-4.02.363L1.566 12.95l1.415-1.414 1.414 1.415-1.415 1.413ZM0 7h2v2H0V7Zm3.05-5.293L4.465 3.12 3.05 4.535 1.636 3.121 3.05 1.707Z" />
             <path class="fill-current text-slate-500" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z" />

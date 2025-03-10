@@ -99,6 +99,7 @@
         .dark .cookie-btn-decline:hover {
             background-color: #334155;
         }
+      
     </style>
 </head>
 
@@ -135,29 +136,29 @@
     @livewireScripts
 
     <!-- SweetAlert JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+    
 
     <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        href="{{ asset('css/toastr/toastr.min.css') }}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
+    <link href="{{ asset('css/select2/select2.min.css') }}" rel="stylesheet" />
+    <script src="{{ asset('plugins/select2/select2.min.js') }}"></script>
+
     <script>
         @if (Session::has('success'))
             toastr.options = {
-                "closeButton": true,
                 "progressBar": true,
-                "positionClass": "toast-top-center"
+                "positionClass": "toast-top-center",
+              
             }
             toastr.success("{{ session('success') }}");
         @endif
 
         @if (Session::has('error'))
             toastr.options = {
-                "closeButton": true,
                 "progressBar": true,
                 "positionClass": "toast-top-center"
             }
@@ -166,7 +167,6 @@
 
         @if (Session::has('info'))
             toastr.options = {
-                "closeButton": true,
                 "progressBar": true,
                 "positionClass": "toast-top-center"
             }
@@ -175,7 +175,6 @@
 
         @if (Session::has('warning'))
             toastr.options = {
-                "closeButton": true,
                 "progressBar": true,
                 "positionClass": "toast-top-center"
             }

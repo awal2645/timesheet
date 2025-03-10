@@ -40,6 +40,7 @@
             <div>
                 <ul class="mt-3 space-y-2">
                     <!-- Dashboard -->
+                    <li>Dashboard</li>
                     <li>
                         <a class="sidebar-menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
                             href="{{ route('dashboard') }}">
@@ -72,6 +73,7 @@
                         </li>
                     @endcanany
                     <!-- employer -->
+                    <li>Data Section</li>
                     @canany('Employer view')
                         <li>
                             <a href="{{ route('employer.index') }}"
@@ -244,8 +246,6 @@
                                                 class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
                                                 <div class="flex items-center justify-between">
                                                     <div class="flex items-center">
-                                                        <span class="sidebar-menu-icon">
-                                                            <i class="fa-solid fa-person-through-window"></i> </span>
                                                         <span class="sidebar-menu-text">
                                                             {{ __('Leave') }}
                                                         </span>
@@ -330,6 +330,7 @@
                         </li>
                     @endcanany
                     <!-- Zoom Meeting -->
+                    <li>Setting Section</li>
                     @canany('Zoom Meeting view')
                         <li>
                             <a href="{{ route('meeting.index') }}"

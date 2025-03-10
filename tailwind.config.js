@@ -39,6 +39,9 @@ export default {
                     800: "var(--primary-800)",
                     900: "var(--primary-900)",
                 },
+                blue: {
+                    500: "#1AADDF",
+                },
                 card: {
                     light: "var(--card-light)",
                     dark: "var(--card-dark)",

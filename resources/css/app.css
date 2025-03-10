@@ -13,16 +13,17 @@
     @apply p-6 rounded-2xl dark:bg-card-dark bg-card-light shadow-xl backdrop-blur border border-black/10 dark:border-white/10; /* Tailwind utility for centering text */
 }
 .sidebar-menu-item {
-    @apply block px-3 py-1.5 rounded text-text-light hover:!text-black dark:text-text-dark dark:hover:!text-white font-medium truncate transition duration-150;
+    @apply block px-3 py-1.5 rounded text-text-light hover:!text-primary-300 dark:text-text-dark dark:hover:!text-white truncate hover:transition hover:duration-150;
 }
 .sidebar-menu-icon {
-    @apply w-8 h-8 rounded bg-primary-50 text-white inline-flex justify-center items-center;
+    @apply w-8 h-8 rounded  inline-flex justify-center items-center;
 }
+
 .sidebar-menu-text {
-    @apply text-sm font-semibold ms-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
+    @apply text-sm  ms-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
 }
 .sidebar-menu-item.active {
-    @apply text-white bg-primary-500 dark:bg-primary-50 hover:text-primary-900 dark:hover:text-primary-500;
+    @apply text-primary-200 dark:bg-primary-50 hover:text-primary-900 dark:hover:text-primary-500;
 }
 .table-header {
     @apply bg-primary-50 !text-text-light dark:!text-text-dark border-separate;

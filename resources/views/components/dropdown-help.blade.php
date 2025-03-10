@@ -4,7 +4,7 @@
 
 <div class="relative inline-flex" x-data="{ open: false }">
     <button
-        class="w-8 h-8 flex items-center justify-center bg-card-light dark:bg-card-dark hover:bg-primary-50 dark:hover:bg-primary-50 rounded-full"
+        class="w-8 h-8 flex items-center justify-center  hover:bg-primary-50 dark:hover:bg-primary-50 rounded-full"
         :class="{ 'bg-primary-50': open }" aria-haspopup="true" @click.prevent="open = !open" :aria-expanded="open">
         <span class="sr-only">Info</span>
         <svg class="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">

@@ -21,8 +21,8 @@
                 <a x-show="!sidebarExpanded" class="hidden lg:block mt-5" href="{{ route('dashboard') }}">
                     <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
                     <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
-                    
-                    
+
+
                 </a>
             </div>
 
@@ -33,38 +33,39 @@
                 {{--
                 <x-modal-search /> --}}
 
-                <!-- Notifications button -->
-                <x-dropdown-notifications align="right" />
 
-                <!-- Info button -->
-                {{--
-                <x-dropdown-help align="right" /> --}}
-
-                <!-- Dark mode toggle -->
-                <x-theme-toggle />
                 @php
-                    $languages = loadLanguage();
-                    $hasMultipleLanguages = count($languages) > 1;
-                    $current_language = currentLanguage() ?: loadDefaultLanguage();
-                    // dd($current_language);
+                $languages = loadLanguage();
+                $hasMultipleLanguages = count($languages) > 1;
+                $current_language = currentLanguage() ?: loadDefaultLanguage();
+                // dd($current_language);
                 @endphp
 
                 @if ($hasMultipleLanguages)
-                    <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form" class="!mb-0">
-                        <select name="language" id="language-switcher"
-                            class="form-select text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark border-white/60"
-                            onchange="document.getElementById('language-switcher-form').submit()">
-                            @foreach ($languages as $lang)
-                                <option value="{{ $lang->code }}"
-                                    {{ $lang->code === $current_language ? 'selected' : '' }}>
-                                    {{ $lang->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </form>
+                <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form" class="!mb-0">
+                    <select name="language" id="language-switcher" class="appearance-none bg-sidebar-light border-none dark:bg-sidebar-dark text-text-light dark:text-text-dark 
+                               px-4 py-2 rounded-md pr-10 
+                               bg-[url('data:image/svg+xml;utf8,<svg fill=\" %23ffffff\" viewBox=\"0 0 20 20\"
+                        xmlns=\"http://www.w3.org/2000/svg\">
+                        <path d=\"M5.516 7.548l4.484 4.5 4.484-4.5L16 9l-6 6-6-6 1.516-1.452z\" /></svg>')] bg-no-repeat
+                        bg-right">
+                        @foreach ($languages as $lang)
+                        <option value="{{ $lang->code }}" {{ $lang->code === $current_language ? 'selected' : '' }}>
+                            {{ $lang->name }}
+                        </option>
+                        @endforeach
+                    </select>
+
+                </form>
 
 
                 @endif
+                <!-- Dark mode toggle -->
+                <x-theme-toggle />
+                <!-- Notifications button -->
+                <x-dropdown-notifications align="right" />
+
+
                 <!-- Divider -->
                 <hr class="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
 
