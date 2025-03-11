@@ -5,34 +5,9 @@
 
     <!-- Sidebar -->
     <div id="sidebar"
-        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 bg-sidebar-light dark:bg-sidebar-dark transition-all duration-200 ease-in-out"
+        class="flex flex-col absolute z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-64 lg:w-20 lg:sidebar-expanded:!w-64  shrink-0 bg-sidebar-light dark:bg-[#202327] transition-all duration-200 ease-in-out"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-64'" @click.outside="sidebarOpen = false"
         @keydown.escape.window="sidebarOpen = false" x-cloak="lg" class="relative">
-
-        <!-- Sidebar header -->
-        <div class="px-3 py-1 sticky top-0 z-50 bg-sidebar-light dark:bg-sidebar-dark">
-
-            <div class="flex flex-wrap" :class="sidebarExpanded ? 'justify-between' : 'justify-center'">
-                <!-- Hamburger button -->
-                <button x-show="!sidebarExpanded" class="text-text-light hover:text-text-dark lg:block hidden mt-5"
-                    @click.stop="sidebarOpen = !sidebarOpen" aria-controls="sidebar" :aria-expanded="sidebarOpen"
-                    @click="sidebarExpanded = !sidebarExpanded">
-                    <span class="sr-only">{{ __('Open sidebar') }} {{ __() }}</span>
-                    <i class="fa-solid fa-bars text-2xl text-text-light dark:text-text-dark w-6"></i>
-                </button>
-                <!-- Logo link (shown only when sidebarExpanded is true) -->
-                <a class="block mt-3" x-show="sidebarExpanded" href="{{ route('dashboard') }}">
-                    <img class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt=""
-                        class="">
-                    <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class="awal">
-
-                </a>
-            </div>
-
-            <a class="lg:hidden" x-show="!sidebarExpanded" href="{{ route('dashboard') }}">
-                <img class="hidden dark:block" src="{{ asset('images/logo-inv.png') }}" alt="" class="">
-                <img class="dark:hidden" src="{{ asset('images/dark_logo.png') }}" alt="" class=""> </a>
-        </div>
 
         <!-- Links -->
         <div class="space-y-8 p-3">

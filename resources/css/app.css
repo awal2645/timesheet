@@ -23,7 +23,7 @@
     @apply text-sm  ms-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200;
 }
 .sidebar-menu-item.active {
-    @apply text-primary-200 dark:bg-primary-50 hover:text-primary-900 dark:hover:text-primary-500;
+    @apply text-primary-200 hover:text-primary-900 dark:hover:text-primary-500;
 }
 .table-header {
     @apply bg-primary-50 !text-text-light dark:!text-text-dark border-separate;

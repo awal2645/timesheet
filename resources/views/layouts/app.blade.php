@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ langDirection() }}" >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ langDirection() }}">
 
 <head>
     <meta charset="utf-8">
@@ -99,7 +99,6 @@
         .dark .cookie-btn-decline:hover {
             background-color: #334155;
         }
-      
     </style>
 </head>
 
@@ -115,21 +114,21 @@
     </script>
 
     <!-- Page wrapper -->
-    <div class="flex h-[100dvh] overflow-hidden">
-
-        <x-app.sidebar />
-
-        <!-- Content area -->
-        <div class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden @if ($attributes['background']) {{ $attributes['background'] }} @endif"
-            x-ref="contentarea">
-
-            <x-app.header />
-
-            <main class="grow">
+    <div class="flex flex-col h-[100dvh] overflow-hidden">
+        <x-app.header />
+        <main class="grow flex">
+            <x-app.sidebar />
+            <div class="flex-1 dark:bg-[#202327]">
                 {{ $slot }}
-            </main>
-            <x-app.footer />
-        </div>
+            </div>
+        </main>
+    </div>
+
+    <x-app.footer />
+    {{ $slot }}
+    </main>
+    <x-app.footer />
+    </div>
 
     </div>
 
@@ -138,10 +137,9 @@
     <!-- SweetAlert JavaScript -->
     <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    
 
-    <link rel="stylesheet" type="text/css"
-        href="{{ asset('css/toastr/toastr.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/toastr/toastr.min.css') }}">
 
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <link href="{{ asset('css/select2/select2.min.css') }}" rel="stylesheet" />
@@ -152,7 +150,7 @@
             toastr.options = {
                 "progressBar": true,
                 "positionClass": "toast-top-center",
-              
+
             }
             toastr.success("{{ session('success') }}");
         @endif
@@ -212,7 +210,8 @@
     <div class="cookie-consent" id="cookieConsent">
         <div class="cookie-content">
             <h4 class="text-lg font-semibold mb-2">🍪 We use cookies</h4>
-            <p class="text-sm">We use cookies to enhance your browsing experience and analyze our traffic. By clicking "Accept", you consent to our use of cookies.</p>
+            <p class="text-sm">We use cookies to enhance your browsing experience and analyze our traffic. By clicking
+                "Accept", you consent to our use of cookies.</p>
             <div class="cookie-consent-buttons">
                 <button class="cookie-btn cookie-btn-accept" onclick="acceptCookies()">Accept</button>
                 <button class="cookie-btn cookie-btn-decline" onclick="declineCookies()">Decline</button>
