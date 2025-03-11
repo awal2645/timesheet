@@ -10,7 +10,7 @@
         @keydown.escape.window="sidebarOpen = false" x-cloak="lg" class="relative">
 
         <!-- Links -->
-        <div class="space-y-8 p-3">
+        <div class="space-y-8 py-3 px-8">
             <!-- Pages group -->
             <div>
                 <ul class="mt-3 space-y-2">
