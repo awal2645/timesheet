@@ -13,12 +13,12 @@
             <img class="w-8 h-8 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/logo_symbol.png') }}"
                 width="32" height="32" alt="{{ auth('web')->user()->username }}" />
         @endif
-        <div class="flex items-center truncate">
+        <div class="flex gap-2 items-center truncate">
             <span
-                class="truncate ms-3 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200 capitalize">{{ auth('web')->user()->username }}</span>
-            {{-- <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-slate-400" viewBox="0 0 12 12">
+                class="truncate ms-3 text-sm font-medium text-primary-300 capitalize">{{ auth('web')->user()->username }}</span>
+            <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-primary-300" viewBox="0 0 12 12">
                 <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-            </svg> --}}
+            </svg>
         </div>
     </button>
     <div class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800   text-text-light  
