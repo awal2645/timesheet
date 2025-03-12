@@ -102,34 +102,17 @@
     </style>
 </head>
 
-<body class="antialiased bg-body-light dark:bg-body-dark text-slate-600 dark:text-slate-400"
-    :class="{ 'sidebar-expanded': sidebarExpanded }" x-data="{ sidebarOpen: false, sidebarExpanded: localStorage.getItem('sidebar-expanded') == 'true' }" x-init="$watch('sidebarExpanded', value => localStorage.setItem('sidebar-expanded', value))" x-cloak>
-
-    <script>
-        if (localStorage.getItem('sidebar-expanded') == 'true') {
-            document.querySelector('body').classList.add('sidebar-expanded');
-        } else {
-            document.querySelector('body').classList.remove('sidebar-expanded');
-        }
-    </script>
-
+<body>
     <!-- Page wrapper -->
-    <div class="flex flex-col h-[100dvh] overflow-hidden">
+    <div class="flex flex-col h-screen overflow-hidden">
         <x-app.header />
-        <main class="grow flex">
+        <main class="flex h-[calc(100vh-128px)]">
             <x-app.sidebar />
-            <div class="flex-1 dark:bg-[#202327]">
+            <div class="flex-1 dark:bg-[#202327] h-screen overflow-hidden overflow-y-auto no-scrollbar">
                 {{ $slot }}
             </div>
         </main>
-    </div>
-
-    <x-app.footer />
-    {{ $slot }}
-    </main>
-    <x-app.footer />
-    </div>
-
+        <x-app.footer />
     </div>
 
     @livewireScripts
