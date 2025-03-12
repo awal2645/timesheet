@@ -29,8 +29,8 @@
                     <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form"
                         class="!mb-0">
                         <select name="language" id="language-switcher"
-                            class="appearance-none bg-sidebar-light border-none dark:bg-sidebar-dark text-text-light dark:text-text-dark 
-                               px-4 py-2 rounded-md pr-10 
+                            class="appearance-none bg-transparent border-none focus:ring-0 text-text-light dark:text-text-dark 
+                               px-4 py-2 rounded-md
                                bg-[url('data:image/svg+xml;utf8,<svg fill=\" %23ffffff\" viewBox=\"0 0 20 20\"
                         xmlns=\"http://www.w3.org/2000/svg\">
                         <path d=\"M5.516 7.548l4.484 4.5 4.484-4.5L16 9l-6 6-6-6 1.516-1.452z\" /></svg>')] bg-no-repeat
@@ -54,7 +54,7 @@
 
 
                 <!-- Divider -->
-                <hr class="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" />
+                {{-- <hr class="w-px h-6 bg-slate-200 dark:bg-slate-700 border-none" /> --}}
 
                 <!-- User button -->
                 <x-dropdown-profile align="right" />
