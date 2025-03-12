@@ -34,11 +34,11 @@
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                 {{ __('Employee List') }}</h2>
                             <div>
-                                <div class="card overflow-x-auto">
+                                <div class="card overflow-x-auto !p-0">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">
-                                                <tr class="rounded-2xl text-left">
+                                                <tr class="rounded-none text-left">
                                                     <th class="min-w-[220px] px-4 py-4 font-medium">
                                                         <div class="flex gap-2 items-center text-base">
                                                             <span>{{ __('Employee Name') }}</span>

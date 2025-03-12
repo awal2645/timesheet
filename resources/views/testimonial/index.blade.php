@@ -35,7 +35,7 @@
                                 {{ __('Testimonials List') }}
                             </h2>
                             <div>
-                                <div class="card overflow-x-auto">
+                                <div class="card overflow-x-auto !p-0">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">

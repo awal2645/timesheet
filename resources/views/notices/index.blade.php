@@ -35,10 +35,10 @@
                             {{ __('Notice List') }}
                         </h2>
                         <div>
-                            <div class="card overflow-x-auto">
+                            <div class="card overflow-x-auto !p-0">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
-                                        <tr class="rounded-2xl text-left">
+                                        <tr class="rounded-none text-left">
                                             <th class="px-4 py-4 font-medium">
                                                 {{ __('Title') }}
                                             </th>

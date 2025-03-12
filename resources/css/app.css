@@ -26,16 +26,13 @@
     @apply text-primary-200 hover:text-primary-900 dark:hover:text-primary-500;
 }
 .table-header {
-    @apply bg-primary-50 !text-text-light dark:!text-text-dark border-separate;
+    @apply dark:bg-[#0D0D0D] !rounded-none !text-text-light dark:!text-text-dark border-separate;
+}
+.table-header tr {
+    @apply !rounded-none;
 }
 .table-header th {
-    @apply px-4 py-4 font-medium;
-}
-.table-header tr th:first-child {
-    @apply rounded-l-md;
-}
-.table-header tr th:last-child {
-    @apply rounded-r-md;
+    @apply px-4 py-4 font-medium rounded-none;
 }
 
 .form-field {

@@ -54,7 +54,7 @@
                                     class="p-6 rounded-2xl dark:bg-card-dark bg-card-light shadow-xl border border-black/10 dark:border-white/10">
                                     <table class="w-full table-auto">
                                         <thead class="table-header">
-                                            <tr class="rounded-2xl text-left">
+                                            <tr class="rounded-none text-left">
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">{{ __('Name') }}
                                                 </th>
                                                 <th class="min-w-[150px] px-4 py-4 font-medium">{{ __('Date') }}

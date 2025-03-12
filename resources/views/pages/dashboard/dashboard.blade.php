@@ -210,10 +210,10 @@
                                 <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                     {{ __('Recent Invoice') }}</h2>
                                 <div>
-                                    <div class="card overflow-x-auto">
+                                    <div class="card overflow-x-auto !p-0">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">
-                                                <tr class="rounded-2xl text-left">
+                                                <tr class="rounded-none text-left">
                                                     <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
                                                     <th class="p-4 font-medium">{{ __('Date') }}</th>
                                                     <th class="p-4 font-medium">{{ __('Plan Name') }}</th>

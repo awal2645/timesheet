@@ -31,10 +31,10 @@
                         <div class="invoices-table">
                             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                                 {{ __('Latest Meeting') }}</h2>
-                            <div class="card overflow-x-auto">
+                            <div class="card overflow-x-auto !p-0">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
-                                        <tr class="rounded-2xl text-left">
+                                        <tr class="rounded-none text-left">
                                             <th class="min-w-[220px] px-4 py-4 font-medium">
                                                 {{ __('Meeting Topic') }}
                                             </th>
