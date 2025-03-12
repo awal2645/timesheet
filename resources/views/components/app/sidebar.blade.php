@@ -5,7 +5,7 @@
 
     <!-- Sidebar -->
     <div id="sidebar"
-        class="flex flex-col h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar grow w-full max-w-64 bg-sidebar-light dark:bg-[#202327] transition-all duration-200 ease-in-out">
+        class="flex flex-col h-[calc(100vh-128px)] overflow-y-scroll lg:overflow-y-auto no-scrollbar grow w-full max-w-64 bg-sidebar-light dark:bg-[#202327] transition-all duration-200 ease-in-out">
 
         <!-- Links -->
         <div class="space-y-8 py-3 px-8">

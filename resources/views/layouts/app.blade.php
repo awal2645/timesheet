@@ -102,18 +102,16 @@
     </style>
 </head>
 
-<body>
+<body class="h-screen overflow-hidden">
     <!-- Page wrapper -->
-    <div class="flex flex-col h-screen overflow-hidden">
         <x-app.header />
         <main class="flex h-[calc(100vh-128px)]">
             <x-app.sidebar />
-            <div class="flex-1 dark:bg-[#202327] h-screen overflow-hidden overflow-y-auto no-scrollbar">
+            <div class="flex-1 dark:bg-[#202327] h-[calc(100vh-128px)] overflow-y-auto no-scrollbar">
                 {{ $slot }}
             </div>
         </main>
         <x-app.footer />
-    </div>
 
     @livewireScripts
 
