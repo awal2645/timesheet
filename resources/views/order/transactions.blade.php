@@ -30,7 +30,7 @@
                 <div class="w-full">
                     <div class="dashboard-right ps-0">
                         <div class="invoices-table">
-                            <div class="card overflow-x-auto !p-0">
+                            <div class="card overflow-x-auto !p-0 !rounded-md">
                                     <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
                                         {{ __('Recent Invoice') }}</h2>
                                     <div>

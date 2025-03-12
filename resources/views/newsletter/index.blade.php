@@ -31,7 +31,7 @@
                         <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
                             {{ __('Latest Contacts') }}</h2>
                         <div>
-                            <div class="card overflow-x-auto !p-0">
+                            <div class="card overflow-x-auto !p-0 !rounded-md">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
                                         <tr class="rounded-none text-left">

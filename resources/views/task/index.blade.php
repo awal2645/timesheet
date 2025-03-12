@@ -70,7 +70,7 @@
                             <h2
                                 class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">
                                 {{ __('Latest Tasks') }}</h2>
-                            <div class="card overflow-x-auto !p-0">
+                            <div class="card overflow-x-auto !p-0 !rounded-md">
                                 <div class="max-w-full">
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

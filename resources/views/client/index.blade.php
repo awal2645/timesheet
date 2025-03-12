@@ -36,7 +36,7 @@
                                 {{ __('Client List') }}
                             </h2>
                             <div>
-                                <div class="card overflow-x-auto !p-0">
+                                <div class="card overflow-x-auto !p-0 !rounded-md">
                                     <div class="max-w-full">
                                         <table class="w-full table-auto">
                                             <thead class="table-header">

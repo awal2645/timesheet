@@ -25,7 +25,7 @@
             </a>
         </div>
 
-        <div class="card overflow-x-auto !p-0 mt-12">
+        <div class="card overflow-x-auto !p-0 !rounded-md mt-12">
             <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">{{ __('Email Histories') }}
             </h2>
             <div>

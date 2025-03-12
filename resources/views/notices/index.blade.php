@@ -35,7 +35,7 @@
                             {{ __('Notice List') }}
                         </h2>
                         <div>
-                            <div class="card overflow-x-auto !p-0">
+                            <div class="card overflow-x-auto !p-0 !rounded-md">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
                                         <tr class="rounded-none text-left">
