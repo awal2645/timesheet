@@ -91,7 +91,7 @@
                                                 <th scope="col" class="">
                                                     {{ __('Time Spent') }}
                                                 </th>
-                                                <th scope="col" class="">
+                                                <th scope="col" class="text-center">
                                                     {{ __('Status') }}
                                                 </th>
                                                 <th scope="col" class="">
@@ -183,7 +183,7 @@
                                                             </div>
                                                         </td>
                                                         <td class="px-6 py-4">
-                                                            <div class="flex items-center gap-2">
+                                                            <div class="flex items-center gap-2 justify-center">
                                                                 <div class="h-2.5 w-2.5 rounded-full"
                                                                     id="statusIndicator"
                                                                     style="background-color: {{ $task->status === 'completed' ? 'green' : ($task->status === 'inprogress' ? 'blue' : 'red') }};">

@@ -39,7 +39,7 @@
                                                 {{ __('Email') }}
                                             </th>
 
-                                            <th class="min-w-[120px] px-4 py-4 font-medium text-end">
+                                            <th class="min-w-[120px] px-4 py-4 !pe-12 font-medium text-end">
                                                 {{ __('Action') }}
                                             </th>
                                         </tr>
