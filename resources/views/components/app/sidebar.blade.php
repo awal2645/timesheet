@@ -191,18 +191,17 @@
 
                         <li x-data="{
                             open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
-                        }" x-effect="if (!sidebarExpanded) open = true">
-                            <a href="#" @click.stop="sidebarExpanded && (open = !open)"
+                        }">
+                            <a href="#" @click.stop="open = !open"
                                 class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
                                 <div class="flex items-center">
                                     <span class="sidebar-menu-icon">
                                         <i class="fa-solid fa-person-walking-arrow-right"></i> </span>
-                                    <span class="sidebar-menu-text text-text-light dark:text-text-dark"
-                                        x-show="sidebarExpanded">
+                                    <span class="sidebar-menu-text text-text-light dark:text-text-dark">
                                         {{ __('Leave Management') }}
                                     </span>
                                 </div>
-                                <div x-show="sidebarExpanded"
+                                <div 
                                     class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
                                     <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-gray-white"
                                         :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
@@ -210,8 +209,8 @@
                                     </svg>
                                 </div>
                             </a>
-                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent">
-                                <ul class="mt-1" :class="sidebarExpanded ? 'ps-9' : 'ps-0'" x-show="open" x-collapse>
+                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent ps-5">
+                                <ul class="mt-1" x-show="open" x-collapse>
                                     @canany('Leave view')
                                         <!--  Leave -->
                                         <li class="mb-1 last:mb-0">
