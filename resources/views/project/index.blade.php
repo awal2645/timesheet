@@ -5,7 +5,7 @@
 
 <x-app-layout>
     <div class="relative m-6">
-        <div class="card mb-4 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0">
+        <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
             <form action="{{ route('project.index') }}" method="GET" class="w-full">
                 <div class="mb-3">
                     <label for="search"
@@ -15,13 +15,13 @@
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
                         <button
-                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">{{ __('Search') }}</button>
+                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">{{ __('Search') }}</button>
                     </div>
                 </div>
             </form>
             @canany('Project create')
                 <a href="{{ route('project.create') }}"
-                    class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-md hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                     <i class="fa-solid fa-plus"></i> {{ __('Create Project') }}
                 </a>
             @endcanany
@@ -31,14 +31,13 @@
         <div class="flex flex-wrap">
             <div class="w-full ">
                 <div class="dashboard-right ps-0 ">
-                    <div class="invoices-table ">
-                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
+                    <div class="card overflow-x-auto !p-0 !rounded-md">
+                        <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
                             {{ __('Latest Project') }}</h2>
-                        <div class="card overflow-x-auto !p-0 !rounded-md">
                             <div class="max-w-full">
                                 <table class="w-full table-auto">
                                     <thead class="table-header">
-                                        <tr class="rounded-2xl text-left ">
+                                        <tr class="rounded-lg text-left ">
                                             <th class="min-w-[220px] px-4 py-4 font-medium">{{ __('Project Name') }}
                                             </th>
                                             <th class="min-w-[150px] px-4 py-4 font-medium">{{ __('Client Name') }}
@@ -150,14 +149,16 @@
                     </div>
                 </div>
             </div>
-        </div>
-        @if ($projects->total() > $projects->count())
-            <div class="mt-2">
-                <div class="d-flex justify-content-center">
+            {{-- Pagination --}}
+            @if ($projects->total() > $projects->count())
+                <div class="mt-2">
+                    <div class="d-flex justify-content-center">
                     {{ $projects->links() }}
+                    </div>
                 </div>
-            </div>
-        @endif
+            @endif
+        </div>
+
     </div>
     <script>
         function showConfirmation() {

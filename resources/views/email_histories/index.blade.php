@@ -1,10 +1,11 @@
 @section('title', 'Email Histories')
 
 <x-app-layout>
-    <div class="m-6">
-        <div class="card flex md:flex-row flex-col justify-between items-start md:items-center">
-            <form action="{{ route('emails.index') }}" method="GET" class="w-full">
-                <div class="mb-3">
+    <div class="relative m-6">
+        <div>
+            <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
+                <form action="{{ route('emails.index') }}" method="GET" class="w-full">
+                    <div class="mb-3">
                     <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                         {{ __('Search') }}
                     </label>
@@ -13,20 +14,20 @@
                             class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="{{ __('Search') }}" />
                         <button
-                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                            class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                             {{ __('Search') }}
                         </button>
                     </div>
                 </div>
             </form>
             <a href="{{ route('emails.send.form') }}"
-                class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-lg hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                class="bg-primary-50 text-text-light dark:text-text-dark px-5 py-2 rounded-md hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                 <i class="fa-solid fa-plus"></i> {{ __('Send Email') }}
             </a>
         </div>
 
-        <div class="card overflow-x-auto !p-0 !rounded-md mt-12">
-            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">{{ __('Email Histories') }}
+        <div class="card overflow-x-auto !p-0 !rounded-md ">
+           <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">{{ __('Email Histories') }}
             </h2>
             <div>
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -83,6 +84,7 @@
                     </div>
                 </div>
             @endif
+        </div>
         </div>
     </div>
 </x-app-layout>

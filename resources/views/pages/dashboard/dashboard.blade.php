@@ -1,11 +1,12 @@
 @section('title')
-    {{ 'Dashboard' }}
+{{ 'Dashboard' }}
 @endsection
 <x-app-layout>
 
     <head>
         <!-- Add Slick Carousel CSS -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+        <link rel="stylesheet" type="text/css"
+            href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
         <link rel="stylesheet" type="text/css"
             href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
     </head>
@@ -60,15 +61,15 @@
             <!-- Content -->
             <div class="relative">
                 <h1 id="greeting"
-                    class="text-2xl md:text-3xl text-slate-900 dark:text-slate-300 font-bold mb-1 capitalize">
-                    Good , <span id="usernamePlaceholder"></span> </h1>
+                    class="text-2xl md:text-3xl font-bold mb-1 capitalize bg-gradient-to-r from-green-300 to-cyan-500 bg-clip-text text-transparent">
+                    Good , <span id="usernamePlaceholder" class="text-text-light dark:text-text-dark"></span> </h1>
                 @if (auth('web')->user()->role == 'employee')
-                    <p class="dark:text-indigo-200">Here is what's happening with your projects today</p>
-                    <p class="dark:text-indigo-200">Employer name:
-                        {{ auth('web')->user()->employee->employer->employer_name }}</p>
-                    <p class="dark:text-indigo-200">Employer Email:
-                        {{ auth('web')->user()->employee->employer->user->email }}
-                    </p>
+                <p class="dark:text-indigo-200">Here is what's happening with your projects today</p>
+                <p class="dark:text-indigo-200">Employer name:
+                    {{ auth('web')->user()->employee->employer->employer_name }}</p>
+                <p class="dark:text-indigo-200">Employer Email:
+                    {{ auth('web')->user()->employee->employer->user->email }}
+                </p>
                 @endif
             </div>
 
@@ -102,7 +103,7 @@
                             greetingElement.innerText = `{{ __('Good afternoon') }}, ${username} 👋`;
                             break;
                         case 'evening':
-                            greetingElement.innerText = `{{ __('Good evening') }}, ${username} 👋`;
+                            greetingElement.innerText = `{{ __('Good evening') }},  ${username} 👋`;
                             break;
                         default:
                             greetingElement.innerText = `{{ __('Hello') }}, ${username} 👋`;
@@ -128,15 +129,15 @@
 
             <!-- New Chart Cards -->
             @if (auth()->user()->role != 'client' && auth()->user()->role != 'employee')
-                <div class="col-span-12 xl:col-span-6">
-                    <div
-                        class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
-                        <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Monthly Earnings') }}</h3>
-                        <div style="height: 300px;">
-                            <canvas id="monthlyChart"></canvas>
-                        </div>
+            <div class="col-span-12 xl:col-span-6">
+                <div
+                    class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
+                    <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Monthly Earnings') }}</h3>
+                    <div style="height: 300px;">
+                        <canvas id="monthlyChart"></canvas>
                     </div>
                 </div>
+            </div>
             @endif
             <div class="col-span-12 xl:col-span-6">
                 <div
@@ -149,147 +150,148 @@
             </div>
             <!-- Notice Board -->
             @canany('Notice view')
-                <div class="col-span-12">
-                    <div
-                        class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
-                        <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Notice Board') }}</h3>
-                        <!-- News Ticker/Scroller -->
-                        <div class="relative overflow-hidden group">
-                            <!-- Scrolling Content -->
-                            <div class="notice-carosel">
-                                @forelse (notice() as $notice)
-                                    <div
-                                        class="mx-3 p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
-                                        <div class="flex justify-between items-start">
-                                            <h4 class="font-semibold text-gray-900 dark:text-white">
-                                                {{ $notice->title }}
-                                            </h4>
-                                            <span
-                                                class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans() }}</span>
-                                        </div>
-                                        <p class="mt-2 text-gray-600 dark:text-gray-300 !whitespace-normal">
-                                            {{ $notice->content }}
-                                        </p>
-                                        <div class="mt-2">
-                                            <span
-                                                class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
-                                                @php
-                                                    // Split the role string into an array
-                                                    $noticeRoles = explode(',', $notice->role);
-                                                    $rolesList = [];
-                                                @endphp
-                                                @foreach (roles() as $role)
-                                                    @if (in_array($role->id, $noticeRoles))
-                                                        @php
-                                                            $rolesList[] = ucfirst($role->name);
-                                                        @endphp
-                                                    @endif
-                                                @endforeach
-                                                {{-- Output the roles with commas, but not after the last role --}}
-                                                {{ implode(', ', $rolesList) }}
-                                            </span>
-                                        </div>
-                                    </div>
-                                @empty
-                                    <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}
-                                    </p>
-                                @endforelse
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endcanany
-        </div>
-        @if (auth()->user()->role != 'employee' && auth()->user()->role != 'client')
-            <div class="mt-5">
-                <div class="flex flex-wrap">
-                    <div class="w-full">
-                        <div class="dashboard-right ps-0">
-                            <div class="invoices-table">
-                                <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
-                                    {{ __('Recent Invoice') }}</h2>
-                                <div>
-                                    <div class="card overflow-x-auto !p-0 !rounded-md">
-                                        <table class="w-full table-auto">
-                                            <thead class="table-header">
-                                                <tr class="rounded-none text-left">
-                                                    <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Date') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Amount') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
-                                                    <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ($transactions as $transaction)
-                                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            #{{ $transaction->order_id }}</td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            @if ($transaction->payment_type == 'per_job_based')
-                                                                <span
-                                                                    class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
-                                                                    {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
-                                                                </span>
-                                                            @else
-                                                                <span
-                                                                    class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
-                                                                    {{ $transaction->plan->label }}
-                                                                </span>
-                                                            @endif
-                                                        </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            {{ ucfirst($transaction->employer->employer_name) ?? '' }}
-                                                        </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            ${{ $transaction->usd_amount }}</td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            {{ $transaction->payment_provider == 'offline' ? __('offline') . (optional($transaction->manualPayment)->name ? " (<b>{$transaction->manualPayment->name}</b>)" : '') : ucfirst($transaction->payment_provider) }}
-                                                        </td>
-                                                        <td
-                                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
-                                                            <span
-                                                                class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
-                                                                {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td colspan="8" class="text-center py-8">
-                                                            <x-svgs.no-data-found
-                                                                class="mx-auto md:size-[360px] size-[220px]" />
-                                                        </td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
+            <div class="col-span-12">
+                <div
+                    class="bg-card-light rounded-lg backdrop-blur border border-black/10 dark:bg-card-dark dark:border-white/10 p-4">
+                    <h3 class="text-lg font-semibold mb-4 dark:text-white">{{ __('Notice Board') }}</h3>
+                    <!-- News Ticker/Scroller -->
+                    <div class="relative overflow-hidden group">
+                        <!-- Scrolling Content -->
+                        <div class="notice-carosel">
+                            @forelse (notice() as $notice)
+                            <div
+                                class="mx-3 p-4 bg-white/5 backdrop-blur border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-card-light dark:hover:bg-gray-700/50 transition-all duration-300">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="font-semibold text-gray-900 dark:text-white">
+                                        {{ $notice->title }}
+                                    </h4>
+                                    <span class="text-sm text-gray-500">{{ $notice->created_at->diffForHumans()
+                                        }}</span>
                                 </div>
-                            </div>
-                            @if ($transactions->total() > $transactions->count())
+                                <p class="mt-2 text-gray-600 dark:text-gray-300 !whitespace-normal">
+                                    {{ $notice->content }}
+                                </p>
                                 <div class="mt-2">
-                                    <div class="d-flex justify-content-center">
-                                        {{ $transactions->links() }}
-                                    </div>
+                                    <span
+                                        class="text-xs px-2 py-1 bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200 rounded-full">
+                                        @php
+                                        // Split the role string into an array
+                                        $noticeRoles = explode(',', $notice->role);
+                                        $rolesList = [];
+                                        @endphp
+                                        @foreach (roles() as $role)
+                                        @if (in_array($role->id, $noticeRoles))
+                                        @php
+                                        $rolesList[] = ucfirst($role->name);
+                                        @endphp
+                                        @endif
+                                        @endforeach
+                                        {{-- Output the roles with commas, but not after the last role --}}
+                                        {{ implode(', ', $rolesList) }}
+                                    </span>
                                 </div>
-                            @endif
+                            </div>
+                            @empty
+                            <p class="text-center text-gray-500 dark:text-gray-300">{{ __('No notices found') }}
+                            </p>
+                            @endforelse
+
                         </div>
                     </div>
                 </div>
             </div>
-        @endif
+            @endcanany
+        </div>
+        @if (auth()->user()->role != 'employee' && auth()->user()->role != 'client')
+        <div class="mt-5">
+            <div class="flex flex-wrap">
+                <div class="w-full">
+                    <div class="dashboard-right ps-0">
+                        <div class="card overflow-x-auto !p-0 !rounded-md">
+                            <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
+                                {{ __('Recent Invoice') }}</h2>
+                            <table class="w-full table-auto">
+                                <thead class="table-header">
+                                    <tr class="rounded-none text-left">
+                                        <th class="p-4 font-medium">{{ __('Invoice Number') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Date') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Plan Name') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Employer Name') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Amount') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Payment Gateway') }}</th>
+                                        <th class="p-4 font-medium">{{ __('Payment Status') }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($transactions as $transaction)
+                                    <tr class="hover:bg-gray-100 hover:dark:bg-gray-800">
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            #{{ $transaction->order_id }}</td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            {{ formatTime($transaction->created_at, 'M, d Y') }}</td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            @if ($transaction->payment_type == 'per_job_based')
+                                            <span
+                                                class="flex items-center justify-center px-2 py-1 w-[170px] text-sm bg-gray-300 rounded truncate">
+                                                {{ ucfirst(Str::replace('_', ' ', $transaction->payment_type)) }}
+                                            </span>
+                                            @else
+                                            <span
+                                                class="flex items-center justify-center px-2 py-1 w-[100px] text-sm bg-primary-50 text-white rounded truncate">
+                                                {{ $transaction->plan->label }}
+                                            </span>
+                                            @endif
+                                        </td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            {{ ucfirst($transaction->employer->employer_name) ?? '' }}
+                                        </td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            ${{ $transaction->usd_amount }}</td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            {{ $transaction->payment_provider == 'offline' ? __('offline') .
+                                            (optional($transaction->manualPayment)->name ? "
+                                            (<b>{$transaction->manualPayment->name}</b>)" : '') :
+                                            ucfirst($transaction->payment_provider) }}
+                                        </td>
+                                        <td
+                                            class="border-b border-[#eee] dark:border-slate-700 px-4 py-3 dark:border-strokedark">
+                                            <span
+                                                class="px-2 py-1 flex items-center justify-center text-sm   w-[100px] truncate {{ $transaction->payment_status == 'paid' ? 'bg-green-500' : 'bg-yellow-500' }} text-white rounded">
+                                                {{ $transaction->payment_status == 'paid' ? __('paid') : __('unpaid') }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center py-8">
+                                            <x-svgs.no-data-found class="mx-auto md:size-[360px] size-[220px]" />
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Pagination --}}
+            @if ($transactions->total() > $transactions->count())
+            <div class="mt-2">
+                <div class="d-flex justify-content-center">
+                    {{ $transactions->links() }}
+                </div>
+            </div>
+            @endif
+        </div>
+    </div>
+    </div>
+    @endif
     </div>
 </x-app-layout>
 

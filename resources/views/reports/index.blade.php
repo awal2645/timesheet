@@ -35,7 +35,7 @@
                                 </select>
                             </div>
                             <button type="submit"
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md ms-2 hover:bg-primary-50 transition duration-200 shadow-md hover:shadow-lg whitespace-nowrap">
                                 {{ __('Search') }}
                             </button>
                         </div>
@@ -46,13 +46,10 @@
             <div class="flex flex-wrap">
                 <div class="w-full">
                     <div class="dashboard-right ps-0">
-                        <div class="invoices-table">
-                            <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
+                        <div class="card overflow-x-auto !p-0 !rounded-md">
+                            <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
                                 {{ __('Latest Report') }}</h2>
-                            <div>
-                                <div
-                                    class="p-6 rounded-2xl dark:bg-card-dark bg-card-light shadow-xl border border-black/10 dark:border-white/10">
-                                    <table class="w-full table-auto">
+                            <table class="w-full table-auto">
                                         <thead class="table-header">
                                             <tr class="rounded-none text-left">
                                                 <th class="min-w-[220px] px-4 py-4 font-medium">{{ __('Name') }}

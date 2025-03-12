@@ -9,10 +9,10 @@
             <div class="">
                 <div class="mb-4 flex justify-between">
                     <button id="previousWeek"
-                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-30  0 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
+                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-30  0 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Previous
                         Week</button>
                     <button id="nextWeek"
-                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
+                        class="text-text-light dark:text-text-dark bg-primary-50 hover:bg-primary-300 focus:outline-none focus:ring-4 focus:ring-primary-300 font-medium rounded-md text-sm px-5 py-2.5 text-center mb-2 dark:bg-primary-50 dark:hover:bg-primary-50 dark:focus:ring-primary-900">Next
                         Week</button>
                 </div>
             </div>

@@ -445,7 +445,7 @@
                         </li>
                     @endcanany
                     <!-- Language -->
-                    @canany('Language')
+                    {{-- @canany('Language') --}}
                         <li>
                             <a href="{{ route('languages.index') }}"
                                 class="sidebar-menu-item {{ request()->routeIs('languages.*') ? 'active' : '' }}  ">
@@ -461,7 +461,7 @@
                                 </div>
                             </a>
                         </li>
-                    @endcanany
+                    {{-- @endcanany --}}
                     <!-- Contact -->
                     @canany('Contact view')
                         <li>
@@ -599,7 +599,7 @@
                                             <i class="fa-solid fa-upload text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
-                                            {{ __('Upgrade Application') }}
+                                            {{ __('Update Application') }}
                                         </span>
                                     </div>
                                 </div>

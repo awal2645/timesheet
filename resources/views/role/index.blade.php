@@ -3,7 +3,7 @@
 @endsection
 <x-app-layout>
     <div class="relative m-6">
-        <div class="flex flex-col md:flex-row justify-end items-center card mb-12">
+        <div class="flex flex-col md:flex-row justify-end items-center card my-8">
 
             <a href="{{ route('role.create') }}"
                 class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
@@ -11,7 +11,7 @@
             </a>
         </div>
         <!-- Start heading here -->
-        <div class="card !p-0">
+        <div class="card overflow-x-auto !p-0 !rounded-md ">
             <div class="w-full ">
                 <div class="dashboard-right ps-0 ">
                     <div class="invoices-table ">

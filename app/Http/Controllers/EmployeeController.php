@@ -141,6 +141,25 @@ class EmployeeController extends Controller
     }
 
     /**
+     * Update employee status
+     * 
+     * @param Request $request Contains status update
+     * @param int $id Employee ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateStatus(Request $request, $id)
+    {
+        try {
+            $employee = Employee::findOrFail($id);
+            $employee->update(['status' => $request->status]);
+            
+            return redirect()->back()->with('success', 'Status updated successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while updating status: ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Delete employee record
      * @param string $id Employee ID
      * @return \Illuminate\Http\RedirectResponse

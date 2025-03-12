@@ -16,7 +16,7 @@
 
         <!-- Main Content -->
         <div
-            class="bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-2xl shadow-xl overflow-hidden">
+            class="bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-xl overflow-hidden">
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 p-8">
                 <!-- Form Section -->
                 <div class="space-y-6">

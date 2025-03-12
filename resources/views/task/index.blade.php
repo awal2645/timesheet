@@ -42,35 +42,32 @@
     }
 </style>
 <x-app-layout>
-    <div class="relative overflow-x-auto">
-        <div class="m-6">
-            <div
-                class=" mt-10 mb-3 flex flex-col md:flex-row justify-between items-start md:items-center md:space-y-0 card">
+    <div class="relative m-6">
+        <div>
+            <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
                 <form action="{{ route('task.index') }}" method="GET">
                     <div class="mb-3">
                         <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
                             {{ __('Search') }}</label>
-                        <div class="flex form-field">
-                            <input type="text" id="search" name="search" placeholder="{{ __('Search') }}"
+                            <div class="flex flex-wrap">
+                                <input type="text" id="search" name="search" class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-md focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="{{ __('Search') }}"
                                 value="{{ request('search') }}" />
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg  ms-2">{{ __('Search') }}</button>
+                                class="bg-primary-50 rounded-md text-text-light dark:text-text-dark px-4 py-2 ms-2">{{ __('Search') }}</button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('task.create') }}"
-                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                        class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
+                    <a href="{{ route('task.create') }}"
+                        class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                            class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
             </div>
             <!-- Start heading here -->
             <div class="flex flex-wrap">
                 <div class="w-full ">
                     <div class="dashboard-right ps-0 ">
-                        <div class="tasks-table ">
-                            <h2
-                                class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark">
+                        <div class="card overflow-x-auto !p-0 !rounded-md">
+                            <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
                                 {{ __('Latest Tasks') }}</h2>
-                            <div class="card overflow-x-auto !p-0 !rounded-md">
                                 <div class="max-w-full">
                                     <table
                                         class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

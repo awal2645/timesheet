@@ -25,12 +25,12 @@
                                 @endforeach
                             </select>
                             <button
-                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg ms-2">{{ __('Update') }}</button>
+                                class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md ms-2">{{ __('Update') }}</button>
                         </div>
                     </div>
                 </form>
                 <a href="{{ route('plans.create') }}"
-                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
+                    class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-md"><i
                         class="fa-solid fa-plus"></i> {{ __('Create Plan') }}</a>
             </div>
         @endcanany

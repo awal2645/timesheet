@@ -9,7 +9,7 @@
                                 <!-- Current Plan Card -->
                                 <div class="h-full">
                                     <div
-                                        class="relative h-full overflow-hidden bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700">
+                                        class="relative h-full overflow-hidden bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-100 dark:border-gray-700">
                                         <!-- Decorative Background Pattern -->
                                         <div class="absolute inset-0 opacity-5 dark:opacity-10">
                                             <div
@@ -51,7 +51,7 @@
                                 <!-- Benefits Card -->
                                 <div class="h-full">
                                     <div
-                                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 p-8 h-full">
+                                        class="bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-100 dark:border-gray-700 p-8 h-full">
                                         <div class="flex items-center justify-between mb-8">
                                             <h4 class="text-xl font-bold text-gray-900 dark:text-white">
                                                 {{ __('Current Plan Benefits') }}
@@ -103,11 +103,9 @@
                         <div class="flex flex-wrap">
                             <div class="w-full">
                                 <div class="dashboard-right ps-0">
-                                    <div class="invoices-table">
-                                        <h2 class="text-2xl font-bold mb-4 text-text-light dark:text-text-dark ms-1">
+                                        <div class="card overflow-x-auto !p-0 !rounded-md">                                       <h2 class="text-2xl font-bold p-4 text-text-light dark:text-text-dark">
                                             {{ __('Recent Invoice') }}</h2>
-                                        <div>
-                                            <div class="card overflow-x-auto !p-0 !rounded-md">
+                                        
                                                 <table class="w-full table-auto">
                                                     <thead class="table-header">
                                                         <tr class="rounded-none text-left">
