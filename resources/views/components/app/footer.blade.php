@@ -1,4 +1,4 @@
-<footer class="bg-header-light dark:bg-header-dark border-b border-slate-200 dark:border-slate-700 z-10 sticky bottom-0">
+<footer class="bg-white dark:bg-[#202327] border-t border-slate-200 dark:border-slate-700 z-10 sticky bottom-0">
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-end h-16 -mt-px">
             <div>
