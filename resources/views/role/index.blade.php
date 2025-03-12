@@ -11,12 +11,12 @@
             </a>
         </div>
         <!-- Start heading here -->
-        <div class="card">
+        <div class="card !p-0">
             <div class="w-full ">
                 <div class="dashboard-right ps-0 ">
                     <div class="invoices-table ">
                         <h2
-                            class="text-xl font-semibold mb-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
+                            class="text-xl font-semibold p-4 text-text-light dark:text-text-dark text-text-light dark:text-text-dark ">
                             {{ __('Role List') }}
                         </h2>
                         <div class="overflow-x-auto pb-1">
