@@ -108,7 +108,7 @@
         <x-app.header />
         <main class="flex h-[calc(100vh-128px)]">
             <x-app.sidebar />
-            <div class="flex-1 bg-[#f1f2f6] dark:bg-[#202327] h-[calc(100vh-128px)] overflow-y-auto no-scrollbar">
+            <div class="flex-1 bg-[#f1f2f6] dark:bg-[#202327] h-[calc(100vh-128px)] overflow-y-auto no-scrollbar animate-fade-up">
                 {{ $slot }}
             </div>
         </main>
@@ -230,6 +230,23 @@
                 }
             });
         </script>
+
+    <style>
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.5s ease-out forwards;
+        }
+    </style>
 </body>
 
 </html>
