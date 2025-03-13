@@ -4,8 +4,13 @@
 
 <x-app-layout>
     <div class="m-6">
-        <!-- Header -->
-        <div class="mb-8">
+    
+
+        <!-- Main Content -->
+        <div
+            class="bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-xl overflow-hidden">
+                <!-- Header -->
+        <div class="card">
             <h1 class="text-3xl font-bold text-text-light dark:text-text-dark">
                 🎨 {{ __(' Theme Customization') }}
             </h1>
@@ -13,11 +18,7 @@
                 {{ __('Customize your site\'s appearance with colors and fonts') }}
             </p>
         </div>
-
-        <!-- Main Content -->
-        <div
-            class="bg-card-light dark:bg-card-dark border border-black/10 dark:border-white/10 rounded-lg shadow-xl overflow-hidden">
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 p-8">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-8 px-8 pb-8">
                 <!-- Form Section -->
                 <div class="space-y-6">
                     <form method="POST" action="{{ route('themes.update') }}" class="space-y-6">

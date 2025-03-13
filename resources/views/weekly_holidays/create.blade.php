@@ -28,12 +28,16 @@
         </form>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            $('.select2').select2({
-                placeholder: "Select Days",
-                allowClear: true
-            });
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for jQuery to be loaded
+            if (typeof jQuery !== 'undefined') {
+                $('.select2').select2({
+                    width: '100%',
+                    dropdownParent: $('body'),
+                    placeholder: "{{ __('Select Days') }}"
+                });
+            }
         });
     </script>
 </x-app-layout>

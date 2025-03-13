@@ -15,8 +15,8 @@
             @method('PUT')
             <!-- Employer Name -->
             <div class="form-field">
-                <select name="employer_id" id="employer_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                <select name="employer_id" id="employer_id" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                         {{ __('Select Employer') }}
                     </option>
                     @foreach ($employers as $employer)
@@ -25,15 +25,14 @@
                     </option>
                     @endforeach
                 </select>
-                <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
                 @error('employer_id')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Plan Name -->
             <div class="form-field">
-                <select name="price_plans_id" id="price_plans_id" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                <select name="price_plans_id" id="price_plans_id" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                         {{ __('Select Plan') }}
                     </option>
                     @foreach ($plans as $plan)
@@ -42,15 +41,14 @@
                     </option>
                     @endforeach
                 </select>
-                <label for="price_plans_id" class="form-label">{{ __('Plan Name') }}</label>
                 @error('price_plans_id')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Payment method -->
             <div class="form-field">
-                <select name="payment_provider" id="payment_provider" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                <select name="payment_provider" id="payment_provider" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                         {{ __('Select Payment Method') }}
                     </option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="Paypal" {{ $order->payment_provider == 'paypal' ? 'selected' : '' }}>
@@ -63,15 +61,14 @@
                         {{ __('Offline') }}
                     </option>
                 </select>
-                <label for="payment_provider" class="form-label">{{ __('Select Payment Method') }}</label>
                 @error('payment_provider')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Payment Status -->
             <div class="form-field">
-                <select name="payment_status" id="payment_status" class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                <select name="payment_status" id="payment_status" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                         {{ __('Select Status') }}
                     </option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="paid" {{ $order->payment_status == 'paid' ? 'selected' : '' }}>
@@ -81,7 +78,6 @@
                         {{ __('Unpaid') }}
                     </option>
                 </select>
-                <label class="form-label" for="payment_status">{{ __('Payment Status') }}</label>
                 @error('payment_status')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror

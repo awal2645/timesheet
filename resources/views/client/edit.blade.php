@@ -16,17 +16,14 @@
 
             <!-- Employer Name -->
             <div class="form-field">
-                <select name="employer_id" id="employer_id" class="form-select">
+                <select name="employer_id" id="employer_id" class="select2">
                     @foreach ($employers as $employer)
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $employer->id }}"
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark  " value="{{ $employer->id }}"
                             {{ $client->employer_id == $employer->id ? 'selected' : '' }}>
                             {{ $employer->employer_name }}
                         </option>
                     @endforeach
                 </select>
-                <label for="employer_id" class="form-label">
-                    {{ __('Employer Name') }}</label>
             </div>
             @if (auth('web')->user()->role == 'employer')
                 <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">

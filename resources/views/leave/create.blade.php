@@ -16,20 +16,23 @@
             @csrf
             @if (Auth::user()->is_employer)
                 <div role="group" class="form-field">
-                    <select name="employee_id" id="employee_id" class="form-select" required>
+                    <select name="employee_id" id="employee_id" class="select2" required>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                            {{ __('Select Employee') }}
+                        </option>
                         @foreach ($employees as $employee)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                                 value="{{ old('employee_id', $employee->id) }}">{{ $employee->user->name }}</option>
                         @endforeach
                     </select>
-                    <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                 </div>
             @endif
             @if (auth()->user()->role != 'employer' && auth()->user()->role != 'employee')
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id" class="form-select" required>
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select
-                            Employer</option>
+                    <select name="employer_id" id="employer_id" class="select2" required>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                            {{ __('Select Employer') }}
+                        </option>
                         @foreach ($employers as $employer)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                                 value="{{ old('employer_id', $employer->id) }}">
@@ -37,21 +40,20 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
                 </div>
                 <div class="form-field">
-                    <select name="employee_id" id="employee_select" class="form-select" required>
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">
+                    <select name="employee_id" id="employee_select" class="select2" required>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Employee') }}</option>
                     </select>
-                    <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                 </div>
             @endif
             @if (auth()->user()->role == 'employer')
                 <div class="form-field">
-                    <select name="employee_id" id="employee_select" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select
-                            Employee</option>
+                    <select name="employee_id" id="employee_select" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                            {{ __('Select Employee') }}
+                        </option>
                         @foreach ($employees as $employee)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                                 value="{{ old('employee_id', $employee->id) }}">
@@ -59,13 +61,13 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                 </div>
             @endif
             <div class="form-field">
-                <select name="leave_type_id" id="leave_type_id" class="form-select" required>
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">Select Leave
-                        Type</option>
+                <select name="leave_type_id" id="leave_type_id" class="select2" required>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                        {{ __('Select Leave Type') }}
+                    </option>
                     @foreach ($leaveTypes as $leaveType)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                             value="{{ old('leave_type_id', $leaveType->id) }}">
@@ -73,7 +75,6 @@
                         </option>
                     @endforeach
                 </select>
-                <label for="leave_type_id" class="form-label">{{ __('Leave Type') }}</label>
             </div>
             <div class="form-field">
                 <input type="date" name="start_date" id="start_date" value="{{ old('start_date') }}" required

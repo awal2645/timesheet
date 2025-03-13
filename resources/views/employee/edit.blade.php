@@ -43,19 +43,14 @@
             <!-- Employer Name -->
             @if (auth('web')->user()->role != 'employer')
             <div class="form-field">
-                <select name="employer_id" id="employer_id" class="form-select">
-
+                <select name="employer_id" id="employer_id" class="select2">
                     @foreach ($employers as $employer)
-                    <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $employer->id }}" {{ $employee->employer_id == $employer->id ? 'selected' : '' }}>
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}" {{ $employee->employer_id == $employer->id ? 'selected' : '' }}>
                         {{ $employer->employer_name }}
                     </option>
                     @endforeach
 
                 </select>
-                <label for="employer_id" class="form-label">
-                    {{ __('Employee Name') }}
-                </label>
             </div>
             @endif
             @if (auth('web')->user()->role == 'employer')
@@ -88,10 +83,9 @@
             <div class="grid md:grid-cols-2 md:gap-6">
                 <!-- Client -->
                 <div class="form-field">
-                    <select name="client_id" id="client_id" class="form-select">
+                    <select name="client_id" id="client_id" class="select2">
                         @foreach ($clients as $client)
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="{{ $client->id }}" {{ $client->id == $employee->client_id ? 'selected' : '' }}>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}" {{ $client->id == $employee->client_id ? 'selected' : '' }}>
                             {{ $client->client_name }}
                         </option>
                         @endforeach
@@ -102,35 +96,32 @@
                 </div>
                 <!-- Gender -->
                 <div class="form-field">
-                    <select name="gender" id="project_id" class="form-select">
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="male" {{ 'male'==$employee->gender ? 'selected' : '' }}>
+                    <select name="gender" id="project_id" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                            {{ __('Select Gender') }}
+                        </option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="male" {{ 'male'==$employee->gender ? 'selected' : '' }}>
                             {{ __('Male') }}
                         </option>
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="female" {{ 'female'==$employee->gender ? 'selected' : '' }}>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="female" {{ 'female'==$employee->gender ? 'selected' : '' }}>
                             {{ __('Female') }}
                         </option>
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="other" {{ 'other'==$employee->gender ? 'selected' : '' }}>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="other" {{ 'other'==$employee->gender ? 'selected' : '' }}>
                             {{ __('Other') }}
                         </option>
                     </select>
-                    <label for="project_id" class="form-label">
-                        {{ __('Gender') }}</label>
                 </div>
                 <!-- Payment Type -->
                 <div class="form-field">
-                    <select name="payment_type" id="payment_type" class="form-select">
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="monthly" {{ 'monthly'==$employee->payment_type ? 'selected' : '' }}>
+                    <select name="payment_type" id="payment_type" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                            {{ __('Select Payment Type') }}
+                        </option>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="monthly" {{ 'monthly'==$employee->payment_type ? 'selected' : '' }}>
                             {{ __('Monthly Salary') }}</option>
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="project" {{ 'project'==$employee->payment_type ? 'selected' : '' }}>
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="project" {{ 'project'==$employee->payment_type ? 'selected' : '' }}>
                             {{ __('Project Based') }}</option>
                     </select>
-                    <label for="payment_type" class="form-label">
-                        {{ __('Payment Type') }}</label>
                 </div>
 
                 <!-- Monthly Salary (visible if fixed salary selected) -->

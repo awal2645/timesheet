@@ -119,6 +119,9 @@
             <!-- Participants -->
             <div class="form-field">
                 <select name="participants[]" id="participants" multiple class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                        {{ __('Select Participants') }}
+                    </option>
                     @foreach ($users as $user)
                         <option value="{{ $user->id }}"
                             {{ collect(old('participants'))->contains($user->id) ? 'selected' : '' }}>

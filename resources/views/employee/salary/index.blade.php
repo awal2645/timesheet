@@ -12,9 +12,9 @@
                         </label>
                         <div class="flex gap-3 items-center form-field">
                             @if (auth()->user()->role == 'superadmin')
-                                <select name="employer" id="employer" class="form-select">
+                                <select name="employer" id="employer" class="select2">
                                     <option value=""
-                                        class="dark:bg-slate-800 text-text-light dark:text-text-dark">
+                                        class="dark:bg-slate-800 text-text-light dark:text-text-dark" disabled selected>
                                         {{ __('Select Employer') }}</option>
                                     @foreach ($employer as $item)
                                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
@@ -25,7 +25,7 @@
                                     @endforeach
                                 </select>
                             @endif
-                            <select name="employee" id="employee" class="form-select">
+                            <select name="employee" id="employee" class="select2">
                                 <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
                                     {{ __('Select Employee') }}</option>
                             </select>

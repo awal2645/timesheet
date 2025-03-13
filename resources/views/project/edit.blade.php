@@ -16,7 +16,7 @@
             <!-- {{ __('Select Employer') }}</button>  -->
             @if (auth('web')->user()->role != 'employer')
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id" class="form-select">
+                    <select name="employer_id" id="employer_id" class="select2">
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                             {{ __('Select Employer') }}
                         </option>
@@ -40,7 +40,7 @@
             @endif
             <!--  Select Client -->
             <div class="form-field">
-                <select name="client_id" id="client_id" class="form-select">
+                <select name="client_id" id="client_id" class="select2">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                         {{ __('Select Client') }} </option>
                     @foreach ($clients as $client)
@@ -58,7 +58,7 @@
             </div>
             <!--  Select Employee -->
             <div class="form-field">
-                <select name="employee_id" id="employee_id" class="form-select">
+                <select name="employee_id" id="employee_id" class="select2">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                         {{ __('Select Client') }}
                     </option>
@@ -90,7 +90,7 @@
             </div>
 
             <div class="form-field">
-                <select name="payment_type" id="payment_type" class="form-select">
+                <select name="payment_type" id="payment_type" class="select2">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="hourly"
                         {{ $project->payment_type == 'hourly' ? 'selected' : '' }}>
                         {{ __('Hourly Based') }}

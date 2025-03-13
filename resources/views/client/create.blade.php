@@ -1,5 +1,5 @@
 @section('title')
-    {{ __('Create Client') }}
+{{ __('Create Client') }}
 @endsection
 <x-app-layout>
     <div class="flex justify-between items-center m-6 card">
@@ -14,21 +14,19 @@
             @csrf
             <!-- Employer Name -->
             @if (auth('web')->user()->role != 'employer')
-                <div class="form-field">
-                    <select name="employer_id" id="employer_id" class="form-select" required>
-                        <option value="" disabled selected hidden>{{ __('Select Employer') }}</option>
-                        @foreach ($employers as $employer)
-                            <option class="dark:bg-slate-800 text-text-light dark:text-text-dark "
-                                value="{{ $employer->id }}">
-                                {{ $employer->employer_name }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
-                </div>
+            <div class="form-field">
+                <select name="employer_id" id="employer_id" class="select2 bg-gray-50 border border-gray-300 rounded-lg w-full p-2.5"  required>
+                    <option value="" disabled selected hidden>{{ __('Select Employer') }}</option>
+                    @foreach ($employers as $employer)
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
+                        {{ $employer->employer_name }}
+                    </option>
+                    @endforeach
+                </select>
+            </div>
             @endif
             @if (auth('web')->user()->role == 'employer')
-                <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
+            <input type="hidden" name="employer_id" value="{{ auth('web')->user()->employer->id }}">
             @endif
             <!-- Client Name -->
             <div class="form-field">
@@ -38,7 +36,7 @@
                     {{ __('Client Name') }}
                 </label>
                 @error('client_name')
-                    <span class="text-red-500">{{ $message }}</span>
+                <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Client Email -->
@@ -49,7 +47,7 @@
                     {{ __('Client Email') }}
                 </label>
                 @error('client_email')
-                    <span class="text-red-500">{{ $message }}</span>
+                <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Client Phone -->
@@ -60,7 +58,7 @@
                     {{ __('Client Phone') }}
                 </label>
                 @error('client_phone')
-                    <span class="text-red-500">{{ $message }}</span>
+                <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
             <!-- Contact Name -->
@@ -71,18 +69,19 @@
                     {{ __('Contact Name') }}
                 </label>
                 @error('contact_name')
-                    <span class="text-red-500">{{ $message }}</span>
+                <span class="text-red-500">{{ $message }}</span>
                 @enderror
             </div>
-            {{-- <!-- Contact Image -->
-            <div class="relative z-0 w-full mb-5">
-                <input type="file" name="contact_name" class="filepond" required
-                    value="{{ old('contact_name') }}" />
-            </div> --}}
             <button type="submit"
-                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{ __('Submit') }}</button>
+                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{
+                __('Submit') }}</button>
         </form>
     </div>
+
+    <style>
+        
+     
+        
+    </style>
+    
 </x-app-layout>
-
-

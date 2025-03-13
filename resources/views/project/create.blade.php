@@ -15,8 +15,8 @@
 
             @if (auth('web')->user()->role != 'employer')
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                    <select name="employer_id" id="employer_id" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Employer') }}
                         </option>
                         @foreach ($employers as $employer)
@@ -26,7 +26,6 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="employer_id" class="form-label">{{ __('Select Employer') }}</label>
 
                     @error('employer_id')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
@@ -34,8 +33,8 @@
                 </div>
 
                 <div class="form-field">
-                    <select name="client_id" id="client_id" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                    <select name="client_id" id="client_id" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Client') }}
                         </option>
                         <!-- Clients will be populated here based on employer selection -->
@@ -43,18 +42,16 @@
                     @error('client_id')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
-                    <label for="client_id" class="form-label">{{ __('Select Client') }}</label>
                 </div>
 
 
                 <div class="form-field">
-                    <select name="employee_id" id="employee_id" class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
+                    <select name="employee_id" id="employee_id" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Employee') }}
                         </option>
                         <!-- Employees will be populated here based on employer selection -->
                     </select>
-                    <label for="employee_id" class="form-label">{{ __('Select Employee') }}</label>
 
                     @error('employee_id')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
@@ -62,7 +59,7 @@
                 </div>
             @elseif (auth('web')->user()->role == 'employer')
                 <div class="form-field">
-                    <select name="client_id" id="client_id" class="form-select">
+                    <select name="client_id" id="client_id" class="select2">
                         @foreach ($clients as $client)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value=""
                                 selected>
@@ -82,7 +79,7 @@
 
 
                 <div class="form-field">
-                    <select name="employee_id" id="employee_id" class="form-select">
+                    <select name="employee_id" id="employee_id" class="select2">
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>
                             {{ __('Select Employee') }}
                         </option>
@@ -119,7 +116,7 @@
             </div>
 
             <div class="form-field">
-                <select name="payment_type" id="payment_type" class="form-select">
+                <select name="payment_type" id="payment_type" class="select2">
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="hourly"
                         {{ old('payment_type') == 'hourly' ? 'selected' : '' }}>
                         {{ __('Hourly Based') }}

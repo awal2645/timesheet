@@ -9,8 +9,8 @@
         <form method="POST" action="{{ route('invite.send.employer') }}">
             @csrf
             <div class="form-field">
-                <select name="role_name" id="role_name" class="form-select">
-                    <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
+                <select name="role_name" id="role_name" class="select2">
+                    <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark" disabled selected>
                         {{ __('Select Role') }}
                     </option>
                     @foreach ($roles as $role)
@@ -19,8 +19,6 @@
                     </option>
                     @endforeach
                 </select>
-                <label for="role_name" class="form-label">
-                    {{ __('Role Name') }}</label>
                 @error('role_name')
                 <span class="text-red-500">{{ $message }}</span>
                 @enderror
@@ -44,7 +42,7 @@
         <form method="POST" action="{{ route('invite.send.employer') }}">
             @csrf
             <div class="form-field">
-                <select name="role_name" id="role_name" class="form-select">
+                <select name="role_name" id="role_name" class="select2">
                     <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
                         {{ __('Select Role') }}
                     </option>

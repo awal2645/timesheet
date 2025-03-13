@@ -15,8 +15,8 @@
                 @csrf
                 <!-- Project Name -->
                 <div class="form-field">
-                    <select name="project_id" id="project_id" class="form-select">
-                        <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark"  value="" selected>{{ __('Select Project') }}</option>
+                    <select name="project_id" id="project_id" class="select2">
+                        <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark"  value="" disabled selected>{{ __('Select Project') }}</option>
                         @foreach ($projects as $project)
                             <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark" {{ old('project_id') == $project->id ? 'selected' : '' }} value="{{ $project->id }}">{{ $project->project_name }}</option>
                         @endforeach

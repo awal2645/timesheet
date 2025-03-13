@@ -21,8 +21,8 @@
                     auth('web')->user()->role != 'employee' &&
                     auth('web')->user()->role != 'client')
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id" required class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">
+                    <select name="employer_id" id="employer_id" required class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Employer') }}</option>
                         @foreach ($employers as $employer)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
@@ -31,7 +31,6 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="employer_id" class="form-label">{{ __('Employer Name') }}</label>
                     @error('employer_id')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
@@ -44,8 +43,8 @@
             {{-- Select Employee --}}
             @if (auth()->user()->role != 'employee')
                 <div class="form-field">
-                    <select name="employee_id" id="employee_id" required class="form-select">
-                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">
+                    <select name="employee_id" id="employee_id" required class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                             {{ __('Select Employee') }}</option>
                         @foreach ($employees as $employee)
                             <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
@@ -55,7 +54,6 @@
                             </option>
                         @endforeach
                     </select>
-                    <label for="employee_id" class="form-label">{{ __('Employee Name') }}</label>
                     @error('employee_id')
                         <span class="text-red-500 text-xs">{{ $message }}</span>
                     @enderror
@@ -64,8 +62,8 @@
 
             {{-- Select Project --}}
             <div class="form-field">
-                <select name="project_id" id="project_id" required class="form-select">
-                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="">
+                <select name="project_id" id="project_id" required class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
                         {{ __('Select Project') }}</option>
                     @foreach ($projects as $project)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
@@ -74,7 +72,6 @@
                         </option>
                     @endforeach
                 </select>
-                <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
                 @error('project_id')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
@@ -101,7 +98,10 @@
 
             {{-- Priority --}}
             <div class="form-field">
-                <select name="priority" id="priority" class="form-select">
+                <select name="priority" id="priority" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                        {{ __('Select Priority') }}
+                    </option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="low"
                         {{ $task->priority == 'low' ? 'selected' : '' }}>{{ __('Low Priority') }}</option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="medium"
@@ -109,7 +109,6 @@
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="high"
                         {{ $task->priority == 'high' ? 'selected' : '' }}>{{ __('High Priority') }}</option>
                 </select>
-                <label for="priority" class="form-label">{{ __('Priority') }}</label>
                 @error('priority')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror
@@ -127,7 +126,10 @@
 
             {{-- Task Status --}}
             <div class="form-field">
-                <select name="status" id="status" class="form-select">
+                <select name="status" id="status" class="select2">
+                    <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>
+                        {{ __('Select Status') }}
+                    </option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="pending"
                         {{ $task->status == 'pending' ? 'selected' : '' }}>{{ __('Pending') }}</option>
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="inprogress"
@@ -135,7 +137,6 @@
                     <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="completed"
                         {{ $task->status == 'completed' ? 'selected' : '' }}>{{ __('Completed') }}</option>
                 </select>
-                <label for="status" class="form-label">{{ __('Status') }}</label>
                 @error('status')
                     <span class="text-red-500 text-xs">{{ $message }}</span>
                 @enderror

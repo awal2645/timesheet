@@ -38,7 +38,7 @@
                 @if (auth('web')->user()->role != 'employer')
     
                 <div class="form-field">
-                    <select name="employer_id" id="employer_id" class="form-select">
+                    <select name="employer_id" id="employer_id" class="select2">
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" >{{ __('Select Employer') }}</option>
                         @foreach ($employers as $employer)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $employer->id }}">
@@ -46,9 +46,6 @@
                         </option>
                         @endforeach
                     </select>
-                    <label for="employer_id" class="form-label">
-                        {{ __('Employer Name') }}
-                    </label>
                     @error('employer_id')
                     <span class=" text-red-500">{{ $message }}</span>
                     @enderror
@@ -76,7 +73,7 @@
                 </div>
                 <!-- Client -->
                 <div class="form-field">
-                    <select name="client_id" id="client_id" class="form-select">
+                    <select name="client_id" id="client_id" class="select2">
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" >{{ __('Select Client') }}</option>
                         @foreach ($clients as $client)
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="{{ $client->id }}">
@@ -85,8 +82,6 @@
                         @endforeach
 
                     </select>
-                    <label for="client_id" class="form-label">
-                        {{ __('Client Name') }}</label>
                     @error('client_id')
                     <span class=" text-red-500">{{ $message }}</span>
                     @enderror
@@ -94,29 +89,25 @@
 
                 <!-- Gender -->
                 <div class="form-field">
-                    <select name="gender" id="gender_id" class="form-select">
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="male">
+                    <select name="gender" id="gender_id" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="male">
                             {{ __('Male') }}
                         </option>
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="female">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="female">
                             {{ __('Female') }}
                         </option>
-                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="other">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="other">
                             {{ __('Other') }}
                         </option>
                     </select>
-                    <label for="project_id" class="form-label">
-                        {{ __('Gender') }}</label>
                     @error('gender')
                     <span class=" text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
                 <!-- Payment Type -->
                 <div class="form-field">
-                    <select name="payment_type" id="payment_type" class="form-select">
+                    <select name="payment_type" id="payment_type" class="select2">
+                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" disabled selected>{{ __('Select Payment Type') }}</option>
                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="monthly"
                             {{ 'monthly' == old('payment_type') ? 'selected' : '' }}>
                             {{ __('Monthly Salary') }}</option>
@@ -128,8 +119,6 @@
                         <span class=" text-red-500">{{ $message }}</span>
                         @enderror
                     </select>
-                    <label for="payment_type" class="form-label">
-                        {{ __('Payment Type') }}</label>
                 </div>
 
                 <!-- Monthly Salary (visible if fixed salary selected) -->
@@ -166,7 +155,7 @@
                 </div>
             </div>
             <button type="submit"
-                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{
+                class="text-text-light dark:text-text-dark bg-primary-50 dark:bg-primary-50 hover:bg-primary-50 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">{{
                 __('Submit') }}</button>
 
         </form>
@@ -194,6 +183,11 @@
             // Listen for change events on the payment type select
             paymentTypeSelect.addEventListener('change', toggleFields);
         });
+    </script>
+    <script>
+       document.addEventListener('DOMContentLoaded', function() {
+        $('.select2').select2();
+       });
     </script>
 
 </x-app-layout>

@@ -11,7 +11,7 @@
                             {{ __('Search') }}
                         </label>
                         <div class="flex gap-3 items-center form-field">
-                            <select name="employee" id="employee" class="form-select">
+                            <select name="employee" id="employee" class="select2">
                                 <option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">
                                     {{ __('Select Employee') }}</option>
                                 @foreach ($employees as $employee)

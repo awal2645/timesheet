@@ -117,12 +117,10 @@
                                                         class="border-none bg-transparent text-gray-900 dark:text-white focus:outline-none"
                                                         onchange="document.getElementById('statusForm{{ $project->id }}').submit()">
                                                         <!-- Replace data-project-id with the actual project ID -->
-                                                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="1" {{ $project->
+                                                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="1" {{ $project->
                                                             status === 1 ? 'selected' : '' }}>
                                                             {{__('Active')}}
-                                                        <option class="dark:bg-slate-800   text-text-light  
- dark:text-text-dark  " value="0" {{ $project->
+                                                        <option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="0" {{ $project->
                                                             status === 0 ? 'selected' : '' }}>
                                                             {{__('Inactive')}}
                                                     </select>

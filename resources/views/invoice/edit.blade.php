@@ -16,14 +16,16 @@
 
                 <!-- Project Name -->
                 <div class="form-field">
-                    <select name="project_id" id="project_id" class="form-select">
+                    <select name="project_id" id="project_id" class="select2">
+                        <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark" value="" disabled selected>
+                            {{ __('Select Project') }}
+                        </option>
                         @foreach ($projects as $project)
                             <option class="text-text-light dark:text-text-dark bg-card-light dark:bg-card-dark" value="{{ $project->id }}"
                                 {{ $invoice->project_id == $project->id ? 'selected' : '' }}>
                                 {{ $project->project_name }}</option>
                         @endforeach
                     </select>
-                    <label for="project_id" class="form-label">{{ __('Project Name') }}</label>
                 </div>
 
                 <!-- Invoice Number -->

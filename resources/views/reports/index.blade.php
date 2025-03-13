@@ -16,7 +16,7 @@
                                     placeholder="{{ __('Search') }}" />
                             </div>
                             <div class="form-field !mb-0">
-                                <select name="status" class="form-select">
+                                <select name="status" class="select2">
                                     <option value=""
                                         class="dark:bg-slate-800 text-text-light dark:text-text-dark">
                                         {{ __('Select Status') }}</option>
