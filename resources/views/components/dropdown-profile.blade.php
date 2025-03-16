@@ -3,7 +3,7 @@
 ])
 
 <div class="relative inline-flex" x-data="{ open: false }">
-    <button class="inline-flex justify-center items-center group" aria-haspopup="true" @click.prevent="open = !open"
+    <button class="inline-flex justify-center items-center group" aria-haspopup="true" @click.prevent="setTimeout(() => { open = !open }, 50)"
         :aria-expanded="open">
 
         @if (auth('web')->user()->role == 'employer' || auth('web')->user()->role == 'employee')
@@ -21,13 +21,17 @@
             </svg>
         </div>
     </button>
-    <div class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800   text-text-light  
- dark:text-text-dark   border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 {{ $align === 'right' ? 'right-0' : 'left-0' }}"
-        @click.outside="open = false" @keydown.escape.window="open = false" x-show="open"
+    <div class="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 text-text-light dark:text-text-dark border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 {{ $align === 'right' ? 'right-0' : 'left-0' }}"
+        @click.outside="open = false"
+        @keydown.escape.window="open = false"
+        x-show="open"
         x-transition:enter="transition ease-out duration-200 transform"
-        x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-out duration-200" x-transition:leave-start="opacity-100"
-        x-transition:leave-end="opacity-0" x-cloak>
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-out duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        x-cloak>
         <div class="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
             <div class="font-medium text-slate-800 dark:text-slate-100 capitalize">{{ auth('web')->user()->username }}
             </div>
@@ -36,8 +40,7 @@
             @if (auth()->user()->role != 'superadmin')
                 <li>
                     <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
-                        href="{{ route('my.account') }}" @click="open = false" @focus="open = true"
-                        @focusout="open = false">
+                        href="{{ route('my.account') }}" @click="open = false">
                         <i class="fa-solid fa-gear me-2"></i>
                         {{ __('Account Settings') }}
                     </a>
@@ -45,8 +48,7 @@
             @endif
             <li>
                 <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
-                    href="{{ route('profile.show') }}" @click="open = false" @focus="open = true"
-                    @focusout="open = false">
+                    href="{{ route('profile.show') }}" @click="open = false">
                     <i class="fa-solid fa-user me-2"></i>
                     {{ __('User Settings') }}
                 </a>
@@ -56,8 +58,7 @@
                     @csrf
 
                     <a class="font-medium text-sm text-text-light dark:text-text-dark hover:text-primary-300 dark:hover:text-primary-300 flex items-center py-1 px-3"
-                        href="{{ route('logout') }}" @click.prevent="$root.submit();" @focus="open = true"
-                        @focusout="open = false">
+                        href="{{ route('logout') }}" @click.prevent="$root.submit();">
                         <i class="fa-solid fa-right-from-bracket me-2"></i>
                         {{ __('Sign Out') }}
                     </a>
