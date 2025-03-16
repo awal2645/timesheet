@@ -103,16 +103,16 @@
     </style>
 </head>
 
-<body class="h-screen overflow-hidden">
+<body class="h-screen overflow-hidden" x-data="{ mobileMenu: false }">
     <!-- Page wrapper -->
-        <x-app.header />
-        <main class="flex h-[calc(100vh-128px)]">
-            <x-app.sidebar />
-            <div class="flex-1 bg-[#f1f2f6] dark:bg-[#202327] h-[calc(100vh-128px)] overflow-y-auto no-scrollbar animate-fade-up">
-                {{ $slot }}
-            </div>
-        </main>
-        <x-app.footer />
+    <x-app.header />
+    <main class="flex h-[calc(100vh-128px)]">
+        <x-app.sidebar />
+        <div class="flex-1 bg-[#f1f2f6] dark:bg-[#202327] h-[calc(100vh-128px)] overflow-y-auto no-scrollbar animate-fade-up">
+            {{ $slot }}
+        </div>
+    </main>
+    <x-app.footer />
 
     @livewireScripts
 

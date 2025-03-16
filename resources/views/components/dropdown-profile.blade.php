@@ -13,7 +13,7 @@
             <img class="w-8 h-8 rounded-full" src="{{ asset(auth('web')->user()->image ?? 'images/logo_symbol.png') }}"
                 width="32" height="32" alt="{{ auth('web')->user()->username }}" />
         @endif
-        <div class="flex gap-2 items-center truncate">
+        <div class="hidden md:flex gap-2 items-center truncate">
             <span
                 class="truncate ms-3 text-sm font-medium text-primary-300 capitalize">{{ auth('web')->user()->username }}</span>
             <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-primary-300" viewBox="0 0 12 12">

@@ -2,11 +2,22 @@
     <div class="px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 -mb-px">
             <!-- Header: Left side -->
-            <div>
+            <div class="flex items-center gap-4">
+                <!-- Hamburger Menu (visible on mobile) -->
+                <button 
+                    class="text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 lg:hidden"
+                    @click="mobileMenu = !mobileMenu"
+                    aria-controls="sidebar"
+                    :aria-expanded="mobileMenu">
+                    <span class="sr-only">Open sidebar</span>
+                    <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                        <path d="M3 12h18v-2H3v2zm0-5h18V5H3v2zm0 10h18v-2H3v2z"/>
+                    </svg>
+                </button>
                 <!-- Logo -->
                 <a class="inline-block" href="{{ route('dashboard') }}">
-                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-48 h-auto hidden dark:block ">
-                    <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-48 h-auto ">
+                    <img src="{{ asset('images/logo-inv.png') }}" alt="Logo" class="w-36 md:w-48 h-auto hidden dark:block ">
+                    <img src="{{ asset('images/dark_logo.png') }}" alt="Logo" class="dark:hidden w-36 md:w-48 h-auto ">
                 </a>
             </div>
 
@@ -27,7 +38,7 @@
 
                 @if ($hasMultipleLanguages)
                     <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form"
-                        class="!mb-0">
+                        class="hidden md:inline-block !mb-0">
                         <select name="language" id="language-switcher"
                             class="appearance-none bg-transparent border-none focus:ring-0 text-primary-300
                                px-4 py-2 rounded-md bg-no-repeat
