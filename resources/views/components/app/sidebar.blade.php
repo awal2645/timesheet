@@ -1,14 +1,29 @@
 <div>
-    <!-- Sidebar backdrop (mobile only) -->
-    {{-- <div class="relative inset-0 bg-sidebar-light dark:bg-sidebar-dark bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200"
-        :class="sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak>
-    </div> --}}
+    <!-- Sidebar backdrop -->
+    <div 
+        class="fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden transition-opacity duration-200"
+        x-show="mobileMenu"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        @click="mobileMenu = false"
+        aria-hidden="true">
+    </div>
 
     <!-- Sidebar -->
-    <div id="sidebar"
-        class="flex flex-col h-[calc(100vh-128px)] overflow-y-scroll lg:overflow-y-auto no-scrollbar grow w-full max-w-64 bg-[#f1f2f6] dark:bg-[#202327] transition-all duration-200 ease-in-out">
+    <div 
+        id="sidebar"
+        class="fixed lg:static inset-y-0 left-0 z-40 w-64 flex-shrink-0 bg-[#f1f2f6] dark:bg-[#202327] lg:h-[calc(100vh-128px)] overflow-y-scroll lg:overflow-y-auto no-scrollbar transition-transform duration-200 ease-in-out lg:translate-x-0"
+        :class="mobileMenu ? 'translate-x-0 h-screen' : '-translate-x-64 lg:translate-x-0'"
+        @click.outside="if($event.target.closest('#sidebar') === null && $event.target.closest('button') === null) mobileMenu = false"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="-translate-x-64"
+        x-transition:enter-end="translate-x-0">
 
-        <!-- Links -->
+        <!-- Sidebar content -->
         <div class="space-y-8 py-3 px-8">
             <!-- Pages group -->
             <div>
