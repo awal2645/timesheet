@@ -262,6 +262,17 @@ class ClientController extends Controller
                 ->route('home')
                 ->with('error', 'An error occurred while fetching clients: '.$e->getMessage());
         }
+    }
 
+    public function getClientsByEmployer($employerId)
+    {
+        try {
+            $clients = Client::where('employer_id', $employerId)
+                           ->where('status', true)
+                           ->get(['id', 'client_name']);
+            return response()->json($clients);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch clients'], 500);
+        }
     }
 }

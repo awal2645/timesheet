@@ -1,7 +1,8 @@
 <div>
     <!-- Sidebar backdrop (mobile only) -->
-    <div class="relative inset-0 bg-sidebar-light dark:bg-sidebar-dark bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200"
-        :class="sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak></div>
+    {{-- <div class="relative inset-0 bg-sidebar-light dark:bg-sidebar-dark bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200"
+        :class="sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'" aria-hidden="true" x-cloak>
+    </div> --}}
 
     <!-- Sidebar -->
     <div id="sidebar"
@@ -188,29 +189,26 @@
 
                     <!-- Leave Management Dropdown -->
                     @canany('Leave view')
-
-                        <li x-data="{
-                            open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }}
-                        }">
-                            <a href="#" @click.stop="open = !open"
-                                class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }} ">
+                        <li x-data="{ open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }} }">
+                            <a href="#" @click.prevent="open = !open"
+                                class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }}">
                                 <div class="flex items-center">
                                     <span class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-person-walking-arrow-right"></i> </span>
+                                        <i class="fa-solid fa-person-walking-arrow-right"></i>
+                                    </span>
                                     <span class="sidebar-menu-text text-text-light dark:text-text-dark">
                                         {{ __('Leave Management') }}
                                     </span>
                                 </div>
-                                <div 
-                                    class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
+                                <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
                                     <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-gray-white"
                                         :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
                             </a>
-                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent ps-5">
-                                <ul class="mt-1" x-show="open" x-collapse>
+                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent ps-5" x-show="open" x-collapse.duration.500ms>
+                                <ul class="mt-1">
                                     @canany('Leave view')
                                         <!--  Leave -->
                                         <li class="mb-1 last:mb-0">

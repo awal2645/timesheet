@@ -126,7 +126,6 @@
                         {{ __('Fixed Price') }}
                     </option>
                 </select>
-                <label for="payment_type" class="form-label">{{ __('Billing Type') }}</label>
             </div>
 
             <!-- Hourly Budget -->
@@ -164,74 +163,165 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        console.log('DOM Content Loaded');
+        
         let employerSelect = document.getElementById('employer_id');
         let clientSelect = document.getElementById('client_id');
         let employeeSelect = document.getElementById('employee_id');
         let paymentTypeSelect = document.getElementById('payment_type');
         let hourlyBudgetDiv = document.getElementById('hourly');
-        let fixedBudgetDiv = document.getElementById('fixed');
         let totalCostDiv = document.getElementById('total_cost');
-        console.log(totalCostDiv);
+
+        console.log('Elements found:', {
+            employerSelect: !!employerSelect,
+            clientSelect: !!clientSelect,
+            employeeSelect: !!employeeSelect,
+            paymentTypeSelect: !!paymentTypeSelect,
+            hourlyBudgetDiv: !!hourlyBudgetDiv,
+            totalCostDiv: !!totalCostDiv
+        });
 
         if (!totalCostDiv) {
             console.error('Element with id "total_cost" not found.');
             return;
         }
 
-        employerSelect.addEventListener('change', function() {
-            const employerId = this.value;
+        // Get CSRF token from meta tag
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            // Clear previous options
-            clientSelect.innerHTML =
-                '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Client') }}</option>';
-            employeeSelect.innerHTML =
-                '<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Employee') }}</option>';
+        // // Initialize Select2 on all select elements
+        // if (employerSelect) {
+        //     $(employerSelect).select2({
+        //         theme: 'classic',
+        //         width: '100%'
+        //     });
+        // }
+        // if (clientSelect) {
+        //     $(clientSelect).select2({
+        //         theme: 'classic',
+        //         width: '100%'
+        //     });
+        // }
+        // if (employeeSelect) {
+        //     $(employeeSelect).select2({
+        //         theme: 'classic',
+        //         width: '100%'
+        //     });
+        // }
+        // if (paymentTypeSelect) {
+        //     $(paymentTypeSelect).select2({
+        //         theme: 'classic',
+        //         width: '100%'
+        //     });
+        // }
 
-            if (employerId) {
-                // Fetch clients
-                fetch(`/get/client/${employerId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(client => {
-                            const option = document.createElement('option');
-                            option.value = client.id;
-                            option.textContent = client.client_name;
-                            option.className =
-                                'dark:bg-slate-800 text-text-light dark:text-text-dark';
-                            clientSelect.appendChild(option);
+        // Only add employer change listener if employer select exists
+        if (employerSelect) {
+            console.log('Adding employer change listener');
+            $(employerSelect).on('select2:select', function(e) {
+                const employerId = e.params.data.id;
+                console.log('Employer selected:', employerId);
+
+                // Clear previous options
+                if (clientSelect) {
+                    $(clientSelect).empty().append('<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Client') }}</option>');
+                }
+                if (employeeSelect) {
+                    $(employeeSelect).empty().append('<option class="dark:bg-slate-800 text-text-light dark:text-text-dark" value="" selected>{{ __('Select Employee') }}</option>');
+                }
+
+                if (employerId) {
+                    console.log('Fetching clients for employer:', employerId);
+                    // Fetch clients
+                    fetch(`/get/client/${employerId}`, {
+                        headers: {
+                            'X-CSRF-TOKEN': token,
+                            'Accept': 'application/json'
+                        },
+                        credentials: 'same-origin'
+                    })
+                        .then(response => {
+                            console.log('Client API Response:', response);
+                            if (!response.ok) {
+                                if (response.status === 401) {
+                                    throw new Error('Unauthorized - Please log in');
+                                }
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Client data received:', data);
+                            if (clientSelect) {
+                                data.forEach(client => {
+                                    const option = new Option(client.client_name, client.id, false, false);
+                                    option.className = 'dark:bg-slate-800 text-text-light dark:text-text-dark';
+                                    $(clientSelect).append(option);
+                                });
+                                $(clientSelect).trigger('change');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching clients:', error);
+                            alert('Error loading clients. Please try again.');
                         });
-                    });
 
-                // Fetch employees
-                fetch(`/get/employee/${employerId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        data.forEach(employee => {
-                            const option = document.createElement('option');
-                            option.value = employee.id;
-                            option.textContent = employee.employee_name;
-                            option.className =
-                                'dark:bg-slate-800 text-text-light dark:text-text-dark';
-                            employeeSelect.appendChild(option);
+                    console.log('Fetching employees for employer:', employerId);
+                    // Fetch employees
+                    fetch(`/get/employee/${employerId}`, {
+                        headers: {
+                            'X-CSRF-TOKEN': token,
+                            'Accept': 'application/json'
+                        },
+                        credentials: 'same-origin'
+                    })
+                        .then(response => {
+                            console.log('Employee API Response:', response);
+                            if (!response.ok) {
+                                if (response.status === 401) {
+                                    throw new Error('Unauthorized - Please log in');
+                                }
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            console.log('Employee data received:', data);
+                            if (employeeSelect) {
+                                data.forEach(employee => {
+                                    const option = new Option(employee.employee_name, employee.id, false, false);
+                                    option.className = 'dark:bg-slate-800 text-text-light dark:text-text-dark';
+                                    $(employeeSelect).append(option);
+                                });
+                                $(employeeSelect).trigger('change');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching employees:', error);
+                            alert('Error loading employees. Please try again.');
                         });
-                    });
-            }
-        });
+                }
+            });
+        } else {
+            console.log('Employer select element not found');
+        }
 
-        paymentTypeSelect.addEventListener('change', function() {
-            togglePaymentFields(this.value);
-        });
+        if (paymentTypeSelect) {
+            $(paymentTypeSelect).on('select2:select', function(e) {
+                togglePaymentFields(e.params.data.id);
+            });
 
-        // Initial load
-        togglePaymentFields(paymentTypeSelect.value);
+            // Initial load
+            togglePaymentFields($(paymentTypeSelect).val());
+        }
 
         function togglePaymentFields(paymentType) {
             if (paymentType === 'hourly') {
-                hourlyBudgetDiv.style.display = 'block';
-                totalCostDiv.style.display = 'none';
+                if (hourlyBudgetDiv) hourlyBudgetDiv.style.display = 'block';
+                if (totalCostDiv) totalCostDiv.style.display = 'none';
             } else {
-                hourlyBudgetDiv.style.display = 'none';
-                totalCostDiv.style.display = 'block';
+                if (hourlyBudgetDiv) hourlyBudgetDiv.style.display = 'none';
+                if (totalCostDiv) totalCostDiv.style.display = 'block';
             }
         }
     });

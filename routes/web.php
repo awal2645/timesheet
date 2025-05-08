@@ -2,6 +2,7 @@
 
 use App\Models\Client;
 use App\Models\Employee;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CmsController;
 use App\Http\Controllers\AuthController;
@@ -302,6 +303,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/get/client/{employer}', function ($employer) {
         $clients = Client::where('employer_id', $employer)->get(['id', 'client_name']);
         return response()->json($clients);
+    });
+
+    Route::get('/get/project/{employer}', function ($employer) {
+        $projects = Project::where('employer_id', $employer)->get(['id', 'project_name']);
+        return response()->json($projects);
     });
    
 });

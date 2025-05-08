@@ -75,7 +75,7 @@ class EmployeeController extends Controller
     public function create()
     {
         $employers = Employer::all();
-        $clients = Client::all();
+        $clients = Client::where('status', '1')->get();
 
         // Filter clients by employer if user is an employer
         if (auth('web')->user()->role == 'employer') {
