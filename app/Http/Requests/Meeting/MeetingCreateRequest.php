@@ -26,8 +26,11 @@ class MeetingCreateRequest extends FormRequest
         return [
             'topic' => 'required|string|min:2|max:160',
             'start_date' => 'required|date',
+            'start_time' => 'required|date_format:H:i',
+            'duration' => 'required|integer|min:1',
             'password' => 'required|max:9', //zoom password max length is 10
             'participants' => $this->all_user ? '' : 'required',
+            'status' => 'required|in:waiting,started,ended',
         ];
     }
 }

@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Modules\Notice\Database\Seeders\NoticeDatabaseSeeder;
+use Modules\EmailTemplate\Database\Seeders\DatabaseSeeder as EmailTemplateDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,7 +29,6 @@ class DatabaseSeeder extends Seeder
             CreateEmployerUserSeeder::class,
             CreateEmployeeUserSeeder::class,
             CreateClientUserSeeder::class,
-            EmailTemplateSeeder::class,
             ProjectSeeder::class,
             PlanDatabaseSeeder::class,
             LanguageDatabaseSeeder::class,
@@ -35,7 +36,6 @@ class DatabaseSeeder extends Seeder
             LeaveTypeSeeder::class,
             HolidaySeeder::class,
             LeaveApplicationSeeder::class,
-            NoticeSeeder::class,
             InvoiceSeeder::class,
             TaskSeeder::class,
             EarningSeeder::class,
@@ -43,7 +43,8 @@ class DatabaseSeeder extends Seeder
             TimesheetsTableSeeder::class,
             TimeReportsTableSeeder::class,
             ContactSeeder::class,
-            TestimonialsTableSeeder::class,
+            ModuleSeeder::class,
+            EmailTemplateDatabaseSeeder::class,
         ]);
     }
 }

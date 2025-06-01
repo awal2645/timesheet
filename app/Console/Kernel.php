@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         // * * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
 
         $schedule->command('userplans:update-status')->daily();
+        $schedule->command('meetings:update-expired')->daily();
     }
 
     /**

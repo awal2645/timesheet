@@ -1,0 +1,9 @@
+{
+    "Zoom": true,
+    "Notice": true,
+    "Language": true,
+    "Testimonial": true,
+    "EmailTemplate": true,
+    "Payment": true,
+    "Newsletter": true
+}

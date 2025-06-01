@@ -171,7 +171,10 @@ return [
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
+        Modules\Language\App\Providers\LanguageServiceProvider::class,
+        Modules\Notice\App\Providers\NoticeServiceProvider::class,
+        Modules\Testimonial\App\Providers\TestimonialServiceProvider::class,
+        Modules\EmailTemplate\Providers\EmailTemplateServiceProvider::class,
     ])->toArray(),
 
     /*

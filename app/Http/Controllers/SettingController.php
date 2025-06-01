@@ -6,7 +6,7 @@ use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Log; // For logging errors
+use Illuminate\Support\Facades\Log;
 
 /**
  * Controller for managing application settings
@@ -22,7 +22,6 @@ class SettingController extends Controller
     {
         // Apply access limitation middleware for update methods
         $this->middleware('access_limitation', ['only' => ['update']]);
-        $this->middleware('access_limitation', ['only' => ['paymentupdate']]);
     }
 
     /**
@@ -166,110 +165,6 @@ class SettingController extends Controller
             // Log error and return error message
             Log::error('Error changing language: ' . $e->getMessage());
             return back()->with('error', 'Unable to change the language.');
-        }
-    }
-
-    /**
-     * Display payment gateway settings
-     * 
-     * @return \Illuminate\View\View
-     */
-    public function paymentGateway()
-    {
-        return view('payment.index');
-    }
-
-    /**
-     * Update payment gateway settings
-     * 
-     * @param Request $request Contains payment settings
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function paymentupdate(Request $request)
-    {
-        try {
-            // Update settings based on payment type
-            switch ($request->type) {
-                case 'paypal':
-                    $this->paypalUpdate($request);
-                    break;
-                case 'stripe':
-                    $this->stripeUpdate($request);
-                    break;
-            }
-            
-            return redirect()
-                ->route('payment')
-                ->with('success', 'Payment info updated successfully');
-        } catch (\Exception $e) {
-            flashError('An error occurred: ' . $e->getMessage());
-            return back();
-        }
-    }
-
-    /**
-     * Update PayPal settings
-     * 
-     * @param Request $request Contains PayPal settings
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function paypalUpdate(Request $request)
-    {
-        // Validate PayPal credentials
-        $request->validate([
-            'paypal_client_id' => 'required',
-            'paypal_client_secret' => 'required',
-        ]);
-
-        try {
-            // Update PayPal configuration based on mode
-            if ($request->paypal_live_mode) {
-                checkSetConfig('zenxserv.paypal_live_client_id', $request->paypal_client_id);
-                checkSetConfig('zenxserv.paypal_live_secret', $request->paypal_client_secret);
-            } else {
-                checkSetConfig('zenxserv.paypal_sandbox_client_id', $request->paypal_client_id);
-                checkSetConfig('zenxserv.paypal_sandbox_secret', $request->paypal_client_secret);
-            }
-
-            // Set PayPal mode and active status
-            setConfig('zenxserv.paypal_mode', $request->paypal_live_mode ? 'live' : 'sandbox');
-            checkSetConfig('zenxserv.paypal_active', $request->paypal ? true : false);
-
-            return redirect()
-                ->route('payment')
-                ->with('success', 'Payment info updated successfully');
-        } catch (\Exception $e) {
-            flashError('An error occurred: ' . $e->getMessage());
-            return back();
-        }
-    }
-
-    /**
-     * Update Stripe settings
-     * 
-     * @param Request $request Contains Stripe settings
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function stripeUpdate(Request $request)
-    {
-        // Validate Stripe credentials
-        $request->validate([
-            'stripe_key' => 'required',
-            'stripe_secret' => 'required',
-        ]);
-
-        try {
-            // Update Stripe configuration
-            checkSetConfig('zenxserv.stripe_key', $request->stripe_key);
-            checkSetConfig('zenxserv.stripe_secret', $request->stripe_secret);
-            checkSetConfig('zenxserv.stripe_active', $request->stripe ? true : false);
-
-            return redirect()
-                ->route('payment')
-                ->with('success', 'Payment info updated successfully');
-        } catch (\Exception $e) {
-            flashError('An error occurred: ' . $e->getMessage());
-            return back();
         }
     }
 

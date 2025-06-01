@@ -1,0 +1,22 @@
+{
+    "name": "modules/testimonial",
+    "description": "Testimonial module for Laravel",
+    "authors": [
+        {
+            "name": "Your Name",
+            "email": "your.email@example.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\Testimonial\\App\\Providers\\TestimonialServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Testimonial\\": ""
+        }
+    }
+}

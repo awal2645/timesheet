@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Meeting;
+use Modules\Zoom\App\Models\Meeting;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

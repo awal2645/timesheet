@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/zoom",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Zoom\\": "",
+            "Modules\\Zoom\\App\\": "app/",
+            "Modules\\Zoom\\Database\\Factories\\": "database/factories/",
+            "Modules\\Zoom\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Zoom\\Tests\\": "tests/"
+        }
+    }
+}

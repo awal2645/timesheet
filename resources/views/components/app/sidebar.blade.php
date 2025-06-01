@@ -1,7 +1,7 @@
 <div>
     <!-- Sidebar backdrop -->
     <div 
-        class="fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden transition-opacity duration-200"
+        class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 lg:hidden transition-opacity duration-200"
         x-show="mobileMenu"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="opacity-0"
@@ -16,26 +16,26 @@
     <!-- Sidebar -->
     <div 
         id="sidebar"
-        class="fixed lg:static inset-y-0 left-0 z-40 w-64 flex-shrink-0 bg-[#f1f2f6] dark:bg-[#202327] lg:h-[calc(100vh-128px)] overflow-y-scroll lg:overflow-y-auto no-scrollbar transition-transform duration-200 ease-in-out lg:translate-x-0"
-        :class="mobileMenu ? 'translate-x-0 h-screen' : '-translate-x-64 lg:translate-x-0'"
+        class="fixed lg:static inset-y-0 left-0 z-40 w-72 flex-shrink-0 bg-white dark:bg-gray-900 lg:h-[calc(100vh-128px)] overflow-y-scroll lg:overflow-y-auto no-scrollbar transition-transform duration-200 ease-in-out lg:translate-x-0 border-r border-gray-200 dark:border-gray-800"
+        :class="mobileMenu ? 'translate-x-0 h-screen' : '-translate-x-72 lg:translate-x-0'"
         @click.outside="if($event.target.closest('#sidebar') === null && $event.target.closest('button') === null) mobileMenu = false"
         x-transition:enter="transition ease-out duration-200"
-        x-transition:enter-start="-translate-x-64"
+        x-transition:enter-start="-translate-x-72"
         x-transition:enter-end="translate-x-0">
 
         <!-- Sidebar content -->
-        <div class="space-y-8 py-3 px-8">
+        <div class="space-y-6 py-6 px-4">
             <!-- Pages group -->
             <div>
-                <ul class="mt-3 space-y-2">
+                <ul class="space-y-1">
                     <!-- Dashboard -->
-                    <li>Dashboard</li>
+                    <li class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mb-2">Dashboard</li>
                     <li>
-                        <a class="sidebar-menu-item {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('dashboard') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
                             href="{{ route('dashboard') }}">
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between w-full">
                                 <div class="flex items-center">
-                                    <span class="sidebar-menu-icon">
+                                    <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                         <i class="fa-solid fa-gauge text-base"></i>
                                     </span>
                                     <span class="sidebar-menu-text">
@@ -47,11 +47,11 @@
                     <!-- Order -->
                     @canany('Order view')
                         <li>
-                            <a class="sidebar-menu-item {{ request()->routeIs('order.*') ? 'active' : '' }}"
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('order.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
                                 href="{{ route('order.index') }}">
-                                <div class="flex items-center justify-between">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-money-bill-wave text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -62,15 +62,14 @@
                         </li>
                     @endcanany
                     <!-- employer -->
-                    <li>Data Section</li>
+                    <li class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mt-6 mb-2">Data Section</li>
                     @canany('Employer view')
                         <li>
-                            <a href="{{ route('employer.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('employer.*') ? 'active' : '' }}"
-                                href="#0">
-                                <div class="flex items-center justify-between">
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('employer.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                                href="{{ route('employer.index') }}">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-building text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -83,11 +82,11 @@
                     <!-- employee -->
                     @canany('Client view')
                         <li>
-                            <a href="{{ route('employee.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('employee.*') ? 'active' : '' }} ">
-                                <div class="flex items-center justify-between">
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('employee.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                                href="{{ route('employee.index') }}">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-user-tie text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -100,11 +99,11 @@
                     <!-- client -->
                     @canany('Client view')
                         <li>
-                            <a href="{{ route('client.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('client.*') ? 'active' : '' }} ">
-                                <div class="flex items-center justify-between">
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('client.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                                href="{{ route('client.index') }}">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-user-secret text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -117,11 +116,11 @@
                     <!-- project -->
                     @if (auth('web')->user()->role != 'employee')
                         <li>
-                            <a href="{{ route('project.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('project.*') ? 'active' : '' }} ">
-                                <div class="flex items-center justify-between">
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('project.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                                href="{{ route('project.index') }}">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-list-check text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -133,12 +132,12 @@
                     @endif
                     <!-- task -->
                     <li>
-                        <a href="{{ route('task.index') }}"
-                            class="sidebar-menu-item {{ request()->routeIs('task.*') ? 'active' : '' }} ">
-                            <div class="flex items-center justify-between">
+                        <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('task.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                            href="{{ route('task.index') }}">
+                            <div class="flex items-center justify-between w-full">
                                 <div class="flex items-center">
-                                    <span class="sidebar-menu-icon">
-                                        <i class="fa-solid fa-briefcase"> </i>
+                                    <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
+                                        <i class="fa-solid fa-briefcase"></i>
                                     </span>
                                     <span class="sidebar-menu-text">
                                         {{ __('Task') }}</span>
@@ -206,89 +205,64 @@
                     @canany('Leave view')
                         <li x-data="{ open: {{ request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') || request()->routeIs('leave.*') ? 'true' : 'false' }} }">
                             <a href="#" @click.prevent="open = !open"
-                                class="flex justify-between items-center gap-2 px-3 py-1.5 rounded {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'active' : '' }}">
+                                class="group flex items-center justify-between px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('leave.*') || request()->routeIs('weekly_holidays.*') || request()->routeIs('holidays.*') || request()->routeIs('leave_types.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}">
                                 <div class="flex items-center">
-                                    <span class="sidebar-menu-icon">
+                                    <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                         <i class="fa-solid fa-person-walking-arrow-right"></i>
                                     </span>
-                                    <span class="sidebar-menu-text text-text-light dark:text-text-dark">
+                                    <span class="sidebar-menu-text">
                                         {{ __('Leave Management') }}
                                     </span>
                                 </div>
-                                <div class="flex justify-center items-center shrink-0 w-6 h-6 cursor-pointer">
-                                    <svg class="w-3 h-3 shrink-0 ms-1 fill-current text-gray-white"
+                                <div class="flex justify-center items-center shrink-0 w-6 h-6">
+                                    <svg class="w-3 h-3 shrink-0 fill-current text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400"
                                         :class="open ? 'rotate-180' : ''" viewBox="0 0 12 12">
                                         <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
                                     </svg>
                                 </div>
                             </a>
-                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block bg-transparent ps-5" x-show="open" x-collapse.duration.500ms>
-                                <ul class="mt-1">
+                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block" x-show="open" x-collapse.duration.500ms>
+                                <ul class="mt-1 space-y-1 pl-9">
                                     @canany('Leave view')
-                                        <!--  Leave -->
-                                        <li class="mb-1 last:mb-0">
+                                        <li>
                                             <a href="{{ route('leave.index') }}"
-                                                class="sidebar-menu-item {{ request()->routeIs('leave.*') ? 'active' : '' }} ">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center">
-                                                        <span class="sidebar-menu-text">
-                                                            {{ __('Leave') }}
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('leave.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100' }}">
+                                                <span class="sidebar-menu-text">
+                                                    {{ __('Leave') }}
+                                                </span>
                                             </a>
                                         </li>
                                     @endcanany
                                     <!-- Weekly Holidays -->
                                     @canany('Weekly Holidays view')
-                                        <li class="mb-1 last:mb-0">
+                                        <li>
                                             <a href="{{ route('weekly_holidays.index') }}"
-                                                class="sidebar-menu-item {{ request()->routeIs('weekly_holidays.*') ? 'active' : '' }} ">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center">
-                                                        <span class="sidebar-menu-icon">
-                                                            <i class="fa-solid fa-retweet"></i> </span>
-                                                        <span class="sidebar-menu-text">
-                                                            {{ __('Weekly Holidays') }}
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('weekly_holidays.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100' }}">
+                                                <span class="sidebar-menu-text">
+                                                    {{ __('Weekly Holidays') }}
+                                                </span>
                                             </a>
                                         </li>
                                     @endcanany
                                     <!-- Holidays -->
                                     @canany('Holiday view')
-                                        <li class="mb-1 last:mb-0">
+                                        <li>
                                             <a href="{{ route('holidays.index') }}"
-                                                class="sidebar-menu-item {{ request()->routeIs('holidays.*') ? 'active' : '' }} ">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center">
-                                                        <span class="sidebar-menu-icon">
-                                                            <i class="fa-solid fa-mug-hot"></i>
-                                                        </span>
-                                                        <span class="sidebar-menu-text">
-                                                            {{ __('Holidays') }}
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('holidays.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100' }}">
+                                                <span class="sidebar-menu-text">
+                                                    {{ __('Holidays') }}
+                                                </span>
                                             </a>
                                         </li>
                                     @endcanany
                                     <!-- Leave Types -->
                                     @canany('Leave Types view')
-                                        <li class="mb-1 last:mb-0">
+                                        <li>
                                             <a href="{{ route('leave_types.index') }}"
-                                                class="sidebar-menu-item {{ request()->routeIs('leave_types.*') ? 'active' : '' }} ">
-                                                <div class="flex items-center justify-between">
-                                                    <div class="flex items-center">
-                                                        <span class="sidebar-menu-icon">
-                                                            <i class="fa-solid fa-calendar-alt text-base"></i>
-                                                        </span>
-                                                        <span class="sidebar-menu-text">
-                                                            {{ __('Leave Types') }}
-                                                        </span>
-                                                    </div>
-                                                </div>
+                                                class="group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('leave_types.*') ? 'text-indigo-600 dark:text-indigo-400' : 'text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100' }}">
+                                                <span class="sidebar-menu-text">
+                                                    {{ __('Leave Types') }}
+                                                </span>
                                             </a>
                                         </li>
                                     @endcanany
@@ -296,42 +270,45 @@
                             </div>
                         </li>
                     @endcanany
-                    <!-- Notice -->
-                    @canany('Notice view')
-                        <li>
-                            <a href="{{ route('notices.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('notices.*') ? 'active' : '' }} ">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
-                                            <i class="fa-solid fa-bullhorn text-base"></i>
-                                        </span>
-                                        <span class="sidebar-menu-text">
-                                            {{ __('Notice') }}
-                                        </span>
+                    @if(module_enabled('Notice'))
+                        @canany('Notice view')
+                            <li>
+                                <a href="{{ route('notices.index') }}"
+                                    class="sidebar-menu-item {{ request()->routeIs('notices.*') ? 'active' : '' }} ">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <span class="sidebar-menu-icon">
+                                                <i class="fa-solid fa-bullhorn text-base"></i>
+                                            </span>
+                                            <span class="sidebar-menu-text">
+                                                {{ __('Notice') }}
+                                            </span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                    @endcanany
+                                </a>
+                            </li>
+                        @endcanany
+                    @endif
                     <!-- Zoom Meeting -->
-                    <li>Setting Section</li>
-                    @canany('Zoom Meeting view')
-                        <li>
-                            <a href="{{ route('meeting.index') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('meeting.*') ? 'active' : '' }} ">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
-                                            <i class="fa-solid fa-video text-base"></i>
-                                        </span>
-                                        <span class="sidebar-menu-text">
-                                            {{ __('Zoom Meeting') }}</span>
+                    <li class="text-xs font-semibold text-gray-400 uppercase tracking-wider px-3 mt-6 mb-2">Settings</li>
+                    @if(module_enabled('Zoom'))
+                        @canany('Zoom Meeting view')
+                            <li>
+                                <a href="{{ route('zoom.meeting.index') }}"
+                                    class="sidebar-menu-item {{ request()->routeIs('zoom.meeting.*') ? 'active' : '' }} ">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center">
+                                            <span class="sidebar-menu-icon">
+                                                <i class="fa-solid fa-video text-base"></i>
+                                            </span>
+                                            <span class="sidebar-menu-text">
+                                                {{ __('Zoom Meeting') }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </a>
-                        </li>
-                    @endcanany
+                                </a>
+                            </li>
+                        @endcanany
+                    @endif
                     <!-- Invoice -->
                     @canany('Invoice view')
                         <li>
@@ -424,8 +401,8 @@
                     <!-- email -->
                     @canany('Email Templates')
                         <li>
-                            <a href="{{ route('email_templates') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('email_templates') ? 'active' : '' }}  ">
+                            <a href="{{ route('emailtemplate.index') }}"
+                                class="sidebar-menu-item {{ request()->routeIs('emailtemplate.*') ? 'active' : '' }}  ">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center">
                                         <span class="sidebar-menu-icon">
@@ -440,13 +417,14 @@
                         </li>
                     @endcanany
                     <!-- General -->
+                    @if(module_enabled('Payment'))
                     @canany('General Settings')
                         <li>
-                            <a href="{{ route('payment') }}"
-                                class="sidebar-menu-item {{ request()->routeIs('payment') ? 'active' : '' }}  ">
-                                <div class="flex items-center justify-between">
+                            <a class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('payment.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}"
+                                href="{{ route('payment.index') }}">
+                                <div class="flex items-center justify-between w-full">
                                     <div class="flex items-center">
-                                        <span class="sidebar-menu-icon">
+                                        <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
                                             <i class="fa-solid fa-file-invoice-dollar text-base"></i>
                                         </span>
                                         <span class="sidebar-menu-text">
@@ -457,7 +435,9 @@
                             </a>
                         </li>
                     @endcanany
+                    @endif
                     <!-- Language -->
+                    @if(module_enabled('Language'))
                     {{-- @canany('Language') --}}
                         <li>
                             <a href="{{ route('languages.index') }}"
@@ -475,6 +455,7 @@
                             </a>
                         </li>
                     {{-- @endcanany --}}
+                    @endif
                     <!-- Contact -->
                     @canany('Contact view')
                         <li>
@@ -567,6 +548,7 @@
                     @endcanany
 
                     <!-- testimonial -->
+                    @if(module_enabled('Testimonial'))
                     @canany('Testimonial view')
                         <li>
                             <a href="{{ route('testimonial.index') }}"
@@ -582,8 +564,9 @@
                                     </div>
                                 </div>
                             </a>
-                        </li>
-                    @endcanany
+                            </li>
+                        @endcanany
+                    @endif
                     <!-- Employee Salary -->
                     @canany('Employee Salary view')
                         <li>
@@ -637,6 +620,23 @@
                             </a>
                         </li>
                     @endif
+                    @can('General Settings')
+                        <li>
+                            <a href="{{ route('admin.modules.index') }}"
+                                class="sidebar-menu-item {{ request()->routeIs('admin.modules.index') ? 'active' : '' }} ">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center">
+                                        <span class="sidebar-menu-icon">
+                                            <i class="fa-solid fa-cubes"></i>
+                                        </span>
+                                        <span class="sidebar-menu-text">
+                                            {{ __('Module Management') }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endcan
 
                 </ul>
             </div>

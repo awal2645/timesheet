@@ -6,7 +6,7 @@ return [
 
     'paypal_sandbox_client_id' => 'AfXp2EX11Pym1k26wUL1vLFvvdY79LKozOPGS3lSybQMXx2YhELwzLnoWJdIcpwmkH80g42vLV-0yVPc',
     'paypal_sandbox_secret' => 'ENC16VzMJnnXlplrCEbieptcfy3RLG2G-4gqPS4646AYCmQGyx_tPL8ira6nLobyX0j3NAnYENfZ84XQ',
-    'paypal_live_client_id' => 'AfXp2EX11Pym1k26wUL1vLFvvdY79LKozOPGS3lSybQMXx2YhELwzLnoWJdIcpwmkH80g42vLV-0yVPc-3DkE2TFWt873wGRPYBOTb',
+    'paypal_live_client_id' => 'AfXp2EX11Pym1k26wUL1vLFvvdY79LKozOPGS3lSybQMXx2YhELwzLnoWJdIcpwmkH80g42vLV-0yVPc',
     'paypal_live_secret' => 'ENC16VzMJnnXlplrCEbieptcfy3RLG2G-4gqPS4646AYCmQGyx_tPL8ira6nLobyX0j3NAnYENfZ84XQ',
     'paypal_mode' => 'sandbox',
     'paypal_active' => true,
