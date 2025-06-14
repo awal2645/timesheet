@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Client;
 use App\Models\Project;
 use App\Models\Employee;
 use App\Models\Employer;
@@ -24,36 +25,74 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $query = Task::query();
+
         // Filter tasks based on user role
         if(auth()->user()->role == 'employee'){
-            // Employees see only their assigned tasks
-            $tasks = Task::where('employee_id', auth()->user()->employee->id)
-                        ->latest()
-                        ->paginate(10);
+            $query->where('employee_id', auth()->user()->employee->id);
         } elseif(auth()->user()->role == 'employer'){
-            // Employers see tasks for their company
-            $tasks = Task::whereHas('employer', function ($query) {
+            $query->whereHas('employer', function ($query) {
                 $query->where('employer_id', auth()->user()->employer->id);
-            })->latest()->paginate(10);
+            });
         } else if (auth()->user()->role == 'client') {
-            // Clients see tasks for their projects
-            $tasks = Task::whereHas('project', function ($query) {
+            $query->whereHas('project', function ($query) {
                 $query->where('client_id', auth()->user()->client->id);
-            })->latest()->paginate(10);
-        } else {
-            // Admins see all tasks
-            $tasks = Task::latest()->paginate(10);
+            });
         }
-        
-        // Apply search filter if present
-        $search = $request->input('search');
-        if($search){
-            $tasks = $tasks->where('task_name', 'like', '%'.$search.'%')
-                          ->orWhere('', 'like', '%'.$search.'%');
+
+        // Apply search filters
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('task_name', 'like', '%' . $search . '%')
+                  ->orWhereHas('project.client', function($q) use ($search) {
+                      $q->where('client_name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('employer', function($q) use ($search) {
+                      $q->where('employer_name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('employee', function($q) use ($search) {
+                      $q->where('employee_name', 'like', '%' . $search . '%');
+                  });
+            });
         }
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter by client
+        if ($request->filled('client_id')) {
+            $query->whereHas('project', function($q) use ($request) {
+                $q->where('client_id', $request->client_id);
+            });
+        }
+
+        // Filter by employer
+        if ($request->filled('employer_id')) {
+            $query->where('employer_id', $request->employer_id);
+        }
+
+        // Filter by employee
+        if ($request->filled('employee_id')) {
+            $query->where('employee_id', $request->employee_id);
+        }
+
+        // Filter by date range
+        if ($request->filled('start_date')) {
+            $query->where('due_date', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->where('due_date', '<=', $request->end_date);
+        }
+
+        // Get filtered tasks with pagination
+        $tasks = $query->latest()->paginate(10)->withQueryString();
 
         // Get projects for task creation
         $projects = Project::orderBy('project_name', 'desc')->get();
+        
         
         return view('task.index', compact('tasks', 'projects'));
     }

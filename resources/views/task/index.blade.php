@@ -1,6 +1,8 @@
 @section('title')
     {{ 'List Task' }}
 @endsection
+
+<!-- Add Select2 CSS and JS in the head section -->
 <style>
     @keyframes rotateMinuteHand {
         0% {
@@ -40,26 +42,92 @@
         transform-origin: 12px 12px;
         /* Center the rotation */
     }
+
+    .select2-container--classic .select2-selection--single {
+        height: 38px !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 0.375rem !important;
+    }
+    .select2-container--classic .select2-selection--single .select2-selection__rendered {
+        line-height: 38px !important;
+        padding-left: 12px !important;
+    }
+    .select2-container--classic .select2-selection--single .select2-selection__arrow {
+        height: 36px !important;
+    }
+    .select2-container--classic .select2-results__option {
+        padding: 8px 12px !important;
+    }
+    .select2-container--classic .select2-results__option--highlighted[aria-selected] {
+        background-color: #4f46e5 !important;
+    }
+    .select2-container--classic .select2-search--dropdown .select2-search__field {
+        border: 1px solid #d1d5db !important;
+        border-radius: 0.375rem !important;
+        padding: 6px !important;
+    }
+    .select2-container--classic .select2-results__option[aria-selected=true] {
+        background-color: #e5e7eb !important;
+    }
+    .select2-container--classic .select2-results__option--highlighted[aria-selected] {
+        background-color: #4f46e5 !important;
+        color: white !important;
+    }
+    .select2-container--classic .select2-results__option {
+        color: #374151 !important;
+    }
+    .dark .select2-container--classic .select2-selection--single {
+        background-color: #1f2937 !important;
+        border-color: #4b5563 !important;
+    }
+    .dark .select2-container--classic .select2-selection--single .select2-selection__rendered {
+        color: #e5e7eb !important;
+    }
+    .dark .select2-container--classic .select2-results__option {
+        background-color: #1f2937 !important;
+        color: #e5e7eb !important;
+    }
+    .dark .select2-container--classic .select2-search--dropdown .select2-search__field {
+        background-color: #1f2937 !important;
+        color: #e5e7eb !important;
+        border-color: #4b5563 !important;
+    }
 </style>
+
+
 <x-app-layout>
     <div class="relative m-6">
         <div>
             <div class="my-8 card flex flex-col md:flex-row gap-4 md:justify-between items-start md:items-center">
-                <form action="{{ route('task.index') }}" method="GET">
-                    <div class="mb-3">
-                        <label for="search" class="block mb-2 text-sm font-medium text-text-light dark:text-text-dark">
-                            {{ __('Search') }}</label>
-                            <div class="flex flex-wrap">
-                                <input type="text" id="search" name="search" class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-md focus:ring-primary-500 focus:border-primary-500 block p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="{{ __('Search') }}"
+                <div class="flex items-center gap-4 w-full">
+                    <!-- Search Input -->
+                    <div class="flex-1 mt-4">
+                        <form action="{{ route('task.index') }}" method="GET" class="flex gap-2">
+                            <input type="text" id="search" name="search" 
+                                class="border border-gray-300 text-text-light dark:text-text-dark text-sm rounded-md focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-card-dark bg-card-light dark:border-gray-600 dark:placeholder-gray-400 dark:text-text-dark dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                placeholder="{{ __('Search by task, client, employer or employee') }}"
                                 value="{{ request('search') }}" />
-                            <button
-                                class="bg-primary-50 rounded-md text-text-light dark:text-text-dark px-4 py-2 ms-2">{{ __('Search') }}</button>
-                        </div>
+                            <button type="submit" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
+                                <i class="fa-solid fa-search"></i>
+                            </button>
+                        </form>
                     </div>
-                </form>
-                    <a href="{{ route('task.create') }}"
-                        class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg"><i
-                            class="fa-solid fa-plus"></i> {{ __('Create Task') }}</a>
+
+                    <!-- Filter Button -->
+                    <button type="button" onclick="openFilterModal()" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg flex items-center gap-2">
+                        <i class="fa-solid fa-filter"></i> {{ __('Filters') }}
+                        @if(request('status') || request('client_id') || request('employer_id') || request('employee_id') || request('start_date') || request('end_date'))
+                            <span class="bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+                                {{ (request('status') ? 1 : 0) + (request('client_id') ? 1 : 0) + (request('employer_id') ? 1 : 0) + (request('employee_id') ? 1 : 0) + (request('start_date') ? 1 : 0) + (request('end_date') ? 1 : 0) }}
+                            </span>
+                        @endif
+                    </button>
+
+                    <!-- Create Task Button -->
+                    <a href="{{ route('task.create') }}" class="bg-primary-50 text-text-light dark:text-text-dark px-4 py-2 rounded-lg">
+                        <i class="fa-solid fa-plus"></i> {{ __('Create Task') }}
+                    </a>
+                </div>
             </div>
             <!-- Start heading here -->
             <div class="flex flex-wrap">
@@ -248,6 +316,121 @@
             <!-- Start content here -->
         </div>
     </div>
+
+    <!-- Filter Modal -->
+    <div id="filterModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto z-50"  width="10%">
+        <div class="relative top-20 mx-auto p-4 border !w-[500px] shadow-lg rounded-md bg-white dark:bg-card-dark" style="width: 500px;">
+            <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-200 dark:border-gray-700">
+                <h3 class="text-base font-medium text-text-light dark:text-text-dark">
+                    {{ __('Advanced Filters') }}
+                </h3>
+                <button onclick="closeFilterModal()" class="text-gray-400 hover:text-gray-500 focus:outline-none">
+                    <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <form action="{{ route('task.index') }}" method="GET" class="space-y-3">
+                <!-- Preserve search parameter -->
+                <input type="hidden" name="search" value="{{ request('search') }}">
+
+                <!-- Status Filter -->
+                <div>
+                    <label for="status" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                        {{ __('Status') }}
+                    </label>
+                    <select id="status" name="status" 
+                        class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark">
+                        <option value="">{{ __('All Status') }}</option>
+                        <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>{{ __('Pending') }}</option>
+                        <option value="inprogress" {{ request('status') == 'inprogress' ? 'selected' : '' }}>{{ __('In Progress') }}</option>
+                        <option value="completed" {{ request('status') == 'completed' ? 'selected' : '' }}>{{ __('Completed') }}</option>
+                    </select>
+                </div>
+
+                <!-- Client Filter -->
+                <div>
+                    <label for="client_id" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                        {{ __('Client') }}
+                    </label>
+                    <select id="client_id" name="client_id" 
+                        class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark select2-ajax">
+                        <option value="">{{ __('All Clients') }}</option>
+                        @if(request('client_id') && isset($selectedClient))
+                            <option value="{{ request('client_id') }}" selected>
+                                {{ $selectedClient->client_name }}
+                            </option>
+                        @endif
+                    </select>
+                </div>
+
+                <!-- Employer Filter -->
+                <div>
+                    <label for="employer_id" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                        {{ __('Employer') }}
+                    </label>
+                    <select id="employer_id" name="employer_id" 
+                        class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark select2-ajax">
+                        <option value="">{{ __('All Employers') }}</option>
+                        @if(request('employer_id') && isset($selectedEmployer))
+                            <option value="{{ request('employer_id') }}" selected>
+                                {{ $selectedEmployer->employer_name }}
+                            </option>
+                        @endif
+                    </select>
+                </div>
+
+                <!-- Employee Filter -->
+                <div>
+                    <label for="employee_id" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                        {{ __('Employee') }}
+                    </label>
+                    <select id="employee_id" name="employee_id" 
+                        class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark select2-ajax">
+                        <option value="">{{ __('All Employees') }}</option>
+                        @if(request('employee_id') && isset($selectedEmployee))
+                            <option value="{{ request('employee_id') }}" selected>
+                                {{ $selectedEmployee->employee_name }}
+                            </option>
+                        @endif
+                    </select>
+                </div>
+
+                <!-- Date Range Filters -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label for="start_date" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                            {{ __('Start Date') }}
+                        </label>
+                        <input type="date" id="start_date" name="start_date" 
+                            class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark"
+                            value="{{ request('start_date') }}" />
+                    </div>
+                    <div>
+                        <label for="end_date" class="block text-xs font-medium text-text-light dark:text-text-dark mb-1">
+                            {{ __('End Date') }}
+                        </label>
+                        <input type="date" id="end_date" name="end_date" 
+                            class="text-sm w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-card-dark dark:border-gray-600 dark:text-text-dark"
+                            value="{{ request('end_date') }}" />
+                    </div>
+                </div>
+
+                <!-- Filter Buttons -->
+                <div class="flex justify-end gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
+                    <a href="{{ route('task.index') }}" 
+                        class="text-sm px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-md transition duration-200">
+                        {{ __('Reset') }}
+                    </a>
+                    <button type="submit" 
+                        class="text-sm px-3 py-1.5 bg-primary-50 hover:bg-primary-50 text-white rounded-md transition duration-200">
+                        {{ __('Apply') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </x-app-layout>
 
 <script>
@@ -385,4 +568,181 @@
             }
         });
     }
+</script>
+
+<script>
+    function openFilterModal() {
+        document.getElementById('filterModal').classList.remove('hidden');
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+
+    function closeFilterModal() {
+        document.getElementById('filterModal').classList.add('hidden');
+        document.body.style.overflow = ''; // Restore scrolling
+    }
+
+    // Close modal when clicking outside
+    document.getElementById('filterModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeFilterModal();
+        }
+    });
+
+    // Close modal when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeFilterModal();
+        }
+    });
+</script>
+
+<!-- Make sure jQuery is loaded first -->
+
+<script>
+    $(document).ready(function() {
+        // Initialize Select2 for all select elements with select2-ajax class
+        $('.select2-ajax').each(function() {
+            const $select = $(this);
+            const id = $select.attr('id');
+            let url = '';
+            let currentRequest = null;
+            
+            // Set the appropriate URL based on the select element's ID
+            switch(id) {
+                case 'client_id':
+                    url = '{{ route("ajax.clients") }}';
+                    break;
+                case 'employer_id':
+                    url = '{{ route("ajax.employers") }}';
+                    break;
+                case 'employee_id':
+                    url = '{{ route("ajax.employees") }}';
+                    break;
+            }
+
+            // For employer dropdown, load initial data
+            if (id === 'employer_id') {
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    data: {
+                        page: 1,
+                        per_page: 5,
+                        status: '1',
+                        _token: '{{ csrf_token() }}'
+                    },
+                    success: function(response) {
+                        if (response && response.results) {
+                            // Add options to select
+                            response.results.forEach(function(item) {
+                                $select.append(new Option(item.text, item.id, false, false));
+                            });
+                        }
+                    }
+                });
+            }
+
+            $select.select2({
+                theme: 'classic',
+                width: '100%',
+                ajax: {
+                    url: url,
+                    dataType: 'json',
+                    delay: 250,
+                    data: function(params) {
+                        return {
+                            q: params.term || '',
+                            page: params.page || 1,
+                            per_page: 5,
+                            status: '1',
+                            _token: '{{ csrf_token() }}'
+                        };
+                    },
+                    beforeSend: function(xhr) {
+                        if (currentRequest) {
+                            currentRequest.abort();
+                        }
+                        currentRequest = xhr;
+                    },
+                    processResults: function(response, params) {
+                        params.page = params.page || 1;
+                        currentRequest = null;
+                        
+                        if (!response || !response.results) {
+                            return {
+                                results: [],
+                                pagination: {
+                                    more: false
+                                }
+                            };
+                        }
+
+                        return {
+                            results: response.results,
+                            pagination: {
+                                more: response.pagination?.more || false
+                            }
+                        };
+                    },
+                    error: function(xhr, status, error) {
+                        currentRequest = null;
+                        if (status !== 'abort') {
+                            console.error('Select2 AJAX Error:', {
+                                status: status,
+                                error: error,
+                                response: xhr.responseText
+                            });
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Failed to load results. Please try again.'
+                            });
+                        }
+                    },
+                    cache: true
+                },
+                placeholder: function() {
+                    switch(id) {
+                        case 'client_id':
+                            return '{{ __("Search for a client...") }}';
+                        case 'employer_id':
+                            return '{{ __("Search for an employer...") }}';
+                        case 'employee_id':
+                            return '{{ __("Search for an employee...") }}';
+                        default:
+                            return '{{ __("Search...") }}';
+                    }
+                },
+                minimumInputLength: 0,
+                language: {
+                    inputTooShort: function() {
+                        return '{{ __("Please enter 2 or more characters") }}';
+                    },
+                    searching: function() {
+                        return '{{ __("Searching...") }}';
+                    },
+                    noResults: function() {
+                        return '{{ __("No results found") }}';
+                    },
+                    errorLoading: function() {
+                        return '{{ __("Error loading results") }}';
+                    }
+                },
+                templateResult: function(data) {
+                    if (data.loading) {
+                        return data.text;
+                    }
+                    return data.text;
+                },
+                templateSelection: function(data) {
+                    return data.text;
+                }
+            });
+
+            // If there's a selected value, trigger change to update the display
+            if ($select.val()) {
+                $select.trigger('change');
+            }
+        });
+    });
 </script>

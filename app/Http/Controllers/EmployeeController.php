@@ -174,4 +174,14 @@ class EmployeeController extends Controller
             return redirect()->route('employee.index')->with('error', 'An error occurred while deleting employee: ' . $e->getMessage());
         }
     }
+
+    public function ajaxSearch(Request $request)
+    {
+        $search = $request->input('q');
+        $results = \App\Models\Employee::where('employee_name', 'like', "%$search%")
+            ->select('id', 'employee_name as text')
+            ->limit(5)
+            ->get();
+        return response()->json(['results' => $results]);
+    }
 }

@@ -275,4 +275,14 @@ class ClientController extends Controller
             return response()->json(['error' => 'Failed to fetch clients'], 500);
         }
     }
+
+    public function ajaxSearch(Request $request)
+    {
+        $search = $request->input('q');
+        $results = \App\Models\Client::where('client_name', 'like', "%$search%")
+            ->select('id', 'client_name as text')
+            ->limit(5)
+            ->get();
+        return response()->json(['results' => $results]);
+    }
 }

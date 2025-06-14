@@ -278,3 +278,7 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('admin/settings')->group(
     Route::get('modules', [\App\Http\Controllers\Admin\ModuleController::class, 'index'])->name('admin.modules.index');
     Route::patch('modules/{module}', [\App\Http\Controllers\Admin\ModuleController::class, 'update'])->name('admin.modules.update');
 });
+
+Route::get('/ajax/clients', [\App\Http\Controllers\Client\ClientController::class, 'ajaxSearch'])->name('ajax.clients');
+Route::get('/ajax/employers', [\App\Http\Controllers\EmployerController::class, 'ajaxSearch'])->name('ajax.employers');
+Route::get('/ajax/employees', [\App\Http\Controllers\EmployeeController::class, 'ajaxSearch'])->name('ajax.employees');

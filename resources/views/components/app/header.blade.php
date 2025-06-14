@@ -46,7 +46,7 @@
                             @foreach ($languages as $lang)
                                 <option value="{{ $lang->code }}"
                                     {{ $lang->code === $current_language ? 'selected' : '' }}>
-                                    {{ $lang->name }}
+                                   <i class=""></i> {{ $lang->name }}
                                 </option>
                             @endforeach
                         </select>
