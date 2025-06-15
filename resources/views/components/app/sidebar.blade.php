@@ -638,6 +638,24 @@
                         </li>
                     @endcan
 
+                    @can('General Settings')
+                    <li>
+                        <a href="/log-viewer"
+                            class="sidebar-menu-item {{ request()->routeIs('log-viewer') ? 'active' : '' }} ">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <span class="sidebar-menu-icon">
+                                        <i class="fa-solid fa-file-lines"></i>
+                                    </span>
+                                    <span class="sidebar-menu-text">
+                                        {{ __('Log Viewer') }}
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                @endcan
+
                 </ul>
             </div>
         </div>
