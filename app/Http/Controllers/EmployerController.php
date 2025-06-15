@@ -285,10 +285,19 @@ class EmployerController extends Controller
     public function ajaxSearch(Request $request)
     {
         $search = $request->input('q');
-        $results = \App\Models\Employer::where('employer_name', 'like', "%$search%")
-            ->select('id', 'employer_name as text')
-            ->limit(5)
-            ->get();
+        
+        $query = Employer::query();
+        
+        // Apply search if provided
+        if ($search) {
+            $query->where('employer_name', 'like', "%{$search}%");
+        }
+        
+        // Get results with pagination
+        $results = $query->select('id', 'employer_name as text')
+                        ->limit(5)
+                        ->get();
+        
         return response()->json(['results' => $results]);
     }
 }

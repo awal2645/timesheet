@@ -38,8 +38,18 @@ class EmployeeSalryController extends Controller
      */
     public function show(Request $request)
     {
+        // Validate request
+        $request->validate([
+            'employee' => 'required|exists:employees,id'
+        ]);
+
         // Find employee and their timesheets
-        $employee = Employee::find($request->employee);
+        $employee = Employee::findOrFail($request->employee);
+        
+        if (!$employee) {
+            return redirect()->back()->with('error', 'Employee not found.');
+        }
+
         $timesheets = Timesheet::where('user_id', $employee->user_id)->get();
         
         // Calculate total hours worked

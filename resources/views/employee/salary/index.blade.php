@@ -16,7 +16,7 @@
                                     <option value=""
                                         class="dark:bg-slate-800 text-text-light dark:text-text-dark" disabled selected>
                                         {{ __('Select Employer') }}</option>
-                                    @foreach ($employer as $item)
+                                    @foreach ($employer->take(5) as $item)
                                         <option class="dark:bg-slate-800 text-text-light dark:text-text-dark"
                                             value="{{ $item->id }}"
                                             {{ request('employer') == $item->id ? 'selected' : '' }}>
@@ -48,26 +48,105 @@
 </style>
 
 <script>
-    document.getElementById('employer').addEventListener('change', function() {
-        const employerId = this.value;
-        const employeeSelect = document.getElementById('employee');
+    // Wait for document and jQuery to be ready
+    $(function() {
+        // Initialize select2
+        $('#employer').select2({
+            width: '100%',
+            ajax: {
+                url: '/ajax/employers',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        q: params.term,
+                        page: params.page || 1
+                    };
+                },
+                processResults: function(data) {
+                    return {
+                        results: data.results
+                    };
+                },
+                cache: true
+            },
+            placeholder: '{{ __("Select Employer") }}',
+            minimumInputLength: 0
+        });
 
-        // Clear previous employee options
-        employeeSelect.innerHTML =
-            '<option value="" class="dark:bg-slate-800 text-text-light dark:text-text-dark">{{ __('Select Employee') }}</option>';
+        $('#employee').select2({
+            width: '100%'
+        });
 
-        if (employerId) {
-            fetch(`/get/employee/${employerId}`)
-                .then(response => response.json())
+        // Bind change event using jQuery
+        $('#employer').on('change', function() {
+            const employerId = $(this).val();
+            const employeeSelect = $('#employee');
+            const token = $('meta[name="csrf-token"]').attr('content');
+
+            console.log('Employer ID:', employerId);
+            console.log('CSRF Token:', token);
+
+            // Clear previous employee options
+            employeeSelect.empty().append(
+                $('<option></option>')
+                    .val('')
+                    .text('{{ __("Select Employee") }}')
+                    .addClass('dark:bg-slate-800 text-text-light dark:text-text-dark')
+            );
+
+            if (employerId) {
+                // Show loading state
+                employeeSelect.prop('disabled', true);
+
+                fetch(`/get/employee/${employerId}`, {
+                    headers: {
+                        'X-CSRF-TOKEN': token,
+                        'Accept': 'application/json'
+                    },
+                    credentials: 'same-origin'
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
+                    console.log('Employee data:', data);
+                    
+                    // Add new options
                     data.forEach(employee => {
-                        const option = document.createElement('option');
-                        option.value = employee.id;
-                        option.textContent = employee.employee_name;
-                        option.className = 'dark:bg-slate-800 text-text-light dark:text-text-dark';
-                        employeeSelect.appendChild(option);
+                        employeeSelect.append(
+                            $('<option></option>')
+                                .val(employee.id)
+                                .text(employee.employee_name)
+                                .addClass('dark:bg-slate-800 text-text-light dark:text-text-dark')
+                        );
                     });
+
+                    // Update select2
+                    employeeSelect.trigger('change');
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to load employees. Please try again.');
+                })
+                .finally(() => {
+                    // Re-enable select
+                    employeeSelect.prop('disabled', false);
                 });
-        }
+            }
+        });
+
+        // Handle form submission
+        $('form').on('submit', function(e) {
+            const employeeId = $('#employee').val();
+            if (!employeeId) {
+                e.preventDefault();
+                alert('Please select an employee first.');
+                return false;
+            }
+        });
     });
 </script>

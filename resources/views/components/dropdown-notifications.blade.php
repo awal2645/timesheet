@@ -39,7 +39,7 @@
         </ul>
         <div class="flex justify-center">
             <a href="{{ route('notification.del') }}"
-                class="text-text-light dark:text-text-dark cursor-pointer hover:text-primary-00">
+                class="text-blue-600 dark:text-text-dark cursor-pointer hover:text-primary-50">
                 {{ __('Mark as Read') }}
             </a>
         </div>
