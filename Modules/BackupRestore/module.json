@@ -1,0 +1,11 @@
+{
+    "name": "BackupRestore",
+    "alias": "backuprestore",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\BackupRestore\\App\\Providers\\BackupRestoreServiceProvider"
+    ],
+    "files": []
+}

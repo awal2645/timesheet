@@ -16,6 +16,8 @@ class ModuleSeeder extends Seeder
             ['name' => 'Testimonial', 'status' => true],
             ['name' => 'Payment', 'status' => true],
             ['name' => 'Newsletter', 'status' => true],
+            ['name' => 'Backup Restore', 'status' => true],
+            ['name' => 'Email Templates', 'status' => true],
         ];
 
         foreach ($modules as $module) {
