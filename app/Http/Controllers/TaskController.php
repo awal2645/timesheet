@@ -7,8 +7,12 @@ use App\Models\Client;
 use App\Models\Project;
 use App\Models\Employee;
 use App\Models\Employer;
+use App\Models\TaskAttachment;
+use App\Models\TaskComment;
 use Illuminate\Http\Request;
 use App\Models\Notificattion;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * Controller for managing tasks
@@ -45,6 +49,7 @@ class TaskController extends Controller
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('task_name', 'like', '%' . $search . '%')
+                  ->orWhere('description', 'like', '%' . $search . '%')
                   ->orWhereHas('project.client', function($q) use ($search) {
                       $q->where('client_name', 'like', '%' . $search . '%');
                   })
@@ -60,6 +65,16 @@ class TaskController extends Controller
         // Filter by status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
+        }
+
+        // Filter by task type
+        if ($request->filled('task_type')) {
+            $query->where('task_type', $request->task_type);
+        }
+
+        // Filter by priority
+        if ($request->filled('priority')) {
+            $query->where('priority', $request->priority);
         }
 
         // Filter by client
@@ -87,14 +102,28 @@ class TaskController extends Controller
             $query->where('due_date', '<=', $request->end_date);
         }
 
-        // Get filtered tasks with pagination
-        $tasks = $query->latest()->paginate(10)->withQueryString();
+        // Get filtered tasks with pagination and preserve query parameters
+        $tasks = $query->latest()->paginate(10);
+        $tasks->appends($request->all());
 
         // Get projects for task creation
         $projects = Project::orderBy('project_name', 'desc')->get();
         
-        
         return view('task.index', compact('tasks', 'projects'));
+    }
+
+    /**
+     * Show detailed view of a specific task
+     * 
+     * @param int $id Task ID
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $task = Task::with(['attachments', 'comments.user', 'project.client', 'employer', 'employee'])
+                   ->findOrFail($id);
+        
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -163,15 +192,27 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240', // 10MB max per file
             ]);
         } elseif(auth('web')->user()->role == 'employee'){
             $request->validate([
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } else {
             $request->validate([
@@ -179,21 +220,37 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         }
 
         // Create new task
-        Task::create([
+        $task = Task::create([
             'employer_id' => $request->employer_id ?? auth('web')->user()->employer->id,
             'employee_id' => $request->employee_id ?? auth('web')->user()->employee->id,
             'project_id' => $request->project_id,
             'task_name' => $request->task_name,
+            'description' => $request->description,
+            'task_type' => $request->task_type,
+            'priority' => $request->priority,
             'time' => $request->time,
             'status' => $request->status,
             'due_date' => $request->due_date,
+            'estimated_hours' => $request->estimated_hours,
+            'labels' => $request->labels,
         ]);
+
+        // Handle file attachments
+        if ($request->hasFile('attachments')) {
+            $this->handleFileUploads($request->file('attachments'), $task);
+        }
 
         // Create notification for task creation
         Notificattion::create([
@@ -203,7 +260,7 @@ class TaskController extends Controller
             'page_url' => '/task',
         ]);
 
-        return redirect()->route('task.index')->with('success', 'Task created successfully!');
+        return redirect()->route('task.show', $task->id)->with('success', 'Task created successfully!');
     }
 
     /**
@@ -215,7 +272,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::with(['attachments'])->findOrFail($id);
         
         // Get available data based on user role
         if(auth('web')->user()->role == 'employer'){
@@ -255,15 +312,27 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } elseif(auth('web')->user()->role == 'employee'){
             $request->validate([
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } else {
             $request->validate([
@@ -271,8 +340,14 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         }
 
@@ -283,12 +358,62 @@ class TaskController extends Controller
             'employee_id' => $request->employee_id ?? auth('web')->user()->employee->id,
             'project_id' => $request->project_id,
             'task_name' => $request->task_name,
+            'description' => $request->description,
+            'task_type' => $request->task_type,
+            'priority' => $request->priority,
             'time' => $request->time,
             'status' => $request->status,
             'due_date' => $request->due_date,
+            'estimated_hours' => $request->estimated_hours,
+            'labels' => $request->labels,
         ]);
 
-        return redirect()->route('task.index')->with('success', 'Task updated successfully!');
+        // Handle new file attachments
+        if ($request->hasFile('attachments')) {
+            $this->handleFileUploads($request->file('attachments'), $task);
+        }
+
+        return redirect()->route('task.show', $task->id)->with('success', 'Task updated successfully!');
+    }
+
+    /**
+     * Add comment to task
+     * 
+     * @param Request $request Contains comment data
+     * @param int $id Task ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string'
+        ]);
+
+        $task = Task::findOrFail($id);
+        
+        TaskComment::create([
+            'task_id' => $task->id,
+            'user_id' => auth()->id(),
+            'comment' => $request->comment
+        ]);
+
+        return redirect()->route('task.show', $task->id)->with('success', 'Comment added successfully!');
+    }
+
+    /**
+     * Delete attachment
+     * 
+     * @param int $id Attachment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteAttachment($id)
+    {
+        $attachment = TaskAttachment::findOrFail($id);
+        $taskId = $attachment->task_id;
+        
+        $attachment->delete();
+
+        return redirect()->route('task.show', $taskId)->with('success', 'Attachment deleted successfully!');
     }
 
     /**
@@ -305,6 +430,72 @@ class TaskController extends Controller
         $task->save();
     
         return response()->json(['success' => true]);
+    }
+
+    /**
+     * Update specific task field via AJAX
+     * 
+     * @param Request $request Contains field and value
+     * @param int $id Task ID
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateField(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        
+        $field = $request->input('field');
+        $value = $request->input('value');
+        
+        // Validate the field and value
+        $allowedFields = ['task_type', 'priority', 'status', 'employee_id'];
+        
+        if (!in_array($field, $allowedFields)) {
+            return response()->json(['success' => false, 'message' => 'Invalid field']);
+        }
+        
+        // Validate values based on field
+        if ($field === 'employee_id') {
+            // Validate employee exists and belongs to the same employer
+            if ($value) {
+                $employee = Employee::find($value);
+                if (!$employee) {
+                    return response()->json(['success' => false, 'message' => 'Invalid employee']);
+                }
+                
+                // Check if employee belongs to the same employer as the task
+                if ($employee->employer_id !== $task->employer_id) {
+                    return response()->json(['success' => false, 'message' => 'Employee does not belong to the same employer']);
+                }
+            }
+        } else {
+            $validValues = [
+                'task_type' => ['task', 'story', 'bug', 'epic'],
+                'priority' => ['low', 'medium', 'high'],
+                'status' => ['pending', 'inprogress', 'completed']
+            ];
+            
+            if (!in_array($value, $validValues[$field])) {
+                return response()->json(['success' => false, 'message' => 'Invalid value']);
+            }
+        }
+        
+        // Update the task
+        $task->$field = $value;
+        $task->save();
+        
+        $response = [
+            'success' => true, 
+            'message' => 'Task updated successfully',
+            'task' => $task
+        ];
+        
+        // If updating employee, include employee name in response
+        if ($field === 'employee_id' && $value) {
+            $employee = Employee::find($value);
+            $response['employee_name'] = $employee ? $employee->employee_name : null;
+        }
+        
+        return response()->json($response);
     }
 
     /**
@@ -334,5 +525,35 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()->route('task.index')->with('success', 'Task deleted successfully!');
+    }
+
+    /**
+     * Handle file uploads for task attachments
+     * 
+     * @param array $files Uploaded files
+     * @param Task $task Task instance
+     * @return void
+     */
+    private function handleFileUploads($files, Task $task)
+    {
+        foreach ($files as $file) {
+            if ($file->isValid()) {
+                $originalName = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $fileName = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('task-attachments', $fileName, 'public');
+
+                TaskAttachment::create([
+                    'task_id' => $task->id,
+                    'user_id' => auth()->id(),
+                    'original_name' => $originalName,
+                    'file_name' => $fileName,
+                    'file_path' => $filePath,
+                    'file_type' => $extension,
+                    'file_size' => $file->getSize(),
+                    'mime_type' => $file->getMimeType()
+                ]);
+            }
+        }
     }
 }

@@ -201,12 +201,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task', 'index')->name('task.index');
         Route::get('task/create', 'create')->name('task.create');
         Route::post('task/store', 'store')->name('task.store');
-        Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
+        Route::get('task/{id}', 'show')->name('task.show');
         Route::get('task/edit/{id}', 'edit')->name('task.edit');
         Route::put('task/update/{id}', 'update')->name('task.update');
         Route::get('task/destroy/{id}', 'destroy')->name('task.destroy');
+        Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
+        Route::post('task/{id}/comment', 'addComment')->name('task.addComment');
+        Route::delete('task/attachment/{id}', 'deleteAttachment')->name('task.deleteAttachment');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
+        Route::post('/tasks/{id}/update-field', 'updateField')->name('task.updateField');
     });
 
     // Meeting Routes
