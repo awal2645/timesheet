@@ -6,5 +6,6 @@
     "EmailTemplate": true,
     "Payment": true,
     "Newsletter": true,
-    "BackupRestore": true
+    "BackupRestore": true,
+    "EmailReminders": true
 }

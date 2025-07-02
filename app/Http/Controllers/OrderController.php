@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\UserPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -28,40 +29,98 @@ class OrderController extends Controller
     }
 
     /**
-     * Display list of orders/transactions with search functionality
+     * Display list of orders/transactions with advanced filtering
      * 
-     * @param Request $request Contains search parameters
+     * @param Request $request Contains search and filter parameters
      * @return \Illuminate\View\View
      */
     public function order(Request $request)
     {
         try {
-            // Get search term from request
-            $searchTerm = $request->input('search');
+            // Validate filter inputs
+            $request->validate([
+                'search' => 'nullable|string|max:255',
+                'status' => 'nullable|in:paid,unpaid',
+                'provider' => 'nullable|in:stripe,paypal,razorpay,offline',
+                'date_from' => 'nullable|date',
+                'date_to' => 'nullable|date|after_or_equal:date_from',
+                'amount_min' => 'nullable|numeric|min:0',
+                'amount_max' => 'nullable|numeric|min:0|gte:amount_min',
+            ]);
 
-            // Build query with optional search filters
-            $transactions = Earning::with(['plan:id,label', 'employer.user'])
-                ->when($searchTerm, function ($query, $searchTerm) {
-                    $query->where('order_id', 'like', '%'.$searchTerm.'%')
+            // Get all filter parameters from request
+            $searchTerm = $request->input('search');
+            $status = $request->input('status');
+            $provider = $request->input('provider');
+            $dateFrom = $request->input('date_from');
+            $dateTo = $request->input('date_to');
+            $amountMin = $request->input('amount_min');
+            $amountMax = $request->input('amount_max');
+
+            // Build query with filters
+            $query = Earning::with(['plan:id,label', 'employer.user']);
+
+            // Apply search filter
+            if ($searchTerm) {
+                $query->where(function ($q) use ($searchTerm) {
+                    $q->where('order_id', 'like', '%'.$searchTerm.'%')
                         ->orWhere('transaction_id', 'like', '%'.$searchTerm.'%')
                         ->orWhere('amount', 'like', '%'.$searchTerm.'%')
                         ->orWhere('currency_symbol', 'like', '%'.$searchTerm.'%')
                         ->orWhere('usd_amount', 'like', '%'.$searchTerm.'%')
-                        ->orWhere('payment_status', $searchTerm)
+                        ->orWhere('payment_status', 'like', '%'.$searchTerm.'%')
                         ->orWhere('payment_provider', 'like', '%'.$searchTerm.'%')
-                        ->orWhereHas('employer.user', function ($q) use ($searchTerm) {
-                            $q->where('employer_name', 'like', '%'.$searchTerm.'%');
+                        ->orWhereHas('employer.user', function ($subQ) use ($searchTerm) {
+                            $subQ->where('employer_name', 'like', '%'.$searchTerm.'%');
                         })
-                        ->orWhereHas('plan', function ($q) use ($searchTerm) {
-                            $q->where('label', 'like', '%'.$searchTerm.'%');
+                        ->orWhereHas('plan', function ($subQ) use ($searchTerm) {
+                            $subQ->where('label', 'like', '%'.$searchTerm.'%');
                         });
-                })
-                ->latest()
-                ->paginate(10);
+                });
+            }
+
+            // Apply payment status filter
+            if ($status) {
+                $query->where('payment_status', $status);
+            }
+
+            // Apply payment provider filter
+            if ($provider) {
+                $query->where('payment_provider', $provider);
+            }
+
+            // Apply date range filters
+            if ($dateFrom) {
+                $query->whereDate('created_at', '>=', $dateFrom);
+            }
+            if ($dateTo) {
+                $query->whereDate('created_at', '<=', $dateTo);
+            }
+
+            // Apply amount range filters
+            if ($amountMin !== null) {
+                $query->where('usd_amount', '>=', $amountMin);
+            }
+            if ($amountMax !== null) {
+                $query->where('usd_amount', '<=', $amountMax);
+            }
+
+            // Execute query with pagination
+            $transactions = $query->latest()
+                ->paginate(10)
+                ->appends($request->query()); // Preserve query parameters in pagination links
 
             return view('order.transactions', compact('transactions'));
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching transactions.']);
+            // Log the error for debugging
+            \Illuminate\Support\Facades\Log::error('Order filtering error: ' . $e->getMessage(), [
+                'request' => $request->all(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return back()->withErrors(['error' => 'An error occurred while fetching transactions. Please try again.'])->withInput();
         }
     }
 

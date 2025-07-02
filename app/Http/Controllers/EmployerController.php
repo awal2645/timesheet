@@ -36,25 +36,82 @@ class EmployerController extends Controller
     }
 
     /**
-     * Display paginated list of employers with search functionality
-     * @param Request $request
+     * Display paginated list of employers with advanced filtering
+     * @param Request $request Contains search and filter parameters
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
-        // Build query for employers with search filters
-        $employers = Employer::query()
-            ->when($request->search, function ($query, $search) {
-                $query->where('employer_name', 'like', "%{$search}%")
-                    ->orWhere('fein_number', 'like', "%{$search}%")
-                    ->orWhere('phone', 'like', "%{$search}%")
-                    ->orWhere('website', 'like', "%{$search}%")
-                    ->orWhere('contact_person_name', 'like', "%{$search}%");
-            })
-            ->latest()
-            ->paginate(10);
+        try {
+            // Validate filter inputs
+            $request->validate([
+                'search' => 'nullable|string|max:255',
+                'status' => 'nullable|in:0,1',
+                'min_employees' => 'nullable|numeric|min:0',
+                'max_employees' => 'nullable|numeric|min:0',
+                'has_website' => 'nullable|in:0,1',
+            ]);
 
-        return view('employer.index', compact('employers'));
+            // Get all filter parameters from request
+            $searchTerm = $request->input('search');
+            $status = $request->input('status');
+            $minEmployees = $request->input('min_employees');
+            $maxEmployees = $request->input('max_employees');
+            $hasWebsite = $request->input('has_website');
+
+            // Build query with filters
+            $employers = Employer::query()
+                ->with(['user', 'employee']) // Eager load relationships
+                ->when($searchTerm, function ($query, $search) {
+                    $query->where(function ($q) use ($search) {
+                        $q->where('employer_name', 'like', "%{$search}%")
+                          ->orWhere('fein_number', 'like', "%{$search}%")
+                          ->orWhere('phone', 'like', "%{$search}%")
+                          ->orWhere('website', 'like', "%{$search}%")
+                          ->orWhere('contact_person_name', 'like', "%{$search}%")
+                          ->orWhereHas('user', function ($userQuery) use ($search) {
+                              $userQuery->where('email', 'like', "%{$search}%");
+                          });
+                    });
+                })
+                ->when($status !== null, function ($query) use ($status) {
+                    $query->where('status', $status);
+                })
+                ->when($hasWebsite !== null, function ($query) use ($hasWebsite) {
+                    if ($hasWebsite == '1') {
+                        $query->whereNotNull('website')->where('website', '!=', '');
+                    } else {
+                        $query->where(function ($q) {
+                            $q->whereNull('website')->orWhere('website', '');
+                        });
+                    }
+                })
+                ->when($minEmployees !== null || $maxEmployees !== null, function ($query) use ($minEmployees, $maxEmployees) {
+                    $query->withCount('employee')
+                          ->when($minEmployees !== null, function ($q) use ($minEmployees) {
+                              $q->having('employee_count', '>=', $minEmployees);
+                          })
+                          ->when($maxEmployees !== null, function ($q) use ($maxEmployees) {
+                              $q->having('employee_count', '<=', $maxEmployees);
+                          });
+                })
+                ->latest('created_at')
+                ->paginate(15)
+                ->appends($request->query()); // Preserve query parameters in pagination
+
+            return view('employer.index', compact('employers'));
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            // Log the error for debugging
+            \Illuminate\Support\Facades\Log::error('Employer filtering error: ' . $e->getMessage(), [
+                'request' => $request->all(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            return back()->withErrors(['error' => 'An error occurred while fetching employers. Please try again.'])->withInput();
+        }
     }
 
     /**

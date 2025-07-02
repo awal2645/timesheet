@@ -9,6 +9,7 @@ use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Controller for managing employee operations
@@ -41,31 +42,90 @@ class EmployeeController extends Controller
     }
 
     /**
-     * Display paginated list of employees with optional search
+     * Display paginated list of employees with advanced filtering
      * @param Request $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
-        $query = Employee::query();
+        try {
+            // Validate filter parameters
+            $request->validate([
+                'search' => 'nullable|string|max:255',
+                'status' => 'nullable|in:0,1',
+                'min_leave' => 'nullable|integer|min:0|max:365',
+                'max_leave' => 'nullable|integer|min:0|max:365',
+                'employer_id' => 'nullable|exists:employers,id',
+            ]);
 
-        // Filter employees by employer if user is an employer
-        if (auth('web')->user()->role == 'employer') {
-            $query->where('employer_id', auth('web')->user()->employer->id);
+            // Start with base query including necessary relationships
+            $query = Employee::with(['user', 'employer']);
+
+            // Filter employees by employer if user is an employer
+            if (auth('web')->user()->role == 'employer') {
+                $query->where('employer_id', auth('web')->user()->employer->id);
+            }
+
+            // Apply search filter if provided
+            if ($request->filled('search')) {
+                $searchTerm = trim($request->input('search'));
+                $query->where(function ($q) use ($searchTerm) {
+                    $q->where('employee_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('phone', 'like', '%' . $searchTerm . '%')
+                      ->orWhereHas('user', function ($userQuery) use ($searchTerm) {
+                          $userQuery->where('email', 'like', '%' . $searchTerm . '%');
+                      });
+                });
+            }
+
+            // Apply status filter if provided
+            if ($request->filled('status')) {
+                $query->where('status', $request->input('status'));
+            }
+
+            // Apply leave range filters if provided
+            if ($request->filled('min_leave')) {
+                $query->where('total_leave', '>=', $request->input('min_leave'));
+            }
+
+            if ($request->filled('max_leave')) {
+                $query->where('total_leave', '<=', $request->input('max_leave'));
+            }
+
+            // Apply employer filter if provided (for admin users)
+            if ($request->filled('employer_id') && auth('web')->user()->role !== 'employer') {
+                $query->where('employer_id', $request->input('employer_id'));
+            }
+
+            // Get paginated results with query parameters preserved
+            $employees = $query->latest()->paginate(10)->appends($request->query());
+
+            // Log successful filtering
+            Log::info('Employee index accessed', [
+                'user_id' => auth()->id(),
+                'filters' => $request->only(['search', 'status', 'min_leave', 'max_leave', 'employer_id']),
+                'results_count' => count($employees->items()),
+                'total_count' => $employees->total()
+            ]);
+
+            return view('employee.index', compact('employees'));
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('error', 'Invalid filter parameters provided.');
+        } catch (\Exception $e) {
+            Log::error('Error in employee index', [
+                'user_id' => auth()->id(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'An error occurred while loading employees. Please try again.');
         }
-
-        // Apply search filters if provided
-        if ($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $query->where('employee_name', 'like', '%' . $searchTerm . '%')
-                ->orWhere('phone', 'like', '%' . $searchTerm . '%');
-        }
-
-        // Get paginated results
-        $employees = $query->latest()->paginate(10);
-        $employers = Employer::latest()->paginate(10);
-
-        return view('employee.index', compact('employees', 'employers'));
     }
 
     /**
@@ -145,17 +205,79 @@ class EmployeeController extends Controller
      * 
      * @param Request $request Contains status update
      * @param int $id Employee ID
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
     public function updateStatus(Request $request, $id)
     {
         try {
+            // Validate the request
+            $request->validate([
+                'status' => 'required|in:0,1'
+            ]);
+
             $employee = Employee::findOrFail($id);
-            $employee->update(['status' => $request->status]);
             
-            return redirect()->back()->with('success', 'Status updated successfully');
+            // Check if user has permission to update this employee
+            if (auth('web')->user()->role == 'employer') {
+                // Employers can only update employees under their organization
+                if ($employee->employer_id !== auth('web')->user()->employer->id) {
+                    if ($request->ajax()) {
+                        return response()->json(['success' => false, 'error' => 'Unauthorized'], 403);
+                    }
+                    return redirect()->back()->with('error', 'Unauthorized to update this employee status.');
+                }
+            }
+
+            // Update the status
+            $employee->update(['status' => $request->status]);
+
+            // Log the status change
+            Log::info('Employee status updated', [
+                'employee_id' => $employee->id,
+                'employee_name' => $employee->employee_name,
+                'old_status' => $employee->getOriginal('status'),
+                'new_status' => $request->status,
+                'updated_by' => auth()->id()
+            ]);
+
+            // Return appropriate response based on request type
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Status updated successfully',
+                    'new_status' => $request->status
+                ]);
+            }
+            
+            return redirect()->back()->with('success', 'Employee status updated successfully');
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'Invalid status value'], 422);
+            }
+            return redirect()->back()->with('error', 'Invalid status value provided.');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            Log::warning('Employee not found for status update', [
+                'employee_id' => $id,
+                'user_id' => auth()->id()
+            ]);
+            
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'Employee not found'], 404);
+            }
+            return redirect()->back()->with('error', 'Employee not found.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred while updating status: ' . $e->getMessage());
+            Log::error('Error updating employee status', [
+                'employee_id' => $id,
+                'user_id' => auth()->id(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'An error occurred while updating status'], 500);
+            }
+            return redirect()->back()->with('error', 'An error occurred while updating employee status.');
         }
     }
 

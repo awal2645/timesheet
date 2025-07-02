@@ -40,6 +40,7 @@
                     <form action="{{ route('changeLanguage') }}" method="GET" id="language-switcher-form"
                         class="hidden md:inline-block !mb-0">
                         <select name="language" id="language-switcher"
+                            onchange="document.getElementById('language-switcher-form').submit()"
                             class="appearance-none bg-transparent border-none focus:ring-0 text-primary-300
                                px-4 py-2 rounded-md bg-no-repeat
                         bg-right">
@@ -50,10 +51,7 @@
                                 </option>
                             @endforeach
                         </select>
-
                     </form>
-
-
                 @endif
                 <!-- Dark mode toggle -->
                 <x-theme-toggle />

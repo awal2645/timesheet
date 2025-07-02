@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
 <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{{ __('Email Templates') }}</h1>
@@ -113,7 +111,7 @@
         </div>
     </div>
 </div>
+</x-app-layout>
 
 <!-- CKEditor JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.16.2/ckeditor.js"></script>
-@endsection 

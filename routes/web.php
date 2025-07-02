@@ -207,6 +207,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task/destroy/{id}', 'destroy')->name('task.destroy');
         Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
         Route::post('task/{id}/comment', 'addComment')->name('task.addComment');
+        Route::put('task/comment/{id}', 'updateComment')->name('task.updateComment');
+        Route::delete('task/comment/{id}', 'deleteComment')->name('task.deleteComment');
         Route::delete('task/attachment/{id}', 'deleteAttachment')->name('task.deleteAttachment');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');

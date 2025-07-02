@@ -9,6 +9,8 @@ use App\Models\Employee;
 use App\Models\Employer;
 use App\Models\TaskAttachment;
 use App\Models\TaskComment;
+use App\Models\User;
+use App\Events\UserMentioned;
 use Illuminate\Http\Request;
 use App\Models\Notificattion;
 use Illuminate\Support\Facades\Storage;
@@ -186,6 +188,11 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // Decode labels from JSON string to array
+        if ($request->has('labels') && is_string($request->labels)) {
+            $request->merge(['labels' => json_decode($request->labels, true) ?: []]);
+        }
+
         // Validate task data based on user role
         if(auth('web')->user()->role == 'employer'){
             $request->validate([
@@ -306,6 +313,11 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Decode labels from JSON string to array
+        if ($request->has('labels') && is_string($request->labels)) {
+            $request->merge(['labels' => json_decode($request->labels, true) ?: []]);
+        }
+
         // Validate task data based on user role
         if(auth('web')->user()->role == 'employer'){
             $request->validate([
@@ -391,13 +403,69 @@ class TaskController extends Controller
 
         $task = Task::findOrFail($id);
         
-        TaskComment::create([
+        $comment = TaskComment::create([
             'task_id' => $task->id,
             'user_id' => auth()->id(),
             'comment' => $request->comment
         ]);
 
+        // Handle mentions - extract usernames from comment and create notifications
+        $this->handleMentions($request->comment, $task, $comment);
+
         return redirect()->route('task.show', $task->id)->with('success', 'Comment added successfully!');
+    }
+
+    /**
+     * Update comment
+     * 
+     * @param Request $request Contains updated comment data
+     * @param int $id Comment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string'
+        ]);
+
+        $comment = TaskComment::findOrFail($id);
+        
+        // Check if user can edit this comment
+        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You can only edit your own comments.');
+        }
+        
+        $comment->update([
+            'comment' => $request->comment,
+            'edited_at' => now()
+        ]);
+
+        // Handle mentions in updated comment
+        $task = Task::findOrFail($comment->task_id);
+        $this->handleMentions($request->comment, $task, $comment);
+
+        return redirect()->route('task.show', $comment->task_id)->with('success', 'Comment updated successfully!');
+    }
+
+    /**
+     * Delete comment
+     * 
+     * @param int $id Comment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteComment($id)
+    {
+        $comment = TaskComment::findOrFail($id);
+        
+        // Check if user can delete this comment
+        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You can only delete your own comments.');
+        }
+        
+        $taskId = $comment->task_id;
+        $comment->delete();
+
+        return redirect()->route('task.show', $taskId)->with('success', 'Comment deleted successfully!');
     }
 
     /**
@@ -553,6 +621,29 @@ class TaskController extends Controller
                     'file_size' => $file->getSize(),
                     'mime_type' => $file->getMimeType()
                 ]);
+            }
+        }
+    }
+
+    /**
+     * Handle mentions - extract usernames from comment and create notifications
+     * 
+     * @param string $comment Comment text
+     * @param Task $task Task instance
+     * @param TaskComment $commentInstance TaskComment instance
+     * @return void
+     */
+    private function handleMentions($comment, Task $task, TaskComment $commentInstance)
+    {
+        // Extract usernames from comment
+        preg_match_all('/@([a-zA-Z0-9_]+)/', $comment, $matches);
+        $mentionedUsers = $matches[1];
+
+        // Create notifications for mentioned users
+        foreach ($mentionedUsers as $username) {
+            $user = User::where('username', $username)->first();
+            if ($user) {
+                event(new UserMentioned($user, auth('web')->user(), $task, $commentInstance));
             }
         }
     }

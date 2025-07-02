@@ -124,6 +124,7 @@ class PermissionTableSeeder extends Seeder
             "Newsletter view",
             "Project create",
             "Backup Restore",
+            "Email Reminders",
         ];
 
         foreach ($permissions as $permission) {

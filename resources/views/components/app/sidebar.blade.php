@@ -221,7 +221,7 @@
                                     </svg>
                                 </div>
                             </a>
-                            <div class="lg:hidden lg:sidebar-expanded:block 2xl:block" x-show="open" x-collapse.duration.500ms>
+                            <div x-show="open" x-collapse.duration.500ms>
                                 <ul class="mt-1 space-y-1 pl-9">
                                     @canany('Leave view')
                                         <li>
@@ -362,6 +362,26 @@
                             </a>
                         </li>
                     @endcanany
+                    <!-- Email Reminders -->
+                    @if(module_enabled('Email Reminders'))
+                        @canany('Email Reminders')
+                            <li>
+                                <a href="{{ route('emailreminders.index') }}"
+                                    class="sidebar-menu-item group flex items-center px-3 py-2 text-sm font-medium rounded-lg transition-colors duration-150 {{ request()->routeIs('emailreminders.*') ? 'bg-indigo-50 text-indigo-600 dark:bg-indigo-900/50 dark:text-indigo-400' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800' }}">
+                                    <div class="flex items-center justify-between w-full">
+                                        <div class="flex items-center">
+                                            <span class="sidebar-menu-icon mr-3 text-gray-400 group-hover:text-gray-500 dark:text-gray-500 dark:group-hover:text-gray-400">
+                                                <i class="fa-solid fa-bell text-base"></i>
+                                            </span>
+                                            <span class="sidebar-menu-text">
+                                                {{ __('Email Reminders') }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        @endcanany
+                    @endif
                     <!-- role -->
                     @canany('Role view')
                         <li>

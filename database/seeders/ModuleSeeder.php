@@ -18,6 +18,7 @@ class ModuleSeeder extends Seeder
             ['name' => 'Newsletter', 'status' => true],
             ['name' => 'Backup Restore', 'status' => true],
             ['name' => 'Email Templates', 'status' => true],
+            ['name' => 'Email Reminders', 'status' => true],
         ];
 
         foreach ($modules as $module) {
