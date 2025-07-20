@@ -35,6 +35,7 @@ use App\Http\Controllers\Leave\HolidayController;
 use App\Http\Controllers\Leave\LeaveTypeController;
 use App\Http\Controllers\Leave\WeeklyHolidayController;
 use App\Http\Controllers\Leave\LeaveApplicationController;
+use App\Http\Controllers\DesktopAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +101,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Timesheet routes for specific roles
         Route::group(['middleware' => 'role:employee,superadmin'], function () {
             Route::get('/timesheet/{startDate?}', [TimesheetController::class, 'index'])->name('timesheet.index')->middleware('check.employee.status');
+            Route::get('/timesheet/create/{startDate?}', [TimesheetController::class, 'index'])->name('timesheet.create')->middleware('check.employee.status');
+            Route::post('/timesheet/store', [TimesheetController::class, 'saveTimesheet'])->name('timesheet.store');
             Route::post('/timesheet/save', [TimesheetController::class, 'saveTimesheet'])->name('timesheet.save');
             Route::post('/timesheet/submit', [TimesheetController::class, 'submitTimesheet'])->name('timesheet.submit');
         });
@@ -288,3 +291,10 @@ Route::middleware(['auth', 'role:superadmin'])->prefix('admin/settings')->group(
 Route::get('/ajax/clients', [\App\Http\Controllers\Client\ClientController::class, 'ajaxSearch'])->name('ajax.clients');
 Route::get('/ajax/employers', [\App\Http\Controllers\EmployerController::class, 'ajaxSearch'])->name('ajax.employers');
 Route::get('/ajax/employees', [\App\Http\Controllers\EmployeeController::class, 'ajaxSearch'])->name('ajax.employees');
+
+// Desktop authentication routes
+Route::get('/desktop/login', [DesktopAuthController::class, 'showLogin'])->name('login');
+Route::post('/desktop/login', [DesktopAuthController::class, 'authenticate'])->name('login.post');
+
+// Desktop routes
+Route::get('/api/desktop/activity', [DashboardController::class, 'storeActivity'])->name('desktop.activity');

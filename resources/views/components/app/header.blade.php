@@ -183,14 +183,14 @@
 
                 <!-- Action buttons container -->
                 <div class="flex items-center gap-2">
-                    <!-- Dark mode toggle -->
-                    <x-theme-toggle />
+                <!-- Dark mode toggle -->
+                <x-theme-toggle />
                     
-                    <!-- Notifications button -->
-                    <x-dropdown-notifications align="right" />
-                    
+                <!-- Notifications button -->
+                <x-dropdown-notifications align="right" />
+
                     <!-- User profile dropdown -->
-                    <x-dropdown-profile align="right" />
+                <x-dropdown-profile align="right" />
                 </div>
             </div>
         </div>

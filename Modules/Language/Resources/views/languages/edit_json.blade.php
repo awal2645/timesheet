@@ -54,7 +54,7 @@
             <!-- Content Area -->
             <div class="p-8">
                 <!-- Success Message -->
-                @if(session('success'))
+        @if(session('success'))
                     <div class="mb-8 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -64,13 +64,13 @@
                                 <h3 class="text-sm font-medium text-green-800 dark:text-green-300">{{ __('Success') }}</h3>
                                 <div class="text-sm text-green-700 dark:text-green-400 mt-1">{{ session('success') }}</div>
                             </div>
-                        </div>
-                    </div>
-                @endif
+                </div>
+            </div>
+        @endif
 
                 <form action="{{ route('languages.trans.update') }}" method="POST" id="translationForm">
-                    @csrf
-                    <input type="hidden" name="lang_id" value="{{ $language->id }}">
+            @csrf
+            <input type="hidden" name="lang_id" value="{{ $language->id }}">
 
                     <!-- Enhanced Search and Filters -->
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 mb-8">
@@ -120,10 +120,10 @@
                                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                                     </svg>
-                                    {{ __('Search') }}
-                                </button>
-                            </div>
-                        </div>
+                        {{ __('Search') }}
+                    </button>
+                </div>
+            </div>
 
                         <!-- Quick Filters -->
                         <div class="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
@@ -197,7 +197,7 @@
                         </div>
 
                         <!-- Table Content -->
-                        <div class="overflow-x-auto">
+            <div class="overflow-x-auto">
                             <table class="w-full">
                                 <thead class="bg-gray-50 dark:bg-gray-900/50">
                                     <tr>
@@ -206,20 +206,20 @@
                                         </th>
                                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                                             {{ __('Translation Value') }}
-                                        </th>
+                            </th>
                                         <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider w-24">
                                             {{ __('Status') }}
-                                        </th>
-                                    </tr>
-                                </thead>
+                            </th>
+                        </tr>
+                    </thead>
                                 <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700" id="translationsTable">
-                                    @foreach($translations as $key => $value)
+                        @foreach($translations as $key => $value)
                                         <tr class="translation-row hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150" data-key="{{ $key }}">
                                             <td class="px-6 py-4">
                                                 <div class="flex items-start">
                                                     <div class="flex-1">
                                                         <div class="text-sm font-medium text-gray-900 dark:text-white mb-1 font-mono">
-                                                            {{ $key }}
+                                    {{ $key }}
                                                         </div>
                                                         <div class="text-xs text-gray-500 dark:text-gray-400">
                                                             {{ __('Key Path') }}
@@ -239,26 +239,26 @@
                                                         <span class="char-count">{{ strlen($value) }}</span> {{ __('chars') }}
                                                     </div>
                                                 </div>
-                                            </td>
-                                            <td class="px-6 py-4">
+                                </td>
+                                <td class="px-6 py-4">
                                                 <div class="flex flex-col items-center space-y-1">
                                                     <div class="status-indicator w-3 h-3 rounded-full {{ empty($value) ? 'bg-red-400' : 'bg-green-400' }}"></div>
                                                     <span class="status-text text-xs text-gray-500 dark:text-gray-400">
                                                         {{ empty($value) ? __('Empty') : __('OK') }}
                                                     </span>
                                                 </div>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
 
                         <!-- Pagination -->
                         @if(method_exists($translations, 'links'))
                             <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
-                                {{ $translations->links() }}
-                            </div>
+                {{ $translations->links() }}
+            </div>
                         @endif
                     </div>
 
@@ -331,10 +331,10 @@
                             <svg class="w-5 h-5 ml-3 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                             </svg>
-                        </button>
-                    </div>
-                </form>
+                </button>
             </div>
+        </form>
+    </div>
         </div>
     </div>
 

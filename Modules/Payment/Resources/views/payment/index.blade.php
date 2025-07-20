@@ -87,31 +87,31 @@
 
                         <!-- PayPal Form -->
                         <form action="{{ route('payment.update') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
-                            @method('PUT')
-                            @csrf
-                            <input type="hidden" name="type" value="paypal">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="type" value="paypal">
 
                             <!-- Mode Selection -->
                             <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
-                                <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between">
                                     <div>
                                         <h4 class="font-semibold text-gray-900 dark:text-white">{{ __('Environment Mode') }}</h4>
                                         <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Switch between sandbox and live mode') }}</p>
-                                    </div>
+                        </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" name="paypal_live_mode" class="sr-only peer" 
-                                               {{ config('zenxserv.paypal_mode') == 'live' ? 'checked' : '' }} value="1">
+                                <input type="checkbox" name="paypal_live_mode" class="sr-only peer"
+                                    {{ config('zenxserv.paypal_mode') == 'live' ? 'checked' : '' }} value="1">
                                         <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 shadow-inner"></div>
-                                        <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                            {{ __('Live Mode') }}
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                    {{ __('Live Mode') }}
+                                </span>
+                            </label>
+                    </div>
+                </div>
 
                             <!-- Credentials Section -->
                             <div class="space-y-4">
-                                @if (config('zenxserv.paypal_mode') == 'sandbox')
+                @if (config('zenxserv.paypal_mode') == 'sandbox')
                                     <div class="space-y-2">
                                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center">
                                             <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,11 +119,11 @@
                                             </svg>
                                             {{ __('Sandbox Client ID') }} <span class="text-red-500">*</span>
                                         </label>
-                                        <input type="text" name="paypal_client_id" 
+                        <input type="text" name="paypal_client_id"
                                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                                value="{{ config('zenxserv.paypal_sandbox_client_id') }}" 
                                                placeholder="{{ __('Enter sandbox client ID') }}" required>
-                                    </div>
+                    </div>
 
                                     <div class="space-y-2">
                                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center">
@@ -136,8 +136,8 @@
                                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                                value="{{ config('zenxserv.paypal_sandbox_secret') }}" 
                                                placeholder="{{ __('Enter sandbox client secret') }}" required>
-                                    </div>
-                                @else
+                    </div>
+                @else
                                     <div class="space-y-2">
                                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center">
                                             <svg class="w-4 h-4 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -145,11 +145,11 @@
                                             </svg>
                                             {{ __('Live Client ID') }} <span class="text-red-500">*</span>
                                         </label>
-                                        <input type="text" name="paypal_client_id" 
+                        <input type="text" name="paypal_client_id"
                                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                                value="{{ config('zenxserv.paypal_live_client_id') }}" 
                                                placeholder="{{ __('Enter live client ID') }}" required>
-                                    </div>
+                    </div>
 
                                     <div class="space-y-2">
                                         <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center">
@@ -162,11 +162,11 @@
                                                class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                                value="{{ config('zenxserv.paypal_live_secret') }}" 
                                                placeholder="{{ __('Enter live client secret') }}" required>
-                                    </div>
-                                @endif
+                    </div>
+                @endif
                             </div>
 
-                            <!-- Status Toggle -->
+                <!-- Status Toggle -->
                             <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -174,13 +174,13 @@
                                         <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Enable or disable PayPal payments') }}</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" name="paypal" class="sr-only peer" 
-                                               {{ config('zenxserv.paypal_active') ? 'checked' : '' }}>
+                        <input type="checkbox" name="paypal" class="sr-only peer"
+                            {{ config('zenxserv.paypal_active') ? 'checked' : '' }}>
                                         <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600 shadow-inner"></div>
                                         <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                                             {{ __('Enable PayPal') }}
                                         </span>
-                                    </label>
+                    </label>
                                 </div>
                             </div>
 
@@ -204,10 +204,10 @@
                                         </a>
                                     </div>
                                 </div>
-                            </div>
+                </div>
 
                             <!-- Submit Button -->
-                            <button type="submit" 
+                <button type="submit"
                                     class="w-full group inline-flex items-center justify-center px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-blue-500/50">
                                 <div class="flex items-center justify-center w-6 h-6 bg-white/20 rounded-lg mr-3">
                                     <svg class="w-4 h-4 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -219,7 +219,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                                 </svg>
                             </button>
-                        </form>
+            </form>
                     </div>
 
                     <!-- Stripe Settings Card -->
@@ -251,9 +251,9 @@
 
                         <!-- Stripe Form -->
                         <form action="{{ route('payment.update') }}" method="POST" enctype="multipart/form-data" class="p-6 space-y-6">
-                            @method('PUT')
-                            @csrf
-                            <input type="hidden" name="type" value="stripe">
+                @method('PUT')
+                @csrf
+                <input type="hidden" name="type" value="stripe">
 
                             <!-- Credentials Section -->
                             <div class="space-y-4">
@@ -268,7 +268,7 @@
                                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                                            value="{{ config('zenxserv.stripe_secret') }}" 
                                            placeholder="{{ __('Enter Stripe secret key') }}" required>
-                                </div>
+                </div>
 
                                 <div class="space-y-2">
                                     <label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 flex items-center">
@@ -277,14 +277,14 @@
                                         </svg>
                                         {{ __('Publishable Key') }} <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" name="stripe_key" 
+                    <input type="text" name="stripe_key"
                                            class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
                                            value="{{ config('zenxserv.stripe_key') }}" 
                                            placeholder="{{ __('Enter Stripe publishable key') }}" required>
                                 </div>
-                            </div>
+                </div>
 
-                            <!-- Status Toggle -->
+                <!-- Status Toggle -->
                             <div class="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-200 dark:border-gray-600">
                                 <div class="flex items-center justify-between">
                                     <div>
@@ -292,8 +292,8 @@
                                         <p class="text-sm text-gray-500 dark:text-gray-400">{{ __('Enable or disable Stripe payments') }}</p>
                                     </div>
                                     <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" name="stripe" class="sr-only peer" 
-                                               {{ config('zenxserv.stripe_active') ? 'checked' : '' }}>
+                        <input type="checkbox" name="stripe" class="sr-only peer"
+                            {{ config('zenxserv.stripe_active') ? 'checked' : '' }}>
                                         <div class="relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600 shadow-inner"></div>
                                         <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                                             {{ __('Enable Stripe') }}

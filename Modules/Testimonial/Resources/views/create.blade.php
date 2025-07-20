@@ -49,7 +49,7 @@
             <!-- Content Area -->
             <div class="p-8">
                 <form action="{{ route('testimonial.store') }}" method="POST" enctype="multipart/form-data" id="testimonialForm" x-data="testimonialManager()" class="space-y-8">
-                    @csrf
+            @csrf
 
                     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <!-- Form Fields -->
@@ -72,14 +72,14 @@
                                             </svg>
                                             {{ __('Full Name') }} <span class="text-red-500">*</span>
                                         </label>
-                                        <input type="text" name="name" id="name" value="{{ old('name') }}" required
+                <input type="text" name="name" id="name" value="{{ old('name') }}" required
                                                x-model="formData.name"
                                                class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
                                                placeholder="{{ __('Enter client\'s full name') }}">
-                                        @error('name')
+                @error('name')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                @enderror
+            </div>
 
                                     <!-- Designation Field -->
                                     <div class="space-y-2">
@@ -89,15 +89,15 @@
                                             </svg>
                                             {{ __('Job Title') }} <span class="text-red-500">*</span>
                                         </label>
-                                        <input type="text" name="designation" id="designation" value="{{ old('designation') }}" required
+                <input type="text" name="designation" id="designation" value="{{ old('designation') }}" required
                                                x-model="formData.designation"
                                                class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
                                                placeholder="{{ __('e.g., CEO, Manager, Developer') }}">
-                                        @error('designation')
+                @error('designation')
                                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                        @enderror
+                @enderror
                                     </div>
-                                </div>
+            </div>
 
                                 <!-- Company Field -->
                                 <div class="mt-6 space-y-2">
@@ -107,14 +107,14 @@
                                         </svg>
                                         {{ __('Company Name') }} <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" name="company" id="company" value="{{ old('company') }}" required
+                <input type="text" name="company" id="company" value="{{ old('company') }}" required
                                            x-model="formData.company"
                                            class="block w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-200"
                                            placeholder="{{ __('Enter company or organization name') }}">
-                                    @error('company')
+                @error('company')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
+                @enderror
+            </div>
                             </div>
 
                             <!-- Testimonial Content Section -->
@@ -140,9 +140,9 @@
                                         <span>{{ __('Write a compelling testimonial that highlights key benefits') }}</span>
                                         <span x-text="characterCount + '/500'"></span>
                                     </div>
-                                    @error('description')
+                @error('description')
                                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                                    @enderror
+                @enderror
                                 </div>
                             </div>
 
@@ -178,11 +178,11 @@
                                             <span x-show="formData.rating === 3">{{ __('Good - Meets expectations') }}</span>
                                             <span x-show="formData.rating === 4">{{ __('Very Good - Exceeds expectations') }}</span>
                                             <span x-show="formData.rating === 5">{{ __('Excellent - Outstanding service') }}</span>
-                                        </div>
-                                        
-                                        @error('rating')
+            </div>
+
+                @error('rating')
                                             <p class="text-red-500 text-sm">{{ $message }}</p>
-                                        @enderror
+                @enderror
                                     </div>
                                 </div>
 
@@ -218,12 +218,12 @@
                                                 <input type="file" name="image" id="image" @change="handleImageUpload" accept="image/*" required class="hidden">
                                             </label>
                                             <p class="text-xs text-gray-500 mt-2">{{ __('PNG, JPG up to 5MB') }}</p>
-                                        </div>
-                                        
-                                        @error('image')
+            </div>
+
+                @error('image')
                                             <p class="text-red-500 text-sm text-center">{{ $message }}</p>
-                                        @enderror
-                                    </div>
+                @enderror
+            </div>
                                 </div>
                             </div>
                         </div>
@@ -285,8 +285,8 @@
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                             </svg>
-                            {{ __('Cancel') }}
-                        </a>
+                    {{ __('Cancel') }}
+                </a>
                         
                         <button type="submit" id="submitBtn" class="w-full sm:w-auto group inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-green-500/50">
                             <div class="flex items-center justify-center w-6 h-6 bg-white/20 rounded-lg mr-3">
@@ -304,9 +304,9 @@
                             <svg class="w-5 h-5 ml-3 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                             </svg>
-                        </button>
-                    </div>
-                </form>
+                </button>
+            </div>
+        </form>
 
                 <!-- Help Section -->
                 <div class="mt-8 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-xl p-6">

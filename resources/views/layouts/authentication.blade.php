@@ -36,6 +36,7 @@
 
                     <div class="space-y-4">
                         @csrf
+                        <input type="hidden" name="callback_url" value="{{ request('callback_url') }}">
                         <div class="relative">
                             <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-5 w-5"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

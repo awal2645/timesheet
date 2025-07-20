@@ -69,7 +69,14 @@ class TimesheetController extends Controller
             ->where('user_id', auth()->user()->id)
             ->first();
 
-        return view('timesheet.create', compact('days', 'hours', 'dates', 'startDate', 'timeReport'));
+        // Fetch activity data for the week
+        $activityData = TimeReport::where('start_day', $startDate->format('m-d-y'))
+            ->where('end_day', $endDate->format('m-d-y'))
+            ->where('user_id', auth()->user()->id)
+            ->select('total_time', 'productive_time', 'idle_time', 'activity_data', 'status', 'productivity_score', 'effectiveness_score')
+            ->first();
+
+        return view('timesheet.create', compact('days', 'hours', 'dates', 'startDate', 'timeReport', 'activityData'));
     }
 
     /**

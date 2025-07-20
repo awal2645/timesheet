@@ -54,7 +54,7 @@
             <!-- Form Content -->
             <div class="p-8">
                 <!-- Error Display -->
-                @if($errors->any())
+        @if($errors->any())
                     <div class="mb-8 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl">
                         <div class="flex items-center">
                             <svg class="w-5 h-5 text-red-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -64,12 +64,12 @@
                                 <h3 class="text-sm font-medium text-red-800 dark:text-red-300">{{ __('Error') }}</h3>
                                 <div class="text-sm text-red-700 dark:text-red-400 mt-1">{{ $errors->first() }}</div>
                             </div>
-                        </div>
-                    </div>
-                @endif
+                </div>
+            </div>
+        @endif
 
                 <form action="{{ route('languages.store') }}" method="POST" class="space-y-8" id="languageForm">
-                    @csrf
+            @csrf
 
                     <!-- Language Configuration Section -->
                     <div class="space-y-6">
@@ -101,12 +101,12 @@
                                     <select name="name" id="name" required
                                             class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 group-hover:shadow-md">
                                         <option value="" disabled selected>{{ __('Select a language...') }}</option>
-                                        @foreach($translations as $code => $translation)
-                                            <option value="{{ $code }}" {{ old('name') == $code ? 'selected' : '' }}>
-                                                {{ $translation['name'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                        @foreach($translations as $code => $translation)
+                            <option value="{{ $code }}" {{ old('name') == $code ? 'selected' : '' }}>
+                                {{ $translation['name'] }}
+                            </option>
+                        @endforeach
+                    </select>
                                 </div>
                                 @error('name')
                                     <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
@@ -116,7 +116,7 @@
                                         <span class="text-sm font-medium">{{ $message }}</span>
                                     </div>
                                 @enderror
-                            </div>
+                </div>
 
                             <!-- Flag Selection -->
                             <div class="space-y-2">
@@ -133,12 +133,12 @@
                                     <select name="icon" id="icon" required
                                             class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-teal-500 focus:border-teal-500 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 group-hover:shadow-md">
                                         <option value="" disabled selected>{{ __('Select a flag...') }}</option>
-                                        @foreach($translations as $code => $translation)
-                                            <option value="flag-icon-{{ $code }}" {{ old('icon') == "flag-icon-{$code}" ? 'selected' : '' }}>
-                                                {{ $translation['name'] }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                        @foreach($translations as $code => $translation)
+                            <option value="flag-icon-{{ $code }}" {{ old('icon') == "flag-icon-{$code}" ? 'selected' : '' }}>
+                                {{ $translation['name'] }}
+                            </option>
+                        @endforeach
+                    </select>
                                 </div>
                                 @error('icon')
                                     <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
@@ -148,7 +148,7 @@
                                         <span class="text-sm font-medium">{{ $message }}</span>
                                     </div>
                                 @enderror
-                            </div>
+                </div>
 
                             <!-- Text Direction -->
                             <div class="space-y-2">
@@ -167,8 +167,8 @@
                                         <option value="" disabled selected>{{ __('Select direction...') }}</option>
                                         <option value="ltr" {{ old('direction') == 'ltr' ? 'selected' : '' }}>{{ __('Left to Right (LTR)') }}</option>
                                         <option value="rtl" {{ old('direction') == 'rtl' ? 'selected' : '' }}>{{ __('Right to Left (RTL)') }}</option>
-                                    </select>
-                                </div>
+                    </select>
+                </div>
                                 @error('direction')
                                     <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
                                         <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -306,8 +306,8 @@
                             <svg class="w-5 h-5 ml-3 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                             </svg>
-                        </button>
-                    </div>
+                    </button>
+                </div>
                 </form>
             </div>
         </div>

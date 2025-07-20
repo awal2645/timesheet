@@ -5,9 +5,22 @@
         </div>
     @endif
     <!-- Form -->
-    <h2 class="text-2xl font-bold mb-6  text-text-light dark:text-text-dark">{{ __('Login') }}</h2>
-    <form method="POST" action="{{ route('login') }}" class="text-text-light dark:text-text-dark" >
+    <h2 class="text-2xl font-bold mb-6 text-text-light dark:text-text-dark">
+        @if(isset($desktop_app) && $desktop_app)
+            {{ __('TimeTracker Desktop Login') }}
+        @else
+            {{ __('Login') }}
+        @endif
+    </h2>
+    <form method="POST" action="{{ route('login') }}" class="text-text-light dark:text-text-dark">
         @csrf
+        {{-- @if(isset($desktop_app) && $desktop_app)
+            <input type="hidden" name="callback_port" value="{{ $callback_port }}">
+            <input type="hidden" name="callback_url" value="{{ $callback_url }}">
+            <input type="hidden" name="state" value="{{ $state }}">
+            <input type="hidden" name="desktop_app" value="true">
+        @endif --}}
+
         <div class="space-y-4">
             <div>
                 <x-label for="email" value="{{ __('Email/Username') }}" />
@@ -25,7 +38,7 @@
                     {{ __('Forgot Password?') }}
                 </a>
             @endif
-            <button type="submit" class="btn bg-primary-50  text-text-light dark:text-text-dark">
+            <button type="submit" class="btn bg-primary-50 text-text-light dark:text-text-dark">
                 {{ __('Sign in') }}
             </button>
         </div>
@@ -52,11 +65,8 @@
             <button onclick="submitLoginForm('client')"
                 class="w-full text-text-light dark:text-text-dark bg-amber-600 hover:bg-amber-700 focus:ring-4 focus:outline-none focus:ring-amber-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-amber-500 dark:hover:bg-amber-600 dark:focus:ring-amber-800">
                 {{ __('Client Login') }}
-
             </button>
+        </div>
     @endif
-
-
-    </div>
     <x-validation-errors class="mt-4" />
 </x-authentication-layout>

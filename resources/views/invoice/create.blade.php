@@ -49,7 +49,7 @@
             <!-- Form Content -->
             <div class="p-8">
                 <form method="POST" action="{{ route('invoice.store') }}" class="space-y-8" id="invoiceForm">
-                    @csrf
+                @csrf
 
                     <!-- Invoice Information Section -->
                     <div class="space-y-6">
@@ -80,24 +80,24 @@
                                     <select name="project_id" id="project_id" required
                                             class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 group-hover:shadow-md">
                                         <option value="" disabled selected>{{ __('Choose a project...') }}</option>
-                                        @foreach ($projects as $project)
+                        @foreach ($projects as $project)
                                         <option value="{{ $project->id }}" {{ old('project_id') == $project->id ? 'selected' : '' }}>
                                             {{ $project->project_name }}
                                         </option>
-                                        @endforeach
-                                    </select>
+                        @endforeach
+                    </select>
                                 </div>
-                                @error('project_id')
+                    @error('project_id')
                                 <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
                                     <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
-                                @enderror
-                            </div>
+                    @enderror
+                </div>
 
-                            <!-- Invoice Number -->
+                <!-- Invoice Number -->
                             <div class="space-y-2">
                                 <label for="invoice_number" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                                     <span class="flex items-center">
@@ -122,15 +122,15 @@
                                         </button>
                                     </div>
                                 </div>
-                                @error('invoice_number')
+                    @error('invoice_number')
                                 <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
                                     <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
-                                @enderror
-                            </div>
+                    @enderror
+                </div>
                         </div>
                     </div>
 
@@ -244,7 +244,7 @@
                             </svg>
                         </button>
                     </div>
-                </form>
+            </form>
             </div>
         </div>
     </div>

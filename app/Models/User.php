@@ -18,7 +18,17 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = ['username', 'email', 'password', 'role', 'zoom_account_id', 'zoom_client_id', 'zoom_client_secret'];
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'role',
+        'zoom_account_id',
+        'zoom_client_id',
+        'zoom_client_secret',
+        'employer_id',
+        'employee_id'
+    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -36,6 +46,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
+
+    /**
+     * Find user by username or email
+     *
+     * @param string $username
+     * @return \App\Models\User|null
+     */
+    public static function findForAuth($username)
+    {
+        return static::where('username', $username)
+                    ->orWhere('email', $username)
+                    ->first();
+    }
 
     public function employer()
     {

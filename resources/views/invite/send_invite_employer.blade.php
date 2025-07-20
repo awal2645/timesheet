@@ -56,7 +56,7 @@
             <!-- Form Content -->
             <div class="p-8">
                 <form method="POST" action="{{ route('invite.send.employer') }}" class="space-y-8" id="inviteForm">
-                    @csrf
+            @csrf
 
                     <!-- Invitation Information Section -->
                     <div class="space-y-6">
@@ -87,22 +87,22 @@
                                     <select name="role_name" id="role_name" required
                                             class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-purple-500 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 group-hover:shadow-md">
                                         <option value="" disabled selected>{{ __('Choose a role...') }}</option>
-                                        @foreach ($roles as $role)
+                    @foreach ($roles as $role)
                                         <option value="{{ $role->name }}" {{ old('role_name') == $role->name ? 'selected' : '' }}>
                                             {{ ucfirst($role->name) }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                    </option>
+                    @endforeach
+                </select>
                                 </div>
-                                @error('role_name')
+                @error('role_name')
                                 <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
                                     <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
-                                @enderror
-                            </div>
+                @enderror
+            </div>
 
                             <!-- Email Address -->
                             <div class="space-y-2">
@@ -126,15 +126,15 @@
                                         </svg>
                                     </div>
                                 </div>
-                                @error('email')
+                @error('email')
                                 <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
                                     <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
                                     </svg>
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
-                                @enderror
-                            </div>
+                @enderror
+            </div>
                         </div>
                     </div>
 
@@ -149,7 +149,7 @@
                         <div id="roleDetails" class="text-sm text-blue-700 dark:text-blue-400">
                             <!-- Role details will be populated via JavaScript -->
                         </div>
-                    </div>
+    </div>
 
                     <!-- Quick Role Selection -->
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
@@ -166,7 +166,7 @@
                                 <div class="font-semibold capitalize">{{ $role->name }}</div>
                                 <div class="text-xs text-purple-600">{{ __('Select Role') }}</div>
                             </button>
-                            @endforeach
+                    @endforeach
                         </div>
                     </div>
 
@@ -259,7 +259,7 @@
                     </div>
                 </form>
             </div>
-        </div>
+            </div>
     </div>
 
     <!-- Enhanced JavaScript -->

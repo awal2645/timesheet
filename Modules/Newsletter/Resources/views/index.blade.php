@@ -117,7 +117,7 @@
                     </h3>
                     
                     <form action="{{ route('newsletter.store') }}" method="POST" id="subscribeForm" class="space-y-4">
-                        @csrf
+                            @csrf
                         <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
                             <div class="lg:col-span-8">
                                 <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -131,10 +131,10 @@
                                     </div>
                                     <input type="email" 
                                            id="email"
-                                           name="email" 
+                                        name="email" 
                                            class="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
                                            placeholder="{{ __('Enter subscriber email address...') }}" 
-                                           required>
+                                        required>
                                 </div>
                                 @error('email')
                                     <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
@@ -161,8 +161,8 @@
                                     </div>
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                            </div>
+                        </form>
                 </div>
 
                 <!-- Search and Filters -->
@@ -268,7 +268,7 @@
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900 dark:text-white">
-                                                            {{ $newsletter->email }}
+                                                {{ $newsletter->email }}
                                                         </div>
                                                         <div class="text-sm text-gray-500 dark:text-gray-400">
                                                             {{ __('Subscriber') }}
@@ -278,7 +278,7 @@
                                             </td>
                                             <td class="px-6 py-4">
                                                 <div class="text-sm text-gray-900 dark:text-white">
-                                                    {{ $newsletter->created_at->format('M d, Y') }}
+                                                {{ $newsletter->created_at->format('M d, Y') }}
                                                 </div>
                                                 <div class="text-sm text-gray-500 dark:text-gray-400">
                                                     {{ $newsletter->created_at->diffForHumans() }}
@@ -296,17 +296,17 @@
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                                                         </svg>
                                                     </button>
-                                                    <form action="{{ route('newsletter.destroy', $newsletter->id) }}" method="POST" class="inline">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit" 
+                                                <form action="{{ route('newsletter.destroy', $newsletter->id) }}" method="POST" class="inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" 
                                                                 onclick="return confirm('{{ __('Are you sure you want to remove this subscriber?') }}')"
                                                                 class="inline-flex items-center p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-lg transition-all duration-200">
                                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
                                                             </svg>
-                                                        </button>
-                                                    </form>
+                                                    </button>
+                                                </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -319,8 +319,8 @@
                         <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
                             {{ $newsletters->links() }}
                         </div>
-                    </div>
-                @else
+                        </div>
+                    @else
                     <!-- Empty State -->
                     <div class="text-center py-12 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
                         <svg class="mx-auto h-12 w-12 text-gray-400 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -103,8 +103,8 @@
                         <!-- Search Input -->
                         <div class="lg:col-span-8">
                             <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                                {{ __('Search') }}
-                            </label>
+                        {{ __('Search') }}
+                    </label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -128,7 +128,7 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
                                 </div>
-                                {{ __('Search') }}
+                            {{ __('Search') }}
                                 <svg class="w-4 h-4 ml-3 transition-transform duration-200 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                                 </svg>
@@ -188,7 +188,7 @@
                                 </button>
                                 <button type="button" class="quick-filter px-3 py-1.5 text-xs bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200" data-filter="with-content">
                                     {{ __('With Content') }}
-                                </button>
+                        </button>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                         <div id="filterTags" class="flex flex-wrap gap-2"></div>
                     </div>
                 </div>
-            </div>
+        </div>
 
             <!-- Email History Table Card -->
             <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
@@ -217,7 +217,7 @@
                                 {{ $emailHistories->total() }} {{ __('Total') }}
                             </span>
                         @endif
-                    </h2>
+            </h2>
                 </div>
 
                 <!-- Table Content -->
@@ -227,18 +227,18 @@
                             <tr>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Email Details') }}
-                                </th>
+                            </th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Content Preview') }}
-                                </th>
+                            </th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
                                     {{ __('Delivery Info') }}
-                                </th>
+                            </th>
                                 <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider sticky right-0 bg-gray-50 dark:bg-gray-900/50 z-10 shadow-[-4px_0_6px_-1px_rgba(0,0,0,0.1)] dark:shadow-[-4px_0_6px_-1px_rgba(0,0,0,0.3)]">
                                     {{ __('Actions') }}
-                                </th>
-                            </tr>
-                        </thead>
+                            </th>
+                        </tr>
+                    </thead>
                         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                             @forelse ($emailHistories as $history)
                                 <tr class="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-150">
@@ -253,7 +253,7 @@
                                             </div>
                                             <div class="ml-4 flex-1">
                                                 <div class="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-                                                    {{ $history->recipient_email }}
+                                        {{ $history->recipient_email }}
                                                 </div>
                                                 <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">
                                                     {{ $history->subject }}
@@ -352,15 +352,15 @@
                                                 {{ __('Send First Email') }}
                                             </a>
                                         </div>
-                                    </td>
-                                </tr>
+                                </td>
+                            </tr>
                             @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                    </tbody>
+                </table>
+            </div>
 
                 <!-- Pagination -->
-                @if ($emailHistories->total() > $emailHistories->count())
+            @if ($emailHistories->total() > $emailHistories->count())
                     <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50">
                         <div class="flex items-center justify-between">
                             <div class="text-sm text-gray-700 dark:text-gray-300">
@@ -373,12 +373,12 @@
                                 {{ __('results') }}
                             </div>
                             <div class="pagination-wrapper">
-                                {{ $emailHistories->links() }}
+                        {{ $emailHistories->links() }}
                             </div>
-                        </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
+        </div>
         </div>
     </div>
 

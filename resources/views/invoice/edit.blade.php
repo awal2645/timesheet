@@ -56,8 +56,8 @@
             <!-- Form Content -->
             <div class="p-8">
                 <form method="POST" action="{{ route('invoice.update', $invoice->id) }}" class="space-y-8" id="editInvoiceForm">
-                    @csrf
-                    @method('PUT')
+                @csrf
+                @method('PUT')
 
                     <!-- Current Invoice Info -->
                     <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 rounded-xl p-6">
@@ -120,9 +120,9 @@
                                         @foreach ($projects as $project)
                                         <option value="{{ $project->id }}" {{ ($invoice->project_id == $project->id || old('project_id') == $project->id) ? 'selected' : '' }}>
                                             {{ $project->project_name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                        </option>
+                        @endforeach
+                    </select>
                                 </div>
                                 @error('project_id')
                                 <div class="flex items-center mt-2 p-3 text-red-700 bg-red-50 dark:bg-red-900/20 dark:text-red-400 rounded-lg border border-red-200 dark:border-red-800">
@@ -132,9 +132,9 @@
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
                                 @enderror
-                            </div>
+                </div>
 
-                            <!-- Invoice Number -->
+                <!-- Invoice Number -->
                             <div class="space-y-2">
                                 <label for="invoice_number" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                                     <span class="flex items-center">
@@ -146,7 +146,7 @@
                                     </span>
                                 </label>
                                 <div class="relative group">
-                                    <input type="text" name="invoice_number" id="invoice_number" required
+                    <input type="text" name="invoice_number" id="invoice_number" required
                                            value="{{ old('invoice_number') ?? $invoice->invoice_number }}"
                                            class="w-full px-4 py-4 border-2 border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-all duration-200 hover:border-gray-400 dark:hover:border-gray-500 group-hover:shadow-md"
                                            placeholder="Enter invoice number..." />
@@ -159,9 +159,9 @@
                                     <span class="text-sm font-medium">{{ $message }}</span>
                                 </div>
                                 @enderror
-                            </div>
+                </div>
 
-                            <!-- Invoice Date -->
+                <!-- Invoice Date -->
                             <div class="space-y-2">
                                 <label for="invoice_date" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
                                     <span class="flex items-center">
@@ -282,7 +282,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                </div>
 
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-between pt-8 border-t border-gray-200 dark:border-gray-600 space-y-4 sm:space-y-0">
@@ -313,7 +313,7 @@
                             </svg>
                         </button>
                     </div>
-                </form>
+            </form>
             </div>
         </div>
     </div>

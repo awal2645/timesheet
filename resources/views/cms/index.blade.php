@@ -44,8 +44,8 @@
             <!-- Content Area -->
             <div class="p-8">
                 <form action="{{ route('cms.update') }}" method="POST" enctype="multipart/form-data" id="cmsForm" x-data="imageUploadManager()" class="space-y-8">
-                    @csrf
-                    @method('PUT')
+            @csrf
+            @method('PUT')
 
                     <!-- Hero Section Images -->
                     <div class="bg-gradient-to-r from-blue-50 to-indigo-100 dark:from-gray-800 dark:to-gray-700 rounded-xl p-6 border border-blue-200 dark:border-gray-600">
@@ -148,7 +148,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                        @else
+                        @else
                                             <div class="w-full h-48 bg-gray-100 dark:bg-gray-700 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center">
                                                 <div class="text-center">
                                                     <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -157,7 +157,7 @@
                                                     <p class="text-sm text-gray-500">{{ __('No image uploaded') }}</p>
                                                 </div>
                                             </div>
-                                        @endif
+                        @endif
                                         
                                         <!-- Dynamic Preview -->
                                         <img :src="imagePreviews['{{ $image }}']" alt="Preview" 
@@ -236,19 +236,19 @@
                                     <label class="flex items-center justify-center px-3 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg cursor-pointer transition-all duration-200 transform hover:scale-105 shadow-sm text-sm">
                                         <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                                        </svg>
-                                        {{ __('Upload') }}
+                        </svg>
+                        {{ __('Upload') }}
                                         <input type="file" id="{{ $image }}" name="{{ $image }}" 
                                                @change="handleImageUpload(event, '{{ $image }}')" 
                                                accept="image/jpeg,image/png,image/webp" 
                                                class="hidden">
-                                    </label>
+                    </label>
                                 </div>
-                            </div>
-                            @endforeach
+                </div>
+                @endforeach
                         </div>
-                    </div>
-
+            </div>
+            
                     <!-- Submit Button -->
                     <div class="flex justify-end pt-8 border-t border-gray-200 dark:border-gray-600">
                         <button type="submit" id="submitBtn" class="group inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-cyan-600 to-teal-600 hover:from-cyan-700 hover:to-teal-700 text-white font-bold rounded-xl transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-cyan-500/50">
@@ -267,9 +267,9 @@
                             <svg class="w-5 h-5 ml-3 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5-5 5M6 12h12"/>
                             </svg>
-                        </button>
-                    </div>
-                </form>
+                </button>
+            </div>
+        </form>
 
                 <!-- Help Section -->
                 <div class="mt-8 bg-cyan-50 dark:bg-cyan-900/20 border border-cyan-200 dark:border-cyan-800 rounded-xl p-6">
@@ -318,7 +318,7 @@
                 handleImageUpload(event, imageKey) {
                     const file = event.target.files[0];
                     if (!file) return;
-
+    
                     // Validate file type
                     if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
                         this.showNotification('{{ __('Please upload a JPEG, PNG, or WebP file.') }}', 'error');
@@ -336,7 +336,7 @@
                     // Show upload progress
                     this.uploadProgress = true;
                     document.getElementById('uploadProgress').classList.remove('hidden');
-
+    
                     // Read and preview the file
                     const reader = new FileReader();
                     reader.onload = (e) => {

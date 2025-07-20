@@ -329,6 +329,22 @@
                         @endif
                     </a>
                 @endcanany
+
+                <!-- Email Reminders -->
+                @if(module_enabled('Email Reminders'))
+                    @canany('Email view')
+                        <a href="{{ route('emailreminders.index') }}"
+                            class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl transition-all duration-200 {{ request()->routeIs('emailreminders.*') ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/25' : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 hover:shadow-md' }}">
+                            <div class="flex items-center justify-center w-10 h-10 {{ request()->routeIs('emailreminders.*') ? 'bg-white/20' : 'bg-indigo-100 dark:bg-indigo-900/30' }} rounded-lg mr-3 transition-colors duration-200">
+                                <i class="fa-solid fa-clock text-base {{ request()->routeIs('emailreminders.*') ? 'text-white' : 'text-indigo-600 dark:text-indigo-400' }}"></i>
+                            </div>
+                            <span class="font-medium">{{ __('Email Reminders') }}</span>
+                            @if(request()->routeIs('emailreminders.*'))
+                                <div class="ml-auto w-2 h-2 bg-white rounded-full"></div>
+                            @endif
+                        </a>
+                    @endcanany
+                @endif
             </div>
 
             <!-- Continue with other sections... -->

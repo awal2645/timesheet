@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^3.0",
         "daftspunk/laravel-config-writer": "^1.2.2",
         "guzzlehttp/guzzle": "^7.2",
+        "intervention/image": "^3.11",
         "laravel/framework": "^10.10",
         "laravel/jetstream": "^4.2",
         "laravel/sanctum": "^3.3",

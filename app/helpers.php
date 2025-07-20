@@ -91,7 +91,11 @@ if (! function_exists('reportCount')) {
 if (! function_exists('notification')) {
     function notification()
     {
-        return Notificattion::where('to', Auth::user()->id)->get();
+        $user = Auth::user();
+        if (!$user) {
+            return collect(); // Return empty collection if no user
+        }
+        return Notificattion::where('to', $user->id)->get();
     }
 }
 
@@ -140,7 +144,12 @@ if (! function_exists('replaceAppName')) {
 if (! function_exists('getEmailTemplateFormatFlagsByType')) {
     function getEmailTemplateFormatFlagsByType($type)
     {
-        return EmailTemplateController::getFormatterByType($type) ?? [];
+        try {
+            $controller = app(EmailTemplateController::class);
+            return $controller->getFormattedTextByType($type) ?? [];
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 }
 

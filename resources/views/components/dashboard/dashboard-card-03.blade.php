@@ -71,7 +71,7 @@
 
         <!-- Content Section -->
         <div class="space-y-3">
-            @if (auth('web')->user()->role == 'employee')
+        @if (auth('web')->user()->role == 'employee')
                 <!-- Report Declines Section -->
                 <div>
                     <h2 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3 flex items-center gap-2">
@@ -124,8 +124,8 @@
                             </svg>
                             <span class="text-xs font-medium">{{ __('Active') }}</span>
                         </div>
-                    </div>
                 </div>
+            </div>
                 
             @elseif (auth('web')->user()->role == 'client')
                 <!-- Completed Tasks Section -->
@@ -181,9 +181,9 @@
                             <span class="text-xs font-medium">{{ __('Earned') }}</span>
                         </div>
                     </div>
-                </div>
-            @endif
-        </div>
+            </div>
+        @endif
+            </div>
 
         <!-- Footer with Quick Action -->
         <div class="mt-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
