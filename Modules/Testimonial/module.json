@@ -1,0 +1,12 @@
+{
+    "name": "Testimonial",
+    "alias": "testimonial",
+    "description": "Testimonial module for managing user testimonials",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Testimonial\\App\\Providers\\TestimonialServiceProvider",
+        "Modules\\Testimonial\\App\\Providers\\RouteServiceProvider"
+    ],
+    "files": []
+}

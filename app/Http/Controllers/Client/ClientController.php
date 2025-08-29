@@ -27,67 +27,97 @@ class ClientController extends Controller
     public function index(Request $request)
     {
         try {
-            // Get search parameters
-            $search = $request->input('search');
-            $status = $request->input('status');
+            // Validate filter parameters
+            $request->validate([
+                'search' => 'nullable|string|max:255',
+                'status' => 'nullable|in:0,1',
+                'min_projects' => 'nullable|integer|min:0',
+                'max_projects' => 'nullable|integer|min:0',
+                'min_tasks' => 'nullable|integer|min:0',
+                'max_tasks' => 'nullable|integer|min:0',
+            ]);
 
-            // Check if the user is an employer and filter clients accordingly
+            // Start with base query
+            $query = Client::query();
+
+            // Filter clients by employer if user is an employer
             if (auth('web')->user()->role == 'employer') {
-                // Filter clients for the specific employer
-                $clients = Client::where('employer_id', auth('web')->user()->employer->id);
-
-                // Apply search filter if search term is present
-                if ($search) {
-                    $clients = $clients->where(function ($query) use ($search) {
-                        $query->where('client_name', 'like', "%{$search}%")
-                            ->orWhere('client_email', 'like', "%{$search}%")
-                            ->orWhere('contact_name', 'like', "%{$search}%")
-                            ->orWhere('client_phone', 'like', "%{$search}%");
-                    });
-                }
-
-                // Apply status filter if status is passed
-                if ($status !== null) {
-                    $clients = $clients->where('status', $status);
-                }
-
-                // Paginate the filtered clients
-                $clients = $clients->latest()->paginate(10);
-
-            } else {
-                // If user is not an employer, show all clients
-                $clients = Client::latest();
-
-                // Apply search filter
-                if ($search) {
-                    $clients = $clients->where(function ($query) use ($search) {
-                        $query->where('client_name', 'like', "%{$search}%")
-                            ->orWhere('client_email', 'like', "%{$search}%")
-                            ->orWhere('contact_name', 'like', "%{$search}%")
-                            ->orWhere('client_phone', 'like', "%{$search}%");
-                    });
-                }
-
-                // Apply status filter
-                if ($status !== null) {
-                    $clients = $clients->where('status', $status);
-                }
-
-                // Paginate the filtered clients
-                $clients = $clients->latest()->paginate(10);
+                $query->where('employer_id', auth('web')->user()->employer->id);
             }
 
-            // Fetch all employers
+            // Apply search filter if provided
+            if ($request->filled('search')) {
+                $searchTerm = trim($request->input('search'));
+                $query->where(function ($q) use ($searchTerm) {
+                    $q->where('client_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('client_email', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('contact_name', 'like', '%' . $searchTerm . '%')
+                      ->orWhere('client_phone', 'like', '%' . $searchTerm . '%');
+                });
+            }
+
+            // Apply status filter if provided
+            if ($request->filled('status')) {
+                $query->where('status', $request->input('status'));
+            }
+
+            // Apply project range filters if provided
+            if ($request->filled('min_projects')) {
+                $query->whereHas('projects', function ($projectQuery) use ($request) {
+                    $projectQuery->havingRaw('COUNT(*) >= ?', [$request->input('min_projects')]);
+                });
+            }
+
+            if ($request->filled('max_projects')) {
+                $query->whereHas('projects', function ($projectQuery) use ($request) {
+                    $projectQuery->havingRaw('COUNT(*) <= ?', [$request->input('max_projects')]);
+                });
+            }
+
+            // Apply task range filters if provided
+            if ($request->filled('min_tasks')) {
+                $query->whereHas('tasks', function ($taskQuery) use ($request) {
+                    $taskQuery->havingRaw('COUNT(*) >= ?', [$request->input('min_tasks')]);
+                });
+            }
+
+            if ($request->filled('max_tasks')) {
+                $query->whereHas('tasks', function ($taskQuery) use ($request) {
+                    $taskQuery->havingRaw('COUNT(*) <= ?', [$request->input('max_tasks')]);
+                });
+            }
+
+            // Get paginated results with query parameters preserved
+            $clients = $query->latest()->paginate(10)->appends($request->query());
+
+            // Log successful filtering
+            \Illuminate\Support\Facades\Log::info('Client index accessed', [
+                'user_id' => auth()->id(),
+                'filters' => $request->only(['search', 'status', 'min_projects', 'max_projects', 'min_tasks', 'max_tasks']),
+                'results_count' => count($clients->items()),
+                'total_count' => $clients->total()
+            ]);
+
+            // Fetch all employers for potential use
             $employers = Employer::all();
 
-            // Return the view with the filtered clients and employers
             return view('client.index', compact('clients', 'employers'));
 
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput()
+                ->with('error', 'Invalid filter parameters provided.');
         } catch (\Exception $e) {
-            // Handle exception and redirect with error message
-            return redirect()
-                ->route('home')
-                ->with('error', 'An error occurred while fetching clients: '.$e->getMessage());
+            \Illuminate\Support\Facades\Log::error('Error in client index', [
+                'user_id' => auth()->id(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'An error occurred while loading clients. Please try again.');
         }
     }
 
@@ -231,19 +261,84 @@ class ClientController extends Controller
         }
     }
 
+    /**
+     * Update client status
+     * 
+     * @param Request $request Contains status update
+     * @param int $id Client ID
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
     public function updateStatus(Request $request, $id)
     {
         try {
-            // Your logic to update status goes here
+            // Validate the request
+            $request->validate([
+                'status' => 'required|in:0,1'
+            ]);
+
             $client = Client::findOrFail($id);
+            
+            // Check if user has permission to update this client
+            if (auth('web')->user()->role == 'employer') {
+                // Employers can only update clients under their organization
+                if ($client->employer_id !== auth('web')->user()->employer->id) {
+                    if ($request->ajax()) {
+                        return response()->json(['success' => false, 'error' => 'Unauthorized'], 403);
+                    }
+                    return redirect()->back()->with('error', 'Unauthorized to update this client status.');
+                }
+            }
 
-            // Update employee
-            $client->update(['status' => $client->status == '1' ? '0' : '1']);
-            // Determine color based on the updated status
+            // Update the status
+            $client->update(['status' => $request->status]);
 
-            return redirect()->back()->with('success', 'Status updated successfully');
+            // Log the status change
+            \Illuminate\Support\Facades\Log::info('Client status updated', [
+                'client_id' => $client->id,
+                'client_name' => $client->client_name,
+                'old_status' => $client->getOriginal('status'),
+                'new_status' => $request->status,
+                'updated_by' => auth()->id()
+            ]);
+
+            // Return appropriate response based on request type
+            if ($request->ajax()) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Status updated successfully',
+                    'new_status' => $request->status
+                ]);
+            }
+            
+            return redirect()->back()->with('success', 'Client status updated successfully');
+            
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'Invalid status value'], 422);
+            }
+            return redirect()->back()->with('error', 'Invalid status value provided.');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            \Illuminate\Support\Facades\Log::warning('Client not found for status update', [
+                'client_id' => $id,
+                'user_id' => auth()->id()
+            ]);
+            
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'Client not found'], 404);
+            }
+            return redirect()->back()->with('error', 'Client not found.');
         } catch (\Exception $e) {
-            return response()->json(['success' => false, 'error' => $e->getMessage()], 500);
+            \Illuminate\Support\Facades\Log::error('Error updating client status', [
+                'client_id' => $id,
+                'user_id' => auth()->id(),
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'error' => 'An error occurred while updating status'], 500);
+            }
+            return redirect()->back()->with('error', 'An error occurred while updating client status.');
         }
     }
 
@@ -274,5 +369,15 @@ class ClientController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to fetch clients'], 500);
         }
+    }
+
+    public function ajaxSearch(Request $request)
+    {
+        $search = $request->input('q');
+        $results = \App\Models\Client::where('client_name', 'like', "%$search%")
+            ->select('id', 'client_name as text')
+            ->limit(5)
+            ->get();
+        return response()->json(['results' => $results]);
     }
 }

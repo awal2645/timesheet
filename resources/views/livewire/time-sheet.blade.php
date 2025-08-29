@@ -22,7 +22,7 @@
                         </div>
                         <div class="flex mt-2">
                             <input class="hidden" disabled name="dates[]" wire:model="dates.{{ $day }}"
-                                value="{{ $startDate->format('m-d-y') }}">
+                                value="{{ $startDate->format('Y-m-d') }}">
                         </div>
                     </div>
                     @php
@@ -50,7 +50,7 @@
                                                 wire:model="hours.{{ $day }}" class="input-field"
                                                 placeholder="Enter hours">
                                             <input disabled name="dates[]" wire:model="dates.{{ $day }}"
-                                                value="{{ $startDate->format('m-d-y') }}">
+                                                value="{{ $startDate->format('Y-m-d') }}">
                                         </div>
                                     </div>
                                     @php

@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
-use App\Models\LanguageData;
 use Illuminate\Database\Seeder;
+use Modules\Language\App\Models\Language;
+use Modules\Language\App\Models\LanguageData;
 use Illuminate\Database\Eloquent\Model;
 use Database\Seeders\LanguageDataSeeder;
 

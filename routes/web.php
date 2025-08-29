@@ -12,11 +12,9 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ThemeController;
-use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\EmployeeController;
@@ -32,14 +30,12 @@ use App\Http\Controllers\TimeReportController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\EmailTemplateController;
 use App\Http\Controllers\EmployeeSalryController;
 use App\Http\Controllers\Leave\HolidayController;
-use App\Http\Controllers\Payment\PayPalController;
-use App\Http\Controllers\Payment\StripeController;
 use App\Http\Controllers\Leave\LeaveTypeController;
 use App\Http\Controllers\Leave\WeeklyHolidayController;
 use App\Http\Controllers\Leave\LeaveApplicationController;
+use App\Http\Controllers\DesktopAuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -105,6 +101,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         // Timesheet routes for specific roles
         Route::group(['middleware' => 'role:employee,superadmin'], function () {
             Route::get('/timesheet/{startDate?}', [TimesheetController::class, 'index'])->name('timesheet.index')->middleware('check.employee.status');
+            Route::get('/timesheet/create/{startDate?}', [TimesheetController::class, 'index'])->name('timesheet.create')->middleware('check.employee.status');
+            Route::post('/timesheet/store', [TimesheetController::class, 'saveTimesheet'])->name('timesheet.store');
             Route::post('/timesheet/save', [TimesheetController::class, 'saveTimesheet'])->name('timesheet.save');
             Route::post('/timesheet/submit', [TimesheetController::class, 'submitTimesheet'])->name('timesheet.submit');
         });
@@ -177,41 +175,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::controller(SettingController::class)->group(function () {
             Route::get('setting', 'setting')->name('setting');
             Route::put('setting/update', 'update')->name('settings.update');
-            Route::get('payment/gateway', 'paymentGateway')->name('payment');
-            Route::put('payment/update', 'paymentupdate')->name('payment.update');
             Route::get('upgrade', 'upgrade')->name('upgrade');
             // Route::get('change-language/{lang}', 'changeLanguage')->name('changeLanguage');
             Route::post('upgrade/apply', 'upgradeApply')->name('upgrade.apply');
         });
 
-        // Email template routes
-        Route::controller(EmailTemplateController::class)->group(function () {
-            Route::get('email-templates', [EmailTemplateController::class, 'index'])->name('email_templates');
-            Route::post('email-templates/save', [EmailTemplateController::class, 'save'])->name('email_templates.save');
-        });
     });
 
     // Price plan routes
     Route::resource('plans', PricePlanController::class);
     Route::post('plans/recommended', [PricePlanController::class, 'markRecommended'])->name('plans.recommended');
-
-    // Stripe payment routes
-    Route::controller(StripeController::class)
-        ->prefix('stripe')
-        ->name('stripe.')
-        ->group(function () {
-            Route::post('/plan/purchase', 'paymentPurchase')->name('payment.purchase');
-            Route::get('/plan/success', 'paymentSuccess')->name('payment.success');
-            Route::get('/plan/cancel', 'paymentCancel')->name('payment.cancel');
-        });
-
-    // PayPal payment routes
-    Route::controller(PayPalController::class)->group(function () {
-        Route::post('paypal/payment', 'processTransaction')->name('paypal.post');
-        Route::get('success-transaction', 'successTransaction')->name('paypal.successTransaction');
-        Route::get('cancel-transaction', 'cancelTransaction')->name('paypal.cancelTransaction');
-    });
-
 
     // Employer plan route
     Route::get('employer/plan', [EmployerController::class, 'plan'])->name('employer.plan');
@@ -231,16 +204,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('task', 'index')->name('task.index');
         Route::get('task/create', 'create')->name('task.create');
         Route::post('task/store', 'store')->name('task.store');
-        Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
+        Route::get('task/{id}', 'show')->name('task.show');
         Route::get('task/edit/{id}', 'edit')->name('task.edit');
         Route::put('task/update/{id}', 'update')->name('task.update');
         Route::get('task/destroy/{id}', 'destroy')->name('task.destroy');
+        Route::post('task/updateStatus/{id}', 'updateStatus')->name('task.updateStatus');
+        Route::post('task/{id}/comment', 'addComment')->name('task.addComment');
+        Route::put('task/comment/{id}', 'updateComment')->name('task.updateComment');
+        Route::delete('task/comment/{id}', 'deleteComment')->name('task.deleteComment');
+        Route::delete('task/attachment/{id}', 'deleteAttachment')->name('task.deleteAttachment');
         Route::post('/tasks/{task}/update-time', 'updateTime')->name('task.updateTime');
         Route::post('/tasks/{id}/update-time', 'updateTime')->name('task.updateTime');
+        Route::post('/tasks/{id}/update-field', 'updateField')->name('task.updateField');
     });
 
     // Meeting Routes
-    Route::resource('meeting', MeetingController::class);
+    // Route::resource('meeting', MeetingController::class);
 
     // Invoice Routes
     Route::resource('invoice', InvoiceController::class);
@@ -260,11 +239,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('leave_type/destroy/{id}', [LeaveTypeController::class, 'destroy'])->name('leave_type.destroy');
     Route::resource('weekly_holidays', WeeklyHolidayController::class);
     Route::get('weekly_holiday/destroy/{id}', [WeeklyHolidayController::class, 'destroy'])->name('weekly_holiday.destroy');
-    Route::resource('notices', NoticeController::class);
-    Route::get('notice/destroy/{id}', [NoticeController::class, 'destroy'])->name('notices.destroy');
-    Route::resource('languages', LanguageController::class);
-    Route::get('languages/json/edit/{code}', [LanguageController::class, 'editJson'])->name('languages.json.edit');
-    Route::post('languages/transUpdate', [LanguageController::class, 'transUpdate'])->name('languages.transUpdate');
 
     Route::get('/emails/send', [EmailController::class, 'showForm'])->name('emails.send.form');
     Route::post('/emails/send', [EmailController::class, 'send'])->name('emails.send');
@@ -289,12 +263,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
     Route::get('/contact/destroy/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
-    // Testimonial Routes
-    Route::resource('testimonial', TestimonialController::class);
-
+  
     // Newsletter Routes
-    Route::resource('newsletter', NewsLatterController::class);
-    Route::get('/newsletter/destroy/{id}', [NewsLatterController::class, 'destroy'])->name('newsletter.destroy');
     Route::get('/get/employee/{employer}', function ($employer) {
         $employees = Employee::where('employer_id', $employer)->get(['id', 'employee_name']);
         return response()->json($employees);
@@ -311,3 +281,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
    
 });
+
+// Admin Module Management
+Route::middleware(['auth', 'role:superadmin'])->prefix('admin/settings')->group(function () {
+    Route::get('modules', [\App\Http\Controllers\Admin\ModuleController::class, 'index'])->name('admin.modules.index');
+    Route::patch('modules/{module}', [\App\Http\Controllers\Admin\ModuleController::class, 'update'])->name('admin.modules.update');
+});
+
+Route::get('/ajax/clients', [\App\Http\Controllers\Client\ClientController::class, 'ajaxSearch'])->name('ajax.clients');
+Route::get('/ajax/employers', [\App\Http\Controllers\EmployerController::class, 'ajaxSearch'])->name('ajax.employers');
+Route::get('/ajax/employees', [\App\Http\Controllers\EmployeeController::class, 'ajaxSearch'])->name('ajax.employees');
+
+// Desktop authentication routes
+// Route::get('/desktop/login', [DesktopAuthController::class, 'showLogin'])->name('login');
+// Route::post('/desktop/login', [DesktopAuthController::class, 'authenticate'])->name('login.post');
+
+// Desktop routes
+Route::get('/api/desktop/activity', [DashboardController::class, 'storeActivity'])->name('desktop.activity');

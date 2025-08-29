@@ -66,6 +66,30 @@ class TimeReportController extends Controller
     }
     
 
+    /**
+     * Display the specified timesheet report.
+     */
+    public function show($id)
+    {
+        try {
+            $timeReport = TimeReport::with(['user', 'timesheets'])->findOrFail($id);
+            
+            // Check authorization - users can only view their own reports or employer can view employee reports
+            if (auth('web')->user()->role == 'employee' && $timeReport->user_id != auth('web')->user()->id) {
+                abort(403, 'Unauthorized access to this timesheet report.');
+            } elseif (auth('web')->user()->role == 'employer' && $timeReport->employer_id != auth('web')->user()->employer->id) {
+                abort(403, 'Unauthorized access to this timesheet report.');
+            }
+            
+            return view('reports.show', compact('timeReport'));
+            
+        } catch (\Exception $e) {
+            return redirect()
+                ->route('reports.index')
+                ->with('error', 'Timesheet report not found or access denied.');
+        }
+    }
+
     public function updateStatus(Request $request, $id)
     {
         try {

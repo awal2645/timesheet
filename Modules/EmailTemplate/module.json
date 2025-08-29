@@ -1,0 +1,16 @@
+{
+    "name": "EmailTemplate",
+    "alias": "emailtemplate",
+    "description": "Email Template module for managing email templates",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\EmailTemplate\\App\\Providers\\EmailTemplateServiceProvider",
+        "Modules\\EmailTemplate\\App\\Providers\\RouteServiceProvider"
+    ],
+    "files": [],
+    "migration": {
+        "path": "Database/migrations",
+        "generate": true
+    }
+}

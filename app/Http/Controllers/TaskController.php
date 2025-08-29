@@ -3,11 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Client;
 use App\Models\Project;
 use App\Models\Employee;
 use App\Models\Employer;
+use App\Models\TaskAttachment;
+use App\Models\TaskComment;
+use App\Models\User;
+use App\Events\UserMentioned;
 use Illuminate\Http\Request;
 use App\Models\Notificattion;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 /**
  * Controller for managing tasks
@@ -24,38 +31,101 @@ class TaskController extends Controller
      */
     public function index(Request $request)
     {
+        $query = Task::query();
+
         // Filter tasks based on user role
         if(auth()->user()->role == 'employee'){
-            // Employees see only their assigned tasks
-            $tasks = Task::where('employee_id', auth()->user()->employee->id)
-                        ->latest()
-                        ->paginate(10);
+            $query->where('employee_id', auth()->user()->employee->id);
         } elseif(auth()->user()->role == 'employer'){
-            // Employers see tasks for their company
-            $tasks = Task::whereHas('employer', function ($query) {
+            $query->whereHas('employer', function ($query) {
                 $query->where('employer_id', auth()->user()->employer->id);
-            })->latest()->paginate(10);
+            });
         } else if (auth()->user()->role == 'client') {
-            // Clients see tasks for their projects
-            $tasks = Task::whereHas('project', function ($query) {
+            $query->whereHas('project', function ($query) {
                 $query->where('client_id', auth()->user()->client->id);
-            })->latest()->paginate(10);
-        } else {
-            // Admins see all tasks
-            $tasks = Task::latest()->paginate(10);
+            });
         }
-        
-        // Apply search filter if present
-        $search = $request->input('search');
-        if($search){
-            $tasks = $tasks->where('task_name', 'like', '%'.$search.'%')
-                          ->orWhere('', 'like', '%'.$search.'%');
+
+        // Apply search filters
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('task_name', 'like', '%' . $search . '%')
+                  ->orWhere('description', 'like', '%' . $search . '%')
+                  ->orWhereHas('project.client', function($q) use ($search) {
+                      $q->where('client_name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('employer', function($q) use ($search) {
+                      $q->where('employer_name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('employee', function($q) use ($search) {
+                      $q->where('employee_name', 'like', '%' . $search . '%');
+                  });
+            });
         }
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter by task type
+        if ($request->filled('task_type')) {
+            $query->where('task_type', $request->task_type);
+        }
+
+        // Filter by priority
+        if ($request->filled('priority')) {
+            $query->where('priority', $request->priority);
+        }
+
+        // Filter by client
+        if ($request->filled('client_id')) {
+            $query->whereHas('project', function($q) use ($request) {
+                $q->where('client_id', $request->client_id);
+            });
+        }
+
+        // Filter by employer
+        if ($request->filled('employer_id')) {
+            $query->where('employer_id', $request->employer_id);
+        }
+
+        // Filter by employee
+        if ($request->filled('employee_id')) {
+            $query->where('employee_id', $request->employee_id);
+        }
+
+        // Filter by date range
+        if ($request->filled('start_date')) {
+            $query->where('due_date', '>=', $request->start_date);
+        }
+        if ($request->filled('end_date')) {
+            $query->where('due_date', '<=', $request->end_date);
+        }
+
+        // Get filtered tasks with pagination and preserve query parameters
+        $tasks = $query->latest()->paginate(10);
+        $tasks->appends($request->all());
 
         // Get projects for task creation
         $projects = Project::orderBy('project_name', 'desc')->get();
         
         return view('task.index', compact('tasks', 'projects'));
+    }
+
+    /**
+     * Show detailed view of a specific task
+     * 
+     * @param int $id Task ID
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $task = Task::with(['attachments', 'comments.user', 'project.client', 'employer', 'employee'])
+                   ->findOrFail($id);
+        
+        return view('task.show', compact('task'));
     }
 
     /**
@@ -118,21 +188,38 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+        // Decode labels from JSON string to array
+        if ($request->has('labels') && is_string($request->labels)) {
+            $request->merge(['labels' => json_decode($request->labels, true) ?: []]);
+        }
+
         // Validate task data based on user role
         if(auth('web')->user()->role == 'employer'){
             $request->validate([
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240', // 10MB max per file
             ]);
         } elseif(auth('web')->user()->role == 'employee'){
             $request->validate([
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } else {
             $request->validate([
@@ -140,21 +227,37 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         }
 
         // Create new task
-        Task::create([
+        $task = Task::create([
             'employer_id' => $request->employer_id ?? auth('web')->user()->employer->id,
             'employee_id' => $request->employee_id ?? auth('web')->user()->employee->id,
             'project_id' => $request->project_id,
             'task_name' => $request->task_name,
+            'description' => $request->description,
+            'task_type' => $request->task_type,
+            'priority' => $request->priority,
             'time' => $request->time,
             'status' => $request->status,
             'due_date' => $request->due_date,
+            'estimated_hours' => $request->estimated_hours,
+            'labels' => $request->labels,
         ]);
+
+        // Handle file attachments
+        if ($request->hasFile('attachments')) {
+            $this->handleFileUploads($request->file('attachments'), $task);
+        }
 
         // Create notification for task creation
         Notificattion::create([
@@ -164,7 +267,7 @@ class TaskController extends Controller
             'page_url' => '/task',
         ]);
 
-        return redirect()->route('task.index')->with('success', 'Task created successfully!');
+        return redirect()->route('task.show', $task->id)->with('success', 'Task created successfully!');
     }
 
     /**
@@ -176,7 +279,7 @@ class TaskController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::findOrFail($id);
+        $task = Task::with(['attachments'])->findOrFail($id);
         
         // Get available data based on user role
         if(auth('web')->user()->role == 'employer'){
@@ -210,21 +313,38 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // Decode labels from JSON string to array
+        if ($request->has('labels') && is_string($request->labels)) {
+            $request->merge(['labels' => json_decode($request->labels, true) ?: []]);
+        }
+
         // Validate task data based on user role
         if(auth('web')->user()->role == 'employer'){
             $request->validate([
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } elseif(auth('web')->user()->role == 'employee'){
             $request->validate([
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         } else {
             $request->validate([
@@ -232,8 +352,14 @@ class TaskController extends Controller
                 'employee_id' => 'required|exists:employees,id',
                 'project_id' => 'required|exists:projects,id',
                 'task_name' => 'required|string|max:255',
+                'description' => 'nullable|string',
+                'task_type' => 'required|in:task,story,bug,epic',
+                'priority' => 'required|in:low,medium,high',
                 'status' => 'required|in:pending,inprogress,completed',
-                'due_date' => 'required|string|max:255',
+                'due_date' => 'required|date',
+                'estimated_hours' => 'nullable|numeric|min:0',
+                'labels' => 'nullable|array',
+                'attachments.*' => 'nullable|file|max:10240',
             ]);
         }
 
@@ -244,12 +370,118 @@ class TaskController extends Controller
             'employee_id' => $request->employee_id ?? auth('web')->user()->employee->id,
             'project_id' => $request->project_id,
             'task_name' => $request->task_name,
+            'description' => $request->description,
+            'task_type' => $request->task_type,
+            'priority' => $request->priority,
             'time' => $request->time,
             'status' => $request->status,
             'due_date' => $request->due_date,
+            'estimated_hours' => $request->estimated_hours,
+            'labels' => $request->labels,
         ]);
 
-        return redirect()->route('task.index')->with('success', 'Task updated successfully!');
+        // Handle new file attachments
+        if ($request->hasFile('attachments')) {
+            $this->handleFileUploads($request->file('attachments'), $task);
+        }
+
+        return redirect()->route('task.show', $task->id)->with('success', 'Task updated successfully!');
+    }
+
+    /**
+     * Add comment to task
+     * 
+     * @param Request $request Contains comment data
+     * @param int $id Task ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function addComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string'
+        ]);
+
+        $task = Task::findOrFail($id);
+        
+        $comment = TaskComment::create([
+            'task_id' => $task->id,
+            'user_id' => auth()->id(),
+            'comment' => $request->comment
+        ]);
+
+        // Handle mentions - extract usernames from comment and create notifications
+        $this->handleMentions($request->comment, $task, $comment);
+
+        return redirect()->route('task.show', $task->id)->with('success', 'Comment added successfully!');
+    }
+
+    /**
+     * Update comment
+     * 
+     * @param Request $request Contains updated comment data
+     * @param int $id Comment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function updateComment(Request $request, $id)
+    {
+        $request->validate([
+            'comment' => 'required|string'
+        ]);
+
+        $comment = TaskComment::findOrFail($id);
+        
+        // Check if user can edit this comment
+        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You can only edit your own comments.');
+        }
+        
+        $comment->update([
+            'comment' => $request->comment,
+            'edited_at' => now()
+        ]);
+
+        // Handle mentions in updated comment
+        $task = Task::findOrFail($comment->task_id);
+        $this->handleMentions($request->comment, $task, $comment);
+
+        return redirect()->route('task.show', $comment->task_id)->with('success', 'Comment updated successfully!');
+    }
+
+    /**
+     * Delete comment
+     * 
+     * @param int $id Comment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteComment($id)
+    {
+        $comment = TaskComment::findOrFail($id);
+        
+        // Check if user can delete this comment
+        if (auth()->id() !== $comment->user_id && auth()->user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'You can only delete your own comments.');
+        }
+        
+        $taskId = $comment->task_id;
+        $comment->delete();
+
+        return redirect()->route('task.show', $taskId)->with('success', 'Comment deleted successfully!');
+    }
+
+    /**
+     * Delete attachment
+     * 
+     * @param int $id Attachment ID
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function deleteAttachment($id)
+    {
+        $attachment = TaskAttachment::findOrFail($id);
+        $taskId = $attachment->task_id;
+        
+        $attachment->delete();
+
+        return redirect()->route('task.show', $taskId)->with('success', 'Attachment deleted successfully!');
     }
 
     /**
@@ -266,6 +498,72 @@ class TaskController extends Controller
         $task->save();
     
         return response()->json(['success' => true]);
+    }
+
+    /**
+     * Update specific task field via AJAX
+     * 
+     * @param Request $request Contains field and value
+     * @param int $id Task ID
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateField(Request $request, $id)
+    {
+        $task = Task::findOrFail($id);
+        
+        $field = $request->input('field');
+        $value = $request->input('value');
+        
+        // Validate the field and value
+        $allowedFields = ['task_type', 'priority', 'status', 'employee_id'];
+        
+        if (!in_array($field, $allowedFields)) {
+            return response()->json(['success' => false, 'message' => 'Invalid field']);
+        }
+        
+        // Validate values based on field
+        if ($field === 'employee_id') {
+            // Validate employee exists and belongs to the same employer
+            if ($value) {
+                $employee = Employee::find($value);
+                if (!$employee) {
+                    return response()->json(['success' => false, 'message' => 'Invalid employee']);
+                }
+                
+                // Check if employee belongs to the same employer as the task
+                if ($employee->employer_id !== $task->employer_id) {
+                    return response()->json(['success' => false, 'message' => 'Employee does not belong to the same employer']);
+                }
+            }
+        } else {
+            $validValues = [
+                'task_type' => ['task', 'story', 'bug', 'epic'],
+                'priority' => ['low', 'medium', 'high'],
+                'status' => ['pending', 'inprogress', 'completed']
+            ];
+            
+            if (!in_array($value, $validValues[$field])) {
+                return response()->json(['success' => false, 'message' => 'Invalid value']);
+            }
+        }
+        
+        // Update the task
+        $task->$field = $value;
+        $task->save();
+        
+        $response = [
+            'success' => true, 
+            'message' => 'Task updated successfully',
+            'task' => $task
+        ];
+        
+        // If updating employee, include employee name in response
+        if ($field === 'employee_id' && $value) {
+            $employee = Employee::find($value);
+            $response['employee_name'] = $employee ? $employee->employee_name : null;
+        }
+        
+        return response()->json($response);
     }
 
     /**
@@ -295,5 +593,58 @@ class TaskController extends Controller
         $task = Task::find($id);
         $task->delete();
         return redirect()->route('task.index')->with('success', 'Task deleted successfully!');
+    }
+
+    /**
+     * Handle file uploads for task attachments
+     * 
+     * @param array $files Uploaded files
+     * @param Task $task Task instance
+     * @return void
+     */
+    private function handleFileUploads($files, Task $task)
+    {
+        foreach ($files as $file) {
+            if ($file->isValid()) {
+                $originalName = $file->getClientOriginalName();
+                $extension = $file->getClientOriginalExtension();
+                $fileName = Str::uuid() . '.' . $extension;
+                $filePath = $file->storeAs('task-attachments', $fileName, 'public');
+
+                TaskAttachment::create([
+                    'task_id' => $task->id,
+                    'user_id' => auth()->id(),
+                    'original_name' => $originalName,
+                    'file_name' => $fileName,
+                    'file_path' => $filePath,
+                    'file_type' => $extension,
+                    'file_size' => $file->getSize(),
+                    'mime_type' => $file->getMimeType()
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Handle mentions - extract usernames from comment and create notifications
+     * 
+     * @param string $comment Comment text
+     * @param Task $task Task instance
+     * @param TaskComment $commentInstance TaskComment instance
+     * @return void
+     */
+    private function handleMentions($comment, Task $task, TaskComment $commentInstance)
+    {
+        // Extract usernames from comment
+        preg_match_all('/@([a-zA-Z0-9_]+)/', $comment, $matches);
+        $mentionedUsers = $matches[1];
+
+        // Create notifications for mentioned users
+        foreach ($mentionedUsers as $username) {
+            $user = User::where('username', $username)->first();
+            if ($user) {
+                event(new UserMentioned($user, auth('web')->user(), $task, $commentInstance));
+            }
+        }
     }
 }

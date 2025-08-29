@@ -5,16 +5,13 @@ use App\Models\Role;
 use App\Models\Smtp;
 use App\Models\Task;
 use App\Models\Client;
-use App\Models\Notice;
 use App\Models\Earning;
 use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Employee;
 use App\Models\Employer;
-use App\Models\Language;
 use App\Models\PricePlan;
 use App\Models\TimeReport;
-use App\Models\Testimonial;
 use App\Models\Notificattion;
 use App\Models\SearchCountry;
 use Illuminate\Support\Carbon;
@@ -23,9 +20,12 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Modules\Notice\App\Models\Notice;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Artisan;
-use App\Http\Controllers\EmailTemplateController;
+use Modules\Language\App\Models\Language;
+use Modules\Testimonial\App\Models\Testimonial;
+use Modules\EmailTemplate\App\Http\Controllers\EmailTemplateController;
 
 if (! function_exists('employerCount')) {
     function employerCount()
@@ -91,7 +91,11 @@ if (! function_exists('reportCount')) {
 if (! function_exists('notification')) {
     function notification()
     {
-        return Notificattion::where('to', auth('web')->user()->id)->get();
+        $user = Auth::user();
+        if (!$user) {
+            return collect(); // Return empty collection if no user
+        }
+        return Notificattion::where('to', $user->id)->get();
     }
 }
 
@@ -140,7 +144,12 @@ if (! function_exists('replaceAppName')) {
 if (! function_exists('getEmailTemplateFormatFlagsByType')) {
     function getEmailTemplateFormatFlagsByType($type)
     {
-        return EmailTemplateController::getFormatterByType($type) ?? [];
+        try {
+            $controller = app(EmailTemplateController::class);
+            return $controller->getFormattedTextByType($type) ?? [];
+        } catch (\Exception $e) {
+            return [];
+        }
     }
 }
 
@@ -197,7 +206,26 @@ if (! function_exists('formatTime')) {
 
     function formatTime($date, $format = 'F d, Y H:i A')
     {
-        return Carbon::parse($date)->format($format);
+        try {
+            return Carbon::parse($date)->format($format);
+        } catch (\Exception $e) {
+            // If parsing fails, try to handle common date formats
+            if (is_string($date) && preg_match('/^\d{1,2}-\d{1,2}-\d{2}$/', $date)) {
+                // Handle m-d-y format (e.g., 08-24-25)
+                $parts = explode('-', $date);
+                if (count($parts) === 3) {
+                    $month = $parts[0];
+                    $day = $parts[1];
+                    $year = $parts[2];
+                    // Convert 2-digit year to 4-digit year
+                    $year = $year < 50 ? '20' . $year : '19' . $year;
+                    $date = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
+                    return Carbon::parse($date)->format($format);
+                }
+            }
+            // If all else fails, return a fallback
+            return 'Invalid Date';
+        }
     }
 }
 
@@ -286,10 +314,27 @@ if (!function_exists('zMeetConfig')) {
     }
 }
 
-if (! function_exists('notice')) {
+if (! function_exists('notice') ) {
     function notice()
     {
-        return Notice::all();
+        // Check if Notice module is enabled in modules_statuses.json
+        if (!file_exists(base_path('modules_statuses.json'))) {
+            return collect([]);
+        }
+
+        $modulesStatus = json_decode(file_get_contents(base_path('modules_statuses.json')), true);
+        
+        if (isset($modulesStatus['Notice']) && $modulesStatus['Notice'] === true) {
+            try {
+                if (class_exists(Notice::class)) {
+                    return Notice::where('status', 'active')->get();
+                }
+            } catch (\Exception $e) {
+                return collect([]);
+            }
+        }
+        
+        return collect([]); // Return empty collection if module is disabled
     }
 }
 
@@ -330,6 +375,7 @@ if (! function_exists('cms')) {
         return Cms::first();
     }
 }
+
 
 if (! function_exists('testimonials')) {
     function testimonials()
@@ -378,5 +424,17 @@ if (! function_exists('langDirection')) {
     function langDirection()
     {
         return  Language::where('code', app()->getLocale())->value('direction');
+    }
+}
+
+if (! function_exists('module_enabled')) {
+    function module_enabled($moduleName)
+    {
+        try {
+            $module = \App\Models\Module::where('name', $moduleName)->first();
+            return $module && $module->status;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 }

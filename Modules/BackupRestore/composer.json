@@ -1,0 +1,31 @@
+{
+    "name": "nwidart/backuprestore",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\BackupRestore\\": "",
+            "Modules\\BackupRestore\\App\\": "app/",
+            "Modules\\BackupRestore\\Database\\Factories\\": "database/factories/",
+            "Modules\\BackupRestore\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\BackupRestore\\Tests\\": "tests/"
+        }
+    }
+}

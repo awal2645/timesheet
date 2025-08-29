@@ -1,0 +1,11 @@
+{
+    "name": "EmailReminders",
+    "alias": "emailreminders",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\EmailReminders\\App\\Providers\\EmailRemindersServiceProvider"
+    ],
+    "files": []
+}
