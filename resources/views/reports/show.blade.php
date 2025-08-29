@@ -266,7 +266,7 @@
                                         </div>
                                         <div>
                                             <div class="font-semibold text-gray-900 dark:text-white">{{ $timesheet->day }}</div>
-                                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ \Carbon\Carbon::parse($timesheet->date)->format('M d, Y') }}</div>
+                                            <div class="text-sm text-gray-500 dark:text-gray-400">{{ formatTime($timesheet->date, 'M d, Y') }}</div>
                                         </div>
                                     </div>
                                     <div class="text-right">

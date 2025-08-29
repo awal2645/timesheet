@@ -44,7 +44,7 @@ class TimesheetController extends Controller
 
         // Get existing timesheet entries for the week
         $existingTimesheets = Timesheet::where('user_id', auth()->user()->id)
-            ->whereBetween('date', [$startDate->format('m-d-y'), $endDate->format('m-d-y')])
+            ->whereBetween('date', [$startDate->format('Y-m-d'), $endDate->format('Y-m-d')])
             ->get();
 
         // Populate hours and dates arrays with existing data
@@ -58,20 +58,20 @@ class TimesheetController extends Controller
         foreach ($days as $day) {
             if (!isset($hours[$day])) {
                 $hours[$day] = 0;
-                $dates[$day] = $currentDate->format('m-d-y');
+                $dates[$day] = $currentDate->format('Y-m-d');
             }
             $currentDate->addDay();
         }
 
         // Get time report for the week if exists
-        $timeReport = TimeReport::where('start_day', $startDate->format('m-d-y'))
-            ->where('end_day', $endDate->format('m-d-y'))
+        $timeReport = TimeReport::where('start_day', $startDate->format('Y-m-d'))
+            ->where('end_day', $endDate->format('Y-m-d'))
             ->where('user_id', auth()->user()->id)
             ->first();
 
         // Fetch activity data for the week
-        $activityData = TimeReport::where('start_day', $startDate->format('m-d-y'))
-            ->where('end_day', $endDate->format('m-d-y'))
+        $activityData = TimeReport::where('start_day', $startDate->format('Y-m-d'))
+            ->where('end_day', $endDate->format('Y-m-d'))
             ->where('user_id', auth()->user()->id)
             ->select('total_time', 'productive_time', 'idle_time', 'activity_data', 'status', 'productivity_score', 'effectiveness_score')
             ->first();

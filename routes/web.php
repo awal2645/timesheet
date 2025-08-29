@@ -293,8 +293,8 @@ Route::get('/ajax/employers', [\App\Http\Controllers\EmployerController::class, 
 Route::get('/ajax/employees', [\App\Http\Controllers\EmployeeController::class, 'ajaxSearch'])->name('ajax.employees');
 
 // Desktop authentication routes
-Route::get('/desktop/login', [DesktopAuthController::class, 'showLogin'])->name('login');
-Route::post('/desktop/login', [DesktopAuthController::class, 'authenticate'])->name('login.post');
+// Route::get('/desktop/login', [DesktopAuthController::class, 'showLogin'])->name('login');
+// Route::post('/desktop/login', [DesktopAuthController::class, 'authenticate'])->name('login.post');
 
 // Desktop routes
 Route::get('/api/desktop/activity', [DashboardController::class, 'storeActivity'])->name('desktop.activity');

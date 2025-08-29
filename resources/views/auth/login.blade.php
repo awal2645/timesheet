@@ -70,3 +70,31 @@
     @endif
     <x-validation-errors class="mt-4" />
 </x-authentication-layout>
+
+<script>
+function submitLoginForm(userType) {
+    let username = '';
+    let password = '123456';
+    
+    switch(userType) {
+        case 'superadmin':
+            username = 'superadmin@example.com';
+            break;
+        case 'employer':
+            username = 'employer@example.com';
+            break;
+        case 'employee':
+            username = 'employee@example.com';
+            break;
+        case 'client':
+            username = 'client@example.com';
+            break;
+        default:
+            username = 'superadmin@example.com';
+    }
+    
+    document.getElementById('username').value = username;
+    document.getElementById('password').value = password;
+    document.getElementById('login-form').submit();
+}
+</script>

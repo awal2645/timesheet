@@ -206,7 +206,26 @@ if (! function_exists('formatTime')) {
 
     function formatTime($date, $format = 'F d, Y H:i A')
     {
-        return Carbon::parse($date)->format($format);
+        try {
+            return Carbon::parse($date)->format($format);
+        } catch (\Exception $e) {
+            // If parsing fails, try to handle common date formats
+            if (is_string($date) && preg_match('/^\d{1,2}-\d{1,2}-\d{2}$/', $date)) {
+                // Handle m-d-y format (e.g., 08-24-25)
+                $parts = explode('-', $date);
+                if (count($parts) === 3) {
+                    $month = $parts[0];
+                    $day = $parts[1];
+                    $year = $parts[2];
+                    // Convert 2-digit year to 4-digit year
+                    $year = $year < 50 ? '20' . $year : '19' . $year;
+                    $date = $year . '-' . str_pad($month, 2, '0', STR_PAD_LEFT) . '-' . str_pad($day, 2, '0', STR_PAD_LEFT);
+                    return Carbon::parse($date)->format($format);
+                }
+            }
+            // If all else fails, return a fallback
+            return 'Invalid Date';
+        }
     }
 }
 

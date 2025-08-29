@@ -411,8 +411,8 @@
             <!-- Time Entry Form -->
             <form id="timesheetForm" method="POST" action="{{ route('timesheet.store') }}" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="start_day" value="{{ $startDate->format('m-d-y') }}" />
-                <input type="hidden" name="end_day" value="{{ $startDate->copy()->addDays(6)->format('m-d-y') }}" />
+                <input type="hidden" name="start_day" value="{{ $startDate->format('Y-m-d') }}" />
+                <input type="hidden" name="end_day" value="{{ $startDate->copy()->addDays(6)->format('Y-m-d') }}" />
                 
                 <!-- Weekly Hours Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-7 gap-4 mb-6">

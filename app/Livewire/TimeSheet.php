@@ -21,8 +21,8 @@ class Timesheet extends Component
     public function mount()
     {
         // Retrieve existing timesheet data for the user and populate the $hours array
-        $startDate = now()->startOfWeek(Carbon::SUNDAY)->format('m-d-y');
-        $endDate = now()->addDays(6)->format('m-d-y');
+        $startDate = now()->startOfWeek(Carbon::SUNDAY)->format('Y-m-d');
+        $endDate = now()->addDays(6)->format('Y-m-d');
         $existingTimesheets = TimesheetModel::where('user_id', auth()->user()->id)
             ->whereBetween('date', [$startDate, $endDate])
             ->get();
@@ -34,11 +34,11 @@ class Timesheet extends Component
             $this->dates[$timesheet->day] = $timesheet->date;
             $this->currentDate = $timesheet->date;
         }
-        $currentDate = Carbon::createFromFormat('m-d-y', $startDate);
+        $currentDate = Carbon::createFromFormat('Y-m-d', $startDate);
         foreach ($this->days as $day) {
             if (! isset($this->hours[$day])) {
                 $this->hours[$day] = 0;
-                $this->dates[$day] = $currentDate->format('m-d-y');
+                $this->dates[$day] = $currentDate->format('Y-m-d');
             }
             $currentDate->addDay(); // Increment the date by one day
         }
@@ -46,8 +46,8 @@ class Timesheet extends Component
 
     public function loadCurrentWeek()
     {
-        $startDate = $this->currentWeekStart->format('m-d-y');
-        $endDate = $this->currentWeekStart->copy()->addDays(6)->format('m-d-y');
+        $startDate = $this->currentWeekStart->format('Y-m-d');
+        $endDate = $this->currentWeekStart->copy()->addDays(6)->format('Y-m-d');
         $timesheetData = TimesheetModel::where('user_id', auth()->user()->id)
             ->whereBetween('date', [$startDate, $endDate])
             ->get();
@@ -63,11 +63,11 @@ class Timesheet extends Component
         }
 
         // If no timesheet data exists for a day, set default values
-        $currentDate = Carbon::createFromFormat('m-d-y', $startDate);
+        $currentDate = Carbon::createFromFormat('Y-m-d', $startDate);
         foreach ($this->days as $day) {
             if (! isset($this->hours[$day])) {
                 $this->hours[$day] = 0;
-                $this->dates[$day] = $currentDate->format('m-d-y');
+                $this->dates[$day] = $currentDate->format('Y-m-d');
             }
             $currentDate->addDay(); // Increment the date by one day
         }

@@ -73,7 +73,7 @@
                                 </h3>
                                 <div class="text-sm text-blue-700 dark:text-blue-400">
                                     <p><strong>{{ __('Name') }}:</strong> {{ $holiday->name }}</p>
-                                    <p><strong>{{ __('Date') }}:</strong> {{ \Carbon\Carbon::parse($holiday->date)->format('F j, Y (l)') }}</p>
+                                    <p><strong>{{ __('Date') }}:</strong> {{ formatTime($holiday->date, 'F j, Y (l)') }}</p>
                                 </div>
                             </div>
                         </div>
